@@ -36,4 +36,6 @@ public class HomeController {
 		return "home";
 	}
 	
+	//test 추가하였습니다 
+	
 }
