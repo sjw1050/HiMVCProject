@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/> <!-- 카멜케이스 적용 -->
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="www.olive.mvc.member.dto.Member" alias="member"/> <!-- DTO클래스 alias 등록 -->
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mapper/bookmapper.xml" /> <!-- 매퍼 등록 -->
+	</mappers>
+</configuration>
