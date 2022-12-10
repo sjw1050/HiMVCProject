@@ -90,30 +90,40 @@
          <artifactId>logback-classic</artifactId>
          <version>1.2.3</version>
       </dependency>
-      
-      <dependency>
-	<groupId>org.springframework.data</groupId>
-	<artifactId>spring-data-jpa</artifactId>
-	<version>2.0.2.RELEASE</version>
-</dependency>
-      
-      <dependency>
+		
+		<dependency> <!-- 커넥션풀을 위한 dependency -->
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.8.0</version>
+		</dependency>
+		
+		<!-- jpa -->
+<dependency>
+    <groupId>org.springframework.data</groupId>
+    <artifactId>spring-data-jpa</artifactId>
+    <version>1.6.0.RELEASE</version>
+    </dependency>
+<dependency>
     <groupId>org.hibernate</groupId>
     <artifactId>hibernate-entitymanager</artifactId>
-    <version>5.2.16.Final</version>
+    <version>5.3.7.Final</version>
 </dependency>
-
 <dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.4.6</version>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>5.3.7.Final</version>
+</dependency>
+		
+		<dependency> <!-- MyBatis 사용을 위한 dependency -->
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>3.5.6</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>1.3.2</version>
+		
+		<dependency> <!-- 스프링에서 MyBatis 사용을 위한 dependency -->
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>2.0.6</version>
 		</dependency>
 
       <dependency>
