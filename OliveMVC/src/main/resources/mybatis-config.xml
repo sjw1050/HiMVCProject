@@ -9,9 +9,11 @@
 
 	<typeAliases>
 		<typeAlias type="www.olive.mvc.member.dto.MemberEntity" alias="member"/> <!-- DTO클래스 alias 등록 -->
+		<typeAlias type="www.olive.mvc.customerCenter.dto.Notice" alias="notice"/> <!-- DTO클래스 alias 등록 -->
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/membermapper.xml" /> <!-- 매퍼 등록 -->
+		<mapper resource="mapper/noticemapper.xml" /> <!-- 매퍼 등록 -->
 	</mappers>
 </configuration>
