@@ -25,5 +25,11 @@ public class NoticeController {
 		model.addAttribute("list", list);
 		return "notice/viewNotice";
 	}
+	
+	@GetMapping("write")
+	public String writeNotice() {
+		System.out.println("write 진입 성공");
+		return "notice/writeform";
+	}
 
 }

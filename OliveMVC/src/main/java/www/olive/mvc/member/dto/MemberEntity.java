@@ -15,19 +15,19 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "member")
+//@Entity
+//@Table(name = "member")
 public class MemberEntity {
 	
-	@Id
-	@GeneratedValue
-	@Column(name="member_num")
+//	@Id
+//	@GeneratedValue
+//	@Column(name="member_num")
 	private Long memberNum;
 	
-	@Column(name="member_id")
+//	@Column(name="member_id")
 	private String memberId;
 	private String pw;
-	@Column(name="member_name")
+//	@Column(name="member_name")
 	private String memberName;
 	
 	private String email;
