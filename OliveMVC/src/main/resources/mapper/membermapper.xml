@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="www.olive.mvc.repository.MemberRepository">
+
+	<select id="selectAll" resultType="member">
+	select * from member
+	</select>
+	
+	<select id="selectId" resultType="member">
+	select * from member where member_id = #{memberId}
+	</select>
+	
+	<select id="selectAdmin" resultType="www.olive.mvc.member.dto.Admin">
+	select * from admin where admin_id = #{adminId}
+	</select>
+</mapper>
