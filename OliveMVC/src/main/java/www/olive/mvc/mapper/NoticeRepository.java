@@ -11,4 +11,14 @@ public interface NoticeRepository {
 	
 	public List<Notice> selectAll();
 
+	public void saveNotice(Notice notice);
+
+	public Notice selectId(Long noticeNum);
+
+	public void updateview(Long noticeNum);
+
+	public void modifyNotice(Notice notice);
+
+	public void removeNotice(Long noticeNum);
+
 }
