@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 import www.olive.mvc.member.dto.Admin;
 import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.member.dto.MemberEntity;
@@ -22,6 +23,25 @@ public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@GetMapping("/regist")
+	public String regist() {
+		return "/member/registForm";
+	}
+	
+	@PostMapping("/regist")
+	public String registmember(MemberEntity member, Model model) {
+		System.out.println("멤버가 들어왔니?" + member);
+		MemberEntity checkmember = memberService.checkMember(member);
+		System.out.println("멤버가 들어왔니?" + checkmember);
+		if(checkmember != null) {
+			model.addAttribute("err", "이미 존재하는 회원입니다.");
+			return "/member/registForm";
+		}else {
+			memberService.registMember(member);
+			return "redirect:/member/view";
+		}
+	}
 	
 	@GetMapping("/view")
 	public String viewMember(Model model) {
