@@ -18,7 +18,8 @@ public class AdminCheckInterceptor implements HandlerInterceptor {
 				return true;
 			}
 		}
-		response.sendRedirect(request.getContextPath() + "/member/adminloginForm");
+		session.setAttribute("togo", request.getRequestURI());
+		response.sendRedirect(request.getContextPath() + "/member/adminlogin");
 		return false;
 	}
 	

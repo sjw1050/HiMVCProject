@@ -17,6 +17,23 @@ public class NoticeService {
 	public List<Notice> viewNotice() {
 		return noticeRepository.selectAll();
 	}
+
+	public void saveNotice(Notice notice) {
+		noticeRepository.saveNotice(notice);
+	}
+
+	public Notice detailNotice(Long noticeNum) {
+		noticeRepository.updateview(noticeNum);
+		return noticeRepository.selectId(noticeNum);
+	}
+
+	public void modifyNotice(Notice notice) {
+		noticeRepository.modifyNotice(notice);
+	}
+
+	public void removeNotice(Long noticeNum) {
+		noticeRepository.removeNotice(noticeNum);
+	}
 	
 	
 

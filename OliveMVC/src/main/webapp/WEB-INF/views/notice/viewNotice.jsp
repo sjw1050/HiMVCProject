@@ -11,16 +11,18 @@
 
 <table>
 <tr>
-	<th>공지번호</th>
-	<th>공지제목</th>
+	<th>공지 번호</th>
+	<th>공지 제목</th>
+	<th>공지 날짜</th>
 	<th>조회수</th>
 </tr>
 
 	<c:forEach items="${list }" var="notice">
 		<tr>
 			<td>${notice.noticeNum }</td>
-			<td>${notice.noticeTitle }</td>
-			<td>${notice.view_count }</td>
+			<td><a href="${pageContext.request.contextPath }/notice/viewnotice?noticeNum=${notice.noticeNum}">${notice.noticeTitle }</a></td>
+			<td>${notice.noticeDate }</td>
+			<td>${notice.viewCount }</td>
 		</tr>
 	</c:forEach>
 </table>

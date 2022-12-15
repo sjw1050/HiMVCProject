@@ -31,7 +31,7 @@ public class MemberService {
 		if(member != null) {
 		if(member.getMemberId().equals(memberId)) {
 			if(member.getPw().equals(Pw)) {
-				info = new AuthInfo(member.getMemberId(), member.getEmail(), member.getMemberName(), member.getAddress(), member.getBirthday(), member.getTpa());
+				info = new AuthInfo(member.getMemberNum(), member.getMemberId(), member.getEmail(), member.getMemberName(), member.getAddress(), member.getBirthday(), member.getTpa());
 			}else {
 				return null;
 			}

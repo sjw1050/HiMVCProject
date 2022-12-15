@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthInfo {
 
+	
+	private Long memberNum;
 	private String id;
 	private String email;
 	private String name;

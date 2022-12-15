@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>문의글 작성 폼</h1>
-<form action="${pageContext.request.contextPath }/quest/write" method="post">
+<h1>공지사항 작성 폼</h1>
+<form action="${pageContext.request.contextPath }/notice/write" method="post">
 <div>
-<p>문의 제목</p> 
-<input type="text" name="questionTitle" />
-<p>문의 내용</p>
-<textarea rows="30" cols="30" name="questionContent">
+<p>공지 제목</p> 
+<input type="text" name="noticeTitle" />
+<p>공지 내용</p>
+<textarea rows="30" cols="30" name="noticeContent">
 </textarea>
 <input type="submit" name="작성하기"/>
 </div>

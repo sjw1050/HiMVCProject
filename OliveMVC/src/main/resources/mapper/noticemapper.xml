@@ -5,6 +5,27 @@
 <mapper namespace="www.olive.mvc.mapper.NoticeRepository">
 
 	<select id="selectAll" resultType="notice">
-	select * from notice
+	select * from notice order by notice_num desc
 	</select>
+	
+	<select id="selectId" resultType="notice">
+	select * from notice where notice_num = #{noticeNum}
+	</select>
+	
+	<insert id="saveNotice">
+	insert into notice(notice_title,notice_content)
+   values(#{noticeTitle}, #{noticeContent})
+	</insert>
+	
+	<update id="updateview">
+		update notice set view_count = view_count + 1 where notice_num = #{noticeNum}
+	</update>
+	
+	<update id="modifyNotice">
+		update notice set notice_title = #{noticeTitle}, notice_content = #{noticeContent} where notice_num = #{noticeNum}
+	</update>
+	
+	<delete id="removeNotice">
+		delete from notice where notice_num = #{noticeNum}
+	</delete>
 </mapper>
