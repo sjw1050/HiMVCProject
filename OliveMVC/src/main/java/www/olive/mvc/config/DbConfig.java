@@ -12,8 +12,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-//@EnableJpaRepositories(basePackages="www.olive.mvc.repository") // jpa사용하기 위한 패키지 탐색
-@MapperScan("www.olive.mvc.repository") // mybatis 사용하기 위한 패키지 탐색
+//@EnableJpaRepositories(basePackages="www.olive.mvc.mapper") // jpa사용하기 위한 패키지 탐색
+@MapperScan("www.olive.mvc.mapper") // mybatis 사용하기 위한 패키지 탐색
 public class DbConfig {
 
 	@Bean(destroyMethod = "close")

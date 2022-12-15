@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import www.olive.mvc.customerCenter.dto.Notice;
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
-import www.olive.mvc.repository.NoticeRepository;
-import www.olive.mvc.repository.QuestionRepository;
+import www.olive.mvc.mapper.NoticeRepository;
+import www.olive.mvc.mapper.QuestionRepository;
 
 @Service
 public class QuestService {
