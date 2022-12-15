@@ -12,6 +12,15 @@
 		<typeAlias type="www.olive.mvc.customerCenter.dto.Notice" alias="notice"/> <!-- DTO클래스 alias 등록 -->
 		<typeAlias type="www.olive.mvc.customerCenter.dto.Faq" alias="faq"/> <!-- DTO클래스 alias 등록 -->
 		<typeAlias type="www.olive.mvc.customerCenter.dto.QuestionBoard" alias="quest"/> <!-- DTO클래스 alias 등록 -->
+		
+		<!-- Product dto alias -->
+		<typeAlias type="www.olive.mvc.product.dto.Product" alias="product"/> 
+		<typeAlias type="www.olive.mvc.product.dto.Brand" alias="brand"/> 
+		<typeAlias type="www.olive.mvc.product.dto.MainCategory" alias="mainCategory"/> 
+		<typeAlias type="www.olive.mvc.product.dto.SubCategory" alias="subCategory"/> 
+		<typeAlias type="www.olive.mvc.product.dto.ProductQna" alias="productQna"/> 
+		<typeAlias type="www.olive.mvc.product.dto.Color" alias="color"/> 
+		<typeAlias type="www.olive.mvc.product.dto.Review" alias="review"/> 
 	</typeAliases>
 	
 	<mappers>
@@ -19,5 +28,8 @@
 		<mapper resource="mapper/noticemapper.xml" /> <!-- 매퍼 등록 -->
 		<mapper resource="mapper/faqmapper.xml" /> <!-- 매퍼 등록 -->
 		<mapper resource="mapper/questionmapper.xml" /> <!-- 매퍼 등록 -->
+		
+		<!-- productmapper -->
+		<mapper resource="mapper/product/productmapper.xml" /> 
 	</mappers>
 </configuration>
