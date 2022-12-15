@@ -40,6 +40,14 @@ public class MemberController {
 		AuthInfo info = memberService.memberCheck(member.getMemberId(), member.getPw());
 		if(info != null) {
 		session.setAttribute("info", info);
+		if(session.getAttribute("togo") != null) {
+			//System.out.println("세션에 붙었니?"+session.getAttribute("togo"));
+			String togo = (String) session.getAttribute("togo");
+			togo.substring(0);
+			System.out.println("togo>>>"+togo);
+			session.removeAttribute("togo");
+			return togo;
+		}
 		return "/main";
 		}else {
 			model.addAttribute("notmember", "아이디와 비밀번호가 일치하지 않습니다.");

@@ -8,10 +8,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import www.olive.mvc.mapper.MemberRepository;
 import www.olive.mvc.member.dto.Admin;
 import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.member.dto.MemberEntity;
-import www.olive.mvc.repository.MemberRepository;
 
 @Service
 public class MemberService {
@@ -25,9 +25,10 @@ public class MemberService {
 
 	public AuthInfo memberCheck(String memberId, String Pw) {
 		//System.out.println("멤버 아이디,비번 전달받았는지>>>" + memberId + Pw);
-		AuthInfo info;
+		AuthInfo info = null;
 		MemberEntity member = memberRepository.selectId(memberId);
 		//System.out.println("반환받은 멤버 >>>" + member);
+		if(member != null) {
 		if(member.getMemberId().equals(memberId)) {
 			if(member.getPw().equals(Pw)) {
 				info = new AuthInfo(member.getMemberId(), member.getEmail(), member.getMemberName(), member.getAddress(), member.getBirthday(), member.getTpa());
@@ -36,6 +37,7 @@ public class MemberService {
 			}
 		}else {
 			return null;
+		}
 		}
 		//System.out.println("info 입력>>>" + info);
 		return info;

@@ -1,4 +1,4 @@
-package www.olive.mvc.repository;
+package www.olive.mvc.mapper;
 
 import java.util.List;
 

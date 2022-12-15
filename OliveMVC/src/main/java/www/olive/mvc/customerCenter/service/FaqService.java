@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import www.olive.mvc.customerCenter.dto.Faq;
-import www.olive.mvc.repository.FaqRepository;
+import www.olive.mvc.mapper.FaqRepository;
 
 @Service
 public class FaqService {

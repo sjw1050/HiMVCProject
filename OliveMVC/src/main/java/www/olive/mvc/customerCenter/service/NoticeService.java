@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import www.olive.mvc.customerCenter.dto.Notice;
-import www.olive.mvc.repository.NoticeRepository;
+import www.olive.mvc.mapper.NoticeRepository;
 
 @Service
 public class NoticeService {
