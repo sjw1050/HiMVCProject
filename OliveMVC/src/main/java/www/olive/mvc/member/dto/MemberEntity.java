@@ -31,5 +31,6 @@ public class MemberEntity {
 	private String address;
 	private Date regdate;
 	private Long tpa;
+	private int level;
 
 }
