@@ -19,7 +19,7 @@
 
 	<c:forEach items="${qlist }" var="quest">
 		<tr>
-			<td><a href="${pageContext.request.contextPath }/quest/detailQuest?questNum=${quest.questionNum}">${quest.questionTitle }</a></td>
+			<td><a href="${pageContext.request.contextPath }/quest/detailQuest?questionNum=${quest.questionNum}">${quest.questionTitle }</a></td>
 			<td>${quest.questionDate }</td>
 			<td>${info.name }</td>
 			<c:if test="${quest.viewCheck }">
