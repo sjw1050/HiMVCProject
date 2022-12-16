@@ -21,16 +21,22 @@
 		b.brand_num
 		where p.product_id = #{productId};
 	</select>
-	
+
 	<!-- 카테고리별 상품 보기 -->
-	<!-- <select id="selectOneProduct" resultType="product">
-		select p.main_cate_id,
-		p.product_name, p.product_price, p.product_info,
-		b.brand_num,
-		b.brand_name, b.seller_id
-		from product p join brand b
-		on p.brand_num =
-		b.brand_num
-		and p.product_id = #{productId};
-	</select> -->
+	<select id="selectByMainCate" resultType="product">
+		select b.brand_name,
+		p.product_name, p.product_price
+		from main_category m, product p, brand
+		b
+		where m.main_cate_id = p.main_cate_id
+		and p.brand_num = b.brand_num
+		and m.main_cate_id = #{mainCateId};
+	</select>
+
+	<!-- cateId 받아오기(main에) test -->
+	<select id="selectCateId" resultType="subCategory">
+		select s.*, m.main_cate_name
+		from sub_category s, main_category m
+		where s.main_cate_id = m.main_cate_id
+	</select>
 </mapper>
