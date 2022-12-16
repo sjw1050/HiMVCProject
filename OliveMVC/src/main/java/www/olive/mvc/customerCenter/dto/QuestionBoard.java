@@ -5,6 +5,7 @@ import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import www.olive.mvc.member.dto.MemberEntity;
 
 @Data
 @AllArgsConstructor
@@ -16,6 +17,7 @@ public class QuestionBoard {
 	private String questionContent;
 	private Date questionDate;
 	private Long memberNum;
+	//private MemberEntity writer;
 	private boolean viewCheck;
 
 }

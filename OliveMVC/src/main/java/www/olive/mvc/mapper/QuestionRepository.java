@@ -11,4 +11,14 @@ public interface QuestionRepository {
 	
 	public List<QuestionBoard> selectAll();
 
+	public void saveQuest(QuestionBoard quest);
+
+	public List<QuestionBoard> findMemberNum(Long memberNum);
+
+	public QuestionBoard findQuestNum(Long questionNum);
+
+	public void modifyQuest(QuestionBoard quest);
+
+	public void removeQuest(Long questionNum);
+
 }

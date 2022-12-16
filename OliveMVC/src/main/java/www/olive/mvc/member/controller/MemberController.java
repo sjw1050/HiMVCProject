@@ -75,7 +75,7 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("/adminloginForm")
+	@GetMapping("/adminlogin")
 	public String adminloginForm() {
 		return "/admin/loginForm";
 	}
@@ -86,6 +86,14 @@ public class MemberController {
 			Admin _adminAdmin = memberService.adminCheck(admin.getAdminId(), admin.getAdminPw());
 			if(_adminAdmin != null) {
 			session.setAttribute("admininfo", _adminAdmin);
+			if(session.getAttribute("togo") != null) {
+				//System.out.println("세션에 붙었니?"+session.getAttribute("togo"));
+				String togo = (String) session.getAttribute("togo");
+				togo.substring(0);
+				System.out.println("togo>>>"+togo);
+				session.removeAttribute("togo");
+				return togo;
+			}
 			return "/main";
 			}else {
 				model.addAttribute("notadmin", "관리자만 이용할 수 있는 메뉴입니다.");

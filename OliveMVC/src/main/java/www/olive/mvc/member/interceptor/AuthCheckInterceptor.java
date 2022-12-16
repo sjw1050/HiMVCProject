@@ -11,7 +11,7 @@ public class AuthCheckInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object handler) throws Exception {
-		System.out.println("인터셉터>>>>>>" + request.getRequestURI());
+		//System.out.println("인터셉터>>>>>>" + request.getRequestURI());
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			Object authInfo = session.getAttribute("info");
