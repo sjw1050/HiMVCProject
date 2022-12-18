@@ -15,4 +15,9 @@
 	<select id="selectAdmin" resultType="www.olive.mvc.member.dto.Admin">
 	select * from admin where admin_id = #{adminId}
 	</select>
+	
+	<insert id="insertMember">
+	insert into member(member_id,pw,member_name,email,phone,birthday,gender,address,tpa)
+    values(#{memberId}, #{pw}, #{memberName}, #{email}, #{phone}, #{birthday}, #{gender}, #{address}, #{tpa})
+	</insert>
 </mapper>

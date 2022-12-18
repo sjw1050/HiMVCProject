@@ -7,4 +7,55 @@
 	<select id="selectAll" resultType="quest">
 	select * from board_question
 	</select>
+	
+	<select id="findMemberNum" resultType="quest">
+	select * from board_question where member_num = #{memberNum}
+	</select>
+	
+	
+	<select id="AnswerToFindQuestNum" resultType="answer">
+	select * from board_answer where question_num = #{questionNum}
+	</select>
+	
+	<select id="findQuestNum" resultType="quest">
+	select * from board_question where question_num = #{questionNum}
+	</select>
+	
+	<insert id="saveQuest">
+	insert into board_question(question_title,question_content,member_num)
+	values(#{questionTitle}, #{questionContent}, #{memberNum})
+	</insert>
+	
+	<insert id="saveAnswer">
+	
+	insert into board_answer(answer, question_num)
+   values(#{answer},#{questionNum});
+	</insert>
+	
+	<update id="modifyQuest">
+	update board_question 
+	set question_title = #{questionTitle}, 
+	question_content = #{questionContent}
+	where question_num = #{questionNum}
+	</update>
+	
+	
+	<update id="adminQuestCheck">
+	update board_question 
+	set view_check = true
+	where question_num = #{questionNum}
+	</update>
+	
+	
+	<update id="updateAnswer">
+	update board_answer 
+	set answer = #{answer},
+	answer_date = curdate()
+	where question_num = #{questionNum}
+	and answer_num = #{answerNum}
+	</update>
+	
+	<delete id="removeQuest">
+	delete from board_question where question_num = #{questionNum}
+	</delete>
 </mapper>

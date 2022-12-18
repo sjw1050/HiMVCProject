@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import www.olive.mvc.mapper.MemberRepository;
 import www.olive.mvc.member.dto.Admin;
 import www.olive.mvc.member.dto.AuthInfo;
@@ -31,7 +32,7 @@ public class MemberService {
 		if(member != null) {
 		if(member.getMemberId().equals(memberId)) {
 			if(member.getPw().equals(Pw)) {
-				info = new AuthInfo(member.getMemberId(), member.getEmail(), member.getMemberName(), member.getAddress(), member.getBirthday(), member.getTpa());
+				info = new AuthInfo(member.getMemberNum(), member.getMemberId(), member.getEmail(), member.getMemberName(), member.getAddress(), member.getBirthday(), member.getTpa());
 			}else {
 				return null;
 			}
@@ -42,6 +43,13 @@ public class MemberService {
 		//System.out.println("info 입력>>>" + info);
 		return info;
 	}
+	
+	public void registMember(MemberEntity member) {
+//		Character gender = member.getGender();
+		System.out.println("젠더가 뭐니"+ member.getGender());
+		memberRepository.insertMember(member);
+	}
+
 
 	public Admin adminCheck(String adminId, String adminPw) {
 		Admin admin = memberRepository.selectAdmin(adminId);
@@ -58,6 +66,15 @@ public class MemberService {
 			admin = null;
 		}
 		return admin;
+	}
+
+	public MemberEntity checkMember(MemberEntity member) {
+		MemberEntity _member = memberRepository.selectId(member.getMemberId()); 
+		if(_member == null) {
+			return null;
+		}else {
+			return _member;
+		}
 	}
 	
 	

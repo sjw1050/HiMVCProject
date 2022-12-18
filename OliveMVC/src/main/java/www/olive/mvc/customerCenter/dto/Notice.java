@@ -15,7 +15,6 @@ public class Notice {
 	private String noticeTitle;
 	private String noticeContent;
 	private Date noticeDate;
-	private int view_count;
-	private Long adminNum;
+	private int viewCount;
 
 }
