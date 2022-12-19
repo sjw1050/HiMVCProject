@@ -65,6 +65,7 @@
 		}
 		if(memberNum != infoMeberNum){
 			alert("작성한 회원이 아니면 게시글 수정이 불가능합니다.");
+			return;
 		}
 		document.getElementById("questionTitle").readOnly = false;
 		document.getElementById("questionContent").readOnly = false;
@@ -107,8 +108,14 @@
 
 	function remove() {
 		var viewcheck = ${qboard.viewCheck};
+		var memberNum = ${qboard.getWriter().getMemberNum()};
+		var infoMeberNum = "${info.memberNum}";
 		if(viewcheck){
 			alert("관리자가 확인하여 삭제가 불가능합니다.");
+			return;
+		}
+		if(memberNum != infoMeberNum){
+			alert("작성한 회원이 아니면 게시글 삭제가 불가능합니다.");
 			return;
 		}
 		var questionNum = ${qboard.questionNum};

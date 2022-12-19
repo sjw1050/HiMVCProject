@@ -17,10 +17,6 @@
     />
 <title>Insert title here</title>
 </head>
-
-<c:if test="${not empty admininfo}">
-	<p>${admininfo }</p>
-</c:if>
 <body>
 <%-- 	<c:if test="${not empty info}">
 		<p>${info.name }님반갑습니다.</p>
@@ -65,7 +61,9 @@
     </nav>
     
     <a href="${pageContext.request.contextPath }/quest/view">질문&답변</a>
+    <a href="${pageContext.request.contextPath }/quest/write">질문 작성하러 가기</a>
     <a href="${pageContext.request.contextPath }/notice/viewall">공지 확인</a>
+    <a href="${pageContext.request.contextPath }/notice/write">공지 작성하기</a>    
     <a href="${pageContext.request.contextPath }/member/loginForm">로그인</a>
     <a href="${pageContext.request.contextPath }/member/adminlogin">관리자 로그인</a>
 <script>

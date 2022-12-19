@@ -12,8 +12,7 @@ import lombok.NoArgsConstructor;
 //@Entity
 //@Table(name = "member")
 public class MemberEntity {
-	
-//	@Id
+	//	@Id
 //	@GeneratedValue
 //	@Column(name="member_num")
 	private Long memberNum;
@@ -32,5 +31,14 @@ public class MemberEntity {
 	private Date regdate;
 	private Long tpa;
 	private int level;
+	
+	public MemberEntity(Long memberNum, String id, String name, Date birthday, Long tpa) {
+		this.memberNum = memberNum;
+		this.memberId = id;
+		this.memberName = name;
+		this.birthday = birthday;
+		this.tpa = tpa;
+	}
+
 
 }

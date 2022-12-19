@@ -56,7 +56,7 @@
 	
 	<insert id="saveQuest">
 	insert into board_question(question_title,question_content,member_num)
-	values(#{questionTitle}, #{questionContent}, #{getWriter().getmemberNum()})
+	values(#{questionTitle}, #{questionContent}, #{writer.memberNum})
 	</insert>
 	
 	<insert id="saveAnswer">
