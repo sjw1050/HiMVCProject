@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+/* Reset */
+p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active {
+  outline: none;
+  box-shadow: none;
+}
+
+button {
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  font-family: 'lato', sans-serif;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+i {
+  color: black;
+}

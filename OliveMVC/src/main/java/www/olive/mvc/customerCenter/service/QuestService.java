@@ -21,8 +21,9 @@ public class QuestService {
 	}
 
 	public void saveQuest(QuestionBoard quest, AuthInfo loginauth) {
-		Long memberNum = loginauth.getMemberNum();
-		quest.setMemberNum(memberNum);
+//		Long memberNum = loginauth.getMemberNum();
+//		quest.setMemberNum(memberNum);
+		quest.getWriter().setMemberNum(loginauth.getMemberNum());
 		questionRepository.saveQuest(quest);
 	}
 

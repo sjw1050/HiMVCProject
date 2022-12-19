@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import www.olive.mvc.customerCenter.dto.AnswerBoard;
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
+import www.olive.mvc.member.dto.AuthInfo;
 
 @Mapper
 public interface QuestionRepository {

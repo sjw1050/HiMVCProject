@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css" />
+<script
+      src="https://kit.fontawesome.com/e8644e93da.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="//db.onlinewebfonts.com/c/2596224269750e00c3ad5356299a3b9f?family=Ogg"
+      rel="stylesheet"
+      type="text/css"
+    />
 <title>Insert title here</title>
 </head>
 
@@ -12,7 +22,7 @@
 	<p>${admininfo }</p>
 </c:if>
 <body>
-	<c:if test="${not empty info}">
+<%-- 	<c:if test="${not empty info}">
 		<p>${info.name }님반갑습니다.</p>
 	</c:if>
 	
@@ -22,6 +32,47 @@
 			<li><a href="/product/viewAllProduct">상품 전체 보기</a></li>
 			<!-- 수정할거임 <li><a href="/product/viewCategory">카테고리</a></li> -->
 		</ul>
-	</div>
+	</div> --%>
+	<nav class="navigation">
+      <div class="container">
+    <div class ="navigation-desktop">
+          <a href="${pageContext.request.contextPath }/main"><img src="${pageContext.request.contextPath }/resources/images/oliveyoung-logo.png" alt="Olive Young Logo" /></a>
+          <ul class="menu">
+            <li><a href="">Category</a></li>
+            <li><a href="">Bestseller</a></li>
+            <li><a href="">New Arrival</a></li>
+            <li><a href="">Brands</a></li>
+            <li><a href="">Events</a></li>
+          </ul>
+          <ul class="user">
+            <li class="search-input">
+              <input type="text" placeholder="search our store" />
+              <button><i class="fas fa-search"></i></button>
+            </li>
+  
+            <li class="account">
+              <button id="account" onclick="dropdown();"><i class="fas fa-user"></i></button>
+            </li>
+            <li class="register">회원가입</li>
+            <li class="login">로그인</li>
+  
+            <li class="bag">
+              <button><i class="fas fa-shopping-cart"></i></button>
+            </li>
+          </ul>
+    </div>
+      </div>
+    </nav>
+    
+    <a href="${pageContext.request.contextPath }/quest/view">질문&답변</a>
+    <a href="${pageContext.request.contextPath }/notice/viewall">공지 확인</a>
+    <a href="${pageContext.request.contextPath }/member/loginForm">로그인</a>
+    <a href="${pageContext.request.contextPath }/member/adminlogin">관리자 로그인</a>
+<script>
+	function dropdown() {
+		let drop = document.getElementById("account");
+		
+	}
+</script>
 </body>
 </html>
