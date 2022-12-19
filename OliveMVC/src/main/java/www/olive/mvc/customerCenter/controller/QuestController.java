@@ -10,8 +10,13 @@ import www.olive.mvc.customerCenter.dto.AnswerBoard;
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
 import www.olive.mvc.customerCenter.service.QuestService;
 import www.olive.mvc.member.dto.AuthInfo;
+import www.olive.mvc.member.dto.MemberEntity;
+
+import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.lang.ProcessBuilder.Redirect;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -32,10 +37,12 @@ public class QuestController {
 		AuthInfo logininfo = (AuthInfo) session.getAttribute("info");
 		if(logininfo == null) {
 			List<QuestionBoard> qList = questService.viewquest();
+			System.out.println("question 0번 인덱스 글쓴이 : "+qList.get(0).getWriter().getMemberName());
 			model.addAttribute("qlist", qList);
 			return "quest/viewquest";
 		}else {
 			List<QuestionBoard> qList = questService.viewMemberQuest(logininfo);
+			System.out.println("퀘스트 들어왔니?"+qList.get(0).getWriter().getMemberNum());
 			model.addAttribute("qlist", qList);
 			return "quest/viewquest";
 		}

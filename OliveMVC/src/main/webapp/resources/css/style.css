@@ -1,0 +1,215 @@
+@import url(reset.css);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=lato:wght@300;400;600;700;900&family=Prata&family=Spectral:wght@600&display=swap');
+@import url(nav.css);
+@import url(hero.css);
+@import url(bestsellers.css);
+@import url(advertisement.css);
+@import url(sns.css);
+@import url(subscription.css);
+@import url(footer.css);
+
+/* Ogg font import */
+@import url(//db.onlinewebfonts.com/c/2596224269750e00c3ad5356299a3b9f?family=Ogg);
+
+:root {
+  /* font size */
+  --fontsize-xs: 12px;
+  --fontsize-s: 14px;
+  --fontsize-m: 16px;
+  --fontsize-ml: 20px;
+  --fontsize-l: 28px;
+  --fontsize-xl: 36px;
+
+  /* spacings */
+  --spacing-xxs: 2px;
+  --spacing-xs: 8px;
+  --spacing-s: 12px;
+  --spacing-m: 16px;
+  --spacing-l: 38px;
+  --spacing-xl: 56px;
+  --spacing-xxl: 72px;
+
+  /* colors */
+  --color-primary: #9ad020;
+  --color-primary-opacity4: #9bd0201a;
+  --color-secondary: #500978;
+  --color-point: #f85071;
+  --color-orange: #fe7566;
+  --color-point-green: #19a89e;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-lightgray: #f3f3f3;
+  --color-gray: #858585;
+  --color-darkgray: #424242;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 1120px) {
+  .mobile-nav-header {
+    display: block;
+  }
+
+  .navigation-desktop > .menu,
+  .navigation-desktop > .user,
+  .navigation-desktop > img {
+    display: none;
+  }
+
+  #hero > .container {
+    flex-direction: column;
+  }
+
+  #hero .contents {
+    transform: translate(-100px, -80px);
+  }
+
+  #bestsellers .box {
+    margin-right: 0;
+  }
+
+  #bestsellers .product-name {
+    padding: var(--spacing-s) var(--spacing-m);
+  }
+
+  #advertisement > .container {
+    flex-direction: column;
+  }
+
+  #advertisement .title {
+    width: 100%;
+  }
+  #advertisement .description {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  #advertisement iframe {
+    width: 100%;
+  }
+
+  #vdl-advertisement .container {
+    flex-direction: column;
+  }
+  #vdl-advertisement .box {
+    width: 100%;
+  }
+
+  .vdl-primer {
+    margin-left: 0px;
+  }
+  #vdl-advertisement .vdl-primer-container {
+    padding: var(--spacing-l);
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .vdl-primer-container .description {
+    max-width: 500px;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .glow {
+    display: none;
+  }
+
+  .insta-container {
+    gap: 0;
+  }
+
+  #subscription .subscription-container {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 907px) {
+  #footer .sns li {
+    margin-left: 0;
+    margin-top: var(--spacing-l);
+    margin-right: var(--spacing-l);
+  }
+}
+
+@media only screen and (max-width: 764px) {
+  #bestsellers .box-container {
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  #hero .contents {
+    transform: translate(0px, 0px);
+    text-align: center;
+    padding-bottom: var(--spacing-l);
+  }
+
+  #hero .dates {
+    margin: auto;
+    margin-bottom: var(--spacing-s);
+    width: 50%;
+  }
+
+  #footer .sns li {
+    margin-left: 0;
+    margin-top: var(--spacing-l);
+    margin-right: var(--spacing-l);
+  }
+}
+
+@media only screen and (max-width: 694px) {
+  #advertisement .container {
+    padding: 0px;
+  }
+  #advertisement .shop-cta {
+    margin-bottom: var(--spacing-l);
+  }
+
+  #advertisement .description-container {
+    padding: var(--spacing-l);
+  }
+
+  #vdl-advertisement .box-container {
+    flex-direction: column;
+  }
+
+  #vdl-advertisement .container .box-container {
+    order: 2;
+  }
+
+  .insta-container {
+    flex-wrap: wrap;
+  }
+  .insta-container li {
+    width: 50%;
+  }
+
+  #subscription .subscription-left li {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 574px) {
+  #subscription input {
+    width: 100%;
+  }
+  #subscription button {
+    width: 100%;
+    margin-left: 0;
+    border-radius: 0;
+    margin-top: var(--spacing-xs);
+  }
+
+  #footer .contents-left {
+    flex-direction: column;
+  }
+
+  #footer .contents-left ul {
+    margin-left: 0;
+    margin-top: var(--spacing-m);
+  }
+}
