@@ -38,7 +38,7 @@
 						</script>
 					</c:if>
 					<form action="${pageContext.request.contextPath}/member/login"
-						method="post">
+						method="post"> 
 					<table>
 						<tr>
 							<th>아이디:</th>

@@ -145,7 +145,7 @@
 				<button>
 					<i class="fas fa-shopping-cart"></i>
 				</button>
-			</li>
+			</li> 
 		</ul>
 		</div>
 		</div>
