@@ -19,6 +19,7 @@ import www.olive.mvc.member.service.MemberService;
 
 @Controller
 @RequestMapping("/member")
+//내가왔노라
 public class MemberController {
 	
 	@Autowired
