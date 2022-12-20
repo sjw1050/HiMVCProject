@@ -22,21 +22,30 @@
 		where p.product_id = #{productId};
 	</select>
 
+
 	<!-- 카테고리별 상품 보기 -->
-	<select id="selectByMainCate" resultType="product">
-		select b.brand_name,
-		p.product_name, p.product_price
-		from main_category m, product p, brand
-		b
-		where m.main_cate_id = p.main_cate_id
-		and p.brand_num = b.brand_num
-		and m.main_cate_id = #{mainCateId};
+	<!-- <select id="selectByMainCate" resultType="product"> select b.brand_name, 
+		p.product_name, p.product_price from main_category m, product p, brand b 
+		where m.main_cate_id = p.main_cate_id and p.brand_num = b.brand_num and m.main_cate_id 
+		= #{mainCateId}; </select> -->
+
+	<!-- 메인 카테고리별 상품 보기 -->
+	<select id="selectByMain" resultType="product">
+		select p.* from product p,
+		sub_category s
+		where p.sub_cate_id = s.sub_cate_id
+		and s.main_cate_id =
+		#{mainCateId}
 	</select>
 
-	<!-- cateId 받아오기(main에) test -->
-	<select id="selectCateId" resultType="subCategory">
-		select s.*, m.main_cate_name
-		from sub_category s, main_category m
-		where s.main_cate_id = m.main_cate_id
+
+	<!-- 서브 카테고리별 상품 보기 -->
+	<select id="selectbySub" resultType="product">
+		select p.* from product p,
+		sub_category s, main_category m
+		where p.sub_cate_id = s.sub_cate_id
+		and s.main_cate_id = m.main_cate_id
+		and p.sub_cate_id = #{subCateId};
 	</select>
+
 </mapper>

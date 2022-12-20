@@ -15,9 +15,13 @@ public interface ProductMapper {
 
 	List<Product> selectOneProduct(String productId);
 
-	List<Product> selectByMainCate(String mainCateId);
-
-	//cateId 받아오기 test
+//	List<Product> selectByMainCate(String mainCateId);
+//
+//	//cateId 받아오기 test
 	List<SubCategory> selectCateId();
+
+	List<Product> selectByMain(String mainCateId);
+
+	List<Product> selectbySub(String subCateId);
 	
 }

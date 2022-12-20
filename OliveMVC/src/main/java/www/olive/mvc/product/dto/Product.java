@@ -16,7 +16,7 @@ public class Product {
 	private int productPrice;
 	private String productInfo;
 	private int colorId;
-	private int mainCateId;
+	private int subCateId;
 	private String brandName;
 	
 }

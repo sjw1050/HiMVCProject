@@ -11,9 +11,12 @@ public interface ProductService {
 
 	List<Product> viewOneProduct(String productId);
 
-	List<Product> viewByMainCate(String mainCateId);
+//	List<Product> viewByMainCate(String mainCateId);
 
-	//cateId 받아오기 test
-	List<SubCategory> getCateId();
+	// 메인 카테고리별 상품 
+	List<Product> getProdByMain(String mainCateId);
+
+	// 서브 카테고리별 상품 
+	List<Product> getProdBySub(String subCateId);
 
 }

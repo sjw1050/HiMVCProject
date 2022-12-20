@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import www.olive.mvc.product.dto.Product;
 import www.olive.mvc.product.dto.SubCategory;
@@ -37,7 +39,7 @@ public class ProductController {
 	// 상품 상세 보기
 	@GetMapping("/product/viewOneProduct")
 	public String viewOneProduct(HttpServletRequest request, Model model) {
-		
+
 		String productId = request.getParameter("productId");
 		List<Product> oneProductList = productService.viewOneProduct(productId);
 
@@ -48,32 +50,45 @@ public class ProductController {
 		return "product/viewOneProduct";
 	}
 
-	//cateId 받아오기 test
-	@GetMapping("/*")
-	public String category(Model model) {
+//	// cateId 받아오기 test
+//	@GetMapping("/*")
+//	public String category(Model model) {
+//		
+//		List<SubCategory> cateId = productService.getCateId();
+//		model.addAttribute("cateId", cateId);
+//				
+//		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+//		System.out.println("cateId" + cateId);
+//		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+//		return "main";
+//	}
+//
+
+	// 메인 카테고리별 상품 뿌리기 
+	@GetMapping("/categories")
+//	 public String getList(@RequestParam("main") int cateCode, Model model) throws Exception {
+	public String getProdByMain(HttpServletRequest request, Model model) throws Exception {
+
+		String mainCateId = request.getParameter("mainCateId");
+		List<Product> listByCate = productService.getProdByMain(mainCateId);
+
+		model.addAttribute("listByCate", listByCate);
+//		System.out.println("controller >>>>" + listByCate);
 		
-		List<SubCategory> cateId = productService.getCateId();
-		model.addAttribute("cateId", cateId);
-				
-		return "main";
+		return "/product/list";
 	}
 	
-	// main 카테고리별 상품 보기
-	@GetMapping("/categories?mainCateId=")
-	public String viewByMainCate(HttpServletRequest request, Model model) {
+	//서브 카테고리별 상품 뿌리기 
+	@GetMapping("/categories/sub")
+	public String getProdBySub(HttpServletRequest request, Model model) throws Exception {
+
+		String subCateId = request.getParameter("subCateId");
+		List<Product> subList = productService.getProdBySub(subCateId);
+
+		model.addAttribute("subList", subList);
+		System.out.println("controller subList >>>>" + subList);
 		
-		String mainCateId = request.getParameter("mainCateId");
-		List<Product> mainCateProdList = productService.viewByMainCate(mainCateId);
-		System.out.println("mainCateId param >>> " + mainCateId);
-		
-		if(mainCateId.equals("1")) {
-			
-		}
-		
-		System.out.println("mainCateProdList >>>>" + mainCateProdList);
-		
-		model.addAttribute("cateProductList", mainCateProdList);
-		return "product/viewByCategory";
+		return "/product/list";
 	}
 
 }

@@ -25,15 +25,20 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.selectOneProduct(productId);
 	}
 
-
+//
+//	@Override
+//	public List<Product> viewByMainCate(String mainCateId) {
+//		return productMapper.selectByMainCate(mainCateId);
+//	}
+//
+  
 	@Override
-	public List<Product> viewByMainCate(String mainCateId) {
-		return productMapper.selectByMainCate(mainCateId);
+	public List<Product> getProdByMain(String mainCateId) {
+		return productMapper.selectByMain(mainCateId);
 	}
 
-	//cateId 받아오기 test
 	@Override
-	public List<SubCategory> getCateId() {
-		return productMapper.selectCateId();
+	public List<Product> getProdBySub(String subCateId) {
+		return productMapper.selectbySub(subCateId);
 	}
 }
