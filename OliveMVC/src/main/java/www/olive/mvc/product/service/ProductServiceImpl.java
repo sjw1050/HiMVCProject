@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import www.olive.mvc.mapper.product.ProductMapper;
+import www.olive.mvc.product.dto.MainCategory;
 import www.olive.mvc.product.dto.Product;
 import www.olive.mvc.product.dto.SubCategory;
 
@@ -43,7 +44,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<SubCategory> getCateInfo() {
-		return productMapper.selectAllFromCate();
+	public List<SubCategory> getSubCate() {
+		return productMapper.selectAllFromSub();
+	}
+	public List<MainCategory> getMainCate() {
+		return productMapper.selectAllFromMain();
 	}
 }

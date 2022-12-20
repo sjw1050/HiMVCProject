@@ -6,27 +6,16 @@
 <mapper namespace="www.olive.mvc.mapper.product.ProductMapper">
 
 	<resultMap id="subCate" type="subCategory">
-	<id property="questionNum" column="question_num" javaType="long"/>
-	<result property="questionTitle" column="question_title"/>
-	<result property="questionContent" column="question_content"/>
-	<result property="questionDate" column="question_date"/>
-	<result property="viewCheck" column="view_check"/>
-	<association property="writer" column="member_num" javaType="member" resultMap="memberResult"></association>
+		<id property="subCateId" column="sub_cate_id" javaType="int" />
+		<result property="subCateName" column="sub_cate_name" />
+		<result property="mainCateId" column="main_cate_id" />
+		<association property="mainCateInfo"
+			column="main_cate_name" javaType="mainCategory" resultMap="mainCate"></association>
 	</resultMap>
-	
-	<resultMap id="memberResult" type="member">
-	<id property="memberNum" column="member_num"/>
-	<result property="memberId" column="member_id"/>
-	<result property="pw" column="pw"/>
-	<result property="memberName" column="member_name"/>
-	<result property="email" column="email"/>
-	<result property="phone" column="phone"/>
-	<result property="birthday" column="birthday"/>
-	<result property="gender" column="gender"/>
-	<result property="address" column="address"/>
-	<result property="regdate" column="regdate"/>
-	<result property="tpa" column="tpa"/>
-	<result property="level" column="level"/>
+
+	<resultMap id="mainCate" type="mainCategory">
+		<id property="mainCateId" column="main_cate_id" />
+		<result property="mainCateName" column="main_cate_name" />
 	</resultMap>
 	<!-- 상품 전체보기 -->
 	<select id="selectAllProduct" resultType="product">
@@ -74,23 +63,20 @@
 
 	<!-- 1220 -->
 	<!-- main에 카테고리 붙여주기 -->
-	<select id="selectAllFromCate" resultType="subCategory">
+	<!-- <select id="selectAllFromCate" resultType="subCategory">
 		select s.sub_cate_id,
 		s.sub_cate_name, s.main_cate_id, m.main_cate_name
 		from sub_category s,
 		main_category m
 		where s.main_cate_id = m.main_cate_id
-	</select>
+	</select> -->
 
 	<!-- sub category : main category -->
-	<select id="[1] : selectArtistByPrimaryKey" resultMap="artistResultMap"
-		parameterType="java.lang.Long">
-		select
-		seq, name, debut_date
-		from
-		artists
-		where
-		seq = #{seq, jdbcType=BIGINT}
+	<select id="selectAllFromSub" resultMap="subCate" >
+		select * from sub_category
+	</select>
+	<select id="selectAllFromMain" resultMap="mainCate" >
+		select * from main_category
 	</select>
 
 </mapper>

@@ -19,14 +19,18 @@
 </head>
 <body>
 <!-- cateInfo test -->
-<c:forEach items="${cateList }" var="cateList">
+<c:set value="${subCateList }" var="subCateList" />
+<c:forEach items="${mainCateList }" var="mainCateList">
 	<div class="mainCate">
 		<ul>
-			<li><a href="/categories?mainCateId=${cateList.mainCateId }">{cateList.mainCateName }</a>
+			<li><h3><a href="/categories?mainCateId=${mainCateList.mainCateId }">${mainCateList.mainCateName}</a></h3>
 				<ul class="low">
-					<%-- <c:forEach items="${cateList }" var="cateList">
-						<li><a href="/categories/sub?subCateId=${cateList.subCateId }">${cateList.subCateName }</a></li>
-					</c:forEach> --%>
+					<c:set value="${subCateList }" var="subCateList" />
+					<c:if test="${subCateList.mainCateId eq 1}" >
+					<c:forEach items="${subCateList }" var="subCateList">
+						<li><a href="/categories/sub?subCateId=${subCateList.subCateId }">${subCateList.subCateName }</a></li>
+					</c:forEach>
+					</c:if>
 				</ul>
 			</li>
 		</ul>

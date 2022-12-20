@@ -2,6 +2,7 @@ package www.olive.mvc.product.service;
 
 import java.util.List;
 
+import www.olive.mvc.product.dto.MainCategory;
 import www.olive.mvc.product.dto.Product;
 import www.olive.mvc.product.dto.SubCategory;
 
@@ -20,6 +21,7 @@ public interface ProductService {
 	List<Product> getProdBySub(String subCateId);
 
 	// 메인에 카테고리 정보 붙여놓기
-	List<SubCategory> getCateInfo();
+	List<SubCategory> getSubCate();
+	List<MainCategory> getMainCate();
 
 }
