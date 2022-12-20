@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css" />
+ <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/account_dropdown.css" />
+<%--<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/account_dropdown.js" /> --%>
 <script
       src="https://kit.fontawesome.com/e8644e93da.js"
       crossorigin="anonymous"
@@ -30,6 +32,8 @@
 					<!-- 카테고리. category container -->
 						<div class="category_dropdown" >
 							<!-- 스킨케어  -->
+							<button class="dropbtn">스킨케어</button>
+							<div class="dropdown-content">
 							<div class="mainCate1">
 								<ul>
 									<li><a href="/categories?mainCateId=1">스킨케어</a>
@@ -42,6 +46,7 @@
 										</ul>
 									</li>
 								</ul>
+							</div>
 							</div>
 
 							<!-- 메이크업 -->
@@ -131,8 +136,10 @@
 					<i class="fas fa-user"></i>
 				</button>
 			</li>
-			<li class="register">회원가입</li>
-			<li class="login">로그인</li>
+			
+			<li class="register"> <a href="${pageContext.request.contextPath}/member/regist">회원가입</a></li>
+            <li class="login"> <a href="${pageContext.request.contextPath}/member/loginForm">로그인</a></li>
+  
 
 			<li class="bag">
 				<button>
