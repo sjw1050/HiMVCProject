@@ -148,6 +148,7 @@
     <a href="${pageContext.request.contextPath }/notice/viewall">공지 확인</a>
     <a href="${pageContext.request.contextPath }/notice/write">공지 작성하기</a>    
     <a href="${pageContext.request.contextPath }/member/loginForm">로그인</a>
+    <a href="${pageContext.request.contextPath }/cart/viewCart">장바구니</a>
     <a href="${pageContext.request.contextPath }/member/adminlogin">관리자 로그인</a>
 </script>
 </body>
