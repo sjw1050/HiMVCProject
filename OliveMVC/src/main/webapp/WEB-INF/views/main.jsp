@@ -18,6 +18,22 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- cateInfo test -->
+<c:forEach items="${cateList }" var="cateList">
+	<div class="mainCate">
+		<ul>
+			<li><a href="/categories?mainCateId=${cateList.mainCateId }">{cateList.mainCateName }</a>
+				<ul class="low">
+					<%-- <c:forEach items="${cateList }" var="cateList">
+						<li><a href="/categories/sub?subCateId=${cateList.subCateId }">${cateList.subCateName }</a></li>
+					</c:forEach> --%>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</c:forEach> 
+<!-- cateInfo test -->
+
 	<nav class="navigation">
 		<div class="container">
 			<div class="navigation-desktop">
@@ -29,6 +45,20 @@
 					
 					<!-- 카테고리. category container -->
 						<div class="category_dropdown" >
+						<!-- 1220test -->
+						<%-- <c:forEach items="${list1 }" var="list1">
+							<div class="mainCate1">
+								<ul>
+									<li><a href="/categories?mainCateId=${list.mainCateId }">{list.mainCateName }</a>
+										<ul class="low">
+										<c:forEach items="${list2 }" var="list2">
+											
+											<li><a href="/categories/sub?subCateId=${list2.subCateId }">${list2.subCateName }</a></li>
+											
+										
+										</c:forEach>
+										</ul>
+						</c:forEach> --%>
 							<!-- 스킨케어  -->
 							<div class="mainCate1">
 								<ul>

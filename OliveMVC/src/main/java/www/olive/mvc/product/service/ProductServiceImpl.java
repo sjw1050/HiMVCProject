@@ -41,4 +41,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getProdBySub(String subCateId) {
 		return productMapper.selectbySub(subCateId);
 	}
+
+	@Override
+	public List<SubCategory> getCateInfo() {
+		return productMapper.selectAllFromCate();
+	}
 }

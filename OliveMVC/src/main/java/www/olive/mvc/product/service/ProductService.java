@@ -19,4 +19,7 @@ public interface ProductService {
 	// 서브 카테고리별 상품 
 	List<Product> getProdBySub(String subCateId);
 
+	// 메인에 카테고리 정보 붙여놓기
+	List<SubCategory> getCateInfo();
+
 }
