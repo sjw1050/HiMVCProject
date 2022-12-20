@@ -4,21 +4,65 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="www.olive.mvc.mapper.QuestionRepository">
 
-	<select id="selectAll" resultType="quest">
-	select * from board_question
+	<resultMap id="boardResult" type="quest">
+	<id property="questionNum" column="question_num" javaType="long"/>
+	<result property="questionTitle" column="question_title"/>
+	<result property="questionContent" column="question_content"/>
+	<result property="questionDate" column="question_date"/>
+	<result property="viewCheck" column="view_check"/>
+	<association property="writer" column="member_num" javaType="member" resultMap="memberResult"></association>
+	</resultMap>
+	
+	<resultMap id="memberResult" type="member">
+	<id property="memberNum" column="member_num"/>
+	<result property="memberId" column="member_id"/>
+	<result property="pw" column="pw"/>
+	<result property="memberName" column="member_name"/>
+	<result property="email" column="email"/>
+	<result property="phone" column="phone"/>
+	<result property="birthday" column="birthday"/>
+	<result property="gender" column="gender"/>
+	<result property="address" column="address"/>
+	<result property="regdate" column="regdate"/>
+	<result property="tpa" column="tpa"/>
+	<result property="level" column="level"/>
+	</resultMap>
+
+	<select id="selectAll" resultMap="boardResult">
+	<!-- select * from board_question -->
+	select q.question_num, q.question_title, q.question_content, q.question_date, q.view_check, m.member_name, m.member_num
+   from board_question q, member m
+   where m.member_num = q.member_num;
 	</select>
 	
-	<select id="findMemberNum" resultType="quest">
-	select * from board_question where member_num = #{memberNum}
+	<select id="findMemberNum" resultMap="boardResult">
+	select q.question_num, q.question_title, q.question_content, q.question_date, q.view_check, m.member_name, m.member_num
+   from board_question q, member m
+   where m.member_num = q.member_num
+   and m.member_num = #{memberNum};
 	</select>
 	
-	<select id="findQuestNum" resultType="quest">
-	select * from board_question where question_num = #{questionNum}
+	
+	<select id="AnswerToFindQuestNum" resultType="answer">
+	select * from board_answer where question_num = #{questionNum}
+	</select>
+	
+	<select id="findQuestNum" resultMap="boardResult">
+	select q.question_num, q.question_title, q.question_content, q.question_date, q.view_check, m.member_name, m.member_num
+   from board_question q, member m
+   where m.member_num = q.member_num
+   and question_num = #{questionNum}
 	</select>
 	
 	<insert id="saveQuest">
 	insert into board_question(question_title,question_content,member_num)
-	values(#{questionTitle}, #{questionContent}, #{memberNum})
+	values(#{questionTitle}, #{questionContent}, #{writer.memberNum})
+	</insert>
+	
+	<insert id="saveAnswer">
+	
+	insert into board_answer(answer, question_num)
+   values(#{answer},#{questionNum});
 	</insert>
 	
 	<update id="modifyQuest">
@@ -26,6 +70,22 @@
 	set question_title = #{questionTitle}, 
 	question_content = #{questionContent}
 	where question_num = #{questionNum}
+	</update>
+	
+	
+	<update id="adminQuestCheck">
+	update board_question 
+	set view_check = true
+	where question_num = #{questionNum}
+	</update>
+	
+	
+	<update id="updateAnswer">
+	update board_answer 
+	set answer = #{answer},
+	answer_date = curdate()
+	where question_num = #{questionNum}
+	and answer_num = #{answerNum}
 	</update>
 	
 	<delete id="removeQuest">

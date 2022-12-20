@@ -15,6 +15,5 @@ public class AnswerBoard {
 	private String answer;
 	private Date answerDate;
 	private Long questionNum;
-	private Long adminNum;
 
 }

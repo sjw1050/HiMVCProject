@@ -3,11 +3,20 @@ package www.olive.mvc.customerCenter.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import www.olive.mvc.customerCenter.dto.AnswerBoard;
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
 import www.olive.mvc.customerCenter.service.QuestService;
 import www.olive.mvc.member.dto.AuthInfo;
+import www.olive.mvc.member.dto.MemberEntity;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
+import java.lang.ProcessBuilder.Redirect;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,22 +37,32 @@ public class QuestController {
 		AuthInfo logininfo = (AuthInfo) session.getAttribute("info");
 		if(logininfo == null) {
 			List<QuestionBoard> qList = questService.viewquest();
+			System.out.println("question 0번 인덱스 글쓴이 : "+qList.get(0).getWriter().getMemberName());
 			model.addAttribute("qlist", qList);
 			return "quest/viewquest";
 		}else {
 			List<QuestionBoard> qList = questService.viewMemberQuest(logininfo);
+			System.out.println("퀘스트 들어왔니?"+qList.get(0).getWriter().getMemberNum());
 			model.addAttribute("qlist", qList);
 			return "quest/viewquest";
 		}
 	}
 	
 	@GetMapping("detailQuest")
-	public String detailQuest(Model model, Long questNum) {
+	public String detailQuest(Model model, @RequestParam("questionNum") Long questionNum, HttpSession session) {
 		//System.out.println("퀘션 넘버 받았니?" + questNum);
-		QuestionBoard qBoard = questService.detailQuest(questNum);
+		if(session.getAttribute("admininfo")!= null) {
+			//System.out.println("어드민 체크에 들어왔니?");
+			questService.adminQuestCheck(questionNum);
+		}
+		QuestionBoard qBoard = questService.detailQuest(questionNum);
+		//System.out.println("어드민체크 변경되었니?" + qBoard.isViewCheck());
+		List<AnswerBoard> answerBoard = questService.viewAnswer(questionNum);
+		//System.out.println("답변 들어왔니?"+answerBoard);
 		//System.out.println("퀘스트 들어왔니?>>"+qBoard);
 		
 		model.addAttribute("qboard", qBoard);
+		model.addAttribute("answer", answerBoard);
 		return "quest/detailquest";
 	}
 	
@@ -74,6 +93,22 @@ public class QuestController {
 		System.out.println("퀘스트번호 들어왔니?" + questionNum);
 		questService.removeQuest(questionNum);
 		return "redirect:/quest/view";
+	}
+	
+	@PostMapping("addAnswer")
+	public String addAnswer(Model model,AnswerBoard answer, RedirectAttributes redirectAttributes) {
+		//System.out.println("답변 받아왔니?" + answer);
+		questService.saveAnswer(answer);
+		redirectAttributes.addAttribute("questionNum", answer.getQuestionNum());
+		return "redirect:/quest/detailQuest";
+	}
+	
+	@PostMapping("modifyAnswer")
+	public String modifyAnswer(AnswerBoard answerBoard, RedirectAttributes redirectAttributes) {
+		//System.out.println("답변수정 잘 받아왔니?" + answerBoard);
+		questService.updateAnswer(answerBoard);
+		redirectAttributes.addAttribute("questionNum", answerBoard.getQuestionNum());
+		return "redirect:/quest/detailQuest";
 	}
 	
 
