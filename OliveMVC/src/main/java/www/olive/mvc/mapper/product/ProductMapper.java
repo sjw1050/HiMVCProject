@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import www.olive.mvc.product.dto.Product;
+import www.olive.mvc.product.dto.SubCategory;
 
 @Mapper
 public interface ProductMapper {
@@ -14,6 +15,13 @@ public interface ProductMapper {
 
 	List<Product> selectOneProduct(String productId);
 
-	List<Product> selectByCategory(String categoryId);
+//	List<Product> selectByMainCate(String mainCateId);
+//
+//	//cateId 받아오기 test
+	List<SubCategory> selectCateId();
+
+	List<Product> selectByMain(String mainCateId);
+
+	List<Product> selectbySub(String subCateId);
 	
 }

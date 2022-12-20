@@ -3,6 +3,7 @@ package www.olive.mvc.product.service;
 import java.util.List;
 
 import www.olive.mvc.product.dto.Product;
+import www.olive.mvc.product.dto.SubCategory;
 
 public interface ProductService {
 
@@ -10,6 +11,12 @@ public interface ProductService {
 
 	List<Product> viewOneProduct(String productId);
 
-	List<Product> viewByCategory(String categoryId);
+//	List<Product> viewByMainCate(String mainCateId);
+
+	// 메인 카테고리별 상품 
+	List<Product> getProdByMain(String mainCateId);
+
+	// 서브 카테고리별 상품 
+	List<Product> getProdBySub(String subCateId);
 
 }

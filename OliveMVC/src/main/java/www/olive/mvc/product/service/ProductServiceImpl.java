@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import www.olive.mvc.mapper.product.ProductMapper;
 import www.olive.mvc.product.dto.Product;
+import www.olive.mvc.product.dto.SubCategory;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -24,8 +25,20 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.selectOneProduct(productId);
 	}
 
+//
+//	@Override
+//	public List<Product> viewByMainCate(String mainCateId) {
+//		return productMapper.selectByMainCate(mainCateId);
+//	}
+//
+  
 	@Override
-	public List<Product> viewByCategory(String categoryId) {
-		return productMapper.selectByCategory(categoryId);
+	public List<Product> getProdByMain(String mainCateId) {
+		return productMapper.selectByMain(mainCateId);
+	}
+
+	@Override
+	public List<Product> getProdBySub(String subCateId) {
+		return productMapper.selectbySub(subCateId);
 	}
 }
