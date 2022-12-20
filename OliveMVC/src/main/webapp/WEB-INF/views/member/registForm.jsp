@@ -55,7 +55,7 @@
 								<th>이메일:</th>
 								<td><input type="text" name="email" /></td>
 							</tr>
-							<tr>
+			 				<tr>
 								<th>전화번호:</th>
 								<td><input type="text" name="phone" /></td>
 							</tr>
