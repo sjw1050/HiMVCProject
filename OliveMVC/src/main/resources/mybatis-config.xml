@@ -33,5 +33,6 @@
 		
 		<!-- productmapper -->
 		<mapper resource="mapper/product/productmapper.xml" /> 
+		<mapper resource="mapper/product/sellermapper.xml" /> 
 	</mappers>
 </configuration>
