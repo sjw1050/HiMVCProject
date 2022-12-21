@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import www.olive.mvc.customerCenter.dto.Notice;
+import www.olive.mvc.customerCenter.dto.NoticeFile;
 
 @Mapper
 public interface NoticeRepository {
@@ -20,5 +21,9 @@ public interface NoticeRepository {
 	public void modifyNotice(Notice notice);
 
 	public void removeNotice(Long noticeNum);
+
+	public void saveNoticeFile(String savedFilePath);
+
+	public NoticeFile getNoticeFile(Long noticeNum);
 
 }

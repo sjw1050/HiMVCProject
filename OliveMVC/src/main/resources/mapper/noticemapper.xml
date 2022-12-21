@@ -12,10 +12,24 @@
 	select * from notice where notice_num = #{noticeNum}
 	</select>
 	
+	<select id="getNoticeFile" resultType="nfile">
+	select file_name from notice_file where notice_num = #{noticeNum};
+	</select>
+	
 	<insert id="saveNotice">
 	insert into notice(notice_title,notice_content)
    values(#{noticeTitle}, #{noticeContent})
 	</insert>
+	
+	<insert id="saveNoticeFile">
+        INSERT INTO notice_file (
+            file_name
+            , notice_num
+        ) VALUES (
+            #{savedFilePath}
+            , LAST_INSERT_ID()
+        )
+    </insert>
 	
 	<update id="updateview">
 		update notice set view_count = view_count + 1 where notice_num = #{noticeNum}

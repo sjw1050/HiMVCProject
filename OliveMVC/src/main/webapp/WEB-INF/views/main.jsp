@@ -5,19 +5,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css" />
-<script
-      src="https://kit.fontawesome.com/e8644e93da.js"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      href="//db.onlinewebfonts.com/c/2596224269750e00c3ad5356299a3b9f?family=Ogg"
-      rel="stylesheet"
-      type="text/css"
-    />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/style.css" />
+<script src="https://kit.fontawesome.com/e8644e93da.js"
+	crossorigin="anonymous"></script>
+<link
+	href="//db.onlinewebfonts.com/c/2596224269750e00c3ad5356299a3b9f?family=Ogg"
+	rel="stylesheet" type="text/css" />
 <title>Insert title here</title>
 </head>
+
+<c:if test="${not empty admininfo}">
+	<p>${admininfo }</p>
+</c:if>
 <body>
+	<%--    <c:if test="${not empty info}">
+      <p>${info.name }님반갑습니다.</p>
+   </c:if>
+   
+   <!-- nav (수정할거임) -->
+   <div>
+      <ul>
+         <li><a href="/product/viewAllProduct">상품 전체 보기</a></li>
+         <!-- 수정할거임 <li><a href="/product/viewCategory">카테고리</a></li> -->
+      </ul>
+   </div> --%>
 	<nav class="navigation">
 		<div class="container">
 			<div class="navigation-desktop">
@@ -43,7 +55,6 @@
 									</li>
 								</ul>
 							</div>
-
 							<!-- 메이크업 -->
 							<div class="mainCate2">
 								<ul>
@@ -111,6 +122,7 @@
 									</li>
 								</ul>
 							</div>
+							</div>
 						</div> <!-- category_dropdown 끝. -->
 			
 		</li> 
@@ -142,13 +154,18 @@
 		</ul>
 		</div>
 		</div>
-	</nav>    
-    <a href="${pageContext.request.contextPath }/quest/view">질문&답변</a>
-    <a href="${pageContext.request.contextPath }/quest/write">질문 작성하러 가기</a>
-    <a href="${pageContext.request.contextPath }/notice/viewall">공지 확인</a>
-    <a href="${pageContext.request.contextPath }/notice/write">공지 작성하기</a>    
-    <a href="${pageContext.request.contextPath }/member/loginForm">로그인</a>
-    <a href="${pageContext.request.contextPath }/member/adminlogin">관리자 로그인</a>
-</script>
+	</nav>
+	<a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/quest/view">질문&답변</a>
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/quest/write">질문 작성하러 가기</a>
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/notice/viewall">공지 확인</a>
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/notice/write">공지 작성하기</a>    
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/member/loginForm">로그인</a>
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/member/adminlogin">관리자 로그인</a>
+	<script>
+		function dropdown() {
+			let drop = document.getElementById("account");
+
+		}
+	</script>
 </body>
 </html>

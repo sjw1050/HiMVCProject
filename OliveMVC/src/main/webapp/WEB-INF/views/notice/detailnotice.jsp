@@ -67,8 +67,24 @@ function remove() {
 <div>
 <p>공지 제목 : <input type="text" name="noticeTitle" id="noticeTitle" value="${notice.noticeTitle }" readonly/></p>
 <div>
-문의 내용 : 
+공지 내용 : 
 <textarea name="noticeContent" cols="30" rows="30" id="noticeContent" readonly>${notice.noticeContent }</textarea>
+<c:set var="pattern" value="/jpg$|gif$|png$|jpge$/i"></c:set>
+<c:if test="${not empty noticeFile }">
+<div>
+<c:forTokens var="ext" items="${noticeFile.fileName}" delims="." varStatus="status">
+    <!-- 파일명중간에 "." 이 존재할수도 있으니 항상 status.last(마지막번째) 를 실행해주어야 한다 -->
+    <c:if test="${status.last}">
+        <c:choose>
+            <c:when test="${ext eq 'img'}">
+                <img src="${pageContext.servletConfig.servletContext.contextPath }/upload/${noticeFile.fileName}" alt="" />
+            </c:when>
+            </c:choose>
+            </c:if>
+            </c:forTokens>
+<a href="${pageContext.servletConfig.servletContext.contextPath }/notice/download/?noticeNum=${notice.noticeNum}">${noticeFile.fileName}</a>
+</div>
+</c:if>
 </div>
 <p>공지 날짜 : ${notice.noticeDate }</p>
 <p>조회수  : ${notice.viewCount }</p>

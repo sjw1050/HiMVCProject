@@ -1,11 +1,17 @@
 package www.olive.mvc.customerCenter.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import www.olive.mvc.customerCenter.dto.Notice;
+import www.olive.mvc.customerCenter.dto.NoticeFile;
 import www.olive.mvc.mapper.NoticeRepository;
 
 @Service
@@ -19,6 +25,15 @@ public class NoticeService {
 	}
 
 	public void saveNotice(Notice notice) {
+//		String fileName = null;
+//		if(!file.isEmpty()) {
+//			String originalFileName = file.getOriginalFilename();
+//			String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
+//			UUID uuid = UUID.randomUUID();	//UUID 구하기
+//			fileName=uuid+"."+ext;
+//			file.transferTo(new File("C:\\upload\\" + fileName));
+//		}
+//		notice.setFileName(fileName);
 		noticeRepository.saveNotice(notice);
 	}
 
@@ -33,6 +48,14 @@ public class NoticeService {
 
 	public void removeNotice(Long noticeNum) {
 		noticeRepository.removeNotice(noticeNum);
+	}
+
+	public void saveNoticeFile(String savedFilePath) {
+		noticeRepository.saveNoticeFile(savedFilePath);
+	}
+
+	public NoticeFile getNoticeFile(Long noticeNum) {
+		return noticeRepository.getNoticeFile(noticeNum);
 	}
 	
 	

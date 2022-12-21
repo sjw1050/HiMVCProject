@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import www.olive.mvc.customerCenter.dto.AnswerBoard;
@@ -72,11 +74,11 @@ public class QuestController {
 	}
 	
 	@PostMapping("write")
-	public String saveQuest(HttpSession session, QuestionBoard quest) {
+	public String saveQuest(HttpSession session, QuestionBoard quest, MultipartFile file) {
 		AuthInfo loginauth = (AuthInfo) session.getAttribute("info");
 		//System.out.println("문의 내용 들어왔니?>>>" + quest);
 		//System.out.println("로그인 정보 들어왔니?>>" +loginauth);
-		questService.saveQuest(quest, loginauth);
+		questService.saveQuest(quest, loginauth, file);
 		
 		return "redirect:/quest/view";
 	}
