@@ -4,6 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="www.olive.mvc.mapper.NoticeRepository">
 
+<resultMap id="FileResult" type="nfile">
+	<result property="fileName" column="file_name"/>
+	<association property="noticeNum" column="notice_num" javaType="notice" resultMap="noticeResult"></association>
+	</resultMap>
+	
+	<resultMap id="noticeResult" type="notice">
+	<id property="noticeNum" column="notice_num"/>
+	</resultMap>
+
 	<select id="selectAll" resultType="notice">
 	select * from notice order by notice_num desc
 	</select>
@@ -12,8 +21,9 @@
 	select * from notice where notice_num = #{noticeNum}
 	</select>
 	
-	<select id="getNoticeFile" resultType="nfile">
-	select file_name from notice_file where notice_num = #{noticeNum};
+	<select id="getNoticeFile" resultMap="FileResult">
+	select f.file_name, n.notice_num from notice_file f, notice n 
+	where n.notice_num = f.notice_num and f.notice_num = #{noticeNum};
 	</select>
 	
 	<insert id="saveNotice">

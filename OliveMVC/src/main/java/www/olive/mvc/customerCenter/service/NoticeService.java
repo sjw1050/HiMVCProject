@@ -54,7 +54,7 @@ public class NoticeService {
 		noticeRepository.saveNoticeFile(savedFilePath);
 	}
 
-	public NoticeFile getNoticeFile(Long noticeNum) {
+	public List<NoticeFile> getNoticeFile(Long noticeNum) {
 		return noticeRepository.getNoticeFile(noticeNum);
 	}
 	

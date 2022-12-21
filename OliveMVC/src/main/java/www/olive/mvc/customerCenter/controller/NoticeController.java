@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import www.olive.mvc.customerCenter.dto.Notice;
 import www.olive.mvc.customerCenter.dto.NoticeFile;
@@ -46,24 +47,24 @@ public class NoticeController {
 	}
 
 	@PostMapping("write")
-	public String write(Notice notice, MultipartFile file, HttpServletRequest request) {
+	public String write(Notice notice,MultipartHttpServletRequest mtfRequest, HttpServletRequest request) {
 		// System.out.println("공지 입력되었니?" + notice);
-		// System.out.println("컨트롤러에 파일을 받아왔니?" + file.getContentType() + file.getName()
-		// + file.getOriginalFilename());
-		try {
-			// System.out.println("파일 없나?" + file.getSize());
-			if (file.getSize() != 0) {
-				String savedFilePath = FileUtil.uploadFile(file, request);
-				String filename = savedFilePath.substring(10);
-				noticeService.saveNotice(notice);
+		List<MultipartFile> fileList = mtfRequest.getFiles("file");
+		noticeService.saveNotice(notice);
+		for(MultipartFile mf : fileList) {
+			if (mf.getSize() != 0) {
+				try {
+				String savedFilePath = FileUtil.uploadFile(mf, request);
+				String filename = savedFilePath.substring(10).trim();
+				System.out.println(filename);
 				noticeService.saveNoticeFile(filename);
-			} else {
-				noticeService.saveNotice(notice);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		}			 
 		return "redirect:/notice/viewall";
 	}
 
@@ -71,10 +72,11 @@ public class NoticeController {
 	public String viewnotice(Long noticeNum, Model model, HttpServletRequest request) {
 		// System.out.println("공지번호 들어왔니?" + noticeNum);
 		Notice notice = noticeService.detailNotice(noticeNum);
-		NoticeFile noticeFile = noticeService.getNoticeFile(noticeNum);
-		if (noticeFile != null) {
+		List<NoticeFile> noticeFiles = noticeService.getNoticeFile(noticeNum);
+		System.out.println("공지 파일들>>>"+noticeFiles);
+		if (noticeFiles != null) {
 			// System.out.println("파일 이미지 경로 수정되었니?"+noticeFile.getFileName());
-			model.addAttribute("noticeFile", noticeFile);
+			model.addAttribute("noticeFiles", noticeFiles);
 		}
 		// System.out.println("공지 번호에 맞게 들어왔니?" + notice);
 		model.addAttribute("notice", notice);
@@ -97,16 +99,23 @@ public class NoticeController {
 	}
 
 	@GetMapping("download")
-	public ResponseEntity<byte[]> downloadFile(Long noticeNum, HttpServletRequest request,
+	public ResponseEntity<byte[]> downloadFile(String fileName, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		NoticeFile file = noticeService.getNoticeFile(noticeNum);
-		String fileName = file.getFileName().substring(6);
+		String originalName = null;
+		if(fileName.contains("jpg") || fileName.contains("gif") || fileName.contains("png") || fileName.contains("jpeg")) {
+			originalName = fileName.substring(6, 18) + fileName.substring(20);
+		}else {
+			System.out.println(fileName.substring(5, 18));
+			originalName = fileName.substring(5, 17) + fileName.substring(17);
+		}
+		
 
-		HttpHeaders httpHeaders = FileUtil.getHttpHeaders(fileName);
+		HttpHeaders httpHeaders = FileUtil.getHttpHeaders(originalName);
 		String rootPath = FileUtil.getRootPath(fileName, request); // 업로드 기본경로 경로
+		System.out.println("루트경로"+rootPath);
 		ResponseEntity<byte[]> entity = null;
 		
-		try (InputStream inputStream = new FileInputStream(rootPath + fileName)) {
+		try (InputStream inputStream = new FileInputStream(rootPath + originalName)) {
 	        entity = new ResponseEntity<>(IOUtils.toByteArray(inputStream), httpHeaders, HttpStatus.CREATED);
 	    } catch (Exception e) {
 	        e.printStackTrace();

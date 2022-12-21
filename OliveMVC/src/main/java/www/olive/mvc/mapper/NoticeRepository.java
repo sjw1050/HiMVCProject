@@ -24,6 +24,6 @@ public interface NoticeRepository {
 
 	public void saveNoticeFile(String savedFilePath);
 
-	public NoticeFile getNoticeFile(Long noticeNum);
+	public List<NoticeFile> getNoticeFile(Long noticeNum);
 
 }

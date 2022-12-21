@@ -17,7 +17,7 @@
 <textarea rows="30" cols="30" name="noticeContent">
 </textarea>
 <br />
-<input type="file" name="file" />
+<input multiple="multiple"type="file" name="file" />
 <input type="submit" name="작성하기"/>
 </div>
 </form>

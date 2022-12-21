@@ -46,13 +46,10 @@ public class FileUtil {
 
         // 4. 이미지 파일인 경우 썸네일이미지 생성
         if (MediaUtils.getMediaType(originalFileName) != null) {
-            String imguuidFileName = makeThumbnail(rootPath, datePath, uuidFileName);
-            String imgtarget = rootPath + datePath;
-            return replaceSavedFilePath(imgtarget,imguuidFileName);
-        }else {
+        	uuidFileName = makeThumbnail(rootPath, datePath, uuidFileName);
+        }
         	String origintarget = rootPath + datePath;
         	return replaceSavedFilePath(origintarget,uuidFileName);
-        }
         
     }
 
@@ -74,9 +71,7 @@ public class FileUtil {
 
     // 파일 출력을 위한 HttpHeader 설정
     public static HttpHeaders getHttpHeaders(String fileName) throws Exception {
-    	String originalName = fileName.substring(0, 12) + fileName.substring(14);
-    	System.out.println(originalName);
-        MediaType mediaType = MediaUtils.getMediaType(originalName); // 파일타입 확인
+        MediaType mediaType = MediaUtils.getMediaType(fileName); // 파일타입 확인
         HttpHeaders httpHeaders = new HttpHeaders();
 
         // 이미지 파일 O
