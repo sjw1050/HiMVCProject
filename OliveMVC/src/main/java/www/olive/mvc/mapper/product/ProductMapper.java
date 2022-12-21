@@ -3,8 +3,8 @@ package www.olive.mvc.mapper.product;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import www.olive.mvc.product.dto.MainCategory;
 import www.olive.mvc.product.dto.Product;
 import www.olive.mvc.product.dto.SubCategory;
 
@@ -23,5 +23,9 @@ public interface ProductMapper {
 	List<Product> selectByMain(String mainCateId);
 
 	List<Product> selectbySub(String subCateId);
+
+	//main에 카테 info 받아오기
+	List<SubCategory> selectAllFromSub();
+	List<MainCategory> selectAllFromMain();
 	
 }
