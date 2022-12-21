@@ -14,7 +14,7 @@
 
 <title>Insert title here</title>
 </head>
-<body>
+<body>   
 
 	<!-- Button trigger modal -->
 	<button type="button" class="btn btn-primary" data-bs-toggle="modal"
