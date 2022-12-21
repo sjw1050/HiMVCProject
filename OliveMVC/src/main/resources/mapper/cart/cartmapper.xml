@@ -2,17 +2,22 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="www.olive.mvc.mapper.cart.CartMapper">
-  
-  <!-- 장바구니 보기 -->
-  <select id="selectCartProduct" resultType="cart">
-  	select * from cart
-  </select>
-  
-  
-  
-  </mapper>
+
+<mapper namespace="www.olive.mvc.mapper.cart.CartMapper">
+
+	<!-- 장바구니 보기 -->
+	<select id="selectCartProduct" resultType="cart">
+		select * from cart
+	</select>
+	
+	<select id="selectMemberNum" resultType="orderList">
+		select * from order_list
+		where member_num = #{member_num}
+	</select>
+
+
+
+</mapper>
   
   
   
