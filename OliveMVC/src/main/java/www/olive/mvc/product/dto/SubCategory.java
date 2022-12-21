@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class SubCategory {
 	private int subCateId;
 	private String subCateName;
-	private MainCategory mainCateId;
-	private String mainCateName;
+	private int mainCateId;
+	private MainCategory mainCateInfo;
 }

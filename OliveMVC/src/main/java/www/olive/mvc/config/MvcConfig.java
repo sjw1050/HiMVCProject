@@ -32,10 +32,11 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.jsp("/WEB-INF/views/", ".jsp");
 	}
 
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/main").setViewName("main");
-	}
+	//mainController 생성해서 주석처리.
+//	@Override
+//	public void addViewControllers(ViewControllerRegistry registry) {
+//		registry.addViewController("/main").setViewName("main");
+//	}
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
