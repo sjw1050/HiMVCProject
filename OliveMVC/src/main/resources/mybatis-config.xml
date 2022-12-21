@@ -13,6 +13,8 @@
 		<typeAlias type="www.olive.mvc.customerCenter.dto.Faq" alias="faq"/> <!-- DTO클래스 alias 등록 -->
 		<typeAlias type="www.olive.mvc.customerCenter.dto.QuestionBoard" alias="quest"/> <!-- DTO클래스 alias 등록 -->
 		<typeAlias type="www.olive.mvc.customerCenter.dto.AnswerBoard" alias="answer"/> <!-- DTO클래스 alias 등록 -->
+		<typeAlias type="www.olive.mvc.customerCenter.dto.NoticeFile" alias="nfile"/> <!-- DTO클래스 alias 등록 -->
+		
 		
 		
 		<!-- Product dto alias -->

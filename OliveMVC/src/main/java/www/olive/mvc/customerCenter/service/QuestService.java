@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartResolver;
 
 import www.olive.mvc.customerCenter.dto.AnswerBoard;
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
@@ -21,7 +23,7 @@ public class QuestService {
 		return questionRepository.selectAll();
 	}
 
-	public void saveQuest(QuestionBoard quest, AuthInfo loginauth) {
+	public void saveQuest(QuestionBoard quest, AuthInfo loginauth, MultipartFile file) {
 //		Long memberNum = loginauth.getMemberNum();
 //		quest.setMemberNum(memberNum);
 		//System.out.println("로그인 정보 및 퀘스트 정보 왔니?" + loginauth + quest);

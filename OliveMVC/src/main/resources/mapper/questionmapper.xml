@@ -32,14 +32,14 @@
 	<!-- select * from board_question -->
 	select q.question_num, q.question_title, q.question_content, q.question_date, q.view_check, m.member_name, m.member_num
    from board_question q, member m
-   where m.member_num = q.member_num;
+   where m.member_num = q.member_num order by question_date desc;
 	</select>
 	
 	<select id="findMemberNum" resultMap="boardResult">
 	select q.question_num, q.question_title, q.question_content, q.question_date, q.view_check, m.member_name, m.member_num
    from board_question q, member m
    where m.member_num = q.member_num
-   and m.member_num = #{memberNum};
+   and m.member_num = #{memberNum} order by question_date desc;
 	</select>
 	
 	

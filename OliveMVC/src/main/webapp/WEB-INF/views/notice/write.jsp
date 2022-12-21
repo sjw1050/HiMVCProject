@@ -9,13 +9,15 @@
 </head>
 <body>
 <h1>공지사항 작성 폼</h1>
-<form action="${pageContext.request.contextPath }/notice/write" method="post">
+<form action="${pageContext.request.contextPath }/notice/write" method="post" enctype="multipart/form-data">
 <div>
 <p>공지 제목</p> 
 <input type="text" name="noticeTitle" />
 <p>공지 내용</p>
 <textarea rows="30" cols="30" name="noticeContent">
 </textarea>
+<br />
+<input multiple="multiple"type="file" name="file" />
 <input type="submit" name="작성하기"/>
 </div>
 </form>

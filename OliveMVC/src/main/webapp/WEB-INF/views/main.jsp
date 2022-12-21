@@ -14,6 +14,10 @@
 	rel="stylesheet" type="text/css" />
 <title>Insert title here</title>
 </head>
+
+<c:if test="${not empty admininfo}">
+	<p>${admininfo }</p>
+</c:if>
 <body>
 	<!-- category -->
 	<c:set value="${subCateList }" var="subCateList" />
@@ -43,6 +47,7 @@
 					src="${pageContext.request.contextPath }/resources/images/oliveyoung-logo.png"
 					alt="Olive Young Logo" /></a>
 				<ul class="menu">
+
 					<li><a href="/product/viewAllProduct">Category</a></li>
 					<li><a href="">Bestseller</a></li>
 					<li><a href="">New Arrival</a></li>

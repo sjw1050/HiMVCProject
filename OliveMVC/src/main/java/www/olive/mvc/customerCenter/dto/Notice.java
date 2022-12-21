@@ -16,5 +16,6 @@ public class Notice {
 	private String noticeContent;
 	private Date noticeDate;
 	private int viewCount;
+	//private String fileName;
 
 }
