@@ -25,7 +25,15 @@
 		<typeAlias type="www.olive.mvc.product.dto.ProductQna" alias="productQna"/> 
 		<typeAlias type="www.olive.mvc.product.dto.Color" alias="color"/> 
 		<typeAlias type="www.olive.mvc.product.dto.Review" alias="review"/> 
+		
+		<!-- Cart dto alias -->
+		<typeAlias type="www.olive.mvc.order.dto.Cart" alias="cart"/> 
+		<typeAlias type="www.olive.mvc.order.dto.OrderAddress" alias="orderAddress"/> 
+		<typeAlias type="www.olive.mvc.order.dto.OrderList" alias="orderList"/> 
+		<typeAlias type="www.olive.mvc.order.dto.OrderStatus" alias="orderStatus"/> 
 	</typeAliases>
+	
+	
 	
 	<mappers>
 		<mapper resource="mapper/membermapper.xml" /> <!-- 매퍼 등록 -->
@@ -35,6 +43,9 @@
 		
 		<!-- productmapper -->
 		<mapper resource="mapper/product/productmapper.xml" /> 
-		<mapper resource="mapper/product/sellermapper.xml" /> 
+    <mapper resource="mapper/product/sellermapper.xml" /> 
+		<!-- cartmaooer -->
+		<mapper resource="mapper/cart/cartmapper.xml" /> 
+		
 	</mappers>
 </configuration>

@@ -77,15 +77,14 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
-	<a href="${pageContext.request.contextPath }/quest/view">질문&답변</a>
-	<a href="${pageContext.request.contextPath }/quest/write">질문 작성하러
-		가기</a>
-	<a href="${pageContext.request.contextPath }/notice/viewall">공지 확인</a>
-	<a href="${pageContext.request.contextPath }/notice/write">공지 작성하기</a>
-	<a href="${pageContext.request.contextPath }/member/loginForm">로그인</a>
-	<a href="${pageContext.request.contextPath }/member/adminlogin">관리자
-		로그인</a>
-	</script>
+	</nav>    
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/quest/view">질문&답변</a>
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/quest/write">질문 작성하러 가기</a>
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/notice/viewall">공지 확인</a>
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/notice/write">공지 작성하기</a>    
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/member/loginForm">로그인</a>
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/cart/viewCart">장바구니</a>
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/member/adminlogin">관리자 로그인</a>
+</script>
 </body>
 </html>
