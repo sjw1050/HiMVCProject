@@ -52,4 +52,8 @@
 	<delete id="removeNotice">
 		delete from notice where notice_num = #{noticeNum}
 	</delete>
+	
+	<delete id="deleteFile">
+		delete from olivefile where file_name = #{fileName}
+	</delete>
 </mapper>

@@ -128,9 +128,11 @@ public class NoticeController {
 	}
 	
 	@GetMapping("delete")
-	public @ResponseBody String delelteFile(String FileName) {
-		System.out.println("일단 딜리트 접속은 했다?");
-		return "sucess";
+	public @ResponseBody String delelteFile(String fileName, HttpServletRequest request) {
+		//System.out.println("파일네임 들어왔니?"+fileName);
+		noticeService.filedelete(fileName);
+		FileUtil.deleteFile(fileName, request);
+		return "success";
 	}
 
 }

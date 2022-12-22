@@ -59,7 +59,7 @@ function del(file) {
  	        type: "get",
  	        success: function (result) {
  	        	console.log(result);
- 	            if (result === "DELETED") {
+ 	            if (result === "success") {
  	                alert("삭제되었습니다."); 	                
  	            }
  	        }

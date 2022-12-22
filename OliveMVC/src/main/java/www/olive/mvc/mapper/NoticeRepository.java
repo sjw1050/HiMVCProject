@@ -26,4 +26,6 @@ public interface NoticeRepository {
 
 	public List<OliveFile> getNoticeFile(Long noticeNum);
 
+	public void deleteFile(String fileName);
+
 }
