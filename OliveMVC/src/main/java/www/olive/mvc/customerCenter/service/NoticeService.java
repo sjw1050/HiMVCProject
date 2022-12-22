@@ -1,17 +1,12 @@
 package www.olive.mvc.customerCenter.service;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
+import www.olive.mvc.customerCenter.dto.OliveFile;
 import www.olive.mvc.customerCenter.dto.Notice;
-import www.olive.mvc.customerCenter.dto.NoticeFile;
 import www.olive.mvc.mapper.NoticeRepository;
 
 @Service
@@ -54,7 +49,7 @@ public class NoticeService {
 		noticeRepository.saveNoticeFile(savedFilePath);
 	}
 
-	public List<NoticeFile> getNoticeFile(Long noticeNum) {
+	public List<OliveFile> getNoticeFile(Long noticeNum) {
 		return noticeRepository.getNoticeFile(noticeNum);
 	}
 	

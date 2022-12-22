@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import www.olive.mvc.cart.service.CartService;
 import www.olive.mvc.member.dto.AuthInfo;
@@ -16,13 +17,14 @@ import www.olive.mvc.order.dto.OrderList;
 
 //수
 @Controller
+@RequestMapping("/cart/**")
 public class CartController {
 
 	@Autowired
 	CartService cartService;
 	
 	//주문목록
-	@GetMapping("/cart/orderList")
+	@GetMapping("orderList")
 	public String orderList(Model model, HttpSession session) {
 		System.out.println(">>>>>>>>>>>>>>>orderList왔다<<<<<<<<<<<<<<<<<");
 		
@@ -34,7 +36,7 @@ public class CartController {
 		System.out.println("viewOrderList >>>>>>>>>>" + viewOrderList);
 		model.addAttribute("viewOrderList" , viewOrderList);
 		
-		return "/cart/orderList";
+		return "cart/orderList";
 	}
 	
 	//장바구니 리스트 보기(잠깐 닫음)
