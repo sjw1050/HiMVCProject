@@ -39,7 +39,7 @@
 					</c:if>
 					<form action="${pageContext.request.contextPath}/member/login"
 						method="post"> 
-					<table>
+					<table>      
 						<tr>
 							<th>아이디:</th>
 							<td><input type="text" name="memberId" /></td>

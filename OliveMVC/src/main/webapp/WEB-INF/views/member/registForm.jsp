@@ -32,7 +32,7 @@
 
 					<c:if test="${!empty err }">
 						<script>
-							alert("${err}");
+							alert("${err}");     
 						</script>
 					</c:if>
 					<form action="${pageContext.request.contextPath}/member/regist"
