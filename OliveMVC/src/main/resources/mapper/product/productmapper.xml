@@ -5,23 +5,22 @@
 
 <mapper namespace="www.olive.mvc.mapper.product.ProductMapper">
 
+	<resultMap id="subCate" type="subCategory">
+		<id property="subCateId" column="sub_cate_id" javaType="int" />
+		<result property="subCateName" column="sub_cate_name" />
+		<result property="mainCateId" column="main_cate_id" />
+		<association property="mainCateInfo"
+			column="main_cate_name" javaType="mainCategory" resultMap="mainCate"></association>
+	</resultMap>
+
+	<resultMap id="mainCate" type="mainCategory">
+		<id property="mainCateId" column="main_cate_id" />
+		<result property="mainCateName" column="main_cate_name" />
+	</resultMap>
 	<!-- 상품 전체보기 -->
 	<select id="selectAllProduct" resultType="product">
 		select * from product
 	</select>
-
-	<!-- 상품 상세보기 -->
-	<select id="selectOneProduct" resultType="product">
-		select p.main_cate_id,
-		p.product_name, p.product_price, p.product_info,
-		b.brand_num,
-		b.brand_name, b.seller_id
-		from product p join brand b
-		on p.brand_num =
-		b.brand_num
-		where p.product_id = #{productId};
-	</select>
-
 
 	<!-- 카테고리별 상품 보기 -->
 	<!-- <select id="selectByMainCate" resultType="product"> select b.brand_name, 
@@ -31,9 +30,10 @@
 
 	<!-- 메인 카테고리별 상품 보기 -->
 	<select id="selectByMain" resultType="product">
-		select p.* from product p,
-		sub_category s
-		where p.sub_cate_id = s.sub_cate_id
+		select p.*, b.brand_name
+		from product p, sub_category s, brand b
+		where p.sub_cate_id =
+		s.sub_cate_id and p.brand_num = b.brand_num
 		and s.main_cate_id =
 		#{mainCateId}
 	</select>
@@ -41,11 +41,33 @@
 
 	<!-- 서브 카테고리별 상품 보기 -->
 	<select id="selectbySub" resultType="product">
-		select p.* from product p,
-		sub_category s, main_category m
-		where p.sub_cate_id = s.sub_cate_id
+		select p.*, b.brand_name
+		from product p, sub_category s, main_category m, brand b
+		where
+		p.sub_cate_id = s.sub_cate_id
 		and s.main_cate_id = m.main_cate_id
-		and p.sub_cate_id = #{subCateId};
+		and
+		p.brand_num = b.brand_num
+		and p.sub_cate_id = #{subCateId}
+	</select>
+
+	<!-- sub category : main category -->
+	<select id="selectAllFromSub" resultMap="subCate">
+		select * from
+		sub_category
+	</select>
+	<select id="selectAllFromMain" resultMap="mainCate">
+		select *
+		from
+		main_category
+	</select>
+	
+	<!-- 상품 상세보기 -->
+	<select id="selectOneProduct" resultType="product">
+		select p.*
+		from product p join brand b
+		on p.brand_num = b.brand_num
+		where p.product_id = #{productId}
 	</select>
 
 </mapper>

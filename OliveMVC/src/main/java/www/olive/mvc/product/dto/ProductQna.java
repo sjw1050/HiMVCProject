@@ -5,6 +5,7 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import www.olive.mvc.member.dto.MemberEntity;
 
 @Data
 @NoArgsConstructor
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class ProductQna {
 	private int productQnaId;
 	private int productId;
-	private int memberNum;
+	private MemberEntity memberNum;
 	private String productQuestionTitle;
 	private String productQuestion;
 	private Date productQuestionDate;

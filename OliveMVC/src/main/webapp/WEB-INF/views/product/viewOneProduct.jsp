@@ -9,13 +9,13 @@
 </head>
 <body>
 	<h1>상품 상세 보기</h1>
-	<c:forEach items="${oneProductList }" var="OneProduct">
+	<c:forEach items="${oneProdList }" var="oneProduct">
 		<div>
 			<p>(상품이미지)</p>
-			<p>${OneProduct.brandName }</p>
-			<p>${OneProduct.productName }</p>
-			<p>${OneProduct.productPrice }</p>
-			<p>${OneProduct.productInfo }</p>
+			<p>${oneProduct.brandName }</p>
+			<p>${oneProduct.productName }</p>
+			<p>${oneProduct.productPrice }</p>
+			<p>${oneProduct.productInfo }</p>
 		</div>
 	</c:forEach>
 </body>

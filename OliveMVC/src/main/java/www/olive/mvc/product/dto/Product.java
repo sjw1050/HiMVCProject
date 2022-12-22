@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Product {
 	private int productId;
-	private int brandNum;
+	private Brand brandNum;
 	private String productName;
 	private int productPrice;
 	private String productInfo;
-	private int colorId;
-	private int subCateId;
+	private Color colorId;
+	private SubCategory subCateId;
 	private String brandName;
 	
 }

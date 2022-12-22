@@ -11,5 +11,5 @@ public class SubCategory {
 	private int subCateId;
 	private String subCateName;
 	private int mainCateId;
-	private String mainCateName;
+	private MainCategory mainCateInfo;
 }

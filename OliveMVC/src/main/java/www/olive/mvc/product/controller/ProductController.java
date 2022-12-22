@@ -36,59 +36,55 @@ public class ProductController {
 
 	}
 
+
+	// 메인 카테고리별 상품 뿌리기 
+	@GetMapping("/category")
+	public String getProdByMain(HttpServletRequest request, Model model) throws Exception {
+
+		String mainCateId = request.getParameter("mainCateId");
+		List<Product> listByMain = productService.getProdByMain(mainCateId);
+		
+		String subCateId = request.getParameter("subCateId");
+		List<Product> listBySub = productService.getProdBySub(subCateId);
+
+		model.addAttribute("listByMain", listByMain);
+		model.addAttribute("listBySub", listBySub);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		System.out.println("listByMain >>>>" + listByMain);
+		System.out.println("listBySub >>>>" + listBySub);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		
+		return "/product/list";
+	}
+	
+	
+	
+	//서브 카테고리별 상품 뿌리기 
+	@GetMapping("/category/sub")
+	public String getProdBySub(HttpServletRequest request, Model model) throws Exception {
+
+		String subCateId = request.getParameter("subCateId");
+		List<Product> listBySub = productService.getProdBySub(subCateId);
+
+		model.addAttribute("listBySub", listBySub);
+		System.out.println("controller listBySub >>>> " + listBySub);
+		
+		return "/product/list";
+	}
+	
+
 	// 상품 상세 보기
 	@GetMapping("/product/viewOneProduct")
 	public String viewOneProduct(HttpServletRequest request, Model model) {
 
 		String productId = request.getParameter("productId");
-		List<Product> oneProductList = productService.viewOneProduct(productId);
+		List<Product> oneProdList = productService.viewOneProduct(productId);
 
 		System.out.println("productId param >>> " + productId);
-		System.out.println("viewOneProduct >>>>" + oneProductList);
+		System.out.println("oneProdList >>>>" + oneProdList);
 
-		model.addAttribute("oneProductList", oneProductList);
+		model.addAttribute("oneProdList", oneProdList);
 		return "product/viewOneProduct";
-	}
-
-//	// cateId 받아오기 test
-//	@GetMapping("/*")
-//	public String category(Model model) {
-//		
-//		List<SubCategory> cateId = productService.getCateId();
-//		model.addAttribute("cateId", cateId);
-//				
-//		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
-//		System.out.println("cateId" + cateId);
-//		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
-//		return "main";
-//	}
-//
-
-	// 메인 카테고리별 상품 뿌리기 
-	@GetMapping("/categories")
-//	 public String getList(@RequestParam("main") int cateCode, Model model) throws Exception {
-	public String getProdByMain(HttpServletRequest request, Model model) throws Exception {
-
-		String mainCateId = request.getParameter("mainCateId");
-		List<Product> listByCate = productService.getProdByMain(mainCateId);
-
-		model.addAttribute("listByCate", listByCate);
-//		System.out.println("controller >>>>" + listByCate);
-		
-		return "/product/list";
-	}
-	
-	//서브 카테고리별 상품 뿌리기 
-	@GetMapping("/categories/sub")
-	public String getProdBySub(HttpServletRequest request, Model model) throws Exception {
-
-		String subCateId = request.getParameter("subCateId");
-		List<Product> subList = productService.getProdBySub(subCateId);
-
-		model.addAttribute("subList", subList);
-		System.out.println("controller subList >>>>" + subList);
-		
-		return "/product/list";
 	}
 
 }

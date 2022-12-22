@@ -2,10 +2,51 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+</head>
+<body>
+<div>
+<p>공지 제목 : <input type="text" name="noticeTitle" id="noticeTitle" value="${notice.noticeTitle }" readonly/></p>
+<div>
+공지 내용 : 
+<textarea name="noticeContent" cols="30" rows="30" id="noticeContent" readonly>${notice.noticeContent }</textarea>
+<c:if test="${not empty noticeFiles }">
+<c:forEach var="noticeFile" items="${noticeFiles }">
+<c:set var="file" value="${noticeFile.fileName}"></c:set>
+<div>
+<c:choose>
+<c:when test="${fn:contains(file, 'jpg')}">
+	<a href="${pageContext.servletConfig.servletContext.contextPath }/notice/download/?fileName=${file}"><img src="${pageContext.servletConfig.servletContext.contextPath }/upload/${file}" alt="" /></a>
+</c:when>
+<c:when test="${fn:contains(file, 'gif')}">
+	<a href="${pageContext.servletConfig.servletContext.contextPath }/notice/download/?fileName=${file}"><img src="${pageContext.servletConfig.servletContext.contextPath }/upload/${file}" alt="" /></a>
+</c:when>
+<c:when test="${fn:contains(file, 'png')}">
+	<a href="${pageContext.servletConfig.servletContext.contextPath }/notice/download/?fileName=${file}"><img src="${pageContext.servletConfig.servletContext.contextPath }/upload/${file}" alt="" /></a>
+</c:when>
+<c:otherwise>
+	<a href="${pageContext.servletConfig.servletContext.contextPath }/notice/download/?fileName=${file}">${file }</a>
+</c:otherwise>
+</c:choose>
+</div>
+</c:forEach>
+</c:if>
+</div>
+<p>공지 날짜 : ${notice.noticeDate }</p>
+<p>조회수  : ${notice.viewCount }</p>
+<p><a href="${pageContext.request.contextPath }/notice/viewall">돌아가기</a></p>
+</div>
+<c:if test="${not empty admininfo }">
+<button type="button" onclick="modify();" id="modi"> 수정하기</button>
+<button type="button" onclick="modifyquest();" disabled="disabled" id="modibtn"> 전송하기</button>
+<button type="button" onclick="remove();">삭제하기</button>
+</c:if>
+</body>
 <script>
 function modify() {
 	document.getElementById("noticeTitle").readOnly = false;
@@ -62,22 +103,4 @@ function remove() {
     form.submit();
 }
 </script>
-</head>
-<body>
-<div>
-<p>공지 제목 : <input type="text" name="noticeTitle" id="noticeTitle" value="${notice.noticeTitle }" readonly/></p>
-<div>
-문의 내용 : 
-<textarea name="noticeContent" cols="30" rows="30" id="noticeContent" readonly>${notice.noticeContent }</textarea>
-</div>
-<p>공지 날짜 : ${notice.noticeDate }</p>
-<p>조회수  : ${notice.viewCount }</p>
-<p><a href="${pageContext.request.contextPath }/notice/viewall">돌아가기</a></p>
-</div>
-<c:if test="${not empty admininfo }">
-<button type="button" onclick="modify();" id="modi"> 수정하기</button>
-<button type="button" onclick="modifyquest();" disabled="disabled" id="modibtn"> 전송하기</button>
-<button type="button" onclick="remove();">삭제하기</button>
-</c:if>
-</body>
 </html>
