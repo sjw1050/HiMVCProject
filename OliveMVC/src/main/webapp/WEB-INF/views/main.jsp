@@ -66,9 +66,18 @@
 							<i class="fas fa-user"></i>
 						</button>
 					</li>
-					<li class="register">회원가입</li>
-					<li class="login">로그인</li>
 
+					<c:if test="${empty info}">
+					<li class="register"> <a href="${pageContext.request.contextPath}/member/regist">회원가입</a></li>
+             		<li class="login"> <a href="${pageContext.request.contextPath}/member/loginForm">로그인</a></li>
+					</c:if>
+<!-- 로그아웃 -->					
+					<c:if test="${!empty info}">
+					<span>${info.name }님, 환영합니다</span> 
+					<li class="logout"> <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+					
+					</c:if>
+					
 					<li class="bag">
 						<button>
 							<i class="fas fa-shopping-cart"></i>
