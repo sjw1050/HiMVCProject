@@ -17,7 +17,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -123,6 +125,12 @@ public class NoticeController {
 	    }
 	    return entity;
 
+	}
+	
+	@GetMapping("delete")
+	public @ResponseBody String delelteFile(String FileName) {
+		System.out.println("일단 딜리트 접속은 했다?");
+		return "sucess";
 	}
 
 }
