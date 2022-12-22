@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import www.olive.mvc.customerCenter.dto.Notice;
-import www.olive.mvc.customerCenter.dto.NoticeFile;
+import www.olive.mvc.customerCenter.dto.OliveFile;
 import www.olive.mvc.customerCenter.service.NoticeService;
 import www.olive.mvc.util.FileUtil;
 
@@ -72,7 +72,7 @@ public class NoticeController {
 	public String viewnotice(Long noticeNum, Model model, HttpServletRequest request) {
 		// System.out.println("공지번호 들어왔니?" + noticeNum);
 		Notice notice = noticeService.detailNotice(noticeNum);
-		List<NoticeFile> noticeFiles = noticeService.getNoticeFile(noticeNum);
+		List<OliveFile> noticeFiles = noticeService.getNoticeFile(noticeNum);
 		System.out.println("공지 파일들>>>"+noticeFiles);
 		if (noticeFiles != null) {
 			// System.out.println("파일 이미지 경로 수정되었니?"+noticeFile.getFileName());
