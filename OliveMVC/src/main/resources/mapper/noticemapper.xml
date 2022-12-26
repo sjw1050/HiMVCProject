@@ -40,6 +40,18 @@
             , LAST_INSERT_ID()
         )
     </insert>
+    
+    <insert id="addNoticeFile">
+        INSERT INTO olivefile (
+            file_name
+            , notice_num
+        ) VALUES (
+            #{fileName}
+            , #{noticeNum.noticeNum}
+        )
+    </insert>
+    
+    
 	
 	<update id="updateview">
 		update notice set view_count = view_count + 1 where notice_num = #{noticeNum}

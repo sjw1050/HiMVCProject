@@ -9,13 +9,15 @@
 </head>
 <body>
 <h1>문의글 작성 폼</h1>
-<form action="${pageContext.request.contextPath }/quest/write" method="post">
+<form action="${pageContext.request.contextPath }/quest/write" method="post" enctype="multipart/form-data">
 <div>
 <p>문의 제목</p> 
 <input type="text" name="questionTitle" />
 <p>문의 내용</p>
 <textarea rows="30" cols="30" name="questionContent">
 </textarea>
+<br />
+<input multiple="multiple"type="file" name="file" />
 <input type="submit" name="작성하기"/>
 </div>
 </form>

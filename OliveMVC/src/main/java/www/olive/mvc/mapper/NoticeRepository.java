@@ -28,4 +28,6 @@ public interface NoticeRepository {
 
 	public void deleteFile(String fileName);
 
+	public void addNoticeFile(OliveFile oFile);
+
 }

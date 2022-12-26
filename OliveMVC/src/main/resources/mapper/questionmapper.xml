@@ -4,6 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="www.olive.mvc.mapper.QuestionRepository">
 
+	<resultMap id="FileResult" type="ofile">
+	<result property="fileName" column="file_name"/>
+	<association property="questionNum" column="question_num" javaType="quest" resultMap="questResult"></association>
+	</resultMap>
+	
+	<resultMap id="questResult" type="quest">
+	<id property="questionNum" column="question_num"/>
+	</resultMap>
+
 	<resultMap id="boardResult" type="quest">
 	<id property="questionNum" column="question_num" javaType="long"/>
 	<result property="questionTitle" column="question_title"/>
@@ -54,10 +63,37 @@
    and question_num = #{questionNum}
 	</select>
 	
+	<select id="getQuestFile" resultMap="FileResult">
+	select o.file_name, q.question_num from olivefile o, board_question q 
+	where q.question_num = o.question_num and o.question_num = #{questionNum};
+	</select>
+	
 	<insert id="saveQuest">
 	insert into board_question(question_title,question_content,member_num)
 	values(#{questionTitle}, #{questionContent}, #{writer.memberNum})
 	</insert>
+	
+	
+	<insert id="saveQuestFile">
+	INSERT INTO olivefile (
+            file_name
+            , question_num
+        ) VALUES (
+            #{filename}
+            , LAST_INSERT_ID()
+        )
+	</insert>
+	
+	<insert id="addQuestFile">
+        INSERT INTO olivefile (
+            file_name
+            , question_num
+        ) VALUES (
+            #{fileName}
+            , #{questionNum.questionNum}
+        )
+    </insert>
+	
 	
 	<insert id="saveAnswer">
 	
@@ -90,5 +126,9 @@
 	
 	<delete id="removeQuest">
 	delete from board_question where question_num = #{questionNum}
+	</delete>
+	
+	<delete id="deleteFile">
+		delete from olivefile where file_name = #{fileName}
 	</delete>
 </mapper>

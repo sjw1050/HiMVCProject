@@ -56,6 +56,10 @@ public class NoticeService {
 	public void filedelete(String fileName) {
 		noticeRepository.deleteFile(fileName);
 	}
+
+	public void addNoticeFile(OliveFile oFile) {
+		noticeRepository.addNoticeFile(oFile);
+	}
 	
 	
 
