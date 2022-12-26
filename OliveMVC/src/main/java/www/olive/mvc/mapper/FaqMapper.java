@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import www.olive.mvc.customerCenter.dto.Faq;
 
 @Mapper
-public interface FaqRepository {
+public interface FaqMapper {
 	
 	public List<Faq> selectAll();
 

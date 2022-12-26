@@ -4,48 +4,63 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
-		<setting name="mapUnderscoreToCamelCase" value="true"/> <!-- 카멜케이스 적용 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" /> <!-- 카멜케이스 적용 -->
 	</settings>
 
 	<typeAliases>
-		<typeAlias type="www.olive.mvc.member.dto.MemberEntity" alias="member"/> <!-- DTO클래스 alias 등록 -->
-		<typeAlias type="www.olive.mvc.customerCenter.dto.Notice" alias="notice"/> <!-- DTO클래스 alias 등록 -->
-		<typeAlias type="www.olive.mvc.customerCenter.dto.Faq" alias="faq"/> <!-- DTO클래스 alias 등록 -->
-		<typeAlias type="www.olive.mvc.customerCenter.dto.QuestionBoard" alias="quest"/> <!-- DTO클래스 alias 등록 -->
-		<typeAlias type="www.olive.mvc.customerCenter.dto.AnswerBoard" alias="answer"/> <!-- DTO클래스 alias 등록 -->
-		<typeAlias type="www.olive.mvc.customerCenter.dto.OliveFile" alias="ofile"/> <!-- DTO클래스 alias 등록 -->
-		
-		
-		
+		<typeAlias type="www.olive.mvc.member.dto.MemberEntity"
+			alias="member" /> <!-- DTO클래스 alias 등록 -->
+		<typeAlias type="www.olive.mvc.customerCenter.dto.Notice"
+			alias="notice" /> <!-- DTO클래스 alias 등록 -->
+		<typeAlias type="www.olive.mvc.customerCenter.dto.Faq"
+			alias="faq" /> <!-- DTO클래스 alias 등록 -->
+		<typeAlias
+			type="www.olive.mvc.customerCenter.dto.QuestionBoard" alias="quest" /> <!-- DTO클래스 alias 등록 -->
+		<typeAlias
+			type="www.olive.mvc.customerCenter.dto.AnswerBoard" alias="answer" /> <!-- DTO클래스 alias 등록 -->
+		<typeAlias type="www.olive.mvc.customerCenter.dto.OliveFile"
+			alias="ofile" /> <!-- DTO클래스 alias 등록 -->
+
+
+
 		<!-- Product dto alias -->
-		<typeAlias type="www.olive.mvc.product.dto.Product" alias="product"/> 
-		<typeAlias type="www.olive.mvc.product.dto.Brand" alias="brand"/> 
-		<typeAlias type="www.olive.mvc.product.dto.MainCategory" alias="mainCategory"/> 
-		<typeAlias type="www.olive.mvc.product.dto.SubCategory" alias="subCategory"/> 
-		<typeAlias type="www.olive.mvc.product.dto.ProductQna" alias="productQna"/> 
-		<typeAlias type="www.olive.mvc.product.dto.Color" alias="color"/> 
-		<typeAlias type="www.olive.mvc.product.dto.Review" alias="review"/> 
-		
+		<typeAlias type="www.olive.mvc.product.dto.Product"
+			alias="product" />
+		<typeAlias type="www.olive.mvc.product.dto.Brand"
+			alias="brand" />
+		<typeAlias type="www.olive.mvc.product.dto.MainCategory"
+			alias="mainCategory" />
+		<typeAlias type="www.olive.mvc.product.dto.SubCategory"
+			alias="subCategory" />
+		<typeAlias type="www.olive.mvc.product.dto.ProductQna"
+			alias="productQna" />
+		<typeAlias type="www.olive.mvc.product.dto.Color"
+			alias="color" />
+		<typeAlias type="www.olive.mvc.product.dto.Review"
+			alias="review" />
+
 		<!-- Cart dto alias -->
-		<typeAlias type="www.olive.mvc.order.dto.Cart" alias="cart"/> 
-		<typeAlias type="www.olive.mvc.order.dto.OrderAddress" alias="orderAddress"/> 
-		<typeAlias type="www.olive.mvc.order.dto.OrderList" alias="orderList"/> 
-		<typeAlias type="www.olive.mvc.order.dto.OrderStatus" alias="orderStatus"/> 
+		<typeAlias type="www.olive.mvc.order.dto.Cart" alias="cart" />
+		<typeAlias type="www.olive.mvc.order.dto.OrderAddress"
+			alias="orderAddress" />
+		<typeAlias type="www.olive.mvc.order.dto.OrderList"
+			alias="orderList" />
+		<typeAlias type="www.olive.mvc.order.dto.OrderStatus"
+			alias="orderStatus" />
 	</typeAliases>
-	
-	
-	
+
+
+
 	<mappers>
 		<mapper resource="mapper/membermapper.xml" /> <!-- 매퍼 등록 -->
 		<mapper resource="mapper/noticemapper.xml" /> <!-- 매퍼 등록 -->
 		<mapper resource="mapper/faqmapper.xml" /> <!-- 매퍼 등록 -->
 		<mapper resource="mapper/questionmapper.xml" /> <!-- 매퍼 등록 -->
-		
+
 		<!-- productmapper -->
-		<mapper resource="mapper/product/productmapper.xml" /> 
-    <mapper resource="mapper/product/sellermapper.xml" /> 
+		<mapper resource="mapper/product/productmapper.xml" />
+		<mapper resource="mapper/product/sellermapper.xml" />
 		<!-- cartmaooer -->
-		<mapper resource="mapper/cart/cartmapper.xml" /> 
-		
+		<mapper resource="mapper/cart/cartmapper.xml" />
 	</mappers>
 </configuration>

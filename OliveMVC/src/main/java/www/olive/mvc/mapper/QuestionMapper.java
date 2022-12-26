@@ -10,7 +10,7 @@ import www.olive.mvc.customerCenter.dto.QuestionBoard;
 import www.olive.mvc.member.dto.AuthInfo;
 
 @Mapper
-public interface QuestionRepository {
+public interface QuestionMapper {
 	
 	public List<QuestionBoard> selectAll();
 

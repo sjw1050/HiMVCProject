@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="www.olive.mvc.mapper.NoticeRepository">
+<mapper namespace="www.olive.mvc.mapper.NoticeMapper">
 
 <resultMap id="FileResult" type="ofile">
 	<result property="fileName" column="file_name"/>

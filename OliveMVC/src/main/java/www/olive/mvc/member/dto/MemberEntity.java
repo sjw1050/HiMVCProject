@@ -30,7 +30,7 @@ public class MemberEntity {
 	private String address;
 	private Date regdate;
 	private Long tpa;
-	private int level;
+	private int memberLevel;
 	
 	public MemberEntity(Long memberNum, String id, String name, Date birthday, Long tpa) {
 		this.memberNum = memberNum;
