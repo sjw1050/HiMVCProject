@@ -52,7 +52,7 @@ public class CartController {
 		System.out.println("orderInfo >>>>>>>>>>>" + Info);
 		
 		cart.setMemberNum(Info.getMemberNum());
-		
+		System.out.println(cart);
 		
 		
 		
