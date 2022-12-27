@@ -45,10 +45,10 @@
 					</c:choose>
 				</div>
 			</c:forEach>
-			<label style="display: none" for="file" id="fileadd">파일 추가하기</label>
+		</c:if>
+		<label style="display: none" for="file" id="fileadd">파일 추가하기</label>
 			<input style="display: none" type="file" name="file" id="file"
 				multiple />
-		</c:if>
 		<p>문의 날짜 : ${qboard.questionDate }</p>
 		<p>문의자 : ${qboard.getWriter().getMemberName() }</p>
 		<button type="button" onclick="modify();" id="modi">수정하기</button>

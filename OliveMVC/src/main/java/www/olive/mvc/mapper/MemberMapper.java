@@ -15,5 +15,6 @@ public interface MemberMapper {
 	public void insertMember(MemberEntity member);
 	public Admin selectAdmin(String adminId);
 	public MemberEntity selectGradeMember(AuthInfo info);
+	public MemberEntity selectMember(Long memberNum);
 
 }

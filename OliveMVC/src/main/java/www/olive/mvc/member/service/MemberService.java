@@ -76,6 +76,10 @@ public class MemberService {
 			return _member;
 		}
 	}
+
+	public MemberEntity selectMember(Long memberNum) {
+		return memberRepository.selectMember(memberNum);
+	}
 	
 	
 

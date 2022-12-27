@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="www.olive.mvc.mapper.OrderMapper">
+
+	<resultMap id="addressResult" type="address">
+		<id property="addressId" column="address_id" javaType="int" />
+		<result property="address" column="address" />
+		<result property="receiver" column="receiver" />
+		<result property="phone" column="phone" />
+		<association property="member" column="member_num"
+			javaType="member" resultMap="memberResult"></association>
+	</resultMap>
+	
+	<resultMap id="memberResult" type="member">
+	<id property="memberNum" column="member_num"/>
+	<result property="memberId" column="member_id"/>
+	<result property="pw" column="pw"/>
+	<result property="memberName" column="member_name"/>
+	<result property="email" column="email"/>
+	<result property="phone" column="phone"/>
+	<result property="birthday" column="birthday"/>
+	<result property="gender" column="gender"/>
+	<result property="address" column="address"/>
+	<result property="regdate" column="regdate"/>
+	<result property="tpa" column="tpa"/>
+	<result property="level" column="level"/>
+	</resultMap>
+
+	<resultMap id="OrderResult" type="order">
+		<id property="orderId" column="order_id" javaType="int" />
+		<result property="orderDate" column="order_date" />
+		<association property="status" column="status_number"
+			javaType="status" resultMap="statusResult"></association>
+	</resultMap>
+
+	<resultMap id="statusResult" type="status">
+		<id property="statusNumber" column="status_number" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<select id="orderListView" resultType="orderlistview">
+		<!-- select * from board_question -->
+		select po.order_id, m.member_name,b.brand_name, p.product_name,
+		p.product_price,
+		od.order_count, po.total_price, oa.address,
+		oa.receiver, oa.phone,
+		os.status, po.order_date
+		from member m,
+		product_order po, product p, order_status os, order_address
+		oa,
+		order_details od, brand b
+		where m.member_num = po.member_num
+		and
+		p.product_id = od.product_id
+		and po.status_number = os.status_number
+		and po.address_id = oa.address_id
+		and od.order_id = po.order_id
+		and p.brand_num = b.brand_num
+		and po.member_num =#{member.memberNum}
+		and po.order_id = #{orderId} order by po.order_id
+	</select>
+
+	<select id="viewOrder" resultMap="OrderResult">
+		select po.order_id,
+		po.order_date, os.status from
+		product_order po, order_status os
+		where
+		po.status_number = os.status_number
+		and po.member_num = #{memberNum}
+		order by order_id
+	</select>
+	
+	<select id="viewAddress" resultMap="addressResult">
+	select oa.address, oa.receiver, oa.phone, m.member_name from order_address oa, member m
+	where m.member_num = oa.member_num 
+	and oa.member_num = #{memberNum}
+	</select>
+
+
+
+</mapper>

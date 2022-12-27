@@ -10,6 +10,12 @@ where m.tpa between g.low and g.high
 	</select>
 	
 	
+	<select id="selectMember" resultType="member">
+	select m.*, g.member_level from member m, grade g
+where m.tpa between g.low and g.high and member_num = #{memberNum}
+	</select>
+	
+	
 	
 	<select id="selectGradeMember" resultType="member">
 	select m.member_name, m.tpa, g.member_level from member m, grade g
