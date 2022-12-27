@@ -45,8 +45,18 @@ public class CartController {
 		return "/cart/viewCart";
 	}
 	//장바구니에 담기 
-	@PostMapping("/cart/insertProductInCart")
-	public void addCart() {
+	@PostMapping("/cart/insertInCart")
+	public void addCart(HttpSession session, Model model, Cart cart) {
+		
+		AuthInfo Info = (AuthInfo) session.getAttribute("info");
+		System.out.println("orderInfo >>>>>>>>>>>" + Info);
+		
+		cart.setMemberNum(Info.getMemberNum());
+		
+		
+		
+		
+		
 		
 	}
 	
