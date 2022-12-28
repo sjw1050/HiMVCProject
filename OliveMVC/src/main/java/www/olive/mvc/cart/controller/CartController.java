@@ -11,12 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import www.olive.mvc.cart.service.CartService;
 import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.order.dto.Cart;
-import www.olive.mvc.order.dto.OrderList;
 
     
 @Controller
@@ -50,7 +48,7 @@ public class CartController {
 	}
 	//장바구니에 담기 
 	@PostMapping("/insertInCart")
-	public String addCart(HttpSession session, HttpServletRequest request) {
+	public String addCart(HttpSession session, HttpServletRequest request, Cart cart) {
 		
 		AuthInfo Info = (AuthInfo) session.getAttribute("info");
 		System.out.println("Info >>>>>>>>>>>" + Info);
@@ -81,6 +79,7 @@ public class CartController {
 		
 		cartService.deleteCart(cartId);
 		
+		System.out.println("cart >>>>>>>>>>" + cart);
 		return "redirect:/cart/viewCart";
 	}
 	
