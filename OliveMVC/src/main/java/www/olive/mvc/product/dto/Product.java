@@ -23,5 +23,6 @@ public class Product {
 //	private String sellerId;
 	private int subCateId;
 	private int brandNum;
+	private String fileName;
 	
 }

@@ -30,11 +30,11 @@ public class SellerController {
 	@Autowired
 	SellerService sellerService;
 
+	
 	// /seller로 들어올 시 하위카테고리 붙여주기.
-//	 @GetMapping("/*")
-//	 public void subCate(Model model) {
-//		
-//	 }
+	// @GetMapping("")
+	// public void subCate(Model model) {
+	// }
 
 	// 셀러 로그인 폼
 	@GetMapping("/sellerLogin")
@@ -45,10 +45,13 @@ public class SellerController {
 	// 셀러 로그인
 	@PostMapping("/sellerLogin")
 	public String sellerlogin(HttpSession session, Brand brand, Model model) {
+		// 로그인 할 때 서브카테고리 세션에 붙여주기
+		List<SubCategory> subCateList = sellerService.getSubCate();
+		session.setAttribute("subCateList", subCateList);
+		System.out.println("subCateList 셀러 잘 들어왔나 " + subCateList);
+
 		Brand _brand = sellerService.sellerCheck(brand.getSellerId(), brand.getSellerPw());
-		//
-		
-			//
+
 		if (_brand != null) {
 			session.setAttribute("sellerInfo", _brand);
 			model.addAttribute("sellerInfo", _brand);
@@ -59,11 +62,7 @@ public class SellerController {
 				session.removeAttribute("togo");
 				return togo;
 			}
-			List<SubCategory> subCateList = sellerService.getSubCate();
 
-			model.addAttribute("subCate", subCateList);
-//			System.out.println("subCateList 셀러 잘 들어왔나  " + subCateList);
-			System.out.println("컨트롤러 로그인메소드-서브카테 붙이기 >>> " + model.addAttribute("subCate", subCateList));
 			return "redirect:/main";
 		} else {
 			model.addAttribute("notseller", "셀러 회원이 아닙니다.");
@@ -97,7 +96,7 @@ public class SellerController {
 
 	}
 
-	// //셀러별 상품 목록
+	//셀러별 상품 목록
 	@GetMapping("viewBySeller")
 	public String viewBySeller(Model model, HttpServletRequest request) {
 
@@ -117,10 +116,10 @@ public class SellerController {
 	// 상품 등록 폼
 	@GetMapping("/registProduct")
 	public String registProductForm(Model model) {
-//		List<SubCategory> subCateList = sellerService.getSubCate();
-//
-//		model.addAttribute("subCate", subCateList);
-//		System.out.println("subCateList 셀러 잘 들어왔나  " + subCateList);
+		// List<SubCategory> subCateList = sellerService.getSubCate();
+		//
+		// model.addAttribute("subCate", subCateList);
+		// System.out.println("subCateList 셀러 잘 들어왔나 " + subCateList);
 		return "/seller/registProduct";
 
 		// return "main";
@@ -147,7 +146,17 @@ public class SellerController {
 				sellerService.addProductFile(savedPath);
 			}
 		}
-		return "redirect:/seller/viewBySeller";
+		return "redirect:/viewBySeller";
 
 	}
+	
+	//상품 파일 받아오기
+	
+	//상품 삭제
+	@GetMapping("/removeProd")
+	public void removeProd(HttpServletRequest request) {
+		String productId = request.getParameter("productId");
+		sellerService.removeProd(productId);
+	}
+	
 }

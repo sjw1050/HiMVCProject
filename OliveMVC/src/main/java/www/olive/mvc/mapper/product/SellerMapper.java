@@ -20,5 +20,7 @@ public interface SellerMapper {
 	public void insertProduct(Product product);
 
 	public void insertProductFile(String filename);
+
+	public void deleteProd(String productId);
 	
 }

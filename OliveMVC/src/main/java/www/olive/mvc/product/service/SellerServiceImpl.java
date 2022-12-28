@@ -61,4 +61,11 @@ public class SellerServiceImpl implements SellerService {
 		sellerMapper.insertProductFile(savedFilePath);
 	}
 
+	// 상품 삭제
+	@Override
+	public void removeProd(String productId) {
+		sellerMapper.deleteProd(productId);
+	}
+
+	
 }
