@@ -2,14 +2,31 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="www.olive.mvc.mapper.MemberRepository">
+<mapper namespace="www.olive.mvc.mapper.MemberMapper">
 
 	<select id="selectAll" resultType="member">
-	select * from member
+	select m.*, g.member_level from member m, grade g
+where m.tpa between g.low and g.high
 	</select>
 	
+	
+	<select id="selectMember" resultType="member">
+	select m.*, g.member_level from member m, grade g
+where m.tpa between g.low and g.high and member_num = #{memberNum}
+	</select>
+	
+	
+	
+	<select id="selectGradeMember" resultType="member">
+	select m.member_name, m.tpa, g.member_level from member m, grade g
+where m.tpa between g.low and g.high 
+and m.member_num = #{memberNum}
+	</select>
+	
+	
 	<select id="selectId" resultType="member">
-	select * from member where member_id = #{memberId}
+	select m.*, g.member_level from member m, grade g
+where m.tpa between g.low and g.high and member_id = #{memberId}
 	</select>
 	
 	<select id="selectAdmin" resultType="www.olive.mvc.member.dto.Admin">

@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import www.olive.mvc.customerCenter.dto.OliveFile;
 import www.olive.mvc.customerCenter.dto.Notice;
-import www.olive.mvc.mapper.NoticeRepository;
+import www.olive.mvc.mapper.NoticeMapper;
 
 @Service
 public class NoticeService {
 	
 	@Autowired
-	NoticeRepository noticeRepository;
+	NoticeMapper noticeRepository;
 
 	public List<Notice> viewNotice() {
 		return noticeRepository.selectAll();

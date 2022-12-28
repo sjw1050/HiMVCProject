@@ -8,7 +8,7 @@ import www.olive.mvc.customerCenter.dto.Notice;
 import www.olive.mvc.customerCenter.dto.OliveFile;
 
 @Mapper
-public interface NoticeRepository {
+public interface NoticeMapper {
 	
 	public List<Notice> selectAll();
 

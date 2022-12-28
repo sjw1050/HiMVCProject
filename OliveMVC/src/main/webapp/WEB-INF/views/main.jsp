@@ -75,6 +75,7 @@
 					<c:if test="${!empty info}">
 					<span>${info.name }님, 환영합니다</span> 
 					<li class="logout"> <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+					<li class="logout"> <a href="${pageContext.request.contextPath}/mypage/main">마이페이지</a></li>
 					
 					</c:if>
 					

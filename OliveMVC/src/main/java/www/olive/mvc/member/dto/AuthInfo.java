@@ -19,5 +19,6 @@ public class AuthInfo {
 	private String address;
 	private Date birthday;
 	private Long tpa;
+	private int level;
 
 }

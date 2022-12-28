@@ -34,9 +34,9 @@
 </c:choose>
 </div>
 </c:forEach>
+</c:if>
 <label style="display: none" for="file" id="fileadd">파일 추가하기</label>
 <input style="display: none" type="file" name="file" id="file" multiple/>
-</c:if>
 </div>
 <p>공지 날짜 : ${notice.noticeDate }</p>
 <p>조회수  : ${notice.viewCount }</p>

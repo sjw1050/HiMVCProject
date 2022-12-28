@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartResolver;
 import www.olive.mvc.customerCenter.dto.AnswerBoard;
 import www.olive.mvc.customerCenter.dto.OliveFile;
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
-import www.olive.mvc.mapper.QuestionRepository;
+import www.olive.mvc.mapper.QuestionMapper;
 import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.member.dto.MemberEntity;
 
@@ -18,7 +18,7 @@ import www.olive.mvc.member.dto.MemberEntity;
 public class QuestService {
 	
 	@Autowired
-	QuestionRepository questionRepository;
+	QuestionMapper questionRepository;
 
 	public List<QuestionBoard> viewquest() {
 		return questionRepository.selectAll();
