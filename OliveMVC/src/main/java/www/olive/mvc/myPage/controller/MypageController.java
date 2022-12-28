@@ -88,7 +88,7 @@ public class MypageController {
 		//System.out.println("수정된 정보 받아옴?" + address);
 		mypageService.updateAddress(address);
 		
-		return "redirect:mypage/address";
+		return "redirect:/mypage/address";
 	}
 	
 	@PostMapping("insertaddress")
@@ -103,13 +103,13 @@ public class MypageController {
 //		address.setMember(member);
 		//System.out.println("주소지 멤버 입력" + address);
 		mypageService.insertAddress(address);		
-		return "redirect:mypage/address";
+		return "redirect:/mypage/address";
 	}
 	
 	@GetMapping("deleteaddress")
 	public String deleteAddress(OrderAddress address) {
 		mypageService.deleteAddress(address);
-		return "redirect:mypage/address";
+		return "redirect:/mypage/address";
 	}
 	
 
