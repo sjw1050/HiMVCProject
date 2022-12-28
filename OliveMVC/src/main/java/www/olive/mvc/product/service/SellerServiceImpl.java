@@ -17,18 +17,16 @@ public class SellerServiceImpl implements SellerService {
 	@Autowired
 	SellerMapper sellerMapper;
 
-
-	//셀러 상품등록 섭카테고리 
+	// 셀러 상품등록 섭카테고리
 	@Override
 	public List<SubCategory> getSubCate() {
 		return sellerMapper.selectSubCate();
 	}
-	
-	
+
 	@Override
 	public Brand sellerCheck(String sellerId, String sellerPw) {
 		Brand brand = sellerMapper.selectSeller(sellerId);
-//		System.out.println("impl의 브랜드 >>> "+brand);
+		// System.out.println("impl의 브랜드 >>> "+brand);
 		if (brand == null) {
 			return null;
 		}
@@ -45,11 +43,10 @@ public class SellerServiceImpl implements SellerService {
 		return brand;
 	}
 
-	//셀러별 상품 목록  
+	// 셀러별 상품 목록
 	@Override
 	public List<Product> viewBySeller(String sellerId) {
 
-		
 		return sellerMapper.selectProdBySeller(sellerId);
 	}
 
@@ -58,14 +55,10 @@ public class SellerServiceImpl implements SellerService {
 		sellerMapper.insertProduct(product);
 	}
 
-	//상품 등록 - 파일 업로드
+	// 상품 등록 - 파일 업로드
 	@Override
 	public void addProductFile(String savedFilePath) {
 		sellerMapper.insertProductFile(savedFilePath);
 	}
-
-
-
-	
 
 }
