@@ -35,7 +35,7 @@
 			<td><input type="text" name="addressNumber" id="addressNumber${status.index }" placeholder="우편번호" value="${address.addressNumber }"> 
 			<input type="button" onclick="addressSearch(${status.index })" value="우편번호 찾기"><br>
 			<input type="text" name="addressinfo" id="addressinfo${status.index }" placeholder="주소" value="${address.addressInfo }"><br>
-			<input type="text" name="addressdetail" id="addressdetail${status.index }" placeholder="주소지  정보" value="${address.addressDetail }">
+			<input type="text" name="addressdetail" id="addressdetail${status.index }" placeholder="주소지  정보" value="${address.addressDetail }"><br />
 			<input type="text" name="addressdetail2" id="addressdetail2${status.index }" placeholder="상세주소" value="${address.addressDetail2 }"> </td>
 	</tr>	
     </table>
@@ -61,7 +61,7 @@
 			<td><input type="text" name="addressNumber" id="addressNumber" placeholder="우편번호" "> 
 			<input type="button" onclick="addressSearch()" value="우편번호 찾기"><br>
 			<input type="text" name="addressinfo" id="addressinfo" placeholder="주소" "><br>
-			<input type="text" name="addressdetail" id="addressdetail" placeholder="주소지  정보" ">
+			<input type="text" name="addressdetail" id="addressdetail" placeholder="주소지  정보" "><br />
 			<input type="text" name="addressdetail2" id="addressdetail2" placeholder="상세주소" "> </td>
 	</tr>	
     </table>
@@ -74,8 +74,7 @@
    
 </div>
 
-<script
-		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<!-- 다음 우편번호 api -->
 	<script>	
 	

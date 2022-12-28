@@ -16,5 +16,6 @@ public interface MemberMapper {
 	public Admin selectAdmin(String adminId);
 	public MemberEntity selectGradeMember(AuthInfo info);
 	public MemberEntity selectMember(Long memberNum);
+	public void modifyMember(MemberEntity member);
 
 }

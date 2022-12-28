@@ -16,10 +16,10 @@
 	<li>주문배송조회 </li>
 	<li>취소 반품 교환 내역 </li>
 	<li>장바구니 </li>
-	<li>1:1문의 내역 </li>
+	<li><a href="${pageContext.request.contextPath }/quest/view">1:1문의 내역</a> </li>
 	<li>리뷰 </li>
 	<li>상품 QNA내역 </li>
-	<li>회원정보 수정 </li>
+	<li><a href="${pageContext.request.contextPath }/mypage/modifymemberform?memberNum=${info.memberNum}">회원정보 수정</a> </li>
 	<li><a href="${pageContext.request.contextPath }/mypage/address">배송지 정보 확인</a></li>
 	<li>회원탈퇴 </li>
 </ul>

@@ -34,7 +34,20 @@ where m.tpa between g.low and g.high and member_id = #{memberId}
 	</select>
 	
 	<insert id="insertMember">
-	insert into member(member_id,pw,member_name,email,phone,birthday,gender,address,tpa)
-    values(#{memberId}, #{pw}, #{memberName}, #{email}, #{phone}, #{birthday}, #{gender}, #{address}, #{tpa})
+	insert into member(member_id,pw,member_name,email,phone,birthday,gender,address_number, address_info, address_detail, address_detail2,tpa)
+    values(#{memberId}, #{pw}, #{memberName}, #{email}, #{phone}, #{birthday}, #{gender}, #{addressNumber},#{addressInfo}, #{addressDetail}, #{addressDetail2}, #{tpa})
 	</insert>
+	
+	<update id="modifyMember">
+	update member set 
+	member_id = #{memberId}, 
+	pw = #{pw}, 
+	email = #{email}, 
+	phone = #{phone}, 
+	address_number = #{addressNumber}, 
+	address_info = #{addressInfo}, 
+	address_detail =#{addressDetail}, 
+	address_detail2 = #{addressDetail2}
+	where member_num = #{memberNum}
+	</update>
 </mapper>

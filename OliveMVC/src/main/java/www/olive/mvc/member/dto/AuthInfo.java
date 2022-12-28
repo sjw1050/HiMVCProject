@@ -16,7 +16,10 @@ public class AuthInfo {
 	private String id;
 	private String email;
 	private String name;
-	private String address;
+	private int addressNumber;
+	private String addressInfo;
+	private String addressDetail;
+	private String addressDetail2;
 	private Date birthday;
 	private Long tpa;
 	private int level;

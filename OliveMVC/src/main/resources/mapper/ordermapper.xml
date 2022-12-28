@@ -18,17 +18,20 @@
 	
 	<resultMap id="memberResult" type="member">
 	<id property="memberNum" column="member_num"/>
-	<result property="memberId" column="member_id"/>
-	<result property="pw" column="pw"/>
-	<result property="memberName" column="member_name"/>
-	<result property="email" column="email"/>
-	<result property="phone" column="phone"/>
-	<result property="birthday" column="birthday"/>
-	<result property="gender" column="gender"/>
-	<result property="address" column="address"/>
-	<result property="regdate" column="regdate"/>
-	<result property="tpa" column="tpa"/>
-	<result property="level" column="level"/>
+		<result property="memberId" column="member_id"/>
+		<result property="pw" column="pw"/>
+		<result property="memberName" column="member_name"/>
+		<result property="email" column="email"/>
+		<result property="phone" column="phone"/>
+		<result property="birthday" column="birthday"/>
+		<result property="gender" column="gender"/>
+		<result property="addressNumber" column="address_number" />
+		<result property="addressInfo" column="address_info" />
+		<result property="addressDetail" column="address_detail" />
+		<result property="addressDetail2" column="address_detail2" />
+		<result property="regdate" column="regdate"/>
+		<result property="tpa" column="tpa"/>
+		<result property="level" column="level"/>
 	</resultMap>
 
 	<resultMap id="OrderResult" type="order">

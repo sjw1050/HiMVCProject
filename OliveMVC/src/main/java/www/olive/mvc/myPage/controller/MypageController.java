@@ -112,5 +112,23 @@ public class MypageController {
 		return "redirect:/mypage/address";
 	}
 	
+	@GetMapping("modifymemberform")
+	public String modifyMemberForm(Long memberNum, Model model) {
+		MemberEntity member = memberService.selectMember(memberNum);
+		System.out.println("수정할 멤버정보" + member);
+		model.addAttribute("member", member);
+		return "mypage/modifymemberform";
+	}
+	
+	@PostMapping("modifymember")
+	public String modifyMember(MemberEntity member, String newpw) {
+		if(newpw != null) {
+			member.setPw(newpw);
+		}			
+		System.out.println("회원수정 멤버 받아옴?" + member);
+		mypageService.modifyMember(member);
+		return "mypage/main";
+	}
+	
 
 }

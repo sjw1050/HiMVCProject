@@ -51,4 +51,8 @@ public class MypageService {
 		orderMapper.deleteAddress(address);
 	}
 
+	public void modifyMember(MemberEntity member) {
+		memberRepository.modifyMember(member);
+	}
+
 }
