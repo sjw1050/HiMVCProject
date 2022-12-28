@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="www.olive.mvc.mapper.NoticeRepository">
 
-<resultMap id="FileResult" type="nfile">
+<resultMap id="FileResult" type="ofile">
 	<result property="fileName" column="file_name"/>
 	<association property="noticeNum" column="notice_num" javaType="notice" resultMap="noticeResult"></association>
 	</resultMap>
@@ -22,8 +22,8 @@
 	</select>
 	
 	<select id="getNoticeFile" resultMap="FileResult">
-	select f.file_name, n.notice_num from notice_file f, notice n 
-	where n.notice_num = f.notice_num and f.notice_num = #{noticeNum};
+	select o.file_name, n.notice_num from olivefile o, notice n 
+	where n.notice_num = o.notice_num and o.notice_num = #{noticeNum};
 	</select>
 	
 	<insert id="saveNotice">
@@ -32,7 +32,7 @@
 	</insert>
 	
 	<insert id="saveNoticeFile">
-        INSERT INTO notice_file (
+        INSERT INTO olivefile (
             file_name
             , notice_num
         ) VALUES (
@@ -40,6 +40,18 @@
             , LAST_INSERT_ID()
         )
     </insert>
+    
+    <insert id="addNoticeFile">
+        INSERT INTO olivefile (
+            file_name
+            , notice_num
+        ) VALUES (
+            #{fileName}
+            , #{noticeNum.noticeNum}
+        )
+    </insert>
+    
+    
 	
 	<update id="updateview">
 		update notice set view_count = view_count + 1 where notice_num = #{noticeNum}
@@ -51,5 +63,9 @@
 	
 	<delete id="removeNotice">
 		delete from notice where notice_num = #{noticeNum}
+	</delete>
+	
+	<delete id="deleteFile">
+		delete from olivefile where file_name = #{fileName}
 	</delete>
 </mapper>

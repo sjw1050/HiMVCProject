@@ -61,6 +61,7 @@ public class MemberController {
 		AuthInfo info = memberService.memberCheck(member.getMemberId(), member.getPw());
 		if(info != null) {
 		session.setAttribute("info", info);
+		model.addAttribute("info", info);
 		if(session.getAttribute("togo") != null) {
 			//System.out.println("세션에 붙었니?"+session.getAttribute("togo"));
 			String togo = (String) session.getAttribute("togo");
@@ -74,6 +75,12 @@ public class MemberController {
 			model.addAttribute("notmember", "아이디와 비밀번호가 일치하지 않습니다.");
 			return "/member/loginForm";
 		}
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main";
 	}
 	
 	@GetMapping("/adminlogin")
