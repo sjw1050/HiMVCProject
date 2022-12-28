@@ -2,6 +2,7 @@ package www.olive.mvc.cart.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import www.olive.mvc.cart.service.CartService;
 import www.olive.mvc.member.dto.AuthInfo;
@@ -26,15 +28,16 @@ public class CartController {
 	
 	//장바구니 목록
 	@GetMapping("/cart/viewCart")
-	public String viewCartList(Model model, HttpSession session) {
-		System.out.println(">>>>>>>>>>>>>>>orderList왔다<<<<<<<<<<<<<<<<<");
+	public String viewCartList(Model model, HttpSession session, Cart cart) {
+		System.out.println(">>>>>>>>>>>>>>>CartList왔다<<<<<<<<<<<<<<<<<");
 		
 		AuthInfo Info = (AuthInfo) session.getAttribute("info");
-		System.out.println("orderInfo >>>>>>>>>>>" + Info);
+		System.out.println("Info >>>>>>>>>>>" + Info);
 		
 		//로그인 했을때만 장바구니 보기
 		if(Info != null) {
 		List<Cart> viewCartList = cartService.viewCartList(Info.getMemberNum());
+		System.out.println("viewCartList>>>>>>>>>>>>" + viewCartList);
 		model.addAttribute("viewCartList" , viewCartList);
 		}
 		//로그인 안 했을때
@@ -45,19 +48,34 @@ public class CartController {
 		return "/cart/viewCart";
 	}
 	//장바구니에 담기 
-	@PostMapping("/cart/insertInCart")
-	public void addCart(HttpSession session, Model model, Cart cart) {
+	@PostMapping("/insertInCart")
+	public String addCart(HttpSession session, HttpServletRequest request, Cart cart) {
 		
 		AuthInfo Info = (AuthInfo) session.getAttribute("info");
-		System.out.println("orderInfo >>>>>>>>>>>" + Info);
+		System.out.println("Info >>>>>>>>>>>" + Info);
+		System.out.println("Info.getMemberNum() >>>>>>>>>>>" + Info.getMemberNum());
+		
+		
+		int count = Integer.parseInt (request.getParameter("count"));
+		System.out.println("count >>>>>>>>>" + count);
 		
 		cart.setMemberNum(Info.getMemberNum());
-		System.out.println(cart);
+		cart.setTotalProductCount(count);
 		
+		System.out.println("cart >>>>>>>>>>>" + cart);
+		cartService.insertInCart(cart);
+		System.out.println("cart>>>>>>>>>>" + cart);
 		
+		return "redirect:/cart/viewCart";
+	}
+	
+	@PostMapping("/deleteCart")
+	public String deleteInCart(int cartId) {
 		
+		cartService.deleteCart(cartId);
+		System.out.println("productId>>>>>>>>>>" + cartId);
 		
-		
+		return "/cart/viewCart";
 	}
 	
 }
