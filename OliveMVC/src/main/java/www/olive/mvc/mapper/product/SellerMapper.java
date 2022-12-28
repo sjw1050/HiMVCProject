@@ -18,5 +18,7 @@ public interface SellerMapper {
 	public List<SubCategory> selectSubCate();
 
 	public void insertProduct(Product product);
+
+	public void insertProductFile(String filename);
 	
 }
