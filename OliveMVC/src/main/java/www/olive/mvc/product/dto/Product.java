@@ -11,12 +11,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Product {
 	private int productId;
-	private Brand brandNum;
+//	private Brand brand;
 	private String productName;
 	private int productPrice;
 	private String productInfo;
 	private Color colorId;
-	private SubCategory subCateId;
+//	private SubCategory subCategory;
 	private String brandName;
+	
+	
+//	private String sellerId;
+	private int subCateId;
+	private int brandNum;
 	
 }
