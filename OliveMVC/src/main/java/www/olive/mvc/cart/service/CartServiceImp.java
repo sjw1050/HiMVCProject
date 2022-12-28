@@ -27,8 +27,13 @@ public class CartServiceImp implements CartService{
 	}
 
 	@Override
-	public void deleteCart(int cartId) {
-		cartMapper.deleteProductInCart(cartId);
+	public void deleteCart(Cart cart) {
+		cartMapper.deleteProductInCart(cart);
+	}
+
+	@Override
+	public void modifyCart(Cart cart) {
+		cartMapper.modifyQuantity(cart);
 	}
 
 

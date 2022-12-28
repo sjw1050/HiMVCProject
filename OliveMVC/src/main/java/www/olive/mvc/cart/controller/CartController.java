@@ -55,8 +55,8 @@ public class CartController {
 		System.out.println("Info >>>>>>>>>>>" + Info);
 		System.out.println("Info.getMemberNum() >>>>>>>>>>>" + Info.getMemberNum());
 		
-		int productId = Integer.parseInt (request.getParameter("productId"));
-		System.out.println("productId >>>>>>>>>>>>>" + productId);
+//		int productId = Integer.parseInt (request.getParameter("productId"));
+//		System.out.println("productId >>>>>>>>>>>>>" + productId);
 		
 //		int productPrice = Integer.parseInt (request.getParameter("productPrice"));
 //		System.out.println("productId >>>>>>>>>>>>>" + productPrice);
@@ -76,13 +76,32 @@ public class CartController {
 	
 	//장바구니 삭제
 	@PostMapping("/deleteCart")
-	public String deleteInCart(int cartId) {
+	public String deleteInCart(HttpServletRequest request, Cart cart) {
+		int deleteCartId = Integer.parseInt (request.getParameter("deleteCartId"));
+		System.out.println("totalProductCount >>>>>>>>>>>>>" + deleteCartId);
 		
-		cartService.deleteCart(cartId);
-		
+		cart.setCartId(deleteCartId);
+		cartService.deleteCart(cart);
 		System.out.println("cart >>>>>>>>>>" + cart);
 		return "redirect:/cart/viewCart";
-
+	}
+	
+	//장바구니 수량 변경
+	@PostMapping("/modifyQuantity")
+	public String modifyQuantity (HttpServletRequest request, Cart cart) {
+		
+		int totalProductCount = Integer.parseInt (request.getParameter("totalProductCount"));
+		System.out.println("totalProductCount >>>>>>>>>>>>>" + totalProductCount);
+		
+		int cartId = Integer.parseInt (request.getParameter("cartId"));
+		System.out.println("cartId >>>>>>>>>>>>" + cartId);
+		
+		cart.setCartId(cartId);
+		cart.setTotalProductCount(totalProductCount);
+		cartService.modifyCart(cart);
+		System.out.println("cart >>>>>>>>>>>" + cart);
+		
+		return "redirect:/cart/viewCart";
 	}
 	
 }

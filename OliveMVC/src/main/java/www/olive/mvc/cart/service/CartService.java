@@ -11,6 +11,8 @@ public interface CartService {
 
 	void insertInCart(Cart cart);
 
-	void deleteCart(int cartId);
+	void deleteCart(Cart cart);
+
+	void modifyCart(Cart cart);
 
 }

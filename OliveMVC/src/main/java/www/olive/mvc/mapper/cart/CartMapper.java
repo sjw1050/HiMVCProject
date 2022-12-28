@@ -17,7 +17,9 @@ public interface CartMapper {
 
 	void insertInCart(Cart cart);
 
-	void deleteProductInCart(int cartId);
+	void deleteProductInCart(Cart cart);
+
+	void modifyQuantity(Cart cart);
 
 
 

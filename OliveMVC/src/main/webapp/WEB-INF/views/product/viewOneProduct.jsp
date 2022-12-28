@@ -21,7 +21,7 @@
 		<form action="${pageContext.request.contextPath }/cart/insertInCart" method="post">
 		<input name="productId" type="hidden" value="${oneProduct.productId }" />
 		<%-- <input name="productPrice" type="hidden" value = "${oneProduct.productPrice }" /> --%>
-		<input name = "count" type="number"/>
+		<input name = "count"  min="1" type="number"/>
 		<input type="submit" value = "장바구니 담기" />
 		</form>
 	</c:forEach>	
