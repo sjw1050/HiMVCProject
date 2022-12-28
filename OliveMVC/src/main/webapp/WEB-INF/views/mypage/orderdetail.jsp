@@ -17,7 +17,7 @@
 	<c:if test="${status.first }">
 	<p><span>주문번호 :</span>${orderList.orderId }</p>
     <p><span>수령인:</span>${orderList.receiver}</p>
-    <p><span>주소:</span>${orderList.address}</p>
+    <p><span>주소:</span>&#91;${orderList.addressNumber}&#93;${orderList.addressInfo } ${orderList.addressDetail } ${orderList.addressDetail2 }</p>
     <p><span>가격:</span><fmt:formatNumber pattern="###,###,###" value="${orderList.totalPrice}" /> 원</p>
     <p><span>주문 상태:</span>${orderList.status }</p>
     <p><span>주문 날짜:</span>${orderList.orderDate }</p>

@@ -39,4 +39,16 @@ public class MypageService {
 		
 	}
 
+	public void updateAddress(OrderAddress address) {
+		orderMapper.updateAddress(address);
+	}
+
+	public void insertAddress(OrderAddress address) {
+		orderMapper.insertAddress(address);
+	}
+
+	public void deleteAddress(OrderAddress address) {
+		orderMapper.deleteAddress(address);
+	}
+
 }

@@ -5,12 +5,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.jni.Address;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
 import www.olive.mvc.customerCenter.service.QuestService;
@@ -74,9 +78,39 @@ public class MypageController {
 			return "main";
 		}
 		List<OrderAddress> address = mypageService.viewAddress(info.getMemberNum());
-		System.out.println("주소 잘 가져왔니?" + address);
+		//System.out.println("주소 잘 가져왔니?" + address);
 		model.addAttribute("address", address);
 		return "mypage/viewaddress";
 	}
+	
+	@PostMapping("updateaddress")
+	public String updateAddress(HttpSession session, Model model, OrderAddress address) {
+		//System.out.println("수정된 정보 받아옴?" + address);
+		mypageService.updateAddress(address);
+		
+		return "redirect:mypage/address";
+	}
+	
+	@PostMapping("insertaddress")
+	public String insertAddress(HttpSession session, Model model, OrderAddress address) {
+		//System.out.println("인서트 멤버"+address);
+//		AuthInfo info = (AuthInfo) session.getAttribute("info");
+//		//System.out.println("추가된 주소 정보 받아옴?" + address);
+//		if(info == null) {
+//			return "main";
+//		}
+//		MemberEntity member = memberService.selectMember(info.getMemberNum());
+//		address.setMember(member);
+		//System.out.println("주소지 멤버 입력" + address);
+		mypageService.insertAddress(address);		
+		return "redirect:mypage/address";
+	}
+	
+	@GetMapping("deleteaddress")
+	public String deleteAddress(OrderAddress address) {
+		mypageService.deleteAddress(address);
+		return "redirect:mypage/address";
+	}
+	
 
 }

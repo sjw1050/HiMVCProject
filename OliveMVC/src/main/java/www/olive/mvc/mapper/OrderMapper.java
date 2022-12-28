@@ -14,5 +14,8 @@ public interface OrderMapper {
 	List<OrderList> orderListView(ProductOrder po);
 	List<ProductOrder> viewOrder(Long memberNum);
 	List<OrderAddress> viewAddress(Long memberNum);
+	void updateAddress(OrderAddress address);
+	void insertAddress(OrderAddress address);
+	void deleteAddress(OrderAddress address);
 
 }

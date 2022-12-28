@@ -11,7 +11,10 @@ import www.olive.mvc.member.dto.MemberEntity;
 public class OrderAddress {
 	
 	private int addressId;
-	   private String address;
+	private int addressNumber;
+	   private String addressInfo;
+	   private String addressDetail;
+	   private String addressDetail2;
 	   private String receiver;
 	   private String phone;
 	   private MemberEntity member;
