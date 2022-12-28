@@ -4,7 +4,7 @@ import java.util.List;
 
 import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.order.dto.Cart;
-
+  
 public interface CartService {
 
 	List<Cart> viewCartList(AuthInfo info);

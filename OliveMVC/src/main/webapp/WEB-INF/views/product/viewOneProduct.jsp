@@ -8,7 +8,7 @@
 <title>viewOneProduct</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
-<body>
+<body>   
 	<h1>상품 상세 보기</h1>
 	<c:forEach items="${oneProdList }" var="oneProduct">
 		<div>
