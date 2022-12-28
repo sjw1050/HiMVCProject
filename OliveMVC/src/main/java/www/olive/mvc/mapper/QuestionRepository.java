@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import www.olive.mvc.customerCenter.dto.AnswerBoard;
+import www.olive.mvc.customerCenter.dto.OliveFile;
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
 import www.olive.mvc.member.dto.AuthInfo;
 
@@ -30,5 +31,13 @@ public interface QuestionRepository {
 	public void adminQuestCheck(Long questionNum);
 
 	public void updateAnswer(AnswerBoard answerBoard);
+
+	public void saveQuestFile(String filename);
+
+	public List<OliveFile> getQuestFile(Long questionNum);
+
+	public void addQuestFile(OliveFile oFile);
+
+	public void deleteFile(String fileName);
 
 }

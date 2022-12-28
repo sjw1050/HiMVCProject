@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import www.olive.mvc.cart.service.CartService;
 import www.olive.mvc.member.dto.AuthInfo;
@@ -25,7 +27,7 @@ public class CartController {
 	CartService cartService;
 	Cart cart;
 	
-	//장바구니 목록
+  //장바구니 목록
 	@GetMapping("/cart/viewCart")
 	public String viewCartList(Model model, HttpSession session) {
 		
@@ -43,7 +45,6 @@ public class CartController {
 		else {
 			return "redirect:/member/loginForm";
 		}
-		
 		return "/cart/viewCart";
 	}
 	//장바구니에 담기 
@@ -81,6 +82,7 @@ public class CartController {
 		
 		System.out.println("cart >>>>>>>>>>" + cart);
 		return "redirect:/cart/viewCart";
+
 	}
 	
 }

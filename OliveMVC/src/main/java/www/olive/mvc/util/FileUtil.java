@@ -61,11 +61,14 @@ public class FileUtil {
         // 1. 원본 이미지 파일 삭제
         MediaType mediaType = MediaUtils.getMediaType(fileName);
         if (mediaType != null) {
-            String originalImg = fileName.substring(0, 12) + fileName.substring(14);
+            String originalImg = fileName.substring(6, 18) + fileName.substring(20);
+            //System.out.println("딜리트 오리지널 네임"+originalImg);
             new File(rootPath + originalImg.replace('/', File.separatorChar)).delete();
         }
 
         // 2. 파일 삭제(썸네일이미지 or 일반파일)
+        fileName = fileName.substring(6);
+        //System.out.println("파일이름 잘렸니?"+fileName);
         new File(rootPath + fileName.replace('/', File.separatorChar)).delete();
     }
 
