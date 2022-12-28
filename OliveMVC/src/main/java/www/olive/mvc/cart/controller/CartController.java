@@ -29,7 +29,6 @@ public class CartController {
 	//장바구니 목록
 	@GetMapping("/cart/viewCart")
 	public String viewCartList(Model model, HttpSession session, Cart cart) {
-		System.out.println(">>>>>>>>>>>>>>>CartList왔다<<<<<<<<<<<<<<<<<");
 		
 		AuthInfo Info = (AuthInfo) session.getAttribute("info");
 		System.out.println("Info >>>>>>>>>>>" + Info);
@@ -55,16 +54,23 @@ public class CartController {
 		System.out.println("Info >>>>>>>>>>>" + Info);
 		System.out.println("Info.getMemberNum() >>>>>>>>>>>" + Info.getMemberNum());
 		
+		int productId = Integer.parseInt (request.getParameter("productId"));
+		System.out.println("productId >>>>>>>>>>>>>" + productId);
+		
+//		int productPrice = Integer.parseInt (request.getParameter("productPrice"));
+//		System.out.println("productId >>>>>>>>>>>>>" + productPrice);
 		
 		int count = Integer.parseInt (request.getParameter("count"));
 		System.out.println("count >>>>>>>>>" + count);
 		
+		
 		cart.setMemberNum(Info.getMemberNum());
+//		cart.setTotalProductPrice(productPrice);
 		cart.setTotalProductCount(count);
 		
-		System.out.println("cart >>>>>>>>>>>" + cart);
 		cartService.insertInCart(cart);
-		System.out.println("cart>>>>>>>>>>" + cart);
+		System.out.println("cart >>>>>>>>>>" + cart);
+		System.out.println("cart.getcartId >>>>>>>>>>>>>" + cart.getCartId());
 		
 		return "redirect:/cart/viewCart";
 	}
@@ -73,7 +79,6 @@ public class CartController {
 	public String deleteInCart(int cartId) {
 		
 		cartService.deleteCart(cartId);
-		System.out.println("productId>>>>>>>>>>" + cartId);
 		
 		return "/cart/viewCart";
 	}
