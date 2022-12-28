@@ -18,8 +18,8 @@
 	
  	<!-- 장바구니 담기 -->
 	<insert id="insertInCart">
-	insert into cart (member_num, product_id, total_product_count)
-	values(#{memberNum},#{productId},#{totalProductCount})
+	insert into cart (cart_id,member_num, product_id, total_product_count)
+	values(#{cartId},#{memberNum},#{productId},#{totalProductCount})
 	</insert>
 	
 	<!-- 장바구니에서 삭제~-->

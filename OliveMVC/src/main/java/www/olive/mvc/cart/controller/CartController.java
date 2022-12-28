@@ -25,17 +25,19 @@ public class CartController {
 
 	@Autowired
 	CartService cartService;
+	Cart cart;
 	
 	//장바구니 목록
 	@GetMapping("/cart/viewCart")
-	public String viewCartList(Model model, HttpSession session, Cart cart) {
+	public String viewCartList(Model model, HttpSession session) {
 		
 		AuthInfo Info = (AuthInfo) session.getAttribute("info");
 		System.out.println("Info >>>>>>>>>>>" + Info);
+	
 		
 		//로그인 했을때만 장바구니 보기
 		if(Info != null) {
-		List<Cart> viewCartList = cartService.viewCartList(Info.getMemberNum());
+		List<Cart> viewCartList = cartService.viewCartList(Info);
 		System.out.println("viewCartList>>>>>>>>>>>>" + viewCartList);
 		model.addAttribute("viewCartList" , viewCartList);
 		}
@@ -48,7 +50,7 @@ public class CartController {
 	}
 	//장바구니에 담기 
 	@PostMapping("/insertInCart")
-	public String addCart(HttpSession session, HttpServletRequest request, Cart cart) {
+	public String addCart(HttpSession session, HttpServletRequest request) {
 		
 		AuthInfo Info = (AuthInfo) session.getAttribute("info");
 		System.out.println("Info >>>>>>>>>>>" + Info);
@@ -63,24 +65,23 @@ public class CartController {
 		int count = Integer.parseInt (request.getParameter("count"));
 		System.out.println("count >>>>>>>>>" + count);
 		
-		
 		cart.setMemberNum(Info.getMemberNum());
 //		cart.setTotalProductPrice(productPrice);
 		cart.setTotalProductCount(count);
 		
 		cartService.insertInCart(cart);
 		System.out.println("cart >>>>>>>>>>" + cart);
-		System.out.println("cart.getcartId >>>>>>>>>>>>>" + cart.getCartId());
 		
 		return "redirect:/cart/viewCart";
 	}
 	
+	//장바구니 삭제
 	@PostMapping("/deleteCart")
 	public String deleteInCart(int cartId) {
 		
 		cartService.deleteCart(cartId);
 		
-		return "/cart/viewCart";
+		return "redirect:/cart/viewCart";
 	}
 	
 }
