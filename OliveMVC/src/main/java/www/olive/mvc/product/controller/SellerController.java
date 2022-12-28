@@ -128,27 +128,34 @@ public class SellerController {
 		
 		//사진 저장하고 경로 받아옴
 		List<MultipartFile> fileList = mtfRequest.getFiles("productImage");
+		sellerService.addProduct(product);
 		log.info("fileList>>>>>>>  " + fileList);
 		log.info("fileName>>>>>>>  " + fileList.get(0).getOriginalFilename());
+
 		for(MultipartFile file : fileList) {
+			if (file.getSize() != 0) {
 			String savedPath = FileUtil.uploadFile(file, request);
+			String filename = savedPath.substring(10).trim();
+			System.out.println(filename);
+			sellerService.addProductFile(savedPath);
+			}
 		}
+		return "/seller/viewBySeller";
 		
 		//폼에서 넘어온 정보로/ product 객체 생성
-		log.info("subCateId>>>>>>>  " + subCateId);
-		log.info("product>>>>>>>  " + product);
-		log.info("subCateId>>>>>>>  " + subCateId);
-		sellerService.addProduct(product);
-		
-		
+//		log.info("subCateId>>>>>>>  " + subCateId);
+//		log.info("product>>>>>>>  " + product);
+//		log.info("subCateId>>>>>>>  " + subCateId);
+//		
 //		sellerService.addProduct(product);
+//		 
 //		for (MultipartFile mf : fileList) {
 //			if (mf.getSize() != 0) {
 //				try {
 //					String savedFilePath = FileUtil.uploadFile(mf, request);
 //					String filename = savedFilePath.substring(10).trim();
 //					System.out.println(filename);
-//					sellerService.addProductImage(filename);
+//					sellerService.addProductFile(savedFilePath);
 //				} catch (Exception e) {
 //					// TODO Auto-generated catch block
 //					e.printStackTrace();
@@ -156,9 +163,9 @@ public class SellerController {
 //			
 //			}
 //		}			 
-				return "/seller/viewBySeller";
-			}
+//				return "/seller/viewBySeller";
+//			}
 
-//		}
+		}
 	}
 //}

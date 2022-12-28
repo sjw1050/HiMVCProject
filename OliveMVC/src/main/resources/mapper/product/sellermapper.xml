@@ -47,6 +47,17 @@
 		insert into product(brand_num, sub_cate_id, product_name, product_price, product_info)
 		values(#{brandNum}, #{subCateId}, #{productName}, #{productPrice}, #{productInfo})
 	</insert>
+	
+	<!-- 셀러 파일 인서트 -->
+	<insert id="insertProductFile">
+		 INSERT INTO olivefile (
+            file_name
+            , product_id
+        ) VALUES (
+            #{savedFilePath}
+            , LAST_INSERT_ID()
+        )
+	</insert>
 
 
 

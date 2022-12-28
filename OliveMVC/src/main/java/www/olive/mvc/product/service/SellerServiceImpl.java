@@ -58,6 +58,12 @@ public class SellerServiceImpl implements SellerService {
 		sellerMapper.insertProduct(product);
 	}
 
+	//상품 등록 - 파일 업로드
+	@Override
+	public void addProductFile(String savedFilePath) {
+		sellerMapper.insertProductFile(savedFilePath);
+	}
+
 
 
 	
