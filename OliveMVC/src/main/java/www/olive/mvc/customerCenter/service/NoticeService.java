@@ -52,6 +52,14 @@ public class NoticeService {
 	public List<OliveFile> getNoticeFile(Long noticeNum) {
 		return noticeRepository.getNoticeFile(noticeNum);
 	}
+
+	public void filedelete(String fileName) {
+		noticeRepository.deleteFile(fileName);
+	}
+
+	public void addNoticeFile(OliveFile oFile) {
+		noticeRepository.addNoticeFile(oFile);
+	}
 	
 	
 

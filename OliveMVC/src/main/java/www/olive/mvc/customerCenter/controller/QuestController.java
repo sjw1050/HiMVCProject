@@ -4,26 +4,31 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import www.olive.mvc.customerCenter.dto.AnswerBoard;
+import www.olive.mvc.customerCenter.dto.OliveFile;
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
 import www.olive.mvc.customerCenter.service.QuestService;
 import www.olive.mvc.member.dto.AuthInfo;
-import www.olive.mvc.member.dto.MemberEntity;
+import www.olive.mvc.util.FileUtil;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.lang.ProcessBuilder.Redirect;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -39,12 +44,12 @@ public class QuestController {
 		AuthInfo logininfo = (AuthInfo) session.getAttribute("info");
 		if(logininfo == null) {
 			List<QuestionBoard> qList = questService.viewquest();
-			System.out.println("question 0번 인덱스 글쓴이 : "+qList.get(0).getWriter().getMemberName());
+			//System.out.println("question 0번 인덱스 글쓴이 : "+qList.get(0).getWriter().getMemberName());
 			model.addAttribute("qlist", qList);
 			return "quest/viewquest";
 		}else {
 			List<QuestionBoard> qList = questService.viewMemberQuest(logininfo);
-			System.out.println("퀘스트 들어왔니?"+qList.get(0).getWriter().getMemberNum());
+			//System.out.println("퀘스트 들어왔니?"+qList.get(0).getWriter().getMemberNum());
 			model.addAttribute("qlist", qList);
 			return "quest/viewquest";
 		}
@@ -58,6 +63,11 @@ public class QuestController {
 			questService.adminQuestCheck(questionNum);
 		}
 		QuestionBoard qBoard = questService.detailQuest(questionNum);
+		List<OliveFile> questFile = questService.getQuestFile(questionNum);
+		if (questFile != null) {
+			//System.out.println("QuestFileList>>>>?"+questFile.get(0).getFileName());
+			model.addAttribute("questFiles", questFile);
+		}
 		//System.out.println("어드민체크 변경되었니?" + qBoard.isViewCheck());
 		List<AnswerBoard> answerBoard = questService.viewAnswer(questionNum);
 		//System.out.println("답변 들어왔니?"+answerBoard);
@@ -74,20 +84,94 @@ public class QuestController {
 	}
 	
 	@PostMapping("write")
-	public String saveQuest(HttpSession session, QuestionBoard quest, MultipartFile file) {
+	public String saveQuest(HttpSession session, QuestionBoard quest, MultipartHttpServletRequest mtfRequest, HttpServletRequest request) {
 		AuthInfo loginauth = (AuthInfo) session.getAttribute("info");
 		//System.out.println("문의 내용 들어왔니?>>>" + quest);
 		//System.out.println("로그인 정보 들어왔니?>>" +loginauth);
-		questService.saveQuest(quest, loginauth, file);
+		System.out.println("파일 입력?"+mtfRequest.getFiles("file").get(0).getOriginalFilename());
+		List<MultipartFile> fileList = mtfRequest.getFiles("file");
+		questService.saveQuest(quest, loginauth);
+		for(MultipartFile mf : fileList) {
+			if (mf.getSize() != 0) {
+				try {
+				String savedFilePath = FileUtil.uploadFile(mf, request);
+				String filename = savedFilePath.substring(10).trim();
+				System.out.println(filename);
+				questService.saveQuestFile(filename);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+			}
+		}			 
+		
+		
 		
 		return "redirect:/quest/view";
 	}
 	
 	@PostMapping("modiquest")
-	public String modiquest(QuestionBoard quest) {
+	public String modiquest(QuestionBoard quest, MultipartHttpServletRequest mtfRequest, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		OliveFile oFile = new OliveFile();
 		//System.out.println("퀘스트 제대로 들어왔니?" + quest);
+		List<MultipartFile> files = mtfRequest.getFiles("file");
+		for(MultipartFile mf : files) {
+			System.out.println("파일 들어옴?"+mf.getOriginalFilename());
+			if (mf.getSize() != 0) {
+				try {
+				String savedFilePath = FileUtil.uploadFile(mf, request);
+				String fileName = savedFilePath.substring(10).trim();
+				oFile.setFileName(fileName);
+				oFile.setQuestionNum(quest);
+				//System.out.println("올리브파일 잘 받아졌니?"+oFile);
+				//System.out.println(fileName);
+				questService.addQuestFile(oFile);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+			}
+		}
 		questService.modiQuest(quest);
-		return "redirect:/quest/view";
+		redirectAttributes.addAttribute("questionNum", quest.getQuestionNum());
+		return "redirect:/quest/detailQuest";
+	}
+	
+	@GetMapping("download")
+	public ResponseEntity<byte[]> downloadFile(String fileName, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String originalName = null;
+		if(fileName.contains("jpg") || fileName.contains("gif") || fileName.contains("png") || fileName.contains("jpeg")) {
+			originalName = fileName.substring(6, 18) + fileName.substring(20);
+		}else {
+			System.out.println(fileName.substring(5, 18));
+			originalName = fileName.substring(5, 17) + fileName.substring(17);
+		}
+		
+
+		HttpHeaders httpHeaders = FileUtil.getHttpHeaders(originalName);
+		String rootPath = FileUtil.getRootPath(fileName, request); // 업로드 기본경로 경로
+		//System.out.println("루트경로"+rootPath);
+		ResponseEntity<byte[]> entity = null;
+		
+		try (InputStream inputStream = new FileInputStream(rootPath + originalName)) {
+	        entity = new ResponseEntity<>(IOUtils.toByteArray(inputStream), httpHeaders, HttpStatus.CREATED);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	    }
+	    return entity;
+
+	}
+	
+	@GetMapping("delete")
+	public @ResponseBody String delelteFile(String fileName, HttpServletRequest request) {
+		//System.out.println("파일네임 들어왔니?"+fileName);
+		questService.filedelete(fileName);
+		FileUtil.deleteFile(fileName, request);
+		return "success";
 	}
 	
 	@PostMapping("removequest")

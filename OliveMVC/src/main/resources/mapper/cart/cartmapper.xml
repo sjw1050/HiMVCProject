@@ -2,20 +2,30 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+     
 <mapper namespace="www.olive.mvc.mapper.cart.CartMapper">
-
+               
 	<!-- 장바구니 보기 -->
-	<select id="selectCartProduct" resultType="cart">
-		select * from cart
+	<select id="selectCartList" resultType="cart">
+		select p.product_name, c.cart_id,
+		p.product_price,
+		c.total_product_count, c.total_product_price
+		from product p, cart c, member m
+		where p.product_id = c.product_id
+		and m.member_num = c.member_num
+		and c.member_num = #{memberNum} order by cart_id desc
 	</select>
 	
-	<select id="selectMemberNum" resultType="orderList">
-		select * from order_list
-		where member_num = #{member_num}
-	</select>
-
-
+ 	<!-- 장바구니 담기 -->
+	<insert id="insertInCart">
+	insert into cart (member_num, product_id, total_product_count)
+	values(#{memberNum},#{productId},#{totalProductCount})
+	</insert>
+	
+	<!-- 장바구니에서 삭제~-->
+	<delete id="deleteProductInCart">
+	delete from cart where cart_id = #{cartId}
+	</delete>
 
 </mapper>
   

@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartResolver;
 
 import www.olive.mvc.customerCenter.dto.AnswerBoard;
+import www.olive.mvc.customerCenter.dto.OliveFile;
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
 import www.olive.mvc.mapper.QuestionRepository;
 import www.olive.mvc.member.dto.AuthInfo;
@@ -23,7 +24,7 @@ public class QuestService {
 		return questionRepository.selectAll();
 	}
 
-	public void saveQuest(QuestionBoard quest, AuthInfo loginauth, MultipartFile file) {
+	public void saveQuest(QuestionBoard quest, AuthInfo loginauth) {
 //		Long memberNum = loginauth.getMemberNum();
 //		quest.setMemberNum(memberNum);
 		//System.out.println("로그인 정보 및 퀘스트 정보 왔니?" + loginauth + quest);
@@ -65,6 +66,22 @@ public class QuestService {
 
 	public void updateAnswer(AnswerBoard answerBoard) {
 		questionRepository.updateAnswer(answerBoard);
+	}
+
+	public void saveQuestFile(String filename) {
+		questionRepository.saveQuestFile(filename);
+	}
+
+	public List<OliveFile> getQuestFile(Long questionNum) {
+		return questionRepository.getQuestFile(questionNum);
+	}
+
+	public void addQuestFile(OliveFile oFile) {
+		questionRepository.addQuestFile(oFile);
+	}
+
+	public void filedelete(String fileName) {
+		questionRepository.deleteFile(fileName);
 	}
 	
 	

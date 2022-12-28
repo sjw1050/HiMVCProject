@@ -2,9 +2,11 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -18,28 +20,64 @@
 			<textarea name="questionContent" cols="30" rows="10"
 				id="questionContent" readonly>${qboard.questionContent }</textarea>
 		</div>
+		<c:if test="${not empty questFiles }">
+			<c:forEach var="questFile" items="${questFiles }"
+				varStatus="status">
+				<c:set var="file" value="${questFile.fileName}"></c:set>
+				<div>
+					첨부파일 :
+					<c:choose>
+						<c:when
+							test="${fn:contains(file, 'jpg') or fn:contains(file, 'gif') or fn:contains(file, 'png')}">
+							<a
+								href="${pageContext.servletConfig.servletContext.contextPath }/quest/download/?fileName=${file}"><img
+								src="${pageContext.servletConfig.servletContext.contextPath }/upload/${file}"
+								alt="" /></a>
+							<c:if test="${not empty info }">
+								<button style="display: none;" type="button"
+									onclick="del('${file}')" class="modifileform">파일 삭제하기</button>
+							</c:if>
+						</c:when>
+						<c:otherwise>
+							<a
+								href="${pageContext.servletConfig.servletContext.contextPath }/quest/download/?fileName=${file}">${file }</a>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</c:forEach>
+			<label style="display: none" for="file" id="fileadd">파일 추가하기</label>
+			<input style="display: none" type="file" name="file" id="file"
+				multiple />
+		</c:if>
 		<p>문의 날짜 : ${qboard.questionDate }</p>
 		<p>문의자 : ${qboard.getWriter().getMemberName() }</p>
 		<button type="button" onclick="modify();" id="modi">수정하기</button>
-	<button type="button" onclick="modifyquest();" disabled="disabled"
-		id="modibtn">전송하기</button>
-	<button type="button" onclick="remove();" id="remove">삭제하기</button>
-	<p><a href="${pageContext.request.contextPath }/quest/view">돌아가기</a></p>
-	<hr />
+		<button type="button" onclick="modifyquest();" disabled="disabled"
+			id="modibtn">전송하기</button>
+		<button type="button" onclick="remove();" id="remove">삭제하기</button>
+		<p>
+			<a href="${pageContext.request.contextPath }/quest/view">돌아가기</a>
+		</p>
+		<hr />
 	</div>
 
 	<c:if test="${not empty answer }">
-	<c:forEach items="${answer }" var="answer" varStatus="status">
-		<div>
-			<input style="none" type="hidden" name="answerNum" id="answerNum${status.index }" value="${answer.answerNum}" />
-			<p>답변 내용:</p>
-			<textarea name="answer" cols="30" rows="3" id="answerForm${status.index }" readonly>${answer.answer }</textarea>
-			<p>답변 날짜 : ${answer.answerDate }</p>
-			<c:if test="${not empty admininfo }">
-		<button type="button" onclick="modifyAnswerForm(${status.index });" id="modifyAnswerform${status.index }">답변 수정하기</button>
-		<button style="display: none" type="button" onclick="modifyAnswer(${status.index });" id="modifyAnswer${status.index }">수정한 답변 전송하기</button>		
-	</c:if>
-		</div>
+		<c:forEach items="${answer }" var="answer" varStatus="status">
+			<div>
+				<input style="" type="hidden" name="answerNum"
+					id="answerNum${status.index }" value="${answer.answerNum}" />
+				<p>답변 내용:</p>
+				<textarea name="answer" cols="30" rows="3"
+					id="answerForm${status.index }" readonly>${answer.answer }</textarea>
+				<p>답변 날짜 : ${answer.answerDate }</p>
+				<c:if test="${not empty admininfo }">
+					<button type="button" onclick="modifyAnswerForm(${status.index });"
+						id="modifyAnswerform${status.index }">답변 수정하기</button>
+					<button style="display: none" type="button"
+						onclick="modifyAnswer(${status.index });"
+						id="modifyAnswer${status.index }">수정한 답변 전송하기</button>
+				</c:if>
+			</div>
 		</c:forEach>
 		<hr />
 	</c:if>
@@ -49,12 +87,35 @@
 		</div>
 	</c:if>
 	<c:if test="${not empty admininfo }">
-		<textarea id="addanswerForm" style="display: none" name="answer" cols="30" rows="3">추가할 답변을 입력하시오.</textarea>
-		<button type="button" onclick="createAnswer();" id="addanswer">답변 작성하기</button>	
-		<button style="display: none" type="button" onclick="addAnswer();" id="answerbtn">답변 전송하기</button>
+		<textarea id="addanswerForm" style="display: none" name="answer"
+			cols="30" rows="3">추가할 답변을 입력하시오.</textarea>
+		<button type="button" onclick="createAnswer();" id="addanswer">답변
+			작성하기</button>
+		<button style="display: none" type="button" onclick="addAnswer();"
+			id="answerbtn">답변 전송하기</button>
 	</c:if>
+
+	<script>
+	function del(file) {
+		//console.log(file);
+		var context = "${pageContext.request.contextPath }";
+		//console.log(context+"/quest/delete?fileName="+file);
+	 	if(confirm("삭제하시겠습니까? 삭제된 파일은 복구할 수 없습니다.")){
+	 		$.ajax({
+	 	        url: "/quest/delete?fileName="+file,
+	 	        type: "get",
+	 	        success: function (result) {
+	 	        	console.log(result);
+	 	            if (result === "success") {
+	 	                alert("삭제되었습니다.");
+	 	               document.location.reload();
+	 	            }
+	 	        }
+	 	    });
+		}
+		
+	}
 	
-<script>
 	function modify() {
 		var viewcheck = ${qboard.viewCheck};
 		var memberNum = ${qboard.getWriter().getMemberNum()};
@@ -71,16 +132,22 @@
 		document.getElementById("questionContent").readOnly = false;
 		document.getElementById("modibtn").disabled = false;
 		document.getElementById("modi").disabled = true;
+		document.getElementById("file").style.display = "block";
+		document.getElementById("fileadd").style.display = "block";
+		$(".modifileform").css("display","block");
+		
 	}
 
 	function modifyquest() {
 		var title = document.getElementById("questionTitle").value;
 		var content = document.getElementById("questionContent").value;
 		var questionNum = ${qboard.questionNum};
+		var file = document.querySelector("#file");
 
 		var form = document.createElement("form");
 		form.setAttribute("charset", "UTF-8");
 		form.setAttribute("method", "Post"); //Post 방식
+		form.setAttribute("enctype", "multipart/form-data");
 		form.setAttribute("action",
 				"${pageContext.request.contextPath }/quest/modiquest"); //요청 보낼 주소
 
@@ -101,6 +168,7 @@
 		hiddenField.setAttribute("name", "questionNum");
 		hiddenField.setAttribute("value", questionNum);
 		form.appendChild(hiddenField);
+		form.appendChild(file);
 		document.body.appendChild(form);
 
 		form.submit();
