@@ -6,8 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>viewOneProduct</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
-<body>
+<body>   
 	<h1>상품 상세 보기</h1>
 	<c:forEach items="${oneProdList }" var="oneProduct">
 		<div>
@@ -17,6 +18,14 @@
 			<p>${oneProduct.productPrice }</p>
 			<p>${oneProduct.productInfo }</p>
 		</div>
-	</c:forEach>
+		<form action="${pageContext.request.contextPath }/cart/insertInCart" method="post">
+		<input name="productId" type="hidden" value="${oneProduct.productId }" />
+		<%-- <input name="productPrice" type="hidden" value = "${oneProduct.productPrice }" /> --%>
+		<input name = "count" type="number"/>
+		<input type="submit" value = "장바구니 담기" />
+		</form>
+	</c:forEach>	
 </body>
+<script type="text/javascript">
+</script>
 </html>

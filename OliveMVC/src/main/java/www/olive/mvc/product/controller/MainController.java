@@ -26,8 +26,8 @@ public class MainController {
 		
 		model.addAttribute("subCateList", subCateList);
 		model.addAttribute("mainCateList", mainCateList);
-		System.out.println("subCateList >>>>>>>>> " + subCateList);
-		System.out.println("mainCateList >>>>>>>>> " + mainCateList);
+//		System.out.println("subCateList >>>>>>>>> " + subCateList);
+//		System.out.println("mainCateList >>>>>>>>> " + mainCateList);
 		
 //		return "main";
 		

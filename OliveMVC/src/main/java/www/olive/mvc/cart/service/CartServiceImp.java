@@ -6,23 +6,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import www.olive.mvc.mapper.cart.CartMapper;
+import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.order.dto.Cart;
-import www.olive.mvc.order.dto.OrderList;
 
-
+  
 @Service
 public class CartServiceImp implements CartService{
 	
 	@Autowired
 	private CartMapper cartMapper;
+
 	@Override
-	public List<Cart> viewCart() {
-		return cartMapper.selectCartProduct();
+	public List<Cart> viewCartList(AuthInfo Info) {
+		return cartMapper.selectCartList(Info);
 	}
 
 	@Override
-	public List<OrderList> viewOrderList(Long member_num) {
-		return cartMapper.selectMemberNum(member_num);
+	public void insertInCart(Cart cart) {
+		cartMapper.insertInCart(cart);
 	}
+
+	@Override
+	public void deleteCart(int cartId) {
+		cartMapper.deleteProductInCart(cartId);
+	}
+
+
+
+
 
 }

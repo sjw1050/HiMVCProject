@@ -79,6 +79,14 @@
 					
 					</c:if>
 					
+					<!-- 셀러 로그인시 -->
+					<c:if test="${!empty sellerInfo}">
+						<span>${sellerInfo.sellerId } 셀러님, 환영합니다 </span>
+						<li class="logout"> <a href="${pageContext.request.contextPath}/seller/logout">로그아웃</a></li>
+						<li class="registProduct"> <a href="${pageContext.request.contextPath}/seller/sellerMenu?sellerId=${sellerInfo.sellerId}">셀러 관리 메뉴  </a></li>
+					</c:if>
+					<!-- 셀러 로그인시-->
+					
 					<li class="bag">
 						<button>
 							<i class="fas fa-shopping-cart"></i>
@@ -95,6 +103,7 @@
     <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/member/loginForm">로그인</a>
     <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/cart/viewCart">장바구니</a>
     <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/member/adminlogin">관리자 로그인</a>
+    <a style="border-right: 1px solid black;" href="${pageContext.request.contextPath }/seller/sellerLogin">셀러로그인 </a>
 </script>
 </body>
 </html>

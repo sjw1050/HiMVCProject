@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import www.olive.mvc.member.interceptor.AdminCheckInterceptor;
 import www.olive.mvc.member.interceptor.AuthCheckInterceptor;
+import www.olive.mvc.product.interceptor.SellerCheckInterceptor;
 
 
 @Configuration
@@ -48,6 +49,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authCheckInterceptor()).addPathPatterns("/quest/write");
 		registry.addInterceptor(adminCheckInterceptor()).addPathPatterns("/notice/write");
+		registry.addInterceptor(sellerCheckInterceptor()).addPathPatterns("/seller/registProduct");
 				//.excludePathPatterns("/edit/help/**");
 	}
 
@@ -59,6 +61,11 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Bean
 	public AdminCheckInterceptor adminCheckInterceptor() {
 		return new AdminCheckInterceptor();
+	}
+	
+	@Bean
+	public SellerCheckInterceptor sellerCheckInterceptor() {
+		return new SellerCheckInterceptor();
 	}
 	
 	@Bean
