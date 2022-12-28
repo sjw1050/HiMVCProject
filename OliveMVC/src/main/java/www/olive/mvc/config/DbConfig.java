@@ -22,7 +22,7 @@ public class DbConfig {
 		ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		ds.setJdbcUrl("jdbc:mysql://localhost/olive?characterEncoding=utf8");
 		ds.setUsername("root");
-		ds.setPassword("admin");
+		ds.setPassword("123456789");
 		ds.addDataSourceProperty("cachePrepStmts", "true");
 		ds.addDataSourceProperty("prepStmtCacheSize", "250");
 		ds.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
