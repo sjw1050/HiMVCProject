@@ -13,4 +13,7 @@ public class Cart {
 	private int productId;
 	private int totalProductCount;
 	private int totalProductPrice;
+	private Long memberNum;
+	private String productName;
+	private int productPrice;
 }

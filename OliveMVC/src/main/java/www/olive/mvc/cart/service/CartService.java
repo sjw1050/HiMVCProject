@@ -2,13 +2,15 @@ package www.olive.mvc.cart.service;
 
 import java.util.List;
 
+import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.order.dto.Cart;
-import www.olive.mvc.order.dto.OrderList;
 
 public interface CartService {
 
+	List<Cart> viewCartList(AuthInfo info);
 
-	List<Cart> viewCart();
+	void insertInCart(Cart cart);
 
-	List<OrderList> viewOrderList(Long member_num);
+	void deleteCart(int cartId);
+
 }

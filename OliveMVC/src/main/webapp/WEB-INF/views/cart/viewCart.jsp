@@ -5,27 +5,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>장바구니</title>
 </head>
 <body>
-	<h1>장바구니</h1>
+	<h1>${info.name }님의장바구니</h1>
 
-	<p>장바구니 리스트 불러오기 테스트</p>
-	<table border="1">
+	<table>
 		<tr>
-			<th>장바구니 번호</th>
-			<th>장바구니 제품 아이디</th>
-			<th>장바구니 제품 수량</th>
-			<th>장바구니 제품 총액</th>
+			<th>제품 이름</th>
+			<th>제품 가격</th>
+			<th>제품 수량</th>
+			<th>제품 총액</th>
 		</tr>
-		<c:forEach items="${viewCartList }" var="viewCartList">
-		<tr>
-			<td>${viewCartList.cartId }</td>
-			<td>${viewCartList.productId }</td>
-			<td>${viewCartList.totalProductCount }</td>
-			<td>${viewCartList.totalProductPrice }</td>
-		</tr>
-		</c:forEach>
+		<c:if test="${empty viewCartList }">
+			<p>장바구니에 든 상품이 없어요</p>
+		</c:if>
+		<c:if test="${!empty viewCartList }">
+			<c:forEach items="${viewCartList }" var="List">
+				<tr>
+					<td>${List.productName }</td>
+					<td>${List.productPrice }</td>
+					<td>${List.totalProductCount }</td>
+					<td>${List.totalProductPrice }</td>
+					<td>
+						<form action="/cart/deleteCart" method = "post">
+							<input name = "cartId" type="hidden" value="${List.cartId }" />
+							<button>삭제</button>
+						</form>
+					</td>
+				</tr>
+			</c:forEach>
+		</c:if>
 	</table>
 
 </body>
