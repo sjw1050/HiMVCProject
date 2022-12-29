@@ -29,7 +29,7 @@
 	<delete id="deleteProductInCart">
 		delete from cart where cart_id = #{cartId}
 	</delete>
-
+ 
 	<!-- 장바구니 수량변경 -->
 	<update id="modifyQuantity">
 

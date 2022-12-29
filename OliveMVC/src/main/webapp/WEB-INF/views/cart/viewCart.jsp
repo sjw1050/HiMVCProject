@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>${info.name }님의장바구니</h1>
-
+ 
 	<table>
 		<tr>
 			<th>제품 이름</th>
