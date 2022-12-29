@@ -25,7 +25,7 @@
 				<tr>
 					<td>${List.productName }</td>
 					<td>${List.productPrice }</td>
-					<form action="/cart/modifyQuantity" method = "post">
+					<form action="${pageContext.request.contextPath }/cart/modifyQuantity" method = "post">
 					<td>
 					<input name="cartId" type="hidden" value="${List.cartId }" />
 					<input name="totalProductCount" min="1" type="number" value="${List.totalProductCount }" />
@@ -33,10 +33,14 @@
 					</form>
 					<td>${List.productPrice * List.totalProductCount }</td>
 					<td>
-						<form action="/cart/deleteCart" method="post">
+						<form action="${pageContext.request.contextPath }/cart/deleteCart" method="post">
 						<input name="deleteCartId" type="hidden" value="${List.cartId }" />
 						<input type="submit" value="삭제" />
 						</form>
+						<form action="${pageContext.request.contextPath }/order/viewOrderList" method="get">
+			<input name="productId" type="hidden" value="${oneProduct.productId }" />
+			<input type="submit" value ="바로구매" />
+		</form>
 					</td>
 				</tr>
 			</c:forEach>
