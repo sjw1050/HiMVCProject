@@ -51,14 +51,13 @@
 				<th>상품이미지</th>
 				<td><input multiple="multiple" type="file" name="productImage" id="productImage"></td>
 			</tr>
-			<tr>
-				<td colspan="2" align="center">
-				<input type="submit" value="등록" id="addBtn"> 
-				<input type="button" value="목록" id="listBtn">
-				</td>
-			</tr>
-		</table>
+					</table>
 	</form>
+		
+				<input type="submit" value="등록" id="addBtn"> 
+				<input type="button" value="취소" id="listBtn">
+			
+
 	
 	<!-- 스크립트  -->
 	<script type="text/javascript">
@@ -68,7 +67,7 @@
 	/* 취소(목록) 버튼 */
 	$("#listBtn").click(function(){
 	/* alert("라라라"); */
-	location.href="/seller/viewBySeller"
+	location.href="/seller/sellerMenu"
 	
 	});
 	

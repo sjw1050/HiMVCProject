@@ -132,6 +132,7 @@ public class SellerController {
 			MultipartHttpServletRequest mtfRequest, HttpServletRequest request) throws Exception {
 		System.out.println("registProduct 등록폼 들어옴" + mtfRequest);
 
+		String sellerId = request.getParameter("sellerId");
 		// 사진 저장하고 경로 받아옴
 		List<MultipartFile> fileList = mtfRequest.getFiles("productImage");
 		sellerService.addProduct(product);
@@ -146,7 +147,8 @@ public class SellerController {
 				sellerService.addProductFile(savedPath);
 			}
 		}
-		return "redirect:/viewBySeller";
+//		return "seller/viewBySeller?sellerId="+sellerId;
+		return "seller/sellerMenu";
 
 	}
 	
@@ -154,9 +156,31 @@ public class SellerController {
 	
 	//상품 삭제
 	@GetMapping("/removeProd")
-	public void removeProd(HttpServletRequest request) {
+//	@PostMapping("/removeProd")
+	public String removeProd(HttpServletRequest request, HttpSession session) {
+		
+		
+		
+		String sellerId = (String) session.getAttribute("sellerId");
+		System.out.println("세션에서sellerId >> "+sellerId);
 		String productId = request.getParameter("productId");
+		System.out.println("removeProd 넘어온 productId  >>>  "+ productId);
 		sellerService.removeProd(productId);
+		
+		String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+//		return "location.reload()";
+	}
+	
+	// 상품 수정
+	@GetMapping("/modiProd")
+	public void modiProd(HttpServletRequest request, HttpSession session) {
+		
+		String productId = request.getParameter("productId");
+		System.out.println("modiProd 링링들어왔나 >> ");
+		System.out.println("modiProd 들어왔나 >> " + productId);
+		
+//		return null;
 	}
 	
 }
