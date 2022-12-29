@@ -1,9 +1,9 @@
-package www.olive.mvc.order.dto;
+package www.olive.mvc.cart.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-   
+    
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

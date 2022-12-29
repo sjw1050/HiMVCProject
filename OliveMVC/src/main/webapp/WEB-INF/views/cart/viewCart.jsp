@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>${info.name }님의장바구니</h1>
-    
+ 
 	<table>
 		<tr>
 			<th>제품 이름</th>
@@ -25,13 +25,22 @@
 				<tr>
 					<td>${List.productName }</td>
 					<td>${List.productPrice }</td>
-					<td>${List.totalProductCount }</td>
-					<td>${List.totalProductPrice }</td>
+					<form action="${pageContext.request.contextPath }/cart/modifyQuantity" method = "post">
 					<td>
-						<form action="/cart/deleteCart" method = "post">
-							<input name = "cartId" type="hidden" value="${List.cartId }" />
-							<button>삭제</button>
+					<input name="cartId" type="hidden" value="${List.cartId }" />
+					<input name="totalProductCount" min="1" type="number" value="${List.totalProductCount }" />
+					<input type="submit" value="수량 변경" /></td>
+					</form>
+					<td>${List.productPrice * List.totalProductCount }</td>
+					<td>
+						<form action="${pageContext.request.contextPath }/cart/deleteCart" method="post">
+						<input name="deleteCartId" type="hidden" value="${List.cartId }" />
+						<input type="submit" value="삭제" />
 						</form>
+						<form action="${pageContext.request.contextPath }/order/viewOrderList" method="get">
+			<input name="productId" type="hidden" value="${oneProduct.productId }" />
+			<input type="submit" value ="바로구매" />
+		</form>
 					</td>
 				</tr>
 			</c:forEach>
