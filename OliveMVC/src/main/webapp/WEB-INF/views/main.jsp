@@ -24,12 +24,6 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/DaumApi.js"></script>
 
-<!-- 유효성 확인 자바스크립트 -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/resources/js/registForm_valid_check.js"></script>
-	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 
 
 <!-- 올리브영 css 시작 -->
@@ -5343,12 +5337,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					</script>
 
 					<!-- 다음 주소 Api -->
-					<script
-						src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- 유효성 확인 자바스크립트 -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/resources/js/registForm_valid_check.js"></script>	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+						
 <script type="text/javascript">
 _id = document.querySelector("#memberId");
+_pw = document.querySelector("#pw");
+_re_pw = document.querySelector("#re_pw");
+_memberName = document.querySelector("#memberName");
+_email = document.querySelector("#email");
+_phone = document.querySelector("#phone");
+_birthday = document.querySelector("#birthday");
+_sample6_postcode = document.querySelector("#sample6_postcode");
+_sample6_address = document.querySelector("#sample6_address");
+_sample6_detailAddress = document.querySelector("#sample6_detailAddress");
+_sample6_extraAddress = document.querySelector("#sample6_extraAddress");
+
 $('#registModal').on('show.bs.modal', function (e) {
 	_id.value = "";
+	_pw.value = "";
+	_re_pw.value = "";
+	_memberName.value = "";
+	_email.value = "";
+	_phone.value = "";
+	_birthday.value = "";
+	_sample6_postcode.value = "";
+	_sample6_address.value = "";
+	_sample6_detailAddress.value = "";
+	_sample6_extraAddress.value = "";
 	_id.readOnly = false;
 });
 </script>
