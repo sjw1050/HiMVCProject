@@ -55,4 +55,8 @@ public class MypageService {
 		memberRepository.modifyMember(member);
 	}
 
+	public void withdrawal(Long memberNum) {
+		memberRepository.withdrawal(memberNum);
+	}
+
 }

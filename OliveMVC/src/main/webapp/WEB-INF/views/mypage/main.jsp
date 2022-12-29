@@ -21,10 +21,12 @@
 	<li>상품 QNA내역 </li>
 	<li><a href="${pageContext.request.contextPath }/mypage/modifymemberform?memberNum=${info.memberNum}">회원정보 수정</a> </li>
 	<li><a href="${pageContext.request.contextPath }/mypage/address">배송지 정보 확인</a></li>
-	<li>회원탈퇴 </li>
+	<li><a onclick="return confirmmsg()" href="javascript:showPopUp()">회원탈퇴</a> </li>
 </ul>
+<hr />
 <div>
 주문 배송 조회
+<hr />
 <div>
 <c:forEach var="order" items="${order }" >
 	<p><span>주문번호 : <a href="${pageContext.request.contextPath }/mypage/orderdetail?orderId=${order.orderId }">${order.orderId }</a></span></p>
@@ -75,6 +77,35 @@
 <div>
 상품 QNA내역
 </div>
+<script>
+let memberNum = "${info.memberNum}";
+function confirmmsg() {
+	if(confirm("회원 탈퇴 시 고객님의 모든 정보가 삭제되며, 복구가 불가능 할 수 있습니다 그래도 탈퇴하시겠습니까?")){
+		return true;
+	}else{
+		return false;
+	}
+}
 
+function showPopUp() {
+	
+	//창 크기 지정
+	var width = 500;
+	var height = 500;
+	
+	//pc화면기준 가운데 정렬
+	var left = (window.screen.width / 2);
+	var top = (window.screen.height / 4);
+	
+    	//윈도우 속성 지정
+	var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=no, resizable=yes, titlebar=no';
+	
+    	//연결하고싶은url
+    	const url = "${pageContext.request.contextPath}/mypage/withdrawalform?memberNum="+memberNum;
+
+	//등록된 url 및 window 속성 기준으로 팝업창을 연다.
+	window.open(url, "hello popup", windowStatus);
+}
+</script>
 </body>
 </html>

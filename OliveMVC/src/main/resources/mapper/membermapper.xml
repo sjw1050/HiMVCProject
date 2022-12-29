@@ -25,8 +25,8 @@ and m.member_num = #{memberNum}
 	
 	
 	<select id="selectId" resultType="member">
-	select m.*, g.member_level from member m, grade g
-where m.tpa between g.low and g.high and member_id = #{memberId}
+	select m.* from member m
+where member_id = #{memberId}
 	</select>
 	
 	<select id="selectAdmin" resultType="www.olive.mvc.member.dto.Admin">
@@ -34,8 +34,8 @@ where m.tpa between g.low and g.high and member_id = #{memberId}
 	</select>
 	
 	<insert id="insertMember">
-	insert into member(member_id,pw,member_name,email,phone,birthday,gender,address_number, address_info, address_detail, address_detail2,tpa)
-    values(#{memberId}, #{pw}, #{memberName}, #{email}, #{phone}, #{birthday}, #{gender}, #{addressNumber},#{addressInfo}, #{addressDetail}, #{addressDetail2}, #{tpa})
+	insert into member(member_id,pw,member_name,email,phone,birthday,gender,address_number, address_info, address_detail, address_detail2)
+    values(#{memberId}, #{pw}, #{memberName}, #{email}, #{phone}, #{birthday}, #{gender}, #{addressNumber},#{addressInfo}, #{addressDetail}, #{addressDetail2})
 	</insert>
 	
 	<update id="modifyMember">
@@ -50,4 +50,8 @@ where m.tpa between g.low and g.high and member_id = #{memberId}
 	address_detail2 = #{addressDetail2}
 	where member_num = #{memberNum}
 	</update>
+	
+	<delete id="withdrawal">
+		delete from member where member_num = #{memberNum}
+	</delete>
 </mapper>
