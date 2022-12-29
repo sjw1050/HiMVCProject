@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import www.olive.mvc.customerCenter.dto.Faq;
-import www.olive.mvc.mapper.FaqRepository;
+import www.olive.mvc.mapper.FaqMapper;
 
 @Service
 public class FaqService {
 	
 	@Autowired
-	FaqRepository faqRepository;
+	FaqMapper faqRepository;
 
 	public List<Faq> selectAll() {
 		return faqRepository.selectAll();

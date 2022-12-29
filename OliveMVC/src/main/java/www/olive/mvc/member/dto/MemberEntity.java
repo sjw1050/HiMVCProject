@@ -27,10 +27,13 @@ public class MemberEntity {
 	private String phone;
 	private Date birthday;
 	private char gender;
-	private String address;
+	private int addressNumber;
+	private String addressInfo;
+	private String addressDetail;
+	private String addressDetail2;
 	private Date regdate;
 	private Long tpa;
-	private int level;
+	private int memberLevel;
 	
 	public MemberEntity(Long memberNum, String id, String name, Date birthday, Long tpa) {
 		this.memberNum = memberNum;

@@ -18,19 +18,19 @@ import www.olive.mvc.member.dto.MemberEntity;
 import www.olive.mvc.member.service.MemberService;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/member/**")
 //내가왔노라
 public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
 	
-	@GetMapping("/regist")
+	@GetMapping("regist")
 	public String regist() {
 		return "/member/registForm";
 	}
 	
-	@PostMapping("/regist")
+	@PostMapping("regist")
 	public String registmember(MemberEntity member, Model model) {
 		System.out.println("멤버가 들어왔니?" + member);
 		MemberEntity checkmember = memberService.checkMember(member);
@@ -44,22 +44,23 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("/view")
+	@GetMapping("view")
 	public String viewMember(Model model) {
 		List<MemberEntity> list = memberService.selectAll(); 
 		model.addAttribute("list",list);
 		return "/member/viewAll";
 	}
 	
-	@GetMapping("/loginForm")
+	@GetMapping("loginForm")
 	public void loginForm() {
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("login")
 	public String login(HttpSession session, MemberEntity member, Model model) {
-		//System.out.println(member);
+		System.out.println(member);
 		AuthInfo info = memberService.memberCheck(member.getMemberId(), member.getPw());
 		if(info != null) {
+			System.out.println("멤버정보 : " + info);
 		session.setAttribute("info", info);
 		model.addAttribute("info", info);
 		if(session.getAttribute("togo") != null) {
@@ -77,18 +78,18 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("/logout")
+	@GetMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/main";
 	}
 	
-	@GetMapping("/adminlogin")
+	@GetMapping("adminlogin")
 	public String adminloginForm() {
 		return "/admin/loginForm";
 	}
 		
-		@PostMapping("/adminlogin")
+		@PostMapping("adminlogin")
 		public String adminlogin(HttpSession session, Admin admin, Model model) {
 			System.out.println("어드민 잘 들어왔니>>>"+admin);
 			Admin _adminAdmin = memberService.adminCheck(admin.getAdminId(), admin.getAdminPw());

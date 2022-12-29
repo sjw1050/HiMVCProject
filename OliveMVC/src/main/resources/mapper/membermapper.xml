@@ -2,14 +2,31 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="www.olive.mvc.mapper.MemberRepository">
+<mapper namespace="www.olive.mvc.mapper.MemberMapper">
 
 	<select id="selectAll" resultType="member">
-	select * from member
+	select m.*, g.member_level from member m, grade g
+where m.tpa between g.low and g.high
 	</select>
 	
+	
+	<select id="selectMember" resultType="member">
+	select m.*, g.member_level from member m, grade g
+where m.tpa between g.low and g.high and member_num = #{memberNum}
+	</select>
+	
+	
+	
+	<select id="selectGradeMember" resultType="member">
+	select m.member_name, m.tpa, g.member_level from member m, grade g
+where m.tpa between g.low and g.high 
+and m.member_num = #{memberNum}
+	</select>
+	
+	
 	<select id="selectId" resultType="member">
-	select * from member where member_id = #{memberId}
+	select m.*, g.member_level from member m, grade g
+where m.tpa between g.low and g.high and member_id = #{memberId}
 	</select>
 	
 	<select id="selectAdmin" resultType="www.olive.mvc.member.dto.Admin">
@@ -17,7 +34,20 @@
 	</select>
 	
 	<insert id="insertMember">
-	insert into member(member_id,pw,member_name,email,phone,birthday,gender,address,tpa)
-    values(#{memberId}, #{pw}, #{memberName}, #{email}, #{phone}, #{birthday}, #{gender}, #{address}, #{tpa})
+	insert into member(member_id,pw,member_name,email,phone,birthday,gender,address_number, address_info, address_detail, address_detail2,tpa)
+    values(#{memberId}, #{pw}, #{memberName}, #{email}, #{phone}, #{birthday}, #{gender}, #{addressNumber},#{addressInfo}, #{addressDetail}, #{addressDetail2}, #{tpa})
 	</insert>
+	
+	<update id="modifyMember">
+	update member set 
+	member_id = #{memberId}, 
+	pw = #{pw}, 
+	email = #{email}, 
+	phone = #{phone}, 
+	address_number = #{addressNumber}, 
+	address_info = #{addressInfo}, 
+	address_detail =#{addressDetail}, 
+	address_detail2 = #{addressDetail2}
+	where member_num = #{memberNum}
+	</update>
 </mapper>

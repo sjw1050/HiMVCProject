@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import www.olive.mvc.mapper.MemberRepository;
+import www.olive.mvc.mapper.MemberMapper;
 import www.olive.mvc.member.dto.Admin;
 import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.member.dto.MemberEntity;
@@ -15,7 +15,7 @@ import www.olive.mvc.member.dto.MemberEntity;
 public class MemberService {
 	
 	@Autowired
-	MemberRepository memberRepository;
+	MemberMapper memberRepository;
 
 	public List<MemberEntity> selectAll() {
 		return memberRepository.selectAll();
@@ -29,7 +29,7 @@ public class MemberService {
 		if(member != null) {
 		if(member.getMemberId().equals(memberId)) {
 			if(member.getPw().equals(Pw)) {
-				info = new AuthInfo(member.getMemberNum(), member.getMemberId(), member.getEmail(), member.getMemberName(), member.getAddress(), member.getBirthday(), member.getTpa());
+				info = new AuthInfo(member.getMemberNum(), member.getMemberId(), member.getEmail(), member.getMemberName(), member.getAddressNumber(), member.getAddressInfo(), member.getAddressDetail(), member.getAddressDetail2(), member.getBirthday(), member.getTpa(), member.getMemberLevel());
 			}else {
 				return null;
 			}
@@ -72,6 +72,10 @@ public class MemberService {
 		}else {
 			return _member;
 		}
+	}
+
+	public MemberEntity selectMember(Long memberNum) {
+		return memberRepository.selectMember(memberNum);
 	}
 	
 	
