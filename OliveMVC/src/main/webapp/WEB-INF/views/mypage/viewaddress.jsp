@@ -151,8 +151,7 @@
 			alert("정확한 값을 입력해주세요 빈 칸은 입력할 수 없습니다.");
 			return false;
 		}
-	    const msg = '유효하지 않는 전화번호입니다.';
-	    // IE 브라우저에서는 당연히 var msg로 변경
+	    let msg = '유효하지 않는 전화번호입니다.';
 	    
 	    if (!/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/.test(phone.value.replace(/ /g, ''))) {
 	    	alert(msg);
@@ -229,6 +228,18 @@
 	    hiddenField.setAttribute("value", document.getElementById("phone").value);
 	    form.appendChild(hiddenField);  
 	    form.appendChild(member);
+	    
+	    if(addressNumber.value.trim() === "" || addressinfo.value.trim() === "" || addressdetail.value.trim() === "" || receiver.value.trim() === "" || phone.value.trim() === "" ){
+			alert("정확한 값을 입력해주세요 빈 칸은 입력할 수 없습니다.");
+			return false;
+		}
+	    
+	    msg = '유효하지 않는 전화번호입니다.';
+	    
+	    if (!/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/.test(phone.value.replace(/ /g, ''))) {
+	    	alert(msg);
+	        return false;
+	    }
 	    
 	    console.log(form);
 	    document.body.appendChild(form);

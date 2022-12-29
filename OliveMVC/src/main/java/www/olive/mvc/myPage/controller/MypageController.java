@@ -123,7 +123,9 @@ public class MypageController {
 	@PostMapping("modifymember")
 	public String modifyMember(MemberEntity member, String newpw) {
 		if(newpw != null) {
-			member.setPw(newpw);
+			if (newpw.trim() != "") {
+				member.setPw(newpw);
+			}
 		}			
 		System.out.println("회원수정 멤버 받아옴?" + member);
 		mypageService.modifyMember(member);

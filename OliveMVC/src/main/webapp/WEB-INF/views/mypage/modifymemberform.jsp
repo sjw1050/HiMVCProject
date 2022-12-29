@@ -12,7 +12,7 @@
 ${member }
  <p>${member.memberName }님의 정보 수정</p>
 
-<form action="${pageContext.request.contextPath }/mypage/modifymember" method="post" onsubmit="check()">
+<form action="${pageContext.request.contextPath }/mypage/modifymember" method="post" onsubmit="return check()">
 <table>
 							<tr>
 								<th>아이디:</th>
@@ -26,7 +26,7 @@ ${member }
 								<input style="display: none" type="password" name="password" id="password" placeholder="기존 비밀번호를 입력해주세요"/>
 								<input style="display: none" type="password" name="newpassword" id="newpassword" placeholder="변경 할 비밀번호를 입력해주세요"/>
 								<input style="display: none" type="password" name="newpw" id="newconfirmpassword" placeholder="변경 할 비밀번호를 한번 더 입력해주세요"/>
-								<button style="display: none" type="button" onclick="passwordcheck()" id="pwchk">비밀번호 확인</button>
+								<button style="display: none" type="button" onclick="return passwordcheck()" id="pwchk">비밀번호 확인</button>
 								<button style="display: none" type="button" onclick="cancelpasswordmodi()" id="cancelmodi">변경 취소하기</button>
 								</td> 
 							</tr>
@@ -46,47 +46,63 @@ ${member }
 								<th>주소:</th>
 								<td><input type="text" name="addressNumber" id="addressNumber" placeholder="우편번호" value="${member.addressNumber }"> 
 								<input type="button" onclick="addressSearch()" value="우편번호 찾기"><br>
-								<input type="text" name="addressinfo" id="addressinfo" placeholder="주소" value="${member.addressInfo }"><br>
-								<input type="text" name="addressdetail" id="addressdetail" placeholder="주소지  정보" value="${member.addressDetail }"><br />
-								<input type="text" name="addressdetail2" id="addressdetail2" placeholder="상세주소" value="${member.addressDetail2 }"> </td>
+								<input type="text" name="addressInfo" id="addressinfo" placeholder="주소" value="${member.addressInfo }"><br>
+								<input type="text" name="addressDetail" id="addressdetail" placeholder="주소지  정보" value="${member.addressDetail }"><br />
+								<input type="text" name="addressDetail2" id="addressdetail2" placeholder="상세주소" value="${member.addressDetail2 }"> </td>
 							</tr>
 							<tr>
-								<td><button type="submit">전송하기</button></td>
+								<td><button id="submit" type="submit">전송하기</button></td>
 							</tr>
 						</table>
 </form>
 <script>
 
+let password = "${member.pw}";
+let passwordchk = document.getElementById("password");
+let newpassword = document.getElementById("newpassword");
+let newconfirmpassword = document.getElementById("newconfirmpassword");
+let submit = document.getElementById("submit")
+let memberId = document.getElementById("memberId");
+let memberName = document.getElementById("memberName");
+let email = document.getElementById("email");
+let phone = document.getElementById("phone");
+let addressNumber = document.getElementById("addressNumber");
+let addressinfo = document.getElementById("addressinfo");	
+let addressdetail = document.getElementById("addressdetail");
+let addressdetail2 = document.getElementById("addressdetail2");
+
+
+
 function check() {
-	let memberId = document.getElementById("memberId").value;
-	let memberName = document.getElementById("memberName").value;
-	let email = document.getElementById("email").value;
-	let phone = document.getElementById("phone").value;
-	let addressNumber = document.getElementById("addressNumber").value;
-	let addressinfo = document.getElementById("addressdetail").value;	
-	let addressdetail = document.getElementById("addressdetail").value;
-	let addressdetail2 = document.getElementById("addressdetail2").value;
-	if(memberId.trim() === "" || memberName.trim() === "" || email.trim() === "" || email.trim() === "" || 	   phone.trim() === "" || 
-	   addressNumber.trim() === "" || addressinfo.trim() === "" || addressdetail.trim() === "" || addressdetail2.trim() === ""){
+	if(memberId.value.trim() === "" || memberName.value.trim() === "" || email.value.trim() === "" || phone.value.trim() === "" || 
+	   addressNumber.value.trim() === "" || addressinfo.value.trim() === "" || addressdetail.value.trim() === "" || addressdetail2.value.trim() === ""){
 		alert("정확한 값을 입력해주세요 빈 칸은 입력할 수 없습니다.");
 		return false;
 	}
 	
+	let msg = '유효하지 않는 전화번호입니다.';
+    
+    if (!/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/.test(phone.value.replace(/ /g, ''))) {
+    	alert(msg);
+        return false;
+    }
+	
 }
 
 function passwordcheck() {
-	let password = "${member.pw}";
-	let passwordchk = document.getElementById("password").value;
-	let newpassword = document.getElementById("newpassword").value;
-	let newconfirmpassword = document.getElementById("newconfirmpassword").value;
-	if(password.trim() === "" || passwordchk.trim() === "" || newpassword.trim() === "" || newconfirmpassword.trim() === ""){
+	if(password.trim() === "" || passwordchk.value.trim() === "" || newpassword.value.trim() === "" || newconfirmpassword.value.trim() === ""){
 		alert("정확한 값을 입력해주세요 빈 칸은 입력할 수 없습니다.");
+		return false;
 	}else{
-		if(password !== passwordchk || newpassword !== newconfirmpassword){
+		if(password !== passwordchk.value || newpassword.value !== newconfirmpassword.value){
 			alert("입력한 비밀번호가 일치하지 않습니다.");
+			passwordchk.value = "";
+			newpassword.value = "";
+			newconfirmpassword.value = "";
 			return false;
 		}else{
 			alert("비밀번호 확인에 성공하였습니다. 변경 할 정보 입력 후 변경하기를 눌러주세요");
+			submit.style.display = "block";
 		}
 	}
 	
@@ -100,6 +116,7 @@ function passwordmodiform() {
 	document.getElementById("pwchk").style.display="block";
 	document.getElementById("cancelmodi").style.display="block";
 	document.getElementById("pwmodi").style.display="none";
+	submit.style.display = "none";
 }
 
 function cancelpasswordmodi() {
@@ -109,6 +126,11 @@ function cancelpasswordmodi() {
 	document.getElementById("pwchk").style.display="none";
 	document.getElementById("cancelmodi").style.display="none";
 	document.getElementById("pwmodi").style.display="block";
+	submit.style.display = "block";
+	password = "${member.pw}";
+	passwordchk.value = "";
+	newpassword.value = "";
+	newconfirmpassword.value = "";
 	
 }
 function addressSearch() {
