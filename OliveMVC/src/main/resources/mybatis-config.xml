@@ -27,7 +27,9 @@
 		<typeAlias type="www.olive.mvc.product.dto.Review" alias="review"/> 
 		
 		<!-- Cart dto alias -->
-		<typeAlias type="www.olive.mvc.order.dto.Cart" alias="cart"/> 
+		<typeAlias type="www.olive.mvc.cart.dto.Cart" alias="cart"/>
+		
+		<!-- Order dto alias -->
 		<typeAlias type="www.olive.mvc.order.dto.OrderAddress" alias="orderAddress"/> 
 		<typeAlias type="www.olive.mvc.order.dto.OrderList" alias="orderList"/> 
 		<typeAlias type="www.olive.mvc.order.dto.OrderStatus" alias="orderStatus"/> 

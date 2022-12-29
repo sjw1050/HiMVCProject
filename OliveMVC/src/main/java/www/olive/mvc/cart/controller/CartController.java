@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import www.olive.mvc.cart.dto.Cart;
 import www.olive.mvc.cart.service.CartService;
 import www.olive.mvc.member.dto.AuthInfo;
-import www.olive.mvc.order.dto.Cart;
 
    
 @Controller
@@ -28,7 +27,7 @@ public class CartController {
 	Cart cart;
 	
   //장바구니 목록
-	@GetMapping("/cart/viewCart")
+	@GetMapping("/viewCart")
 	public String viewCartList(Model model, HttpSession session) {
 		
 		AuthInfo Info = (AuthInfo) session.getAttribute("info");
