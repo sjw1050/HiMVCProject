@@ -57,7 +57,7 @@ public class MemberController {
 	
 	@PostMapping("login")
 	public String login(HttpSession session, MemberEntity member, Model model) {
-		//System.out.println(member);
+		System.out.println(member);
 		AuthInfo info = memberService.memberCheck(member.getMemberId(), member.getPw());
 		if(info != null) {
 			System.out.println("멤버정보 : " + info);

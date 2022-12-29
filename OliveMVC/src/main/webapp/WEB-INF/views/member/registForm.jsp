@@ -71,11 +71,11 @@
 							<tr>
 								<th>주소:</th>
 
-								<td><input type="text" name="address" id="sample6_postcode" placeholder="우편번호"> 
+								<td><input type="text" name="addressNumber" id="sample6_postcode" placeholder="우편번호"> 
 									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-									<input type="text" name="address" id="sample6_address" placeholder="주소"><br>
-									<input type="text" name="address" id="sample6_detailAddress" placeholder="상세주소"> 
-									<input type="text" name="address" id="sample6_extraAddress" placeholder="참고항목"></td>
+									<input type="text" name="addressinfo" id="sample6_address" placeholder="주소"><br>
+									<input type="text" name="addressdetail2" id="sample6_detailAddress" placeholder="상세주소"> 
+									<input type="text" name="addressdetail" id="sample6_extraAddress" placeholder="참고항목"></td>
 							</tr>
 
 						</table>

@@ -33,9 +33,9 @@
 	<tr>
 			<th>주소:</th>
 			<td><input type="text" name="addressNumber" id="addressNumber${status.index }" placeholder="우편번호" value="${address.addressNumber }"> 
-			<input type="button" onclick="addressSearch(${status.index })" value="우편번호 찾기"><br>
+			<input type="button" onclick="modiaddressSearch(${status.index })" value="우편번호 찾기"><br>
 			<input type="text" name="addressinfo" id="addressinfo${status.index }" placeholder="주소" value="${address.addressInfo }"><br>
-			<input type="text" name="addressdetail" id="addressdetail${status.index }" placeholder="주소지  정보" value="${address.addressDetail }">
+			<input type="text" name="addressdetail" id="addressdetail${status.index }" placeholder="주소지  정보" value="${address.addressDetail }"><br />
 			<input type="text" name="addressdetail2" id="addressdetail2${status.index }" placeholder="상세주소" value="${address.addressDetail2 }"> </td>
 	</tr>	
     </table>
@@ -61,7 +61,7 @@
 			<td><input type="text" name="addressNumber" id="addressNumber" placeholder="우편번호" "> 
 			<input type="button" onclick="addressSearch()" value="우편번호 찾기"><br>
 			<input type="text" name="addressinfo" id="addressinfo" placeholder="주소" "><br>
-			<input type="text" name="addressdetail" id="addressdetail" placeholder="주소지  정보" ">
+			<input type="text" name="addressdetail" id="addressdetail" placeholder="주소지  정보" "><br />
 			<input type="text" name="addressdetail2" id="addressdetail2" placeholder="상세주소" "> </td>
 	</tr>	
     </table>
@@ -74,8 +74,7 @@
    
 </div>
 
-<script
-		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<!-- 다음 우편번호 api -->
 	<script>	
 	
@@ -88,10 +87,18 @@
 		document.getElementById("addAddressAction").style.display = "none";
 		
 	}
+
 	
 	function modiAddress(index) {
-		let addressId = document.getElementById("addressID"+index).value;
-		//console.log(addressId);
+		
+		
+		
+		let addressNumber = document.getElementById("addressNumber"+index);
+		let addressinfo = document.getElementById("addressinfo"+index);
+		let addressdetail = document.getElementById("addressdetail"+index);
+		let addressdetail2 = document.getElementById("addressdetail2"+index);
+		let receiver = document.getElementById("receiver"+index);
+		let phone = document.getElementById("phone"+index);
 		
 		let form = document.createElement("form");
 	    form.setAttribute("charset", "UTF-8");
@@ -101,44 +108,56 @@
 	    let hiddenField = document.createElement("input");
 	    hiddenField.setAttribute("type", "hidden");
 	    hiddenField.setAttribute("name", "addressNumber");
-	    hiddenField.setAttribute("value", document.getElementById("addressNumber"+index).value);
+	    hiddenField.setAttribute("value", addressNumber.value.replace(/ /g, ''));
 	    form.appendChild(hiddenField);
 	    
 	    hiddenField = document.createElement("input");
 	    hiddenField.setAttribute("type", "hidden");
 	    hiddenField.setAttribute("name", "addressId");
-	    hiddenField.setAttribute("value", addressId);
+	    hiddenField.setAttribute("value", document.getElementById("addressID"+index).value);
 	    form.appendChild(hiddenField);
 
 	    hiddenField = document.createElement("input");
 	    hiddenField.setAttribute("type", "hidden");
 	    hiddenField.setAttribute("name", "addressInfo");
-	    hiddenField.setAttribute("value", document.getElementById("addressinfo"+index).value);
+	    hiddenField.setAttribute("value", addressinfo.value);
 	    form.appendChild(hiddenField);
 	    
 	    hiddenField = document.createElement("input");
 	    hiddenField.setAttribute("type", "hidden");
 	    hiddenField.setAttribute("name", "addressDetail");
-	    hiddenField.setAttribute("value", document.getElementById("addressdetail"+index).value);
+	    hiddenField.setAttribute("value", addressdetail.value);
 	    form.appendChild(hiddenField);
 	    
 	    hiddenField = document.createElement("input");
 	    hiddenField.setAttribute("type", "hidden");
 	    hiddenField.setAttribute("name", "addressDetail2");
-	    hiddenField.setAttribute("value", document.getElementById("addressdetail2"+index).value);
+	    hiddenField.setAttribute("value", addressdetail2.value);
 	    form.appendChild(hiddenField);
 	    
 	    hiddenField = document.createElement("input");
 	    hiddenField.setAttribute("type", "hidden");
 	    hiddenField.setAttribute("name", "receiver");
-	    hiddenField.setAttribute("value", document.getElementById("receiver"+index).value);
+	    hiddenField.setAttribute("value", receiver.value.replace(/ /g, ''));
 	    form.appendChild(hiddenField);
 	    
 	    hiddenField = document.createElement("input");
 	    hiddenField.setAttribute("type", "hidden");
 	    hiddenField.setAttribute("name", "phone");
-	    hiddenField.setAttribute("value", document.getElementById("phone"+index).value);
+	    hiddenField.setAttribute("value", phone.value.replace(/ /g, ''));
 	    form.appendChild(hiddenField);
+	    
+	    if(addressNumber.value.trim() === "" || addressinfo.value.trim() === "" || addressdetail.value.trim() === "" || receiver.value.trim() === "" || phone.value.trim() === "" ){
+			alert("정확한 값을 입력해주세요 빈 칸은 입력할 수 없습니다.");
+			return false;
+		}
+	    let msg = '유효하지 않는 전화번호입니다.';
+	    
+	    if (!/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/.test(phone.value.replace(/ /g, ''))) {
+	    	alert(msg);
+	        return false;
+	    }	     
+
 	    
 	    console.log(form);
 	    document.body.appendChild(form);
@@ -146,6 +165,7 @@
 		
 		
 	}
+
 	
 	function cancelmodiAddress(index) {
 		document.getElementById("addresstable"+index).style.display = "none";
@@ -209,6 +229,18 @@
 	    form.appendChild(hiddenField);  
 	    form.appendChild(member);
 	    
+	    if(addressNumber.value.trim() === "" || addressinfo.value.trim() === "" || addressdetail.value.trim() === "" || receiver.value.trim() === "" || phone.value.trim() === "" ){
+			alert("정확한 값을 입력해주세요 빈 칸은 입력할 수 없습니다.");
+			return false;
+		}
+	    
+	    msg = '유효하지 않는 전화번호입니다.';
+	    
+	    if (!/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/.test(phone.value.replace(/ /g, ''))) {
+	    	alert(msg);
+	        return false;
+	    }
+	    
 	    console.log(form);
 	    document.body.appendChild(form);
 	    form.submit();
@@ -231,7 +263,7 @@
 		
 	}
 		
-		function addressSearch(index) {
+		function modiaddressSearch(index) {
 			new daum.Postcode(
 					{
 						oncomplete : function(data) {

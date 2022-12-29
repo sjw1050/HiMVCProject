@@ -27,7 +27,10 @@ public class MemberEntity {
 	private String phone;
 	private Date birthday;
 	private char gender;
-	private String address;
+	private int addressNumber;
+	private String addressInfo;
+	private String addressDetail;
+	private String addressDetail2;
 	private Date regdate;
 	private Long tpa;
 	private int memberLevel;
