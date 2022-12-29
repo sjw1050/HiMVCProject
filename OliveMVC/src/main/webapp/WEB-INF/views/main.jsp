@@ -324,7 +324,7 @@
 
 				<!-- 로그아웃 -->
 				<c:if test="${!empty info}">
-					<span>${info.name }님, 환영합니다</span>
+					<li><span>레벨:${info.level } ${info.name }님, 환영합니다</span></li>
 					<li class="logout"><a
 						href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 					<li class="logout"><a
@@ -343,7 +343,7 @@
 				</c:if>
 				<!-- 셀러 로그인시-->
 
-				<li class="cart"><a
+				<li class="cart"><a onclick="return loginCheck('${info}')"
 					href="${pageContext.request.contextPath }/cart/viewCart"
 					data-attr='공통^헤더^장바구니'>장바구니<span id="cartToCnt"></span></a></li>
 
