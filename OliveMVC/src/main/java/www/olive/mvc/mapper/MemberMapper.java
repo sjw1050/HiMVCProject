@@ -17,5 +17,6 @@ public interface MemberMapper {
 	public MemberEntity selectGradeMember(AuthInfo info);
 	public MemberEntity selectMember(Long memberNum);
 	public void modifyMember(MemberEntity member);
+	public void withdrawal(Long memberNum);
 
 }

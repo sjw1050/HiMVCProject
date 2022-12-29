@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
 import www.olive.mvc.customerCenter.service.QuestService;
@@ -114,6 +115,7 @@ public class MypageController {
 	
 	@GetMapping("modifymemberform")
 	public String modifyMemberForm(Long memberNum, Model model) {
+		System.out.println("멤버넘버 받음?"+memberNum);
 		MemberEntity member = memberService.selectMember(memberNum);
 		System.out.println("수정할 멤버정보" + member);
 		model.addAttribute("member", member);
@@ -130,6 +132,19 @@ public class MypageController {
 		System.out.println("회원수정 멤버 받아옴?" + member);
 		mypageService.modifyMember(member);
 		return "mypage/main";
+	}
+	
+	@GetMapping("withdrawalform")
+	public void withdrawalform(Model model, Long memberNum) {
+		MemberEntity member = memberService.selectMember(memberNum);
+		model.addAttribute("member", member);
+	}
+	
+	@GetMapping("withdrawal")
+	public @ResponseBody String withdrawal(Long memberNum, HttpSession session) {
+		mypageService.withdrawal(memberNum);
+		session.invalidate();
+		return "success";
 	}
 	
 

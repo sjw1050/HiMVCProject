@@ -10,7 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import www.olive.mvc.member.dto.Admin;
 import www.olive.mvc.member.dto.AuthInfo;
@@ -30,18 +31,22 @@ public class MemberController {
 		return "/member/registForm";
 	}
 	
+	@GetMapping("membercheck")
+	public @ResponseBody String membercheck(MemberEntity member) {
+		//System.out.println("멤버 id체크 id 받아왔니?"+member);
+		MemberEntity checkmember = memberService.checkMember(member);
+		//System.out.println("체크멤버에서 멤버가 들어왔니?" + checkmember);
+		if(checkmember != null) {
+			return "fail";
+		}else {
+			return "success";
+		}
+	}
+	
 	@PostMapping("regist")
 	public String registmember(MemberEntity member, Model model) {
-		System.out.println("멤버가 들어왔니?" + member);
-		MemberEntity checkmember = memberService.checkMember(member);
-		System.out.println("멤버가 들어왔니?" + checkmember);
-		if(checkmember != null) {
-			model.addAttribute("err", "이미 존재하는 회원입니다.");
-			return "/member/registForm";
-		}else {
 			memberService.registMember(member);
-			return "redirect:/member/view";
-		}
+			return "/main";
 	}
 	
 	@GetMapping("view")
@@ -56,13 +61,13 @@ public class MemberController {
 	}
 	
 	@PostMapping("login")
-	public String login(HttpSession session, MemberEntity member, Model model) {
-		System.out.println(member);
+	public String login(HttpSession session, MemberEntity member, RedirectAttributes redirectAttributes) {
+		//System.out.println(member);
 		AuthInfo info = memberService.memberCheck(member.getMemberId(), member.getPw());
 		if(info != null) {
-			System.out.println("멤버정보 : " + info);
+			//System.out.println("멤버정보 : " + info);
 		session.setAttribute("info", info);
-		model.addAttribute("info", info);
+		//model.addAttribute("info", info);
 		if(session.getAttribute("togo") != null) {
 			//System.out.println("세션에 붙었니?"+session.getAttribute("togo"));
 			String togo = (String) session.getAttribute("togo");
@@ -73,8 +78,8 @@ public class MemberController {
 		}
 		return "/main";
 		}else {
-			model.addAttribute("notmember", "아이디와 비밀번호가 일치하지 않습니다.");
-			return "/member/loginForm";
+			redirectAttributes.addFlashAttribute("notmember", "아이디와 비밀번호가 일치하지 않습니다.");
+			return "redirect:/main";
 		}
 	}
 	

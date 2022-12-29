@@ -11,10 +11,10 @@
 <body>
 <p><a href="${pageContext.request.contextPath }/mypage/main">돌아가기</a></p>
 <h1>배송지 정보 조회</h1> 
+<input style="display: none" type="hidden" name="member.memberNum" id="memberid" value="${info.memberNum }" />
 <div>
 <c:forEach var="address" items="${address }" varStatus="status">
 	<input style="display: none" type="hidden" name="addressId" id="addressID${status.index }" value="${address.addressId }" />
-	<input style="display: none" type="hidden" name="member.memberNum" id="memberid" value="${address.member.memberNum }" />
 	<p><span>배송지 번호 :</span>${status.count }</p>
 	<p><span>배송지 주소 :</span>&#91;${address.addressNumber}&#93;${address.addressInfo } ${address.addressDetail } ${address.addressDetail2 }</p>
 	<p><span>수령자 :</span>${address.receiver }</p>
@@ -84,15 +84,11 @@
 		document.getElementById("cancelmodiAddress"+index).style.display = "block";
 		document.getElementById("modiAddressAction"+index).style.display = "none";
 		document.getElementById("deleteAddress"+index).style.display = "none";
-		document.getElementById("addAddressAction").style.display = "none";
-		
+		document.getElementById("addAddressAction").style.display = "none";		
 	}
 
 	
-	function modiAddress(index) {
-		
-		
-		
+	function modiAddress(index) {		
 		let addressNumber = document.getElementById("addressNumber"+index);
 		let addressinfo = document.getElementById("addressinfo"+index);
 		let addressdetail = document.getElementById("addressdetail"+index);
@@ -147,7 +143,7 @@
 	    hiddenField.setAttribute("value", phone.value.replace(/ /g, ''));
 	    form.appendChild(hiddenField);
 	    
-	    if(addressNumber.value.trim() === "" || addressinfo.value.trim() === "" || addressdetail.value.trim() === "" || receiver.value.trim() === "" || phone.value.trim() === "" ){
+	    if(addressNumber.value.trim() === "" || addressinfo.value.trim() === "" || addressdetail2.value.trim() === "" || receiver.value.trim() === "" || phone.value.trim() === "" ){
 			alert("정확한 값을 입력해주세요 빈 칸은 입력할 수 없습니다.");
 			return false;
 		}
@@ -229,7 +225,7 @@
 	    form.appendChild(hiddenField);  
 	    form.appendChild(member);
 	    
-	    if(addressNumber.value.trim() === "" || addressinfo.value.trim() === "" || addressdetail.value.trim() === "" || receiver.value.trim() === "" || phone.value.trim() === "" ){
+	    if(addressNumber.value.trim() === "" || addressinfo.value.trim() === "" || addressdetail2.value.trim() === "" || receiver.value.trim() === "" || phone.value.trim() === "" ){
 			alert("정확한 값을 입력해주세요 빈 칸은 입력할 수 없습니다.");
 			return false;
 		}

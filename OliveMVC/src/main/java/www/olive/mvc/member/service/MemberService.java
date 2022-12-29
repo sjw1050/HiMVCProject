@@ -29,7 +29,7 @@ public class MemberService {
 		if(member != null) {
 		if(member.getMemberId().equals(memberId)) {
 			if(member.getPw().equals(Pw)) {
-				info = new AuthInfo(member.getMemberNum(), member.getMemberId(), member.getEmail(), member.getMemberName(), member.getAddressNumber(), member.getAddressInfo(), member.getAddressDetail(), member.getAddressDetail2(), member.getBirthday(), member.getTpa(), member.getMemberLevel());
+				info = new AuthInfo(member.getMemberNum(), member.getMemberId(), member.getPw(), member.getEmail(), member.getMemberName(), member.getAddressNumber(), member.getAddressInfo(), member.getAddressDetail(), member.getAddressDetail2(), member.getBirthday(), member.getTpa(), member.getMemberLevel());
 			}else {
 				return null;
 			}
@@ -67,6 +67,7 @@ public class MemberService {
 
 	public MemberEntity checkMember(MemberEntity member) {
 		MemberEntity _member = memberRepository.selectId(member.getMemberId()); 
+		System.out.println("체크멤버>>"+_member);
 		if(_member == null) {
 			return null;
 		}else {
