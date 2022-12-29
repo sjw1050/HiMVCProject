@@ -12,7 +12,7 @@
 
 <!-- 여기에 list 왼쪽 사이드로 빼고, ajax로 뿌릴거임. -->
 	<ul>
-		<li><a href="">메인으로 가기 </a></li>
+		<li><a href="${pageContext.request.contextPath}/main">메인으로 가기 </a></li>
 		<li><a href="${pageContext.request.contextPath}/seller/viewBySeller?sellerId=${sellerInfo.sellerId}">상품 목록 보기 </a></li>
 		<li><a href="${pageContext.request.contextPath}/seller/registProduct">상품 등록 </a></li>
 	</ul>

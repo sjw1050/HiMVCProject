@@ -37,6 +37,10 @@
 
 	<!-- 셀러별 상품 목록  -->
 	<select id="selectProdBySeller" resultType="product">
+		<!-- select p.*, b.brand_name, o.file_name from product p, brand b, olivefile o
+		where p.brand_num = b.brand_num
+        and o.product_id = p.product_id
+		and b.seller_id = #{sellerId} -->
 		select p.*, b.brand_name from product p, brand b
 		where p.brand_num = b.brand_num
 		and b.seller_id = #{sellerId}
@@ -47,9 +51,25 @@
 		insert into product(brand_num, sub_cate_id, product_name, product_price, product_info)
 		values(#{brandNum}, #{subCateId}, #{productName}, #{productPrice}, #{productInfo})
 	</insert>
+	
+	<!-- 셀러 파일 인서트 -->
+	<insert id="insertProductFile">
+		 INSERT INTO olivefile (
+            file_name
+            , product_id
+        ) VALUES (
+            #{savedFilePath}
+            , LAST_INSERT_ID()
+        )
+	</insert>
 
-
-
+	<!-- 상품 삭제 -->
+	<delete id="deleteProd">
+		<!-- delete from product where product_id = #{productId} -->
+		DELETE FROM p, ol USING product AS p 
+		LEFT JOIN olivefile AS ol ON p.product_id = ol.product_id
+		WHERE p.product_id = #{productId}
+	</delete>
 
 
 
