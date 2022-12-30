@@ -7,6 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/resources/js/registForm_valid_check.js"></script>	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div>
@@ -15,7 +18,7 @@
 <ul>
 	<li>주문배송조회 </li>
 	<li>취소 반품 교환 내역 </li>
-	<li>장바구니 </li>
+	<li><a onclick="return loginCheck('${info}')" href="${pageContext.request.contextPath }/cart/viewCart">장바구니</a></li>
 	<li><a href="${pageContext.request.contextPath }/quest/view">1:1문의 내역</a> </li>
 	<li>리뷰 </li>
 	<li>상품 QNA내역 </li>
