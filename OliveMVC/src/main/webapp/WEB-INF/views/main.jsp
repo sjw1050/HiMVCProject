@@ -15,10 +15,13 @@
 
 <script src="https://kit.fontawesome.com/e8644e93da.js"
 	crossorigin="anonymous"></script>
-
+	
 <link
 	href="//db.onlinewebfonts.com/c/2596224269750e00c3ad5356299a3b9f?family=Ogg"
 	rel="stylesheet" type="text/css" />
+	
+<!-- 비밀번호 보여주는 눈 모양 사용 -->
+<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
 <!-- 다음 주소 Api -->
 <script type="text/javascript"
@@ -194,29 +197,32 @@
 								<div class="modal-body">
 									<form action="${pageContext.request.contextPath}/member/regist"
 										method="post" name="registForm">
+										
 										<table>
 											<tr>
-												<th>*아이디:</th>
+												<th>*아이디</th>
 								<td><input type="text" name="memberId" id="memberId"/> 
 								<button style="color: grey;" type="button" onclick="return idcheck()">ID중복체크</button></td>
 											</tr>
 											<tr>
-												<th>*비밀번호:</th>
-												<td><input type="password" name="pw" id="pw"
-													placeholder="영문자+숫자+특수문자 조합" /></td><br />
+												<th>*비밀번호</th>
+												<td><div class="show_password">
+												<input type="password" name="pw" id="pw" placeholder="영문자+숫자+특수문자 조합" />
+												<i class="fa fa-eye fa-lg"></i>
+												</div></td>
 											</tr>
 											<tr>
-												<th>*비밀번호 재확인:</th>
+												<th>*비밀번호 재확인</th>
 												<td><input type="password" name="re_pw" id="re_pw" /></td>
 											</tr>
 											<tr>
-												<th>*이름:</th>
+												<th>*이름</th>
 												<td><input type="text" name="memberName"
 													id="memberName" /></td>
 											</tr>
 											<tr>
-												<th>*이메일:</th>
-												<td><input type="text" name="email" id="email" />@</td>
+												<th>*이메일</th>
+												<td><input type="text" name="email" id="email" placeholder="olive@example.com"/></td>
 												<!-- <input type="text" name="email_add" id="email_add"/> -->
 												<!-- <select name="email_sel" id="email_sel" onchange="change_email();"> -->
 												<!--onchage: select안에 있는 옵션들의 값이 바꼈을때 명령이 실행 onclick을 안하는 이유: 키보드 사용자는 click을 할수 없으므로-->
@@ -227,35 +233,20 @@
 													</select> -->
 											</tr>
 											<tr>
-												<th>전화번호:</th>
+												<th>전화번호</th>
 												<td><input type="text" name="phone" id="phone" placeholder="010-0000-0000식으로 작성"/></td>
 											</tr>
 											<tr>
-												<th>*성별:</th>
+												<th>*성별</th>
 												<td><input type="radio" name="gender" value="f" id="f">여성
 													<input type="radio" name="gender" value="m" id="m" />남성</td>
 											</tr>
 											<tr>
-												<th>생년월일:
+												<th>생년월일
 												<td><input type="date" name="birthday" id="birthday" /></td>
-												<!-- date 오늘 이후로 선택 안 되도록 -->
-												<script>
-													var now_utc = Date.now()
-													var timeOff = new Date()
-															.getTimezoneOffset() * 60000;
-													var today = new Date(
-															now_utc - timeOff)
-															.toISOString()
-															.split("T")[0];
-													document.getElementById(
-															"Date")
-															.setAttribute(
-																	"max",
-																	today);
-												</script>
 											</tr>
 											<tr>
-												<th>주소:</th>
+												<th>주소</th>
 
 								<td><input type="text" name="addressNumber" id="sample6_postcode" placeholder="우편번호"> 
 									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
@@ -302,12 +293,15 @@
 										method="post">
 										<table>
 											<tr>
-												<th>아이디:</th>
+												<th>아이디</th>
 												<td><input type="text" name="memberId" id="memberId" /></td>
 											</tr>
 											<tr>
-												<th>비밀번호:</th>
-												<td><input type="password" name="pw" id="pw" /></td>
+												<th>비밀번호</th>
+												<td><div class="show_password">
+												<input type="password" name="pw" id="pw"/>
+												<i class="fa fa-eye fa-lg"></i>
+												</div></td>
 											</tr>
 										</table>
 								</div>
@@ -331,7 +325,7 @@
 						href="${pageContext.request.contextPath}/mypage/main">마이페이지</a></li>
 
 				</c:if>
-
+   
 				<!-- 셀러 로그인시 -->
 				<c:if test="${!empty sellerInfo}">
 					<li><span>${sellerInfo.sellerId } 셀러님, 환영합니다 </span></li>
@@ -647,7 +641,7 @@
 
 <!-- RecoBell Script Start -->
  <script type="text/javascript" src="../../../logger.ai.oliveyoung.co.kr/js/eglpcidgen.min.js"></script>
-<script src="../../../static.oliveyoung.co.kr/pc-static-root/js/common/libs/sha256.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/common/libs/sha256.js"></script>
 <script type="text/javascript">
 try {
 	var recoSsoMbrNo = 'null';
@@ -2026,7 +2020,7 @@ try {
 			
 				<div class="curation_wrap">
 					<div class="loading_box main">
-						<span class="icon"><img src="../../../static.oliveyoung.co.kr/pc-static-root/image/comm/pc_loading.gif" alt="로딩중"></span>
+						<span class="icon"><img src="${pageContext.request.contextPath }/resources/image/comm/pc_loading.gif" alt="로딩중"></span>
 						<p class="txt">고객님을 위한 상품 추천중이에요</p>
 					</div>
 					<div class="curation_area two" style="display: none;">
@@ -4612,7 +4606,7 @@ try {
 		</div>
 		
 
-<script type="text/javascript" src="../../../static.oliveyoung.co.kr/pc-static-root/js/common/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/common/jquery.tmpl.min.js"></script>
 <script id="rankViewTmpl" type="text/x-jquery-tmpl">
 	<div class="viewRk_depth1 curation_basket clearfix">
 		<ul class="viewRk_list viewRk_single">
@@ -4709,7 +4703,7 @@ try {
 </script>
 	
 	
-		<script src="../../../static.oliveyoung.co.kr/pc-static-root/js/store/store_drawdbaa.js?dumm=20221223001" charset="utf-8"></script>
+		<script src="${pageContext.request.contextPath }/resources/js/store/store_drawdbaa.js?dumm=20221223001" charset="utf-8"></script>
 		<div class="newOpenStoreType2" style="display:none;">
 		</div>
 	
@@ -4737,11 +4731,11 @@ try {
 				<ul>
 					<li>
 						<strong>온라인몰 고객센터</strong>
-						<img src="../../../static.oliveyoung.co.kr/pc-static-root/image/main/img_online_tel.png" alt="1522-0882" />
+						<img src="${pageContext.request.contextPath }/resources/image/main/img_online_tel.png" alt="1522-0882" />
 					</li>
 					<li>
 						<strong>매장 고객센터</strong>
-						<img src="../../../static.oliveyoung.co.kr/pc-static-root/image/main/img_offline_tel.png" alt="1577-4887" />
+						<img src="${pageContext.request.contextPath }/resources/image/main/img_offline_tel.png" alt="1577-4887" />
 					</li>
 				</ul>
 			</div>
@@ -4754,7 +4748,7 @@ try {
 		</div>
 		
 		
-		<div class="app_down_link"><img src="../../../static.oliveyoung.co.kr/pc-static-root/image/main/img_mobile_app.png" alt="올리브영 모바일 웹-앱을 설치하고 다양한 혜택을 누리세요!" /></div>
+		<div class="app_down_link"><img src="${pageContext.request.contextPath }/resources/image/main/img_mobile_app.png" alt="올리브영 모바일 웹-앱을 설치하고 다양한 혜택을 누리세요!" /></div>
 		
 		
 	</div>
@@ -4824,8 +4818,8 @@ try {
 
 
 <input type="hidden" id="mktAgrYn" name="mktAgrYn" value="">
-<script type="text/javascript" src="../../../static.oliveyoung.co.kr/pc-static-root/js/main/gnbCommondbaa.js?dumm=20221223001" ></script>
-<script type="text/javascript" src="../../../static.oliveyoung.co.kr/pc-static-root/js/main/maindbaa.js?dumm=20221223001" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/main/gnbCommondbaa.js?dumm=20221223001" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/main/maindbaa.js?dumm=20221223001" ></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		common.gnb.todaySpecial.setTodaySpecialFlag('.newOyflag');
@@ -5029,7 +5023,7 @@ try {
 							<a href="javascript:common.link.moveMainHome();">
 								
 									
-										<img src="../../../static.oliveyoung.co.kr/pc-static-root/image/footer/foot_logo_yearend.png" alt="OLIVEYOUNG">
+										<img src="${pageContext.request.contextPath }/resources/image/footer/foot_logo_yearend.png" alt="OLIVEYOUNG">
 									
 									
 								
@@ -5080,10 +5074,10 @@ try {
 				<p class="copyright">Copyright ⓒ CJ OliveYoung. All Rights Reserved.</p>
 				<div class="sns">
 					<h2>OLIVE YOUNG SNS</h2>
-					<a class="facebook" href="https://www.facebook.com/OLIVEYOUNG" title="페이지 이동" target="_blank"><img src="../../../static.oliveyoung.co.kr/pc-static-root/image/footer/iconf_facebook.png" alt="페이스북"></a>
-					<a class="insta" href="https://www.instagram.com/oliveyoung_official/" title="페이지 이동" target="_blank"><img src="../../../static.oliveyoung.co.kr/pc-static-root/image/footer/iconf_instagram.png" alt="인스타그램"></a>
-					<a class="youtube" href="https://www.youtube.com/user/cjoliveyoung/" title="페이지 이동" target="_blank"><img src="../../../static.oliveyoung.co.kr/pc-static-root/image/footer/iconf_youtube.png" alt="유튜브"></a>
-					<a class="kakao" href="javascript:common.link.openKakao();" title="페이지 이동" ><img src="../../../static.oliveyoung.co.kr/pc-static-root/image/footer/iconf_kakaotalk.png" alt="카카오톡"></a>
+					<a class="facebook" href="https://www.facebook.com/OLIVEYOUNG" title="페이지 이동" target="_blank"><img src="${pageContext.request.contextPath }/resources/image/footer/iconf_facebook.png" alt="페이스북"></a>
+					<a class="insta" href="https://www.instagram.com/oliveyoung_official/" title="페이지 이동" target="_blank"><img src="${pageContext.request.contextPath }/resources/image/footer/iconf_instagram.png" alt="인스타그램"></a>
+					<a class="youtube" href="https://www.youtube.com/user/cjoliveyoung/" title="페이지 이동" target="_blank"><img src="${pageContext.request.contextPath }/resources/image/footer/iconf_youtube.png" alt="유튜브"></a>
+					<a class="kakao" href="javascript:common.link.openKakao();" title="페이지 이동" ><img src="${pageContext.request.contextPath }/resources/image/footer/iconf_kakaotalk.png" alt="카카오톡"></a>
 				</div>
 			</div>
 		</div>
@@ -5181,7 +5175,7 @@ $(window).load(function() {
 
 </script>
 
-<script src="../../../static.oliveyoung.co.kr/pc-static-root/js/common/common.weblogdbaa.js?dumm=20221223001" charset="utf-8"></script>
+<script src="${pageContext.request.contextPath }/resources/js/common/common.weblogdbaa.js?dumm=20221223001" charset="utf-8"></script>
 
 <!-- [3533553] (GA) GA/GTM 기본 셋팅 및 데이터레이어 태깅 - dataLayer -->
 <script>
@@ -5300,8 +5294,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <div class="layer_pop_wrap" id="crtPopWrap" style="display: none;top:50%;width:849px;">
-	<script src="../../../static.oliveyoung.co.kr/pc-static-root/js/store/jquery.mCustomScrollbar.concat.min.js"></script>
-	<link rel="stylesheet" href="../../../static.oliveyoung.co.kr/pc-static-root/css/jquery.mCustomScrollbar.css" />	
+	<script src="${pageContext.request.contextPath }/resources/js/store/jquery.mCustomScrollbar.concat.min.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/jquery.mCustomScrollbar.css" />	
 	<div class="layer_cont4 w900">
 		
 	</div>
@@ -5342,6 +5336,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/registForm_valid_check.js"></script>	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 회원가입 눈 아이콘 누르면 비밀번호 보여주는 스크립트 -->				
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $('.show_password i').on('click',function(){
+	        $('input[type="password"]').toggleClass('active');
+	        if($('input[type="password"]').hasClass('active')){
+	            $(this).attr('class',"fa fa-eye-slash fa-lg")
+	            .prev('input').attr('type',"text");
+	        }else{
+	            $(this).attr('class',"fa fa-eye fa-lg")
+	            .prev('input').attr('type','password');
+	        }
+	    });
+	});
+</script>
+
+<!-- 회원가입 date 오늘 이후로 선택 안 되도록  -->
+<script type="text/javascript">
+	var now_utc = Date.now()
+	var timeOff = new Date().getTimezoneOffset() * 60000;
+	var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
+	document.getElementById("birthday").setAttribute("max",today);
+</script>
 						
 <script type="text/javascript">
 _id = document.querySelector("#memberId");
