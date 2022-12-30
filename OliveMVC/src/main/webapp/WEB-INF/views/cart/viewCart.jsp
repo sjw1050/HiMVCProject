@@ -12,6 +12,7 @@
  
 	<table>
 		<tr>
+		<th>장바구니 번호</th>
 			<th>제품 이름</th>
 			<th>제품 가격</th>
 			<th>제품 수량</th>
@@ -23,6 +24,7 @@
 		<c:if test="${!empty viewCartList }">
 			<c:forEach items="${viewCartList }" var="List">
 				<tr>
+				<td>${List.cartId }</td>
 					<td>${List.productName }</td>
 					<td>${List.productPrice }</td>
 					<form action="${pageContext.request.contextPath }/cart/modifyQuantity" method = "post">
@@ -37,8 +39,9 @@
 						<input name="deleteCartId" type="hidden" value="${List.cartId }" />
 						<input type="submit" value="삭제" />
 						</form>
-						<form action="${pageContext.request.contextPath }/order/viewOrderList" method="get">
+						<form action="${pageContext.request.contextPath }/order/viewMyOrder" method="post">
 			<input name="productId" type="hidden" value="${oneProduct.productId }" />
+			<input name="productPrice" type="hidden" value="${oneProduct.productPrice }" />
 			<input type="submit" value ="바로구매" />
 		</form>
 					</td>

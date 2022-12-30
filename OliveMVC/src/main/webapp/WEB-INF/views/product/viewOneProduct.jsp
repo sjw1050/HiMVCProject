@@ -25,8 +25,9 @@
 		<input name = "count"  min="1" type="number"/>
 		<input type="submit" value = "장바구니" />
 		</form>
-		<form action="${pageContext.request.contextPath }/order/viewOrderList" method="get">
+		<form action="${pageContext.request.contextPath }/order/viewMyOrder" method="post">
 			<input name="productId" type="hidden" value="${oneProduct.productId }" />
+			<input name="productPrice" type="hidden" value="${oneProduct.productPrice }" />
 			<input type="submit" value ="바로구매" />
 		</form>
 		</div>
