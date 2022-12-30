@@ -33,7 +33,7 @@
 				<a href="${pageContext.request.contextPath }/seller/modiProd?productId=${list.productId}"><button type="button" >수정하기</button></a>
 					<input type="button" id="modiProd" value = "가짜버튼" />
 					<hr>
-			</div>
+			</div> 
 		<!-- </form> -->
 		<button type="button" onclick="gotomodi()">수정테스트</button>
 		<button type="button" onclick="gotodelete()">수정테스트</button>

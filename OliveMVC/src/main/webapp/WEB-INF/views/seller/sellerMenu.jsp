@@ -17,7 +17,7 @@
 		<li><a href="${pageContext.request.contextPath}/seller/registProduct">상품 등록 </a></li>
 	</ul>
 	
-	
+	 
 	<c:if test="${not empty listBySeller }">
 		<c:forEach items="${listBySeller }" var="listBySeller">
 		<div>

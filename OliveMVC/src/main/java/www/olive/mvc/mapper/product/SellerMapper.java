@@ -10,7 +10,7 @@ import www.olive.mvc.product.dto.SubCategory;
 
 @Mapper
 public interface SellerMapper {
-
+ 
 	public Brand selectSeller(String sellerId);
 
 	public List<Product> selectProdBySeller(String sellerId);

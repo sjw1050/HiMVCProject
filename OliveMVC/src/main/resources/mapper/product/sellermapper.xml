@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="www.olive.mvc.mapper.product.SellerMapper">
-
+ 
  <!-- <resultMap id="productad" type="product">
 		<id property="productId" column="product_id" javaType="int" />
 		<result property="brandName" column="brand_num" />

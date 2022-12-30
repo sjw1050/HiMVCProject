@@ -35,7 +35,7 @@ public class SellerServiceImpl implements SellerService {
 				return brand;
 			} else {
 				brand = null;
-			}
+			} 
 		} else {
 			brand = null;
 		}

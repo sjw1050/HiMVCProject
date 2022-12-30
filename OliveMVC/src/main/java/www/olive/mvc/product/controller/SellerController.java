@@ -171,7 +171,7 @@ public class SellerController {
 		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
 //		return "location.reload()";
 	}
-	
+	 
 	// 상품 수정
 	@GetMapping("/modiProd")
 	public void modiProd(HttpServletRequest request, HttpSession session) {

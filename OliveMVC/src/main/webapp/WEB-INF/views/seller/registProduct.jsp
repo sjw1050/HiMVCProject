@@ -21,7 +21,7 @@
 	<h2>상품 등록</h2>
 	<form action="${path }/seller/registProduct" id="form1" name="forml" enctype="multipart/form-data" method="post" >
 		<table border="1">
-			
+			 
 			  <tr>
 				<th>브랜드</th>
 				<td><input type="text" name="brandNum" id="brandNum" value="${sellerInfo.brandNum }" ></td>

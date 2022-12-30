@@ -20,5 +20,5 @@ public interface SellerService {
 
 	void removeProd(String productId);
 
-	
+	 
 }
