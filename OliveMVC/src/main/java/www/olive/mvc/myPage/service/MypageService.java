@@ -60,8 +60,8 @@ public class MypageService {
 		memberRepository.modifyMember(member);
 	}
 
-	public void withdrawal(Long memberNum) {
-		memberRepository.withdrawal(memberNum);
+	public int withdrawal(Long memberNum) {
+		return memberRepository.withdrawal(memberNum);
 	}
 
 	public List<ProductQna> viewProductQna(Long memberNum) {
@@ -70,6 +70,22 @@ public class MypageService {
 
 	public ProductQna detailProductQna(int productQnaId) {
 		return productMapper.detailProductQna(productQnaId);
+	}
+
+	public List<ProductQna> viewProductQnaAll() {
+		return productMapper.viewProductQnaAll();
+	}
+
+	public int answerInsert(ProductQna qna) {
+		return productMapper.answerInsert(qna);
+	}
+
+	public int modifyProductQna(ProductQna qna) {
+		return productMapper.modifyProductQna(qna);
+	}
+
+	public void productQuestInsert(ProductQna qna) {
+		productMapper.productQuestInsert(qna);
 	}
 
 }

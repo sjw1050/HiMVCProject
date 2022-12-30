@@ -76,7 +76,7 @@ public class MemberController {
 			session.removeAttribute("togo");
 			return togo;
 		}
-		return "/main";
+		return "redirect:/main";
 		}else {
 			redirectAttributes.addFlashAttribute("notmember", "아이디와 비밀번호가 일치하지 않습니다.");
 			return "redirect:/main";

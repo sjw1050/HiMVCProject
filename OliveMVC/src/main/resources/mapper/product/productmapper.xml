@@ -108,6 +108,16 @@
 	</select>
 	
 	<!-- 상품 qna 가져오기  -->
+	
+	<select id="viewProductQnaAll" resultMap="productQnaResult">
+	<!-- select * from board_question -->
+	select pq.product_qna_id, p.product_name, m.member_name, pq.product_question_title, pq.product_question, pq.product_question_date,
+pq.product_question_answer, pq.product_answer_date from 
+product as p inner join product_qna as pq using(product_id),
+member m where m.member_num = pq.member_num
+	</select>
+	
+	
 	<select id="viewProductQna" resultMap="productQnaResult">
 	<!-- select * from board_question -->
 	select pq.product_qna_id, p.product_name, m.member_name, pq.product_question_title, pq.product_question, pq.product_question_date,
@@ -119,11 +129,24 @@ and pq.member_num = #{memberNum}
 	
 	<select id="detailProductQna" resultMap="productQnaResult">
 	<!-- select * from board_question -->
-	select pq.product_qna_id, p.product_name, m.member_name, pq.product_question_title, pq.product_question, pq.product_question_date,
+	select pq.product_qna_id, p.product_name, m.member_name, m.member_num, pq.product_question_title, pq.product_question, pq.product_question_date,
 pq.product_question_answer, pq.product_answer_date from 
 product as p inner join product_qna as pq using(product_id),
 member m where m.member_num = pq.member_num
 and pq.product_qna_id = #{productQnaId}
 	</select>
+	
+	<update id="answerInsert">
+	update product_qna set product_question_answer = #{productQuestionAnswer}, product_answer_date = curdate() where product_qna_id = #{productQnaId}
+	</update>
+
+	<update id="modifyProductQna">
+	update product_qna set product_question = #{productQuestion} where product_qna_id = #{productQnaId}
+	</update>
+	
+	<insert id="productQuestInsert">
+	insert into product_qna(product_id, member_num,  product_question_title, product_question)
+	values(#{product.productId}, #{member.memberNum}, #{productQuestionTitle}, #{productQuestion})
+	</insert>
 
 </mapper>

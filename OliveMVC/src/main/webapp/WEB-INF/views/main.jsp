@@ -115,7 +115,7 @@
 <!-- 올리브영 css 끝 -->
 
 </head>
-
+<body>
 <!-- 올리브영 css 시작 -->
 <div class="infoUpgr" style="display: none;">
 	<p>
@@ -334,7 +334,7 @@
 
 				<!-- 셀러 로그인시 -->
 				<c:if test="${!empty sellerInfo}">
-					<span>${sellerInfo.sellerId } 셀러님, 환영합니다 </span>
+					<li><span>${sellerInfo.sellerId } 셀러님, 환영합니다 </span></li>
 					<li class="logout"><a
 						href="${pageContext.request.contextPath}/seller/logout">로그아웃</a></li>
 					<li class="registProduct"><a
@@ -484,11 +484,11 @@
 						  <c:set value="${subCateList }" var="subCateList" />
 						  <c:forEach items="${mainCateList }" var="mainCateList">
 						<div class="sub_menu_box">
-							
+
 							<p class="sub_depth">
 								<a href="/category?mainCateId=${mainCateList.mainCateId }">${mainCateList.mainCateName}</a>
 							</p>
-							
+
 							<ul>
 								<c:forEach items="${subCateList }" var="subCateList">
 								<c:if test="${subCateList.mainCateId eq mainCateList.mainCateId}">
@@ -497,7 +497,7 @@
 								</c:forEach>
 								</ul>
 							</div>
-								
+
 							</c:forEach>
 							</li>
 
@@ -5371,5 +5371,5 @@ $('#registModal').on('show.bs.modal', function (e) {
 	_id.readOnly = false;
 });
 </script>
-				</body>
+</body>
 </html>
