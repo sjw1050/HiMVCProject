@@ -10,7 +10,7 @@ public interface ProductService {
 
 	List<Product> viewAllProduct();
 
-	List<Product> viewOneProduct(String productId);
+	Product viewOneProduct(int productId);
 
 //	List<Product> viewByMainCate(String mainCateId);
 

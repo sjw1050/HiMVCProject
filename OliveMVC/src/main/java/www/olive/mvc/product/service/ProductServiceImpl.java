@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> viewOneProduct(String productId) {
+	public Product viewOneProduct(int productId) {
 		return productMapper.selectOneProduct(productId);
 	}
 
