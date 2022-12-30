@@ -17,6 +17,43 @@
 		<id property="mainCateId" column="main_cate_id" />
 		<result property="mainCateName" column="main_cate_name" />
 	</resultMap>
+	
+	<resultMap id="productQnaResult" type="productQna">
+		<id property="productQnaId" column="product_qna_id" />
+		<result property="productQuestionTitle" column="product_question_title" />
+		<result property="productQuestion" column="product_question" />
+		<result property="productQuestionDate" column="product_question_date" />
+		<result property="productQuestionAnswer" column="product_question_answer" />
+		<result property="productAnswerDate" column="product_answer_date" />
+		<association property="product" column="product_id" javaType="product" resultMap="productResult"></association>
+		<association property="member" column="member_num" javaType="member" resultMap="memberResult"></association>
+	</resultMap>
+	
+	<resultMap id="productResult" type="product">
+		<id property="productId" column="product_id" />
+		<result property="productName" column="product_name" />
+	</resultMap>
+	
+	<!-- 멤버 가져오는 resultMap -->
+	<resultMap id="memberResult" type="member">
+	<id property="memberNum" column="member_num"/>
+	<result property="memberId" column="member_id"/>
+	<result property="pw" column="pw"/>
+	<result property="memberName" column="member_name"/>
+	<result property="email" column="email"/>
+	<result property="phone" column="phone"/>
+	<result property="birthday" column="birthday"/>
+	<result property="gender" column="gender"/>
+	<result property="addressNumber" column="address_number"/>
+	<result property="addressInfo" column="address_info"/>
+	<result property="addressDetail" column="address_detail"/>
+	<result property="addressDetail2" column="address_detail2"/>
+	<result property="regdate" column="regdate"/>
+	<result property="tpa" column="tpa"/>
+	<result property="level" column="level"/>
+	</resultMap>
+	
+	
 	<!-- 상품 전체보기 -->
 	<select id="selectAllProduct" resultType="product">
 		select * from product
@@ -68,6 +105,25 @@
 		from product p join brand b
 		on p.brand_num = b.brand_num
 		where p.product_id = #{productId}
+	</select>
+	
+	<!-- 상품 qna 가져오기  -->
+	<select id="viewProductQna" resultMap="productQnaResult">
+	<!-- select * from board_question -->
+	select pq.product_qna_id, p.product_name, m.member_name, pq.product_question_title, pq.product_question, pq.product_question_date,
+pq.product_question_answer, pq.product_answer_date from 
+product as p inner join product_qna as pq using(product_id),
+member m where m.member_num = pq.member_num
+and pq.member_num = #{memberNum}
+	</select>
+	
+	<select id="detailProductQna" resultMap="productQnaResult">
+	<!-- select * from board_question -->
+	select pq.product_qna_id, p.product_name, m.member_name, pq.product_question_title, pq.product_question, pq.product_question_date,
+pq.product_question_answer, pq.product_answer_date from 
+product as p inner join product_qna as pq using(product_id),
+member m where m.member_num = pq.member_num
+and pq.product_qna_id = #{productQnaId}
 	</select>
 
 </mapper>
