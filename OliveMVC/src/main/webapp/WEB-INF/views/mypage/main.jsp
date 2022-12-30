@@ -21,7 +21,7 @@
 	<li><a onclick="return loginCheck('${info}')" href="${pageContext.request.contextPath }/cart/viewCart">장바구니</a></li>
 	<li><a href="${pageContext.request.contextPath }/quest/view">1:1문의 내역</a> </li>
 	<li>리뷰 </li>
-	<li>상품 QNA내역 </li>
+	<li><a href="${pageContext.request.contextPath }/mypage/productqnaList">상품 QNA내역</a></li>
 	<li><a href="${pageContext.request.contextPath }/mypage/modifymemberform?memberNum=${info.memberNum}">회원정보 수정</a> </li>
 	<li><a href="${pageContext.request.contextPath }/mypage/address">배송지 정보 확인</a></li>
 	<li><a onclick="return confirmmsg()" href="javascript:showPopUp()">회원탈퇴</a> </li>
@@ -39,11 +39,8 @@
     <p><span>주문 상태:</span>${order.status.status }</p>
     <p><span>주문 날짜:</span>${order.orderDate }</p>
     <hr />
-   </c:forEach>
-   
+   </c:forEach>   
 </div>
-
-
 <%-- <div>
 	<c:forEach var="orderList" items="${orderList }">
 	<p><span>브랜드명:</span>${orderList.brandName }  <span>상품명:</span>${orderList.productName}<br /> <span>개당 가격:</span><fmt:formatNumber pattern="###,###,###" value="${orderList.productPrice}" /> 원<br />
@@ -55,30 +52,11 @@
 </div>
 <div>
 1:1문의내역 
-<table>
-<tr>
-<th>문의 제목</th>
-<th>문의 날짜</th>
-<th>문의자</th>
-<th>관리자 확인여부</th>
-</tr>
-<c:forEach items="${quest }" var="quest">
-<tr>
-			<td><a href="${pageContext.request.contextPath }/quest/detailQuest?questionNum=${quest.questionNum}">${quest.questionTitle }</a></td>
-			<td>${quest.questionDate }</td>
-			<td>${quest.getWriter().getMemberName() }</td>
-			<c:if test="${quest.viewCheck }">
-				<td>O</td>
-			</c:if>
-			<c:if test="${not quest.viewCheck }">
-				<td>X</td>
-			</c:if>
-			</tr>		
-	</c:forEach>
-</table>
+<jsp:include page="../quest/viewquest.jsp"></jsp:include>
 </div>
 <div>
 상품 QNA내역
+<jsp:include page="./productqnaList.jsp"></jsp:include>
 </div>
 <script>
 let memberNum = "${info.memberNum}";
