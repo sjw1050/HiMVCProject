@@ -325,7 +325,7 @@
 						href="${pageContext.request.contextPath}/mypage/main">마이페이지</a></li>
 
 				</c:if>
-
+   
 				<!-- 셀러 로그인시 -->
 				<c:if test="${!empty sellerInfo}">
 					<span>${sellerInfo.sellerId } 셀러님, 환영합니다 </span>
