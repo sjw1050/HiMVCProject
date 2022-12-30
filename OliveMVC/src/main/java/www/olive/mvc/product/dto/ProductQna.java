@@ -1,6 +1,7 @@
 package www.olive.mvc.product.dto;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,11 +13,11 @@ import www.olive.mvc.member.dto.MemberEntity;
 @AllArgsConstructor
 public class ProductQna {
 	private int productQnaId;
-	private int productId;
-	private MemberEntity memberNum;
 	private String productQuestionTitle;
 	private String productQuestion;
 	private Date productQuestionDate;
 	private String productQuestionAnswer;
 	private Date productAnswerDate;
+	private Product product;
+	private MemberEntity member;
 }

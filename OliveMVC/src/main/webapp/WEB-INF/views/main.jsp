@@ -324,7 +324,7 @@
 
 				<!-- 로그아웃 -->
 				<c:if test="${!empty info}">
-					<span>${info.name }님, 환영합니다</span>
+					<li><span>레벨:${info.level } ${info.name }님, 환영합니다</span></li>
 					<li class="logout"><a
 						href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 					<li class="logout"><a
@@ -343,7 +343,7 @@
 				</c:if>
 				<!-- 셀러 로그인시-->
 
-				<li class="cart"><a
+				<li class="cart"><a onclick="return loginCheck('${info}')"
 					href="${pageContext.request.contextPath }/cart/viewCart"
 					data-attr='공통^헤더^장바구니'>장바구니<span id="cartToCnt"></span></a></li>
 
@@ -776,7 +776,7 @@ try {
         
         
 
-		<div class="main_cate_wrap">
+		<%-- <div class="main_cate_wrap">
 			<ul class="main_cate_list">
 				
 					
@@ -1604,10 +1604,10 @@ try {
         <!-- //[3553186] 온라인몰 전시 카테고리 개편 일괄 작업 요청의 건 -->
 		<!-- 메인 카테고리 목록 -->
 
-</div>
+</div> --%>
 <!-- Gnb -->
 
-<div id="Container">
+ <div id="Container">
 	
 	<div id="Contents">
 		
@@ -1982,7 +1982,7 @@ try {
 				
 			
 			</div>
-			</div>
+			</div> 
 			
 		
 
@@ -2003,7 +2003,7 @@ try {
             
             
             
-                <div class="main_mid_banner split">
+                 <div class="main_mid_banner split">
                     
                     	
 						<a href="https://www.oliveyoung.co.kr/store/counsel/getNoticeDetail.do?ntcSeq=38824&amp;trackingCd=Home_LB" class="home_banner_top_split" data-ref-bannerId="home_banner_top_1" data-attr="홈^new상단띠배너^배송 사과문^1" data-trk="/">
@@ -2015,7 +2015,7 @@ try {
 							<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/138/4985527570554449043.jpg" alt="포인트 적립률 변경 안내" />
 						</a>
                     
-                </div>
+                </div> 
             
             
         

@@ -10,7 +10,7 @@ import www.olive.mvc.product.dto.SubCategory;
 
 @Mapper
 public interface SellerMapper {
-
+ 
 	public Brand selectSeller(String sellerId);
 
 	public List<Product> selectProdBySeller(String sellerId);
@@ -18,5 +18,9 @@ public interface SellerMapper {
 	public List<SubCategory> selectSubCate();
 
 	public void insertProduct(Product product);
+
+	public void insertProductFile(String filename);
+
+	public void deleteProd(String productId);
 	
 }

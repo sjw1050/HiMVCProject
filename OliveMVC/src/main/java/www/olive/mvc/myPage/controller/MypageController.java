@@ -26,6 +26,7 @@ import www.olive.mvc.myPage.dto.OrderAddress;
 import www.olive.mvc.myPage.dto.OrderList;
 import www.olive.mvc.myPage.dto.ProductOrder;
 import www.olive.mvc.myPage.service.MypageService;
+import www.olive.mvc.product.dto.ProductQna;
 
 @Controller
 @RequestMapping("/mypage/**")
@@ -50,9 +51,13 @@ public class MypageController {
 		}
 		List<ProductOrder> order = mypageService.viewOrder(info.getMemberNum()); 
 		List<QuestionBoard> qList = questService.viewMemberQuest(info);
+		List<ProductQna> pqList = mypageService.viewProductQna(info.getMemberNum());
+		
+		
 		//System.out.println("오더정보 들어옴?" + order);
 		model.addAttribute("order", order);
-		model.addAttribute("quest", qList);
+		model.addAttribute("qlist", qList);
+		model.addAttribute("pqList", pqList);
 		return "mypage/main";
 	}
 	
@@ -145,6 +150,26 @@ public class MypageController {
 		mypageService.withdrawal(memberNum);
 		session.invalidate();
 		return "success";
+	}
+	
+	@GetMapping("productqnaList")
+	public String productQnaList(HttpSession session, Model model) {
+		AuthInfo info = (AuthInfo) session.getAttribute("info");
+		if(info == null) {
+			return "/main";
+		}
+		List<ProductQna> pqList = mypageService.viewProductQna(info.getMemberNum());
+		System.out.println("상품qna 리스트 받아왔니?" + pqList);
+		model.addAttribute("pqList", pqList);
+		return "mypage/productqnaList";
+	}
+	
+	@GetMapping("detailproductqna")
+	public String detailproductqna(Model model, ProductQna productQna) {
+		ProductQna qna = mypageService.detailProductQna(productQna.getProductQnaId());
+		System.out.println("상품qna받아왔니?" + qna);
+		model.addAttribute("qna", qna);
+		return "mypage/detailproductqna";
 	}
 	
 

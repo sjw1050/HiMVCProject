@@ -8,6 +8,14 @@ let m = document.registForm.m;
 
 let idCheck = false;
 
+function loginCheck(info) {
+	if(info === ""){
+		alert("로그인 한 회원만 이용할 수 있습니다.");
+		return false;
+	}
+	
+}
+
 function idcheck() {
 	_id = document.querySelector("#memberId");
 	$.ajax({

@@ -9,9 +9,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>   
+<c:set value="${listBySeller}" var="listBySeller"/>
+<p>${listBySeller.fileName}</p>
 	<h1>상품 상세 보기</h1>
 	<c:forEach items="${oneProdList }" var="oneProduct">
 		<div>
+			<img alt="" src="${listBySeller.fileName }">
 			<p>(상품이미지)</p>
 			<p>${oneProduct.brandName }</p>
 			<p>${oneProduct.productName }</p>

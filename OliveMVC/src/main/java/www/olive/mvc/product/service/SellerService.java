@@ -16,5 +16,9 @@ public interface SellerService {
 
 	void addProduct(Product product);
 
-	
+	void addProductFile(String savedFilePath);
+
+	void removeProd(String productId);
+
+	 
 }

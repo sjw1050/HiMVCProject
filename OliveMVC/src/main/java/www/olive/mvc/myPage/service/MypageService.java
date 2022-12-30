@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 
 import www.olive.mvc.mapper.MemberMapper;
 import www.olive.mvc.mapper.OrderMapper;
+import www.olive.mvc.mapper.product.ProductMapper;
 import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.member.dto.MemberEntity;
 import www.olive.mvc.myPage.dto.OrderAddress;
 import www.olive.mvc.myPage.dto.OrderList;
 import www.olive.mvc.myPage.dto.ProductOrder;
+import www.olive.mvc.product.dto.ProductQna;
 
 @Service
 public class MypageService {
@@ -21,6 +23,9 @@ public class MypageService {
 	
 	@Autowired
 	OrderMapper orderMapper;
+	
+	@Autowired
+	ProductMapper productMapper;
 
 	public MemberEntity selectGrade(AuthInfo info) {
 		return memberRepository.selectGradeMember(info);
@@ -57,6 +62,14 @@ public class MypageService {
 
 	public void withdrawal(Long memberNum) {
 		memberRepository.withdrawal(memberNum);
+	}
+
+	public List<ProductQna> viewProductQna(Long memberNum) {
+		return productMapper.viewProductQna(memberNum);
+	}
+
+	public ProductQna detailProductQna(int productQnaId) {
+		return productMapper.detailProductQna(productQnaId);
 	}
 
 }

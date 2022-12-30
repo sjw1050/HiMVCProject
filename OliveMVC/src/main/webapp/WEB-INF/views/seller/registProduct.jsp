@@ -7,18 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script 
-	src="https://code.jquery.com/jquery-3.5.1.js"
-	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-<!-- js test  -->
-<!-- <script type="text/javascript">
-	$("#listBtn").click(function(){
-		alert("listbtn 눌렀다 ");
-	});
-</script> -->
-<!-- js test  -->
 <c:set value="${pageContext.request.contextPath}" var="path"/>
 
 </head>
@@ -31,7 +21,7 @@
 	<h2>상품 등록</h2>
 	<form action="${path }/seller/registProduct" id="form1" name="forml" enctype="multipart/form-data" method="post" >
 		<table border="1">
-			
+			 
 			  <tr>
 				<th>브랜드</th>
 				<td><input type="text" name="brandNum" id="brandNum" value="${sellerInfo.brandNum }" ></td>
@@ -40,8 +30,8 @@
 				 <td>
 					<select name="subCateId" id="subCateId" >
 						
-						<c:forEach items="${subCate }" var="subCate">
-					    <option id="subCateId" value="${subCate.subCateId }"> ${subCate.subCateName }</option>
+						<c:forEach items="${subCateList }" var="subCateList">
+					    <option id="subCateId" value="${subCateList.subCateId }"> ${subCateList.subCateName }</option>
 					    </c:forEach>
 					</select>
 				</td>
@@ -61,14 +51,13 @@
 				<th>상품이미지</th>
 				<td><input multiple="multiple" type="file" name="productImage" id="productImage"></td>
 			</tr>
-			<tr>
-				<td colspan="2" align="center">
-				<input type="submit" value="등록" id="addBtn"> 
-				<input type="button" value="목록" id="listBtn">
-				</td>
-			</tr>
-		</table>
+					</table>
 	</form>
+		
+				<input type="submit" value="등록" id="addBtn"> 
+				<input type="button" value="취소" id="listBtn">
+			
+
 	
 	<!-- 스크립트  -->
 	<script type="text/javascript">
@@ -78,7 +67,7 @@
 	/* 취소(목록) 버튼 */
 	$("#listBtn").click(function(){
 	/* alert("라라라"); */
-	location.href="/seller/viewBySeller"
+	location.href="/seller/sellerMenu"
 	
 	});
 	
