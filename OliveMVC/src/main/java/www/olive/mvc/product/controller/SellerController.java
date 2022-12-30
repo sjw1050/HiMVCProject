@@ -16,9 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import lombok.extern.slf4j.Slf4j;
-import www.olive.mvc.mapper.product.SellerMapper;
 import www.olive.mvc.product.dto.Brand;
-import www.olive.mvc.product.dto.MainCategory;
 import www.olive.mvc.product.dto.Product;
 import www.olive.mvc.product.dto.SubCategory;
 import www.olive.mvc.product.service.SellerService;
@@ -26,16 +24,17 @@ import www.olive.mvc.util.FileUtil;
 
 @Controller
 @RequestMapping("/seller")
-@Slf4j 
+@Slf4j
 public class SellerController {
 
 	@Autowired
 	SellerService sellerService;
 
-//	@GetMapping("/*")
-//	public void subCate(Model model) {
-//	
-//	}
+	
+	// /seller로 들어올 시 하위카테고리 붙여주기.
+	// @GetMapping("")
+	// public void subCate(Model model) {
+	// }
 
 	// 셀러 로그인 폼
 	@GetMapping("/sellerLogin")
@@ -46,6 +45,11 @@ public class SellerController {
 	// 셀러 로그인
 	@PostMapping("/sellerLogin")
 	public String sellerlogin(HttpSession session, Brand brand, Model model) {
+		// 로그인 할 때 서브카테고리 세션에 붙여주기
+		List<SubCategory> subCateList = sellerService.getSubCate();
+		session.setAttribute("subCateList", subCateList);
+		System.out.println("subCateList 셀러 잘 들어왔나 " + subCateList);
+
 		Brand _brand = sellerService.sellerCheck(brand.getSellerId(), brand.getSellerPw());
 
 		if (_brand != null) {
@@ -54,10 +58,11 @@ public class SellerController {
 			if (session.getAttribute("togo") != null) {
 				String togo = (String) session.getAttribute("togo");
 				togo.substring(0);
-//				System.out.println("togo>>>" + togo);
+				// System.out.println("togo>>>" + togo);
 				session.removeAttribute("togo");
 				return togo;
 			}
+
 			return "redirect:/main";
 		} else {
 			model.addAttribute("notseller", "셀러 회원이 아닙니다.");
@@ -80,29 +85,29 @@ public class SellerController {
 		String sellerId = request.getParameter("sellerId");
 		System.out.println("셀러별 상품 셀러 아이디 >>> " + sellerId);
 
-//		List<Product> listBySeller = sellerService.viewBySeller(sellerId);
-//
-//		model.addAttribute("listBySeller", listBySeller);
-//		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-//		System.out.println("listBySeller >>>>" + listBySeller);
-//		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		// List<Product> listBySeller = sellerService.viewBySeller(sellerId);
+		//
+		// model.addAttribute("listBySeller", listBySeller);
+		// System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		// System.out.println("listBySeller >>>>" + listBySeller);
+		// System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
 		return "/seller/sellerMenu";
 
 	}
 
-//	//셀러별 상품 목록
+	//셀러별 상품 목록
 	@GetMapping("viewBySeller")
 	public String viewBySeller(Model model, HttpServletRequest request) {
 
 		String sellerId = request.getParameter("sellerId");
-//		System.out.println("셀러별 상품, 셀러 아이디 >>> " + sellerId);
+		// System.out.println("셀러별 상품, 셀러 아이디 >>> " + sellerId);
 		List<Product> listBySeller = sellerService.viewBySeller(sellerId);
 
 		model.addAttribute("listBySeller", listBySeller);
-//		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-//		System.out.println("listBySeller >>>>" + listBySeller);
-//		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		// System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		// System.out.println("listBySeller >>>>" + listBySeller);
+		// System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
 		return "/seller/viewBySeller";
 
@@ -111,54 +116,71 @@ public class SellerController {
 	// 상품 등록 폼
 	@GetMapping("/registProduct")
 	public String registProductForm(Model model) {
-		List<SubCategory> subCateList = sellerService.getSubCate();
-
-		model.addAttribute("subCate", subCateList);
-		System.out.println("subCateList 셀러 잘 들어왔나  " + subCateList);
+		// List<SubCategory> subCateList = sellerService.getSubCate();
+		//
+		// model.addAttribute("subCate", subCateList);
+		// System.out.println("subCateList 셀러 잘 들어왔나 " + subCateList);
 		return "/seller/registProduct";
 
-//		return "main";
+		// return "main";
 
 	}
 
 	// 상품 등록
 	@PostMapping("/registProduct")
-	public String registProduct(@RequestParam("subCateId") String subCateId, Product product, MultipartHttpServletRequest mtfRequest, HttpServletRequest request) throws Exception {
+	public String registProduct(@RequestParam("subCateId") String subCateId, Product product,
+			MultipartHttpServletRequest mtfRequest, HttpServletRequest request) throws Exception {
 		System.out.println("registProduct 등록폼 들어옴" + mtfRequest);
-		
-		//사진 저장하고 경로 받아옴
+
+		String sellerId = request.getParameter("sellerId");
+		// 사진 저장하고 경로 받아옴
 		List<MultipartFile> fileList = mtfRequest.getFiles("productImage");
+		sellerService.addProduct(product);
 		log.info("fileList>>>>>>>  " + fileList);
 		log.info("fileName>>>>>>>  " + fileList.get(0).getOriginalFilename());
-		for(MultipartFile file : fileList) {
-			String savedPath = FileUtil.uploadFile(file, request);
-		}
-		
-		//폼에서 넘어온 정보로/ product 객체 생성
-		log.info("subCateId>>>>>>>  " + subCateId);
-		log.info("product>>>>>>>  " + product);
-		log.info("subCateId>>>>>>>  " + subCateId);
-		sellerService.addProduct(product);
-		
-		
-//		sellerService.addProduct(product);
-//		for (MultipartFile mf : fileList) {
-//			if (mf.getSize() != 0) {
-//				try {
-//					String savedFilePath = FileUtil.uploadFile(mf, request);
-//					String filename = savedFilePath.substring(10).trim();
-//					System.out.println(filename);
-//					sellerService.addProductImage(filename);
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			
-//			}
-//		}			 
-				return "/seller/viewBySeller";
-			}
 
-//		}
+		for (MultipartFile file : fileList) {
+			if (file.getSize() != 0) {
+				String savedPath = FileUtil.uploadFile(file, request);
+				String filename = savedPath.substring(10).trim();
+				System.out.println(filename);
+				sellerService.addProductFile(savedPath);
+			}
+		}
+//		return "seller/viewBySeller?sellerId="+sellerId;
+		return "seller/sellerMenu";
+
 	}
-//}
+	
+	//상품 파일 받아오기
+	
+	//상품 삭제
+	@GetMapping("/removeProd")
+//	@PostMapping("/removeProd")
+	public String removeProd(HttpServletRequest request, HttpSession session) {
+		
+		
+		
+		String sellerId = (String) session.getAttribute("sellerId");
+		System.out.println("세션에서sellerId >> "+sellerId);
+		String productId = request.getParameter("productId");
+		System.out.println("removeProd 넘어온 productId  >>>  "+ productId);
+		sellerService.removeProd(productId);
+		
+		String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+//		return "location.reload()";
+	}
+	 
+	// 상품 수정
+	@GetMapping("/modiProd")
+	public void modiProd(HttpServletRequest request, HttpSession session) {
+		
+		String productId = request.getParameter("productId");
+		System.out.println("modiProd 링링들어왔나 >> ");
+		System.out.println("modiProd 들어왔나 >> " + productId);
+		
+//		return null;
+	}
+	
+}
