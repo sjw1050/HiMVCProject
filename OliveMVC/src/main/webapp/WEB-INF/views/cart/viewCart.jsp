@@ -24,31 +24,73 @@
 		<c:if test="${!empty viewCartList }">
 			<c:forEach items="${viewCartList }" var="List">
 				<tr>
-				<td>${List.cartId }</td>
+				<td >${List.cartId }</td>
 					<td>${List.productName }</td>
 					<td>${List.productPrice }</td>
 					<form action="${pageContext.request.contextPath }/cart/modifyQuantity" method = "post">
 					<td>
 					<input name="cartId" type="hidden" value="${List.cartId }" />
 					<input name="totalProductCount" min="1" type="number" value="${List.totalProductCount }" />
-					<input type="submit" value="수량 변경" /></td>
+					<button type = "button" onclick="modifyQuantity()">수량변경</button>
 					</form>
 					<td>${List.productPrice * List.totalProductCount }</td>
 					<td>
 						<form action="${pageContext.request.contextPath }/cart/deleteCart" method="post">
 						<input name="deleteCartId" type="hidden" value="${List.cartId }" />
-						<input type="submit" value="삭제" />
+						<button type = "button" onclick="deleteCart()">삭제</button>
 						</form>
 						<form action="${pageContext.request.contextPath }/order/viewMyOrder" method="post">
-			<input name="productId" type="hidden" value="${oneProduct.productId }" />
-			<input name="productPrice" type="hidden" value="${oneProduct.productPrice }" />
-			<input type="submit" value ="바로구매" />
+			<input name="OrderProductId" type="hidden" value="${List.productId }" />
+			<input name="OrderCartId" type="checkbox" value="${List.cartId }" />
+			<button type = "button" onclick="viewMyOrder()">	바로구매</button>
+			
 		</form>
 					</td>
 				</tr>
 			</c:forEach>
 		</c:if>
 	</table>
+
+	<script>
+	function modifyQuantity() {
+		var title = document.getElementById("noticeTitle").value;
+		var content = document.getElementById("noticeContent").value;
+		var noticeNum = ${notice.noticeNum};
+		//console.log(file);
+		
+		var form = document.createElement("form");
+	    form.setAttribute("charset", "UTF-8");
+	    form.setAttribute("method", "Post");  //Post 방식
+	    form.setAttribute("enctype", "multipart/form-data");
+	    form.setAttribute("action", "${pageContext.request.contextPath }/notice/modinotice"); //요청 보낼 주소
+
+	    var hiddenField = document.createElement("input");
+	    hiddenField.setAttribute("type", "hidden");
+	    hiddenField.setAttribute("name", "noticeTitle");
+	    hiddenField.setAttribute("value", title);
+	    form.appendChild(hiddenField);
+
+	    hiddenField = document.createElement("input");
+	    hiddenField.setAttribute("type", "hidden");
+	    hiddenField.setAttribute("name", "noticeContent");
+	    hiddenField.setAttribute("value", content);
+	    form.appendChild(hiddenField);
+	    
+	    hiddenField = document.createElement("input");
+	    hiddenField.setAttribute("type", "hidden");
+	    hiddenField.setAttribute("name", "noticeNum");
+	    hiddenField.setAttribute("value", noticeNum);
+	    form.appendChild(hiddenField);
+	    
+	    form.appendChild(file);      
+	    document.body.appendChild(form);   
+	    console.log(form);
+	   
+	    
+	    form.submit();
+	}
+	</script>
+
 
 </body>
 </html>

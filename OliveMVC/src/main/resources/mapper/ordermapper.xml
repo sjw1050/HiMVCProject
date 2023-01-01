@@ -5,7 +5,7 @@
 <mapper namespace="www.olive.mvc.mapper.OrderMapper">
 
 	<resultMap id="addressResult" type="address">
-		<id property="addressId" column="address_id" javaType="int" />		
+		<id property="addressId" column="address_id" javaType="int" />
 		<result property="addressNumber" column="address_number" />
 		<result property="addressInfo" column="address_info" />
 		<result property="addressDetail" column="address_detail" />
@@ -15,23 +15,23 @@
 		<association property="member" column="member_num"
 			javaType="member" resultMap="memberResult"></association>
 	</resultMap>
-	
+
 	<resultMap id="memberResult" type="member">
-	<id property="memberNum" column="member_num"/>
-		<result property="memberId" column="member_id"/>
-		<result property="pw" column="pw"/>
-		<result property="memberName" column="member_name"/>
-		<result property="email" column="email"/>
-		<result property="phone" column="phone"/>
-		<result property="birthday" column="birthday"/>
-		<result property="gender" column="gender"/>
+		<id property="memberNum" column="member_num" />
+		<result property="memberId" column="member_id" />
+		<result property="pw" column="pw" />
+		<result property="memberName" column="member_name" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="birthday" column="birthday" />
+		<result property="gender" column="gender" />
 		<result property="addressNumber" column="address_number" />
 		<result property="addressInfo" column="address_info" />
 		<result property="addressDetail" column="address_detail" />
 		<result property="addressDetail2" column="address_detail2" />
-		<result property="regdate" column="regdate"/>
-		<result property="tpa" column="tpa"/>
-		<result property="level" column="level"/>
+		<result property="regdate" column="regdate" />
+		<result property="tpa" column="tpa" />
+		<result property="level" column="level" />
 	</resultMap>
 
 	<resultMap id="OrderResult" type="order">
@@ -48,20 +48,27 @@
 
 	<select id="orderListView" resultType="orderlistview">
 		<!-- select * from board_question -->
-		select po.order_id, m.member_name,b.brand_name, p.product_name, p.product_price,
-od.order_count, po.total_price, oa.address_number, oa.address_info, oa.address_detail, oa.address_detail2, oa.receiver, oa.phone,
-os.status, po.order_date
-from member m, product_order po, product p, order_status os, order_address oa,
-order_details od, brand b
+		select po.order_id, m.member_name,b.brand_name, p.product_name,
+		p.product_price,
+		od.order_count, po.total_price, oa.address_number, oa.address_info,
+		oa.address_detail, oa.address_detail2, oa.receiver, oa.phone,
+		os.status, po.order_date
+		from member m, product_order po, product p, order_status os, order_address
+		oa,
+		order_details od, brand b
 		where m.member_num = po.member_num
 		and
-		p.product_id = od.product_id
+		p.product_id =
+		od.product_id
 		and po.status_number = os.status_number
-		and po.address_id = oa.address_id
+		and po.address_id
+		= oa.address_id
 		and od.order_id = po.order_id
-		and p.brand_num = b.brand_num
+		and p.brand_num =
+		b.brand_num
 		and po.member_num =#{member.memberNum}
-		and po.order_id = #{orderId} order by po.order_id
+		and po.order_id =
+		#{orderId} order by po.order_id
 	</select>
 
 	<select id="viewOrder" resultMap="OrderResult">
@@ -73,33 +80,42 @@ order_details od, brand b
 		and po.member_num = #{memberNum}
 		order by order_id
 	</select>
-	
+
 	<select id="viewAddress" resultMap="addressResult">
-	select oa.address_id, oa.address_number, oa.address_detail, oa.address_detail2, oa.address_info, oa.receiver, oa.phone, m.* from order_address oa, member m
-	where m.member_num = oa.member_num 
-	and oa.member_num = #{memberNum}
+		select oa.address_id, oa.address_number, oa.address_detail,
+		oa.address_detail2, oa.address_info, oa.receiver, oa.phone, m.* from
+		order_address oa, member m
+		where m.member_num = oa.member_num
+		and oa.member_num = #{memberNum}
 	</select>
-	
+
 	<update id="updateAddress">
-	update order_address set 
-	address_number =#{addressNumber} , 
-	address_info = #{addressInfo}, 
-	address_detail = #{addressDetail},
-	address_detail2 = #{addressDetail2},
-	receiver = #{receiver},
-	phone = #{phone}
-	where address_id = #{addressId}
+		update order_address set
+		address_number =#{addressNumber} ,
+		address_info = #{addressInfo},
+		address_detail = #{addressDetail},
+		address_detail2 = #{addressDetail2},
+		receiver = #{receiver},
+		phone = #{phone}
+		where address_id = #{addressId}
 	</update>
-	
+
 	<insert id="insertAddress">
-	insert into order_address(address_number, address_info, address_detail, address_detail2, receiver, phone, member_num) 
-    values(#{addressNumber},#{addressInfo}, #{addressDetail}, #{addressDetail2}, #{receiver}, #{phone}, #{member.memberNum});
+		insert into order_address(address_number, address_info, address_detail,
+		address_detail2, receiver, phone, member_num)
+		values(#{addressNumber},#{addressInfo}, #{addressDetail},
+		#{addressDetail2}, #{receiver}, #{phone}, #{member.memberNum});
 	</insert>
-	
+
 	<delete id="deleteAddress">
-	delete from order_address where address_id = #{addressId}
+		delete from order_address where address_id = #{addressId}
 	</delete>
 
+	<!-- 상품 주문하기 -->
+	<insert id="insertOrderAddress">
+	insert into order_address(address_number, address_info, address_detail, address_detail2, receiver, phone, member_num)
+	values(#{addressNumber}, #{addressInfo}, #{addressDetail}, #{addressDetail2}, #{receiver}, #{phone}, #{member.memberNum})
+	</insert>
 
 
 </mapper>

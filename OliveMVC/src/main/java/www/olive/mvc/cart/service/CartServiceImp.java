@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import www.olive.mvc.cart.dto.Cart;
 import www.olive.mvc.mapper.cart.CartMapper;
 import www.olive.mvc.member.dto.AuthInfo;
+import www.olive.mvc.member.dto.MemberEntity;
 
   
 @Service
@@ -35,6 +36,17 @@ public class CartServiceImp implements CartService{
 	public void modifyCart(Cart cart) {
 		cartMapper.modifyQuantity(cart);
 	}
+
+//	@Override
+//	public List<Cart> selectOrderCart(int OrderProductId) {
+//		return cartMapper.selectOrderCart(OrderProductId);
+//	}
+	
+	@Override
+	public List<Cart> selectOrderCart(Cart cart) {
+		return cartMapper.selectOrderCart(cart);
+	}
+
 
 
 
