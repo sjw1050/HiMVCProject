@@ -30,7 +30,7 @@ import www.olive.mvc.customerCenter.service.NoticeService;
 import www.olive.mvc.util.FileUtil;
 
 @Controller
-@RequestMapping("/notice")
+@RequestMapping("cs/notice/**")
 public class NoticeController {
 
 	@Autowired
@@ -39,8 +39,8 @@ public class NoticeController {
 	@GetMapping("viewall")
 	public String viewallNotice(Model model) {
 		List<Notice> list = noticeService.viewNotice();
-		model.addAttribute("list", list);
-		return "notice/viewNotice";
+		model.addAttribute("noticelist", list);
+		return "customercenter/notice/viewNotice";
 	}
 
 	@GetMapping("write")

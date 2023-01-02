@@ -83,6 +83,14 @@ public class QuestService {
 	public void filedelete(String fileName) {
 		questionRepository.deleteFile(fileName);
 	}
+
+	public List<OliveFile> getFiles() {
+		return questionRepository.getQuestFiles();
+	}
+
+	public List<AnswerBoard> viewAnswerList() {
+		return questionRepository.viewAnswerList();
+	}
 	
 	
 

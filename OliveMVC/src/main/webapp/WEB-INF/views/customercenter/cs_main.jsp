@@ -33,6 +33,7 @@
 </head>
 <jsp:include page="../header.jsp"></jsp:include>
 <body>
+<div id="Container">
 	<div id="Contents" class="m2105">
 		<div class="sub_title_area customer">
 			<h1>
@@ -45,7 +46,7 @@
 		<ul class="comm1sTabs threeSet customer">
 			<li id="tabFaq" class="on"><a
 				href="${pageContext.request.contextPath }/cs/faq/faqview" title="선택됨">FAQ</a></li>
-			<li id="tab1on1"><a href="javascript:common.link.moveQnaList();">1:1문의</a></li>
+			<li id="tab1on1"><a href="${pageContext.request.contextPath }/cs/quest/view">1:1문의</a></li>
 			<li id="tabNotice"><a
 				href="https://www.oliveyoung.co.kr/store/counsel/getNoticeList.do">공지사항</a></li>
 		</ul>
@@ -149,6 +150,8 @@
 				</div>
 				
 				</div>
+				</div>
+				<jsp:include page="../footer.jsp"></jsp:include>
 		
 </body>
 <script>
