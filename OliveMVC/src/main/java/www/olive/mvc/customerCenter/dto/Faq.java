@@ -13,6 +13,5 @@ public class Faq {
 	private String faqTitle;
 	private String faqQuestion;
 	private String faqAnswer;
-	private Long adminNum;
 
 }

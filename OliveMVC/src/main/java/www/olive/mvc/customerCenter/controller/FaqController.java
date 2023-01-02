@@ -12,7 +12,7 @@ import www.olive.mvc.customerCenter.dto.Faq;
 import www.olive.mvc.customerCenter.service.FaqService;
 
 @Controller
-@RequestMapping("/faq")
+@RequestMapping("/cs/faq/**")
 public class FaqController {
 	
 	@Autowired
@@ -21,8 +21,8 @@ public class FaqController {
 	@GetMapping("faqview")
 	public String faqView(Model model) {
 		List<Faq> list = faqService.selectAll();
-		model.addAttribute("list", list);
-		return "faq/faqview";
+		model.addAttribute("faqList", list);
+		return "/customercenter/cs_main";
 	}
 
 }

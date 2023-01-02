@@ -111,5 +111,6 @@ function showPopUp() {
 	window.open(url, "hello popup", windowStatus);
 }
 </script>
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

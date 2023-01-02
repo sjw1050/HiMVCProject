@@ -333,8 +333,8 @@
 					href="javascript:common.link.moveOrderList();"
 					data-attr='공통^헤더^주문배송'>주문배송</a></li>
 				<li class="customer"><a
-					href="javascript:common.faq.getFaqList('99');"
-					data-attr='공통^헤더^고객센터'>고객센터</a></li>
+					href="${pageContext.request.contextPath }/cs/faq/faqview"
+					data-attr='고객센터'>고객센터</a></li>
 				<li class="store"><a
 					href="javascript:common.link.moveStoreMain();"
 					data-attr='공통^헤더^매장안내'>매장안내</a></li>
