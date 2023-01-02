@@ -40,5 +40,8 @@ public interface ProductMapper {
 	int modifyProductQna(ProductQna qna);
 
 	void productQuestInsert(ProductQna qna);
+
+	//메인 - 검색하기
+	List<Product> selectLikeThis(String query);
 	
 }
