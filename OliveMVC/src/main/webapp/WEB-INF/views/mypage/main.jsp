@@ -21,7 +21,7 @@
 <meta name="description" content="올리브영 온라인몰 MY 페이지 입니다.">
 <meta name="facebook-domain-verification" content="e6vbg9ygxkui4o2owlhxnwptf0mdk2" /> -->
     
- <jsp:include page="/WEB-INF/views/header.jsp"/>
+ <jsp:include page="../header.jsp"/>
 
 <div class="mypage-head rate_05">
 				<h1 class="tit"><a href="${pageContext.request.contextPath }/mypage/main">마이페이지</a></h1>
@@ -75,7 +75,7 @@
 </div>
 <div>
 1:1문의내역 
-<jsp:include page="../quest/viewquest.jsp"></jsp:include>
+<jsp:include page="../customercenter/quest/viewcontent.jsp"></jsp:include>
 </div>
 <div>
 상품 QNA내역

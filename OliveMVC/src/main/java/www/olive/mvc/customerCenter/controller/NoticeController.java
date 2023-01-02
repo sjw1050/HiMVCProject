@@ -46,7 +46,7 @@ public class NoticeController {
 	@GetMapping("write")
 	public String writeNotice() {
 		// System.out.println("write 진입 성공");
-		return "notice/write";
+		return "customercenter/notice/write";
 	}
 
 	@PostMapping("write")
@@ -68,7 +68,7 @@ public class NoticeController {
 			
 			}
 		}			 
-		return "redirect:/notice/viewall";
+		return "redirect:cs/notice/viewall";
 	}
 
 	@GetMapping("viewnotice")
@@ -83,7 +83,7 @@ public class NoticeController {
 		}
 		// System.out.println("공지 번호에 맞게 들어왔니?" + notice);
 		model.addAttribute("notice", notice);
-		return "notice/detailnotice";
+		return "customercenter/notice/detailnotice";
 
 	}
 

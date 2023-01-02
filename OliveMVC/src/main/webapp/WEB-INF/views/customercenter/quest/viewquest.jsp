@@ -182,9 +182,9 @@
 					id="answerForm${status.index }" readonly>${answer.answer }</textarea>
 				<p>답변 날짜 : ${answer.answerDate }</p>
 				<c:if test="${not empty admininfo }">
-					<button type="button" onclick="modifyAnswerForm(${status.index });"
+					<button style="color: black;" type="button" onclick="modifyAnswerForm(${status.index });"
 						id="modifyAnswerformbtn${status.index }">답변 수정하기</button>
-					<button style="display: none" type="button"
+					<button style="display: none; color: black;" type="button"
 						onclick="modifyAnswer(${status.index }, '${quest.questionNum }');"
 						id="modifyAnswer${status.index }">수정한 답변 전송하기</button>
 				</c:if>

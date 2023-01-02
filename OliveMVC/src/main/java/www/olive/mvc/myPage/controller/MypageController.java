@@ -58,7 +58,7 @@ public class MypageController {
 		
 		//System.out.println("오더정보 들어옴?" + order);
 		model.addAttribute("order", order);
-		model.addAttribute("qlist", qList);
+		model.addAttribute("mqlist", qList);
 		model.addAttribute("pqList", pqList);
 		return "mypage/main";
 	}

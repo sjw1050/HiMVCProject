@@ -50,7 +50,7 @@ table {
 			<h1>
 				고객센터 <span>무엇을 도와드릴까요?</span>
 			</h1>
-			<button type="button" class="btn_inquiry" id="regForm1on1" onclick="javascript:location.href='${pageContext.request.contextPath }/cs/quest/write';">1<em>:</em>1 문의하기</button>
+			<%-- <button type="button" class="btn_inquiry" id="regForm1on1" onclick="javascript:location.href='${pageContext.request.contextPath }/cs/quest/write';">1<em>:</em>1 문의하기</button> --%>
 		</div>
 		
 		<ul class="comm1sTabs threeSet customer">

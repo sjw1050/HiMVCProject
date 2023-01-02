@@ -48,7 +48,7 @@
 				href="${pageContext.request.contextPath }/cs/faq/faqview" title="선택됨">FAQ</a></li>
 			<li id="tab1on1"><a href="${pageContext.request.contextPath }/cs/quest/view">1:1문의</a></li>
 			<li id="tabNotice"><a
-				href="https://www.oliveyoung.co.kr/store/counsel/getNoticeList.do">공지사항</a></li>
+				href="${pageContext.request.contextPath }/cs/notice/viewall">공지사항</a></li>
 		</ul>
 		<form id="sForm" name="sForm">
 

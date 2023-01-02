@@ -101,7 +101,7 @@
 						<td>
 							<ul>
 								<li>
-									<input type="checkbox" id="NoticeSms" value="Y" name="smsRcvYn" class="chkSmall" checked="checked"><label for="NoticeSms">SMS</label>
+									<input type="checkbox" id="NoticeSms" value="Y" name="smsRcvYn" class="chkSmall"><label for="NoticeSms">SMS</label>
 									<select title="통신사를 선택하세요" id="rgnNoSelect" class="sms" name="cellSctNo" style="width:122px;" selected="selected">
 										<option selected="selected">010</option>
 										<option>011</option>
