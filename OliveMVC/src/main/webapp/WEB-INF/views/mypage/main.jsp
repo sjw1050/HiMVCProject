@@ -10,10 +10,33 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/registForm_valid_check.js"></script>	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<%-- <meta property="og:title" content="마이페이지 | 올리브영" />
+<meta property="og:url" content="${pageContext.request.contextPath }/mypage/main" />
+<meta property="og:image" content=""/> 
+<meta property="og:description" content="대한민국 NO.1 헬스&뷰티 스토어 OLIVEYOUNG" /> --%>
 </head>
 <body>
-<div>
-레벨:${info.level } ${info.name }님 반갑습니다 
+<title>마이페이지 | 올리브영</title>
+<!-- <meta name="title" content="마이페이지 | 올리브영" />
+<meta name="description" content="올리브영 온라인몰 MY 페이지 입니다.">
+<meta name="facebook-domain-verification" content="e6vbg9ygxkui4o2owlhxnwptf0mdk2" /> -->
+    
+ <jsp:include page="/WEB-INF/views/header.jsp"/>
+
+<div class="mypage-head rate_05">
+				<h1 class="tit"><a href="${pageContext.request.contextPath }/mypage/main">마이페이지</a></h1>
+				
+				<div class="grd-box">
+					<div class="info_user clrfix">
+						
+						<div class="thum">
+							<span class="bg"></span>
+								
+									<img src="${pageContext.request.contextPath }/resources/image/comm/my_picture_base.jpg" alt="" onerror="common.errorImg(this);"> 
+</div>
+						<p class="txt">
+레벨:${info.level } <strong class="name">${info.name }</strong>님 반갑습니다 
+</p>
 </div>
 <ul>
 	<li>주문배송조회 </li>
