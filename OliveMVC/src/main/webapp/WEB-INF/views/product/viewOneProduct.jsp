@@ -27,12 +27,11 @@
 		<input name = "count"  min="1" type="number"/>
 		<input type="submit" value = "장바구니" />
 		</form>
-		<form action="${pageContext.request.contextPath }/order/viewOrderList" method="get">
+	<%--	<form action="${pageContext.request.contextPath }/order/viewOrderList" method="get">
 			<input name="productId" type="hidden" id="productId" value="${oneProdList.productId }" />
 			<input type="submit" value ="바로구매" />
-		</form>
+		</form>--%>
 		<button type="button" onclick="return addproductquest()">상품 문의 남기기</button>
-		
 		</div>
 </body>
 <script type="text/javascript">

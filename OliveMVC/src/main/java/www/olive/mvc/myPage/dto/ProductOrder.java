@@ -17,5 +17,4 @@ public class ProductOrder {
 	   private OrderStatus status;
 	   private OrderAddress address;
 	   private MemberEntity member;
-
 }

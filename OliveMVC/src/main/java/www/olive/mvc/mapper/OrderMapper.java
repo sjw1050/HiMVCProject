@@ -18,5 +18,10 @@ public interface OrderMapper {
 	void updateAddress(OrderAddress address);
 	void insertAddress(OrderAddress address);
 	void deleteAddress(OrderAddress address);
-
+	
+	//상품 주문
+	void insertOrderAddress(OrderAddress oa);
+	void insertOrderProduct(ProductOrder po);
+	
+	
 }

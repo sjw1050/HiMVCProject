@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import www.olive.mvc.cart.dto.Cart;
 import www.olive.mvc.cart.service.CartService;
 import www.olive.mvc.member.dto.AuthInfo;
+import www.olive.mvc.product.dto.Product;
+import www.olive.mvc.product.service.ProductService;
 
    
 @Controller
@@ -24,11 +26,13 @@ public class CartController {
 
 	@Autowired
 	CartService cartService;
-	Cart cart;
+//	Cart cart;
+	@Autowired
+	ProductService productService;
 	
   //장바구니 목록
 	@GetMapping("/viewCart")
-	public String viewCartList(Model model, HttpSession session) {
+	public String viewCartList(Model model, HttpSession session,HttpServletRequest request) {
 		
 		AuthInfo Info = (AuthInfo) session.getAttribute("info");
 		System.out.println("Info >>>>>>>>>>>" + Info);
@@ -91,10 +95,8 @@ public class CartController {
 		
 		int totalProductCount = Integer.parseInt (request.getParameter("totalProductCount"));
 		System.out.println("totalProductCount >>>>>>>>>>>>>" + totalProductCount);
-		
 		int cartId = Integer.parseInt (request.getParameter("cartId"));
 		System.out.println("cartId >>>>>>>>>>>>" + cartId);
-		
 		cart.setCartId(cartId);
 		cart.setTotalProductCount(totalProductCount);
 		cartService.modifyCart(cart);
