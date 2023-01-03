@@ -24,4 +24,7 @@ public interface ProductService {
 	List<SubCategory> getSubCate();
 	List<MainCategory> getMainCate();
 
+	//메인 - 검색하기
+	List<Product> searchProduct(String query);
+
 }

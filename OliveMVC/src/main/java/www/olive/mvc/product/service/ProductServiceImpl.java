@@ -50,4 +50,10 @@ public class ProductServiceImpl implements ProductService {
 	public List<MainCategory> getMainCate() {
 		return productMapper.selectAllFromMain();
 	}
+
+	//메인 - 검색하기
+	@Override
+	public List<Product> searchProduct(String query) {
+		return productMapper.selectLikeThis(query);
+	}
 }
