@@ -238,7 +238,8 @@
 					<div class="list-customer">
 						<ul>
 							<li>
-							<table>
+							<jsp:include page="../customercenter/quest/viewcontent.jsp"></jsp:include>
+							<!-- <table>
 								<tr>
 									<th>문의 제목</th>
 									<th>문의 날짜</th>
@@ -246,7 +247,7 @@
 									<th>관리자 확인 여부</th>
 								</tr>
 								
-									<c:forEach items="${qlist }" var="quest">
+									<c:forEach items="${mqlist }" var="quest">
 										<tr>
 											<td><a href="${pageContext.request.contextPath }/quest/detailQuest?questionNum=${quest.questionNum}">${quest.questionTitle }</a></td>
 											<td>${quest.questionDate }</td>
@@ -259,7 +260,7 @@
 											</c:if>		
 										</tr>
 									</c:forEach>
-							</table>
+							</table> -->
 							</li>
 						</ul>
 					</div>
