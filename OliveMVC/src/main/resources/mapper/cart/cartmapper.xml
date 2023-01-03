@@ -24,6 +24,23 @@
 		c.member_num = #{memberNum} order by
 		cart_id desc
 	</select>
+	
+	<select id="viewOneCart" resultType="cart">
+		select p.product_name,
+		c.cart_id, c.product_id,
+		p.product_price, p.product_info,
+		c.total_product_count,
+		c.total_product_price,
+		b.brand_name, m.member_num
+		from product p, cart c, member m, brand b
+		where
+		p.product_id = c.product_id
+		and
+		b.brand_num = p.brand_num
+		and
+		m.member_num = c.member_num
+        and cart_id = #{cartId} order by cart_id desc;
+	</select>
 
 	<!-- 장바구니 담기 -->
 	<insert id="insertInCart">

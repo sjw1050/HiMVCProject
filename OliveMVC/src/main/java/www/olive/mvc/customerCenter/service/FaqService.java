@@ -18,4 +18,8 @@ public class FaqService {
 		return faqRepository.selectAll();
 	}
 
+	public List<Faq> searchFaq(String inqTitNm) {
+		return faqRepository.searchFaq(inqTitNm);
+	}
+
 }

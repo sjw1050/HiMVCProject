@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import www.olive.mvc.member.dto.MemberEntity;
 import www.olive.mvc.myPage.dto.OrderAddress;
+import www.olive.mvc.myPage.dto.OrderDetails;
 import www.olive.mvc.myPage.dto.OrderList;
 import www.olive.mvc.myPage.dto.ProductOrder;
 
@@ -22,6 +23,7 @@ public interface OrderMapper {
 	//상품 주문
 	void insertOrderAddress(OrderAddress oa);
 	void insertOrderProduct(ProductOrder po);
+	void insertOrder(OrderDetails order);
 	
 	
 }

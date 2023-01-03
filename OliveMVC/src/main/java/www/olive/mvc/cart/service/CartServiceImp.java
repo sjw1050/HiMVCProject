@@ -47,6 +47,13 @@ public class CartServiceImp implements CartService{
 		return cartMapper.selectOrderCart(cart);
 	}
 
+@Override
+public Cart viewOneCart(int cartId) {
+	return cartMapper.viewOneCart(cartId);
+}
+
+
+
 
 
 

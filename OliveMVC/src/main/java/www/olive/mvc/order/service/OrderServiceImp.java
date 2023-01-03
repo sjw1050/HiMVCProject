@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import www.olive.mvc.mapper.OrderMapper;
 import www.olive.mvc.myPage.dto.OrderAddress;
+import www.olive.mvc.myPage.dto.OrderDetails;
 import www.olive.mvc.myPage.dto.ProductOrder;
 
 @Service
@@ -23,7 +24,9 @@ public class OrderServiceImp implements OrderService{
 		orderMapper.insertOrderProduct(po);
 	}
 
-	
-
+	@Override
+	public void insertOrder(OrderDetails order) {
+		orderMapper.insertOrder(order);
+	}
 
 }

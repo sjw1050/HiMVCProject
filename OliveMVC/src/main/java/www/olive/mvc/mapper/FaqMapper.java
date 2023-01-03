@@ -11,4 +11,6 @@ public interface FaqMapper {
 	
 	public List<Faq> selectAll();
 
+	public List<Faq> searchFaq(String inqTitNm);
+
 }

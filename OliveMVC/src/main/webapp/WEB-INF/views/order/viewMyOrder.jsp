@@ -8,17 +8,21 @@
 <title>주문 목록</title>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<h1>주문/결제</h1>
 	<form action="${pageContext.request.contextPath }/order/productOrder"
 		method="post">
-	<div>
+	<div><!-- 인풋 나누기  -->
 		<c:forEach items="${orderAddress }" var="orderAddress">
-			<span> <input type="checkbox" id="address" />수령인:${orderAddress.receiver}
-				우편변호:${orderAddress.addressNumber } 주소:${orderAddress.addressInfo }
-				${orderAddress.addressDetail } ${orderAddress.addressDetail2 }<br>
-				<input type="hidden" name ="addressId" value="${orderAddress.addressId }" />
+			<span> <input type="checkbox" id="address"/>
+			수령인:<input type="text" name="receiver" value="${orderAddress.receiver}" disabled/>
+				우편변호: <input type="text" name="addressNumber"value="${orderAddress.addressNumber }" disabled />  
+				주소: <input type="text" name="addressInfo" value="${orderAddress.addressInfo }" disabled /> 
+				<input type="text" name="addressDetail" value="${orderAddress.addressDetail }" disabled /> 
+				<input type="text" name="addressDetail2" value="${orderAddress.addressDetail2 }" disabled /><br>
+				<input type="hidden" name ="addressId" value="${orderAddress.addressId }" disabled />
 			</span>
 		</c:forEach>
 	</div>
@@ -54,25 +58,25 @@
 		<div>
 			<h2>배송 상품</h2>
 			<table>
+			<c:set var = "total" value = "0" />
 				<c:forEach items="${viewCartList }" var="viewCartList">
 					<tr>
 						<th>상품정보</th>
 						<th>판매가</th>
 						<th>수량</th>
+						<th>최종 금액</th>
 					</tr>
 					<tr>
 						<td><span>${viewCartList.brandName }</span>
-							<p>${viewCartList.productInfo}${viewCartList.productName }</p> <input
-							type="hidden" name ="productId" value="${viewCartList.productId }" /></td>
-						<td>${viewCartList.productPrice * viewCartList.totalProductCount }
-							<input type="hidden" name="productPrice" value="${viewCartList.productPrice}" />
-						</td>
-						<td>${viewCartList.totalProductCount }<input type="hidden" name="totalProductCount"
-							value="${viewCartList.totalProductCount}" />
-						</td>
+							<p>${viewCartList.productInfo}${viewCartList.productName }</p></td>
+						<td>${viewCartList.productPrice }</td>
+						<td>${viewCartList.totalProductCount }</td>
+						 <td>${viewCartList.productPrice * viewCartList.totalProductCount}</td>
+						 <c:set var= "total" value="${total + viewCartList.productPrice * viewCartList.totalProductCount}"/>
 					</tr>
 				</c:forEach>
 			</table>
+			<p>총 결제 금액 : ${total } <input type="hidden" name="totalPrice" value="${total }" /></p>
 		</div>
 		<div>
 			<p>
@@ -83,6 +87,21 @@
 
 </body>
 <script>
+
+$(document).ready(function() {
+	$("input:checkbox").on('click', function() {
+		if ( $(this).prop('checked') ) {
+			$('input[type="checkbox"]').prop('checked',false);
+			$(this).prop('checked',true);
+			if($(this).prop('checked')){
+				$('input[type="checkbox"]').siblings("input").attr("disabled", true);
+				$(this).siblings("input").attr("disabled", false);
+			}else{
+				$(this).siblings("input").attr("disabled", true);
+			}			
+		}
+	});
+});
 	/* let receiver = document.getElementById("receiver");
 	let addressNumber = document.getElementById("addressNumber")
 	let addressinfo = document.getElementById("addressinfo");

@@ -117,10 +117,16 @@
 	values(#{addressNumber}, #{addressInfo}, #{addressDetail}, #{addressDetail2}, #{receiver}, #{phone}, #{member.memberNum})
 	
 	</insert>
-	<insert id ="insertOrderProduct">
-	insert into product_order(order_id, address_id, total_price, order_date, member_num)
-	values(#{orderId},#{address.addressId},#{totalPrice} , curdate(), #{member.memberNum})
 	
+	<insert id ="insertOrderProduct">
+	insert into product_order (total_price, status_number, address_id, member_num) 
+	values(#{totalPrice}, 1, #{address.addressId}, #{member.memberNum})	
+	</insert>
+	
+	<!-- 상품주문 -->
+	<insert id ="insertOrder">
+	insert into order_details (order_id, product_id, order_count) 
+	values(LAST_INSERT_ID(), #{product.productId}, #{orderCount});
 	</insert>
 
 

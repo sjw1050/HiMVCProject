@@ -6,8 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import www.olive.mvc.cart.dto.Cart;
 import www.olive.mvc.member.dto.AuthInfo;
-import www.olive.mvc.member.dto.MemberEntity;
-import www.olive.mvc.order.dto.OrderList;
   
 @Mapper
 public interface CartMapper {
@@ -24,6 +22,8 @@ public interface CartMapper {
 
 //	List<Cart> selectOrderCart(int OrderProductId);
 	List<Cart> selectOrderCart(Cart cart);
+
+	Cart viewOneCart(int cartId);
 
 
 

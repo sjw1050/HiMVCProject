@@ -19,6 +19,8 @@ public interface CartService {
 //	List<Cart> selectOrderCart(int OrderProductId);
 	List<Cart> selectOrderCart(Cart cart);
 
+	Cart viewOneCart(int cartId);
+
 
 
 }

@@ -27,18 +27,9 @@
 			<c:if test="${not quest.viewCheck }">
 				<strong>답변 대기</strong>
 			</c:if>								
-							${quest.questionTitle }
+							${quest.questionTitle }							
 						</a>	
-		
-						<ul class="conts">
-							<li class="question">
-								<strong>문의 내용</strong>
-								<p>
-									${quest.questionContent }
-								</p>
-								
-							</li>
-						</ul>
+						<span style="margin-left: 500px" class="data">${quest.questionDate }</span>						
 					</li>	
 				</ul>
 				</c:forEach>

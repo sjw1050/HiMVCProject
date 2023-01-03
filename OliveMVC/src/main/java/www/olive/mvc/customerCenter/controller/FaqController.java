@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import www.olive.mvc.customerCenter.dto.Faq;
@@ -23,6 +24,15 @@ public class FaqController {
 		List<Faq> list = faqService.selectAll();
 		model.addAttribute("faqList", list);
 		return "/customercenter/cs_main";
+	}
+	
+	@PostMapping("search")
+	public String faqSerach(String inqTitNm, Model model) {
+		System.out.println("검색어 받아왔니?" + inqTitNm);
+		List<Faq> faqList = faqService.searchFaq(inqTitNm);
+		System.out.println("받아온 검색어 목록>>>" + faqList);
+		model.addAttribute("faqList", faqList);
+		return "/customercenter/searcgfaq";
 	}
 
 }

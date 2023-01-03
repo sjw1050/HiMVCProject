@@ -7,4 +7,11 @@
 	<select id="selectAll" resultType="faq">
 	select * from faq
 	</select>
+	
+	<select id="searchFaq" resultType="faq">
+	select * from faq where faq_title like '%#{inqTitNm}%'
+or faq_question like '%#{inqTitNm}%'
+or faq_answer like '%#{inqTitNm}%'
+	</select>
+	
 </mapper>

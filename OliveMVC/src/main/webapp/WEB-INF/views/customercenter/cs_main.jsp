@@ -50,7 +50,7 @@
 			<li id="tabNotice"><a
 				href="${pageContext.request.contextPath }/cs/notice/viewall">공지사항</a></li>
 		</ul>
-		<form id="sForm" name="sForm">
+		<form id="sForm" name="sForm" onsubmit="return searchSubmit();">
 
 			<fieldset class="search-faq">
 				<legend>FAQ 검색</legend>
@@ -166,5 +166,21 @@ $('.list-customer .tit').click(function(e){
 
     }
 });
+function searchSubmit(){
+	e.preventDefault();
+if($("#inqTitNm").val().length == 0){
+    alert('검색어를 입력해주세요.');
+    return false;
+}
+if($("#inqTitNm").val().length > 10){
+    alert('최대 10자까지 입력 가능합니다.');
+    return false;
+}
+sForm.attr('action', "${pageContext.request.contextPath }/cs/faq/search");
+sForm.attr('method', "POST");
+console.log(sForm);
+//sForm.submit();
+}
+
 </script>
 </html>
