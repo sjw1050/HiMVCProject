@@ -55,7 +55,7 @@ public class OrderController {
 		if(info == null) {
 			return "main";
 		}
-		System.out.println("리스트로 카트 받는지?"+cartId);
+		//System.out.println("리스트로 카트 받는지?"+cartId);
 		List<Cart> cartList = new ArrayList<Cart>();
 		for(Integer cart : cartId) {
 			//System.out.println("카트넘버"+cart);
@@ -63,7 +63,7 @@ public class OrderController {
 			//System.out.println("카트넘버를 통해서 카트 정보 받아왔니?"+oneCart);
 			cartList.add(oneCart);
 		}
-		System.out.println("카트아이디 받아서 카트 리스트 받아왔니?" + cartList);
+		//System.out.println("카트아이디 받아서 카트 리스트 받아왔니?" + cartList);
 		//model.addAttribute("viewCartList", cart);
 //		int OrderProductId = Integer.parseInt(request.getParameter("OrderProductId"));
 //		System.out.println("OrderProductId >>>>>>>>>>>>>" + OrderProductId);
@@ -94,6 +94,7 @@ public class OrderController {
 	@PostMapping("/productOrder")
 	public String productOrder(HttpSession session,HttpServletRequest request , 
 			Model model,OrderAddress oa, ProductOrder po) {
+		// productOrder만들고 인서트 >>>>> order에 po셋 >>> order인서트 
 		OrderDetails order = new OrderDetails();
 		System.out.println("주소정보 받아왔니?" + oa);
 		System.out.println("총금액 받아옴?" + po);
