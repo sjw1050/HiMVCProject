@@ -54,7 +54,7 @@
 
 			<fieldset class="search-faq">
 				<legend>FAQ 검색</legend>
-				<!-- 					<label for="inqTitNm">FAQ 검색</label> -->
+				<label for="inqTitNm">FAQ 검색</label>
 				<div class="input" id="sch_field2">
 					<input type="text" id="inqTitNm" name="inqTitNm"
 						title="질문 키워드를 입력해주세요." placeholder="질문 키워드를 입력해주세요." value="">
