@@ -702,10 +702,11 @@ try {
 	
 	<script src="${pageContext.request.contextPath }/resources/js/common/jcarousellite_1.0.1.mindbaa.js?dumm=20221223001" charset="utf-8"></script>	
 	
-<%-- 	<script src="${pageContext.request.contextPath }/resources/js/search/beta.fixdbaa.js?dumm=20221223001" charset="utf-8"></script>
-	<script src="${pageContext.request.contextPath }/resources/js/search/beta2.fixdbaa.js?dumm=20221223001" charset="utf-8"></script> --%>
-	<script src="${pageContext.request.contextPath }/resources/js/search/searchdbaa_yerim.js" charset="utf-8"></script>
-<%-- 	<script src="${pageContext.request.contextPath }/resources/js/search/arkdbaa.js?dumm=20221223001" charset="utf-8"></script> --%>
+	<%-- <script src="${pageContext.request.contextPath }/resources/js/search/beta.fixdbaa.js?dumm=20221223001" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath }/resources/js/search/beta2.fixdbaa.js?dumm=20221223001" charset="utf-8"></script>  --%>
+	<script src="${pageContext.request.contextPath }/resources/js/search/searchdbaa_yerim.js" charset="utf-8"></script> 
+	<%-- <script src="${pageContext.request.contextPath }/resources/js/search/searchdbaa.js?dumm=20221223001" charset="utf-8"></script> --%>
+ <%-- 	<script src="${pageContext.request.contextPath }/resources/js/search/arkdbaa.js?dumm=20221223001" charset="utf-8"></script> --%>
 	<script src="${pageContext.request.contextPath }/resources/js/curation/curationdbaa.js?dumm=20221223001" charset="utf-8"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/gtm/gtmdbaa.js?dumm=20221223001" charset="utf-8"></script>
 

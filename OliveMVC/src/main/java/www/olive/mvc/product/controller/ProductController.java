@@ -82,4 +82,8 @@ public class ProductController {
 		return "product/viewOneProduct";
 	}
 
+	
+	@GetMapping("/product/test")
+	public void test() {}
+	
 }
