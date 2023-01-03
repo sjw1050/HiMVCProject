@@ -437,19 +437,8 @@
 
 			<ul class="mymenu_area">
 				<!-- 오늘드림 플래그 개인화 노출 2차 POC 추가 -->
-				<li id="todayDeliveryContainer" class="delivery"></li>
+				<!-- <li id="todayDeliveryContainer" class="delivery"></li> -->
 				<!-- // 오늘드림 플래그 개인화 노출 2차 POC 추가 -->
-				<li class="store "><a href="#" class="mymenu_layer"
-					title="관심 매장소식 자세히보기 열기/닫기">관심 매장소식</a>
-					<div class="alim_box">
-
-						<p class="store_desc">
-							<span>로그인</span>하시면 자주가는 매장을 <br />관심 매장으로 설정 할 수 있습니다.
-						</p>
-						<button class="mymenu_btn"
-							onClick="javascript:common.link.moveLoginPage();">로그인</button>
-
-					</div></li>
 				<li class="recent"><a href="javascript:;" class="mymenu_layer"
 					title="최근 본 상품 자세히보기 열기/닫기">최근 본 상품</a>
 					<div class="recent_prd_box" style="min-height: 510px;">
@@ -457,12 +446,26 @@
 							전체 <span>0</span>개
 						<div class="no_data" style="display: none;">최근 본 상품이 없습니다.</div>
 					</div></li>
+				<c:if test="${empty info }">
+				<li class="store "><a href="#" class="mymenu_layer"
+					title="관심 매장소식 자세히보기 열기/닫기">관심 매장소식</a>
+					<div class="alim_box">			
+						<p class="store_desc">
+							<span>로그인</span>하시면 자주가는 매장을 <br />관심 매장으로 설정 할 수 있습니다.
+						</p>
+						<a class="mymenu_btn" data-bs-toggle="modal"
+						data-bs-target="#loginModal" data-attr='공통^헤더^로그인'>로그인</a>
+						<!-- <button class="mymenu_btn"
+							onClick="javascript:common.link.moveLoginPage();">로그인</button> -->			
+					</div></li>
+					</c:if>
+				
 			</ul>
 		</div>
 		<div class="header_design_area"></div>
 	</div>
 
-	<div class="main_moving_banner" style="display: none;">
+	<!-- <div class="main_moving_banner" style="display: none;">
 		<a
 			href="https://www.oliveyoung.co.kr/store/storeEvent/getCultureTicketEventDetail.do?evtNo=00000000011227"
 			data-attr="홈^우측원형플로팅배너^컬쳐이벤트_디즈니_김채원"><img
@@ -471,8 +474,8 @@
 			data-ref-compareKey="90000040003/39/263147772111492742.html" /></a>
 		<button type="button" class="moving_banner_close">배너 하루동안 보지
 			않기</button>
-		<!-- 2017-02-06 코드수정 -->
-	</div>
+		2017-02-06 코드수정
+	</div> -->
 
 	<div id="Gnb" class="main gen1">
 		<div id="gnbWrap">

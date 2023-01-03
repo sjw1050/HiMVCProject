@@ -33,6 +33,7 @@
 </head>
 <jsp:include page="../header.jsp"></jsp:include>
 <body>
+<div id="Container">
 	<div id="Contents" class="m2105">
 		<div class="sub_title_area customer">
 			<h1>
@@ -45,15 +46,15 @@
 		<ul class="comm1sTabs threeSet customer">
 			<li id="tabFaq" class="on"><a
 				href="${pageContext.request.contextPath }/cs/faq/faqview" title="선택됨">FAQ</a></li>
-			<li id="tab1on1"><a href="javascript:common.link.moveQnaList();">1:1문의</a></li>
+			<li id="tab1on1"><a href="${pageContext.request.contextPath }/cs/quest/view">1:1문의</a></li>
 			<li id="tabNotice"><a
-				href="https://www.oliveyoung.co.kr/store/counsel/getNoticeList.do">공지사항</a></li>
+				href="${pageContext.request.contextPath }/cs/notice/viewall">공지사항</a></li>
 		</ul>
 		<form id="sForm" name="sForm">
 
 			<fieldset class="search-faq">
 				<legend>FAQ 검색</legend>
-				<!-- 					<label for="inqTitNm">FAQ 검색</label> -->
+				<label for="inqTitNm">FAQ 검색</label>
 				<div class="input" id="sch_field2">
 					<input type="text" id="inqTitNm" name="inqTitNm"
 						title="질문 키워드를 입력해주세요." placeholder="질문 키워드를 입력해주세요." value="">
@@ -149,6 +150,8 @@
 				</div>
 				
 				</div>
+				</div>
+				<jsp:include page="../footer.jsp"></jsp:include>
 		
 </body>
 <script>

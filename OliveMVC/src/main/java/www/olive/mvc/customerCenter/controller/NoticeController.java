@@ -30,7 +30,7 @@ import www.olive.mvc.customerCenter.service.NoticeService;
 import www.olive.mvc.util.FileUtil;
 
 @Controller
-@RequestMapping("/notice")
+@RequestMapping("cs/notice/**")
 public class NoticeController {
 
 	@Autowired
@@ -39,14 +39,14 @@ public class NoticeController {
 	@GetMapping("viewall")
 	public String viewallNotice(Model model) {
 		List<Notice> list = noticeService.viewNotice();
-		model.addAttribute("list", list);
-		return "notice/viewNotice";
+		model.addAttribute("noticelist", list);
+		return "customercenter/notice/viewNotice";
 	}
 
 	@GetMapping("write")
 	public String writeNotice() {
 		// System.out.println("write 진입 성공");
-		return "notice/write";
+		return "customercenter/notice/write";
 	}
 
 	@PostMapping("write")
@@ -68,7 +68,7 @@ public class NoticeController {
 			
 			}
 		}			 
-		return "redirect:/notice/viewall";
+		return "redirect:cs/notice/viewall";
 	}
 
 	@GetMapping("viewnotice")
@@ -83,7 +83,7 @@ public class NoticeController {
 		}
 		// System.out.println("공지 번호에 맞게 들어왔니?" + notice);
 		model.addAttribute("notice", notice);
-		return "notice/detailnotice";
+		return "customercenter/notice/detailnotice";
 
 	}
 

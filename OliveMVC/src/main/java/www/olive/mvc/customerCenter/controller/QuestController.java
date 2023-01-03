@@ -13,6 +13,7 @@ import www.olive.mvc.customerCenter.dto.AnswerBoard;
 import www.olive.mvc.customerCenter.dto.OliveFile;
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
 import www.olive.mvc.customerCenter.service.QuestService;
+import www.olive.mvc.member.dto.Admin;
 import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.util.FileUtil;
 
@@ -33,7 +34,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 @Controller
-@RequestMapping("/quest/*")
+@RequestMapping("cs/quest/**")
 public class QuestController {
 	
 	@Autowired
@@ -42,16 +43,21 @@ public class QuestController {
 	@GetMapping("view")
 	public String viewQuest(Model model, HttpSession session) {
 		AuthInfo logininfo = (AuthInfo) session.getAttribute("info");
-		if(logininfo == null) {
-			List<QuestionBoard> qList = questService.viewquest();
-			//System.out.println("question 0번 인덱스 글쓴이 : "+qList.get(0).getWriter().getMemberName());
-			model.addAttribute("qlist", qList);
-			return "quest/viewquest";
+		Admin admin = (Admin) session.getAttribute("admininfo");
+		if(logininfo == null && admin == null) {
+			return "/main";
 		}else {
-			List<QuestionBoard> qList = questService.viewMemberQuest(logininfo);
+			//List<QuestionBoard> mqList = questService.viewMemberQuest(logininfo);
+			List<OliveFile> questFile = questService.getFiles();
+			System.out.println("받아온 전체 파일 정보 " + questFile);
+			List<QuestionBoard> mqList = questService.viewquest();
+			List<AnswerBoard> answerBoard = questService.viewAnswerList();
+			
 			//System.out.println("퀘스트 들어왔니?"+qList.get(0).getWriter().getMemberNum());
-			model.addAttribute("qlist", qList);
-			return "quest/viewquest";
+			model.addAttribute("mqlist", mqList);
+			model.addAttribute("questFiles", questFile);
+			model.addAttribute("answer", answerBoard);
+			return "customercenter/quest/viewquest";
 		}
 	}
 	
@@ -80,35 +86,49 @@ public class QuestController {
 	
 	@GetMapping("write")
 	public String writeFormQuest() {
-		return "quest/write";
+		return "customercenter/quest/write";
 	}
 	
 	@PostMapping("write")
-	public String saveQuest(HttpSession session, QuestionBoard quest, MultipartHttpServletRequest mtfRequest, HttpServletRequest request) {
+	public String saveQuest(HttpSession session, QuestionBoard quest, MultipartFile file, HttpServletRequest request) {
+		System.out.println("퀘스트 들어옴?" + quest);
+		System.out.println("파일 들어옴?" + file);
 		AuthInfo loginauth = (AuthInfo) session.getAttribute("info");
 		//System.out.println("문의 내용 들어왔니?>>>" + quest);
 		//System.out.println("로그인 정보 들어왔니?>>" +loginauth);
-		System.out.println("파일 입력?"+mtfRequest.getFiles("file").get(0).getOriginalFilename());
-		List<MultipartFile> fileList = mtfRequest.getFiles("file");
+//		System.out.println("파일 입력?"+mtfRequest.getFiles("file").get(0).getOriginalFilename());
+//		List<MultipartFile> fileList = mtfRequest.getFiles("file");
 		questService.saveQuest(quest, loginauth);
-		for(MultipartFile mf : fileList) {
-			if (mf.getSize() != 0) {
-				try {
-				String savedFilePath = FileUtil.uploadFile(mf, request);
+//		for(MultipartFile mf : fileList) {
+//			if (mf.getSize() != 0) {
+//				try {
+//				String savedFilePath = FileUtil.uploadFile(mf, request);
+//				String filename = savedFilePath.substring(10).trim();
+//				System.out.println(filename);
+//				questService.saveQuestFile(filename);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			
+//			}
+//		}		
+		if(file != null) {
+		if(file.getSize() != 0) {
+			try {
+				String savedFilePath = FileUtil.uploadFile(file, request);
 				String filename = savedFilePath.substring(10).trim();
 				System.out.println(filename);
 				questService.saveQuestFile(filename);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		}			 
+			
+		}
+		}	
 		
-		
-		
-		return "redirect:/quest/view";
+		return "redirect:cs/quest/view";
 	}
 	
 	@PostMapping("modiquest")
@@ -176,25 +196,24 @@ public class QuestController {
 	
 	@PostMapping("removequest")
 	public String removequest(Long questionNum) {
-		System.out.println("퀘스트번호 들어왔니?" + questionNum);
+		//System.out.println("퀘스트번호 들어왔니?" + questionNum);
 		questService.removeQuest(questionNum);
-		return "redirect:/quest/view";
+		return "redirect:cs/quest/view";
 	}
 	
 	@PostMapping("addAnswer")
-	public String addAnswer(Model model,AnswerBoard answer, RedirectAttributes redirectAttributes) {
+	public String addAnswer(Model model,AnswerBoard answer) {
 		//System.out.println("답변 받아왔니?" + answer);
 		questService.saveAnswer(answer);
-		redirectAttributes.addAttribute("questionNum", answer.getQuestionNum());
-		return "redirect:/quest/detailQuest";
+		questService.adminQuestCheck(answer.getQuestionNum());
+		return "redirect:cs/quest/view";
 	}
 	
 	@PostMapping("modifyAnswer")
-	public String modifyAnswer(AnswerBoard answerBoard, RedirectAttributes redirectAttributes) {
+	public String modifyAnswer(AnswerBoard answerBoard) {
 		//System.out.println("답변수정 잘 받아왔니?" + answerBoard);
 		questService.updateAnswer(answerBoard);
-		redirectAttributes.addAttribute("questionNum", answerBoard.getQuestionNum());
-		return "redirect:/quest/detailQuest";
+		return "redirect:cs/quest/view";
 	}
 	
 

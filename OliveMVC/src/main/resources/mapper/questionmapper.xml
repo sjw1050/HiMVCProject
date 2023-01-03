@@ -59,6 +59,11 @@
 	select * from board_answer where question_num = #{questionNum}
 	</select>
 	
+	<select id="viewAnswerList" resultType="answer">
+	select * from board_answer
+	</select>
+	
+	
 	<select id="findQuestNum" resultMap="boardResult">
 	select q.question_num, q.question_title, q.question_content, q.question_date, q.view_check, m.member_name, m.member_num
    from board_question q, member m
@@ -69,6 +74,12 @@
 	<select id="getQuestFile" resultMap="FileResult">
 	select o.file_name, q.question_num from olivefile o, board_question q 
 	where q.question_num = o.question_num and o.question_num = #{questionNum};
+	</select>
+	
+	
+	<select id="getQuestFiles" resultMap="FileResult">
+	select o.file_name, q.question_num from olivefile o, board_question q 
+	where q.question_num = o.question_num
 	</select>
 	
 	<insert id="saveQuest">
