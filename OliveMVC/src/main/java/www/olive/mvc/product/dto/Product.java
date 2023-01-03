@@ -15,7 +15,8 @@ public class Product {
 	private String productName;
 	private int productPrice;
 	private String productInfo;
-	private Color colorId;
+//	private Color colorId;
+	private int colorId;
 //	private SubCategory subCategory;
 	private String brandName;
 	

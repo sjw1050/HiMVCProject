@@ -42,6 +42,7 @@
 	href="${pageContext.request.contextPath }/resources/css/styledbaa.css?dumm=20221223001" />
 
 <script>
+	//var _path = "${pageContext.request.contextPath }";
 	var _tmsPushUrl = "https://pmsg.oliveyoung.co.kr/msg-api/user/mkt-flag";
 	var _baseUrl = 'https://www.oliveyoung.co.kr/store/';
 	var _plainUrl = 'https://www.oliveyoung.co.kr/store/';
@@ -355,15 +356,34 @@
 			<!-- 올리브영 메인 로고 끝 -->
 
 			<div class="search_box" id="w_search_box">
-				<input type="hidden" name="chkButton" id="chkButton" value="" /> <input
+			<!-- 검색 오리지날 -->
+				<!-- <input type="hidden" name="chkButton" id="chkButton" value="" /> <input
 					type="text" id="query" name="" value="" class="inp_placeholder"
 					data-placeholder="쿤달 아쿠아올인원 런칭!"
 					data-ref-linkUrl="https://www.oliveyoung.co.kr/store/planshop/getPlanShopDetail.do?dispCatNo=500000102190141"
 					onKeypress="javascript:pressCheck_WEB_MainSearch((event),this);"
 					onkeydown="javascript:downCheck_WEB_MainSearch((event));" />
 
-				<button id="searchSubmit">검색</button>
+				<button id="searchSubmit">검색</button> -->
+			<!-- 검색 오리지날 -->
+			
+			
+			
+			
+			<!-- 검색 예리미 변경 -->
+				<input type="hidden" name="chkButton" id="chkButton" value="" /> 
+				<input
+					type="text" id="query" name="" value="" class="inp_placeholder"
+					data-placeholder="꺄아아아악 예리미"
+					data-ref-linkUrl=""
+					onKeypress="javascript:pressCheck_WEB_MainSearch((event),this);"
+					onkeydown="javascript:downCheck_WEB_MainSearch((event));" />
 
+				<button id="searchSubmit">검색</button>
+			<!-- 검색 예리미 변경 -->
+			
+			
+			
 				<!-- 검색 레이어 영역 (디자인 수정 예정) -->
 				<div class="search_layer">
 					<div class="layer_inner">
@@ -661,12 +681,6 @@ try {
 <!--Pixel init Script End-->
 
 
- 
-
-
-
-
-
 
 
 	<script src="${pageContext.request.contextPath }/resources/js/common/jquery.popupWindowdbaa.js?dumm=20221223001" charset="utf-8"></script>
@@ -688,10 +702,10 @@ try {
 	
 	<script src="${pageContext.request.contextPath }/resources/js/common/jcarousellite_1.0.1.mindbaa.js?dumm=20221223001" charset="utf-8"></script>	
 	
-	<script src="${pageContext.request.contextPath }/resources/js/search/beta.fixdbaa.js?dumm=20221223001" charset="utf-8"></script>
-	<script src="${pageContext.request.contextPath }/resources/js/search/beta2.fixdbaa.js?dumm=20221223001" charset="utf-8"></script>
-	<script src="${pageContext.request.contextPath }/resources/js/search/searchdbaa.js?dumm=20221223001" charset="utf-8"></script>
-	<script src="${pageContext.request.contextPath }/resources/js/search/arkdbaa.js?dumm=20221223001" charset="utf-8"></script>
+<%-- 	<script src="${pageContext.request.contextPath }/resources/js/search/beta.fixdbaa.js?dumm=20221223001" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath }/resources/js/search/beta2.fixdbaa.js?dumm=20221223001" charset="utf-8"></script> --%>
+	<script src="${pageContext.request.contextPath }/resources/js/search/searchdbaa_yerim.js" charset="utf-8"></script>
+<%-- 	<script src="${pageContext.request.contextPath }/resources/js/search/arkdbaa.js?dumm=20221223001" charset="utf-8"></script> --%>
 	<script src="${pageContext.request.contextPath }/resources/js/curation/curationdbaa.js?dumm=20221223001" charset="utf-8"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/gtm/gtmdbaa.js?dumm=20221223001" charset="utf-8"></script>
 
@@ -729,7 +743,9 @@ try {
 <form name="ssologinfrm" action="https://www.oliveyoung.co.kr/store/login/ssoLogin.do" method="post">
 <input  type="hidden"  id="cjssoq" name="cjssoq" />
 </form>
+
 <script>
+
 	var ssoCheck = "N";
 	var cjssoq = "null";
 	//alert('ssocheck:'+ssoCheck);
