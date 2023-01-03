@@ -40,4 +40,8 @@ public interface QuestionMapper {
 
 	public void deleteFile(String fileName);
 
+	public List<OliveFile> getQuestFiles();
+
+	public List<AnswerBoard> viewAnswerList();
+
 }

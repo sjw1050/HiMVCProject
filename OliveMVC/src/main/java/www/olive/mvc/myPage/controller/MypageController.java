@@ -1,20 +1,17 @@
 package www.olive.mvc.myPage.controller;
 
 
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.jni.Address;
-import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.olive.mvc.customerCenter.dto.QuestionBoard;
@@ -26,7 +23,9 @@ import www.olive.mvc.myPage.dto.OrderAddress;
 import www.olive.mvc.myPage.dto.OrderList;
 import www.olive.mvc.myPage.dto.ProductOrder;
 import www.olive.mvc.myPage.service.MypageService;
+import www.olive.mvc.product.dto.Product;
 import www.olive.mvc.product.dto.ProductQna;
+import www.olive.mvc.product.service.ProductService;
 
 @Controller
 @RequestMapping("/mypage/**")
@@ -40,6 +39,9 @@ public class MypageController {
 	
 	@Autowired
 	QuestService questService;
+	
+	@Autowired
+	ProductService productService;
 	
 	
 	@GetMapping("main")
@@ -56,7 +58,7 @@ public class MypageController {
 		
 		//System.out.println("오더정보 들어옴?" + order);
 		model.addAttribute("order", order);
-		model.addAttribute("qlist", qList);
+		model.addAttribute("mqlist", qList);
 		model.addAttribute("pqList", pqList);
 		return "mypage/main";
 	}
@@ -147,9 +149,13 @@ public class MypageController {
 	
 	@GetMapping("withdrawal")
 	public @ResponseBody String withdrawal(Long memberNum, HttpSession session) {
-		mypageService.withdrawal(memberNum);
+		int result = mypageService.withdrawal(memberNum);
+		if(result >0) {
 		session.invalidate();
 		return "success";
+		}else {
+			return "fail";
+		}
 	}
 	
 	@GetMapping("productqnaList")
@@ -164,12 +170,61 @@ public class MypageController {
 		return "mypage/productqnaList";
 	}
 	
+	@GetMapping("productqnaListAll")
+	public String productQnaListAll(Model model) {
+//		AuthInfo info = (AuthInfo) session.getAttribute("info");
+//		if(info == null) {
+//			return "/main";
+//		}
+		List<ProductQna> pqList = mypageService.viewProductQnaAll();
+		//System.out.println("상품qna 리스트 받아왔니?" + pqList);
+		model.addAttribute("pqList", pqList);
+		return "mypage/productqnaList";
+	}
+	
 	@GetMapping("detailproductqna")
 	public String detailproductqna(Model model, ProductQna productQna) {
 		ProductQna qna = mypageService.detailProductQna(productQna.getProductQnaId());
-		System.out.println("상품qna받아왔니?" + qna);
+		//System.out.println("상품qna받아왔니?" + qna);
 		model.addAttribute("qna", qna);
 		return "mypage/detailproductqna";
+	}
+	
+	@PostMapping("answerinsert")
+	public @ResponseBody String answerinsert(ProductQna qna) {
+		//System.out.println("답변 정보 받아왔니?"+qna);
+		int result = mypageService.answerInsert(qna);
+		System.out.println("result>>"+result);
+		if(result > 0) {
+		return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@PostMapping("modifyproductqna")
+	public @ResponseBody String modifyproductqna(ProductQna qna) {
+		System.out.println("문의 수정 정보 받아왔니?"+qna);
+		int result = mypageService.modifyProductQna(qna);
+		System.out.println("result>>"+result);
+		if(result > 0) {
+		return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@GetMapping("productquestform")
+	public void productquestform(Product product, Model model) {
+		Product oneProd = productService.viewOneProduct(product.getProductId());
+		model.addAttribute("oneProd", oneProd);
+	}
+	
+	@PostMapping("productquestinsert")
+	public String productQuestInsert(ProductQna qna, HttpSession session) {
+		System.out.println("상품문의 정보 받아옴?"+qna);
+		mypageService.productQuestInsert(qna);
+		return "redirect:/mypage/productqnaListAll/";
 	}
 	
 

@@ -3,18 +3,13 @@ package www.olive.mvc.product.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import www.olive.mvc.product.dto.Product;
-import www.olive.mvc.product.dto.SubCategory;
 import www.olive.mvc.product.service.ProductService;
 
 @Controller
@@ -75,12 +70,12 @@ public class ProductController {
 
 	// 상품 상세 보기
 	@GetMapping("/product/viewOneProduct")
-	public String viewOneProduct(HttpServletRequest request, Model model) {
+	public String viewOneProduct(HttpServletRequest request, Model model, Product product) {
 
-		String productId = request.getParameter("productId");
-		List<Product> oneProdList = productService.viewOneProduct(productId);
+		//String productId = request.getParameter("productId");
+		Product oneProdList = productService.viewOneProduct(product.getProductId());
 
-		System.out.println("productId param >>> " + productId);
+		//System.out.println("productId param >>> " + productId);
 		System.out.println("oneProdList >>>>" + oneProdList);
 
 		model.addAttribute("oneProdList", oneProdList);

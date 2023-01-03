@@ -14,7 +14,7 @@ public interface ProductMapper {
 
 	List<Product> selectAllProduct();
 
-	List<Product> selectOneProduct(String productId);
+	Product selectOneProduct(int productId);
 
 //	List<Product> selectByMainCate(String mainCateId);
 //
@@ -32,5 +32,16 @@ public interface ProductMapper {
 	//상품QnA가져오기
 	List<ProductQna> viewProductQna(Long memberNum);
 	ProductQna detailProductQna(int productQnaId);
+
+	List<ProductQna> viewProductQnaAll();
+
+	int answerInsert(ProductQna qna);
+
+	int modifyProductQna(ProductQna qna);
+
+	void productQuestInsert(ProductQna qna);
+
+	//메인 - 검색하기
+	List<Product> selectLikeThis(String query);
 	
 }

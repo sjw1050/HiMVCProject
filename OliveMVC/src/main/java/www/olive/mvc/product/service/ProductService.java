@@ -10,7 +10,7 @@ public interface ProductService {
 
 	List<Product> viewAllProduct();
 
-	List<Product> viewOneProduct(String productId);
+	Product viewOneProduct(int productId);
 
 //	List<Product> viewByMainCate(String mainCateId);
 
@@ -23,5 +23,8 @@ public interface ProductService {
 	// 메인에 카테고리 정보 붙여놓기
 	List<SubCategory> getSubCate();
 	List<MainCategory> getMainCate();
+
+	//메인 - 검색하기
+	List<Product> searchProduct(String query);
 
 }

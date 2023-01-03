@@ -48,7 +48,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authCheckInterceptor()).addPathPatterns("/quest/write");
-		registry.addInterceptor(authCheckInterceptor()).addPathPatterns("/mypage/**");
+		//registry.addInterceptor(authCheckInterceptor()).addPathPatterns("/mypage/**");
 		registry.addInterceptor(adminCheckInterceptor()).addPathPatterns("/notice/write");
 		registry.addInterceptor(sellerCheckInterceptor()).addPathPatterns("/seller/registProduct");
 				//.excludePathPatterns("/edit/help/**");

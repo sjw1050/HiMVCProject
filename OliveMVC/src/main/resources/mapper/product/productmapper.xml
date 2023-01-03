@@ -9,15 +9,15 @@
 		<id property="subCateId" column="sub_cate_id" javaType="int" />
 		<result property="subCateName" column="sub_cate_name" />
 		<result property="mainCateId" column="main_cate_id" />
-		<association property="mainCateInfo"
-			column="main_cate_name" javaType="mainCategory" resultMap="mainCate"></association>
+		<association property="mainCateInfo" column="main_cate_name"
+			javaType="mainCategory" resultMap="mainCate"></association>
 	</resultMap>
 
 	<resultMap id="mainCate" type="mainCategory">
 		<id property="mainCateId" column="main_cate_id" />
 		<result property="mainCateName" column="main_cate_name" />
 	</resultMap>
-	
+
 	<resultMap id="productQnaResult" type="productQna">
 		<id property="productQnaId" column="product_qna_id" />
 		<result property="productQuestionTitle" column="product_question_title" />
@@ -25,35 +25,54 @@
 		<result property="productQuestionDate" column="product_question_date" />
 		<result property="productQuestionAnswer" column="product_question_answer" />
 		<result property="productAnswerDate" column="product_answer_date" />
-		<association property="product" column="product_id" javaType="product" resultMap="productResult"></association>
-		<association property="member" column="member_num" javaType="member" resultMap="memberResult"></association>
+		<association property="product" column="product_id"
+			javaType="product" resultMap="productResult"></association>
+		<association property="member" column="member_num"
+			javaType="member" resultMap="memberResult"></association>
 	</resultMap>
-	
+
 	<resultMap id="productResult" type="product">
 		<id property="productId" column="product_id" />
 		<result property="productName" column="product_name" />
 	</resultMap>
-	
+
 	<!-- 멤버 가져오는 resultMap -->
 	<resultMap id="memberResult" type="member">
-	<id property="memberNum" column="member_num"/>
-	<result property="memberId" column="member_id"/>
-	<result property="pw" column="pw"/>
-	<result property="memberName" column="member_name"/>
-	<result property="email" column="email"/>
-	<result property="phone" column="phone"/>
-	<result property="birthday" column="birthday"/>
-	<result property="gender" column="gender"/>
-	<result property="addressNumber" column="address_number"/>
-	<result property="addressInfo" column="address_info"/>
-	<result property="addressDetail" column="address_detail"/>
-	<result property="addressDetail2" column="address_detail2"/>
-	<result property="regdate" column="regdate"/>
-	<result property="tpa" column="tpa"/>
-	<result property="level" column="level"/>
+		<id property="memberNum" column="member_num" />
+		<result property="memberId" column="member_id" />
+		<result property="pw" column="pw" />
+		<result property="memberName" column="member_name" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="birthday" column="birthday" />
+		<result property="gender" column="gender" />
+		<result property="addressNumber" column="address_number" />
+		<result property="addressInfo" column="address_info" />
+		<result property="addressDetail" column="address_detail" />
+		<result property="addressDetail2" column="address_detail2" />
+		<result property="regdate" column="regdate" />
+		<result property="tpa" column="tpa" />
+		<result property="level" column="level" />
 	</resultMap>
 	
-	
+	<!-- 상품 검색 위한 resultMap -->
+	<!-- <resultMap id="productbrandname" type="product">
+		<id property="productId" column="product_id" javaType="int" />
+		<result property="brandName" column="brand_num" />
+		<result property="productName" column="product_name" />
+		<result property="productPrice" column="product_price" />
+		<result property="productInfo" column="product_info" />
+		<result property="colorId" column="color_id" />
+		<result property="subCateId" column="sub_cate_id" />
+		<association property="brand"
+			column="brand_name" javaType="brand" resultMap="brandname"></association>
+	</resultMap>
+	<resultMap id="brandname" type="brand">
+		<id property="brandNum" column="brand_num" />
+		<result property="brandName" column="brand_name" />
+	</resultMap>  -->
+
+
 	<!-- 상품 전체보기 -->
 	<select id="selectAllProduct" resultType="product">
 		select * from product
@@ -98,32 +117,76 @@
 		from
 		main_category
 	</select>
-	
+
 	<!-- 상품 상세보기 -->
 	<select id="selectOneProduct" resultType="product">
 		select p.*
-		from product p join brand b
+		from product
+		p join brand b
 		on p.brand_num = b.brand_num
-		where p.product_id = #{productId}
+		where p.product_id =
+		#{productId}
 	</select>
-	
-	<!-- 상품 qna 가져오기  -->
+
+	<!-- 상품 qna 가져오기 -->
+
+	<select id="viewProductQnaAll" resultMap="productQnaResult">
+		<!-- select * from board_question -->
+		select pq.product_qna_id, p.product_name, m.member_name,
+		pq.product_question_title, pq.product_question,
+		pq.product_question_date,
+		pq.product_question_answer, pq.product_answer_date from
+		product as p inner join product_qna as pq using(product_id),
+		member m where m.member_num = pq.member_num
+	</select>
+
+
 	<select id="viewProductQna" resultMap="productQnaResult">
-	<!-- select * from board_question -->
-	select pq.product_qna_id, p.product_name, m.member_name, pq.product_question_title, pq.product_question, pq.product_question_date,
-pq.product_question_answer, pq.product_answer_date from 
-product as p inner join product_qna as pq using(product_id),
-member m where m.member_num = pq.member_num
-and pq.member_num = #{memberNum}
+		<!-- select * from board_question -->
+		select pq.product_qna_id, p.product_name, m.member_name,
+		pq.product_question_title, pq.product_question,
+		pq.product_question_date,
+		pq.product_question_answer, pq.product_answer_date from
+		product as p inner join product_qna as pq using(product_id),
+		member m where m.member_num = pq.member_num
+		and pq.member_num = #{memberNum}
 	</select>
-	
+
 	<select id="detailProductQna" resultMap="productQnaResult">
-	<!-- select * from board_question -->
-	select pq.product_qna_id, p.product_name, m.member_name, pq.product_question_title, pq.product_question, pq.product_question_date,
-pq.product_question_answer, pq.product_answer_date from 
-product as p inner join product_qna as pq using(product_id),
-member m where m.member_num = pq.member_num
-and pq.product_qna_id = #{productQnaId}
+		<!-- select * from board_question -->
+		select pq.product_qna_id, p.product_name, m.member_name, m.member_num,
+		pq.product_question_title, pq.product_question,
+		pq.product_question_date,
+		pq.product_question_answer, pq.product_answer_date from
+		product as p inner join product_qna as pq using(product_id),
+		member m where m.member_num = pq.member_num
+		and pq.product_qna_id = #{productQnaId}
+	</select>
+
+	<update id="answerInsert">
+		update product_qna set product_question_answer = #{productQuestionAnswer},
+		product_answer_date = curdate() where product_qna_id = #{productQnaId}
+	</update>
+
+	<update id="modifyProductQna">
+		update product_qna set product_question = #{productQuestion} where
+		product_qna_id = #{productQnaId}
+	</update>
+
+	<insert id="productQuestInsert">
+		insert into product_qna(product_id, member_num, product_question_title,
+		product_question)
+		values(#{product.productId}, #{member.memberNum}, #{productQuestionTitle}, #{productQuestion})
+	</insert>
+
+<!-- 	<select id="selectLikeThis" resultMap="productbrandname"> -->
+	<select id="selectLikeThis" resultType="product">
+		<!-- 상품 '이름'으로 검색 -->
+		select p.*, b.brand_name 
+		from product p, brand b
+		where p.brand_num = b.brand_num 
+		and p.product_name like CONCAT('%',#{query},'%')
+		order by product_id desc
 	</select>
 
 </mapper>
