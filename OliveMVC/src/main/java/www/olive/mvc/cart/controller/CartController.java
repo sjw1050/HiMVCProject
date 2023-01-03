@@ -95,10 +95,8 @@ public class CartController {
 		
 		int totalProductCount = Integer.parseInt (request.getParameter("totalProductCount"));
 		System.out.println("totalProductCount >>>>>>>>>>>>>" + totalProductCount);
-		
 		int cartId = Integer.parseInt (request.getParameter("cartId"));
 		System.out.println("cartId >>>>>>>>>>>>" + cartId);
-		
 		cart.setCartId(cartId);
 		cart.setTotalProductCount(totalProductCount);
 		cartService.modifyCart(cart);

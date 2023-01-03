@@ -13,21 +13,31 @@
 	<h1>주문/결제</h1>
 	<form action="${pageContext.request.contextPath }/order/productOrder"
 		method="post">
+	<div>
+		<c:forEach items="${orderAddress }" var="orderAddress">
+			<span> <input type="checkbox" id="address" />수령인:${orderAddress.receiver}
+				우편변호:${orderAddress.addressNumber } 주소:${orderAddress.addressInfo }
+				${orderAddress.addressDetail } ${orderAddress.addressDetail2 }<br>
+				<input type="hidden" name ="addressId" value="${orderAddress.addressId }" />
+			</span>
+		</c:forEach>
+	</div>
 		<div>
 			<table>
 				<tr>
 					<th>수령인</th>
-					<td><input type="text" name="receiver" id="receiver" /></td>
+					<td><input type="text" name="receiver" id="receiver" />
+					</td>
 				</tr>
 				<tr>
 					<th>연락처</th>
 					<td><input type="text" class="form-control"
-						oninput="oninputPhone(this)" maxlength="14" name="phone"
+						oninput="oninputPhone(this)" maxlength="14" name="phone" 
 						id="phone"></td>
 				</tr>
 				<tr>
 					<th>우편번호</th>
-					<td><input type="text" placeholder="우편변호" name="addressNumber"
+					<td><input type="text" placeholder="우편변호" name="addressNumber" 
 						id="addressNumber" /> <input type="button"
 						onclick="addressSearch()" value="우편번호 찾기"><br></td>
 				</tr>
@@ -36,8 +46,32 @@
 					<td><input type="text" placeholder="배송주소" name="addressInfo"
 						id="addressInfo" /> <input type="text" placeholder="상세주소1"
 						name="addressDetail" id="addressDetail" /> <input type="text"
-						placeholder="상세주소2" name="addressDetail2" id="addressDetail2" /></td>
+						placeholder="상세주소2" name="addressDetail2" id="addressDetail2"  />
+						</td>
 				</tr>
+			</table>
+		</div>
+		<div>
+			<h2>배송 상품</h2>
+			<table>
+				<c:forEach items="${viewCartList }" var="viewCartList">
+					<tr>
+						<th>상품정보</th>
+						<th>판매가</th>
+						<th>수량</th>
+					</tr>
+					<tr>
+						<td><span>${viewCartList.brandName }</span>
+							<p>${viewCartList.productInfo}${viewCartList.productName }</p> <input
+							type="hidden" name ="productId" value="${viewCartList.productId }" /></td>
+						<td>${viewCartList.productPrice * viewCartList.totalProductCount }
+							<input type="hidden" name="productPrice" value="${viewCartList.productPrice}" />
+						</td>
+						<td>${viewCartList.totalProductCount }<input type="hidden" name="totalProductCount"
+							value="${viewCartList.totalProductCount}" />
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 		<div>
@@ -45,25 +79,18 @@
 				<input type="submit" value="구매하기" />
 			<p>
 		</div>
-		<div>
-			<h2>배송 상품</h2>
-			<c:forEach items ="${orderCart }" var = "orderCart">
-			${orderCart }
-			</c:forEach>
-			
-		</div>
 	</form>
 
 </body>
 <script>
 	/* let receiver = document.getElementById("receiver");
-	let phone = document.getElementById("phone");
 	let addressNumber = document.getElementById("addressNumber")
 	let addressinfo = document.getElementById("addressinfo");
 	let addressdetail = document.getElementById("addressdetail");
 	let addressdetail2 = document.getElementById("addressdetail2"); */
 
 	/* 전화번호 자동 하이픈 (-)*/
+	let phone = document.getElementById("phone");
 	function oninputPhone(target) {
 		target.value = target.value.replace(/[^0-9]/g, '').replace(
 				/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g,

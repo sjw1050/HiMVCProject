@@ -15,7 +15,7 @@
 		<association property="member" column="member_num"
 			javaType="member" resultMap="memberResult"></association>
 	</resultMap>
-
+	
 	<resultMap id="memberResult" type="member">
 		<id property="memberNum" column="member_num" />
 		<result property="memberId" column="member_id" />
@@ -115,6 +115,12 @@
 	<insert id="insertOrderAddress">
 	insert into order_address(address_number, address_info, address_detail, address_detail2, receiver, phone, member_num)
 	values(#{addressNumber}, #{addressInfo}, #{addressDetail}, #{addressDetail2}, #{receiver}, #{phone}, #{member.memberNum})
+	
+	</insert>
+	<insert id ="insertOrderProduct">
+	insert into product_order(order_id, address_id, total_price, order_date, member_num)
+	values(#{orderId},#{address.addressId},#{totalPrice} , curdate(), #{member.memberNum})
+	
 	</insert>
 
 

@@ -21,6 +21,7 @@ public interface OrderMapper {
 	
 	//상품 주문
 	void insertOrderAddress(OrderAddress oa);
+	void insertOrderProduct(ProductOrder po);
 	
 	
 }

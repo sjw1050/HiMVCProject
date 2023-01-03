@@ -5,34 +5,19 @@
 
 <mapper namespace="www.olive.mvc.mapper.cart.CartMapper">
 
-	<resultMap id="memberResult" type="member">
-		<id property="memberNum" column="member_num" />
-		<result property="memberId" column="member_id" />
-		<result property="pw" column="pw" />
-		<result property="memberName" column="member_name" />
-		<result property="email" column="email" />
-		<result property="phone" column="phone" />
-		<result property="birthday" column="birthday" />
-		<result property="gender" column="gender" />
-		<result property="addressNumber" column="address_number" />
-		<result property="addressInfo" column="address_info" />
-		<result property="addressDetail" column="address_detail" />
-		<result property="addressDetail2" column="address_detail2" />
-		<result property="regdate" column="regdate" />
-		<result property="tpa" column="tpa" />
-		<result property="level" column="level" />
-	</resultMap>
-
 	<!-- 장바구니 보기 -->
 	<select id="selectCartList" resultType="cart">
 		select p.product_name,
 		c.cart_id, c.product_id,
-		p.product_price,
+		p.product_price, p.product_info,
 		c.total_product_count,
-		c.total_product_price
-		from product p, cart c, member m
+		c.total_product_price,
+		b.brand_name, m.member_num
+		from product p, cart c, member m, brand b
 		where
 		p.product_id = c.product_id
+		and
+		b.brand_num = p.brand_num
 		and
 		m.member_num = c.member_num
 		and
@@ -59,10 +44,6 @@
 		#{totalProductCount}
 		where cart_id = #{cartId};
 	</update>
-
-	<select id="selectOrderCart" resultType="cart">
-		select * from cart
-	</select>
 
 </mapper>
   

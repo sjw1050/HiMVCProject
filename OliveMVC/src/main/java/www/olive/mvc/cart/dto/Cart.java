@@ -17,5 +17,6 @@ public class Cart {
 	private Long memberNum;
 	private String productName;
 	private int productPrice;
-	private MemberEntity member;
+	private String brandName;
+	private String productInfo;
 }
