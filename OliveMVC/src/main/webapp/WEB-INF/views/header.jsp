@@ -375,11 +375,11 @@
 				<input
 					type="text" id="query" name="" value="" class="inp_placeholder"
 					data-placeholder="꺄아아아악 예리미"
-					data-ref-linkUrl=""
+					data-ref-linkUrl="/search/mainSearch"
 					onKeypress="javascript:pressCheck_WEB_MainSearch((event),this);"
 					onkeydown="javascript:downCheck_WEB_MainSearch((event));" />
 
-				<button id="searchSubmit">검색</button>
+				<button id="searchSubmit" >검색</button>
 			<!-- 검색 예리미 변경 -->
 			
 			
