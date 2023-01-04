@@ -5,6 +5,7 @@ package www.olive.mvc.member.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import www.olive.mvc.mapper.MemberMapper;
@@ -18,6 +19,9 @@ public class MemberService {
 	
 	@Autowired
 	MemberMapper memberRepository;
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public List<MemberEntity> selectAll() {
 		return memberRepository.selectAll();
@@ -29,16 +33,26 @@ public class MemberService {
 		MemberEntity member = memberRepository.selectId(memberId);
 		//System.out.println("반환받은 멤버 >>>" + member);
 		if(member != null) {
-		if(member.getMemberId().equals(memberId)) {
-			if(member.getPw().equals(Pw)) {
+			if(member.getMemberId().equals(memberId)) {
+			if(bCryptPasswordEncoder.matches(Pw, member.getPw())) {
 				info = new AuthInfo(member.getMemberNum(), member.getMemberId(), member.getPw(), member.getEmail(), member.getMemberName(), member.getAddressNumber(), member.getAddressInfo(), member.getAddressDetail(), member.getAddressDetail2(), member.getBirthday(), member.getTpa(), member.getMemberLevel());
 			}else {
 				return null;
 			}
-		}else {
-			return null;
+			}else {
+				return null;
+			}
 		}
-		}
+//		if(member.getMemberId().equals(memberId)) {
+//			if(member.getPw().equals(Pw)) {
+//				info = new AuthInfo(member.getMemberNum(), member.getMemberId(), member.getPw(), member.getEmail(), member.getMemberName(), member.getAddressNumber(), member.getAddressInfo(), member.getAddressDetail(), member.getAddressDetail2(), member.getBirthday(), member.getTpa(), member.getMemberLevel());
+//			}else {
+//				
+//			}
+//		}else {
+//			return null;
+//		}
+		//}
 		//System.out.println("info 입력>>>" + info);
 		return info;
 	}

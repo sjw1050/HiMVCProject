@@ -322,7 +322,5 @@ function modifyAnswer(index, questnum) {
 	
 }
 </script>
-
-
 </body>
 </html>

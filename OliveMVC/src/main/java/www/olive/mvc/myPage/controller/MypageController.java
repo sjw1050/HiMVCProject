@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,9 @@ public class MypageController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired 
+	BCryptPasswordEncoder bCryptPasswordEncoder; 
 	
 	
 	@GetMapping("main")
@@ -134,7 +138,7 @@ public class MypageController {
 	public String modifyMember(MemberEntity member, String newpw) {
 		if(newpw != null) {
 			if (newpw.trim() != "") {
-				member.setPw(newpw);
+				member.setPw(bCryptPasswordEncoder.encode(newpw));
 			}
 		}			
 		System.out.println("회원수정 멤버 받아옴?" + member);
@@ -226,6 +230,20 @@ public class MypageController {
 		System.out.println("상품문의 정보 받아옴?"+qna);
 		mypageService.productQuestInsert(qna);
 		return "redirect:/mypage/productqnaListAll/";
+	}
+	
+	@GetMapping("pwCheck")
+	public @ResponseBody String pwCheck(String pw, HttpSession session) {
+		AuthInfo info = (AuthInfo) session.getAttribute("info");
+		MemberEntity member = memberService.selectMember(info.getMemberNum());
+		System.out.println("받아온 멤버정보 " + member);
+		System.out.println("입력한 비번 " + pw);
+		if(bCryptPasswordEncoder.matches(pw, member.getPw())) {
+			System.out.println("비번일치");
+			return "success";
+		}else {
+			return "fail";
+		}
 	}
 	
 

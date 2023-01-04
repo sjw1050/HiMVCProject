@@ -4,6 +4,7 @@ package www.olive.mvc.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -76,5 +77,10 @@ public class MvcConfig implements WebMvcConfigurer {
         multipartResolver.setMaxUploadSize(52428800); //파일 최대 사이즈 50메가바이트 설정 
         return multipartResolver;
     }
+	
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 }
