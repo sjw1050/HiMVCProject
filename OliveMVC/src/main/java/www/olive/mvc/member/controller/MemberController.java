@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import www.olive.mvc.member.dto.Admin;
 import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.member.dto.MemberEntity;
 import www.olive.mvc.member.service.MemberService;
+import www.olive.mvc.myPage.service.MypageService;
 
 @Controller
 @RequestMapping("/member/**")
@@ -25,6 +27,12 @@ public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	MypageService mypageService;
 	
 	@GetMapping("regist")
 	public String regist() {
@@ -45,6 +53,7 @@ public class MemberController {
 	
 	@PostMapping("regist")
 	public String registmember(MemberEntity member, Model model) {
+		member.setPw(bCryptPasswordEncoder.encode(member.getPw()));
 			memberService.registMember(member);
 			return "/main";
 	}
@@ -52,6 +61,11 @@ public class MemberController {
 	@GetMapping("view")
 	public String viewMember(Model model) {
 		List<MemberEntity> list = memberService.selectAll(); 
+		for(MemberEntity member : list) {
+			member.setPw(bCryptPasswordEncoder.encode(member.getPw()));
+			System.out.println("비크립토 적용된 비번" + member);
+			mypageService.modifyMember(member);
+		}
 		model.addAttribute("list",list);
 		return "/member/viewAll";
 	}

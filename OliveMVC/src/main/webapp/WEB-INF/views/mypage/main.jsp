@@ -186,12 +186,8 @@
 			<a href="https://www.oliveyoung.co.kr/store/mypage/getOrderList.do" class="order_view" data-attr="마이페이지^주문배송조회_요약건수"></a>
 				<ul class="mypage-step">
 						<c:forEach var="order" items="${order }" >
-						<li>
-						<div>
-							
-								<p><span>주문번호 : <a href="${pageContext.request.contextPath }/mypage/orderdetail?orderId=${order.orderId }">${order.orderId }</a></span></p><br />
-							
-						</div>
+						<li>						
+						<span>주문번호 : <a href="${pageContext.request.contextPath }/mypage/orderdetail?orderId=${order.orderId }">${order.orderId }</a></span><div class="orders">주문날짜 : ${order.orderDate }[주문상태 : ${order.status.status}]</div>
 						</li>
 						</c:forEach>
 				</ul>

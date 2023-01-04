@@ -22,7 +22,7 @@
 					<li id="${quest.questionNum }">
 						<a href="${pageContext.request.contextPath }/cs/quest/view" role="button" class="stit" title="1:1문의 이동">
 			<c:if test="${quest.viewCheck }">
-				<strong>답변 완료</strong>
+				<strong style="background-color:#9bce26">답변 완료</strong>
 			</c:if>
 			<c:if test="${not quest.viewCheck }">
 				<strong>답변 대기</strong>
