@@ -27,10 +27,6 @@ public class MypageService {
 	@Autowired
 	ProductMapper productMapper;
 
-	public MemberEntity selectGrade(AuthInfo info) {
-		return memberRepository.selectGradeMember(info);
-	}
-
 	public List<OrderList> orderListView(ProductOrder po) {
 		return orderMapper.orderListView(po);
 	}

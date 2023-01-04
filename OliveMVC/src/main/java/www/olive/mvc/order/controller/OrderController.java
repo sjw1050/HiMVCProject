@@ -1,9 +1,12 @@
 package www.olive.mvc.order.controller;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,10 +25,10 @@ import www.olive.mvc.member.dto.MemberEntity;
 import www.olive.mvc.member.service.MemberService;
 import www.olive.mvc.myPage.dto.OrderAddress;
 import www.olive.mvc.myPage.dto.OrderDetails;
-import www.olive.mvc.myPage.dto.OrderDetailsLIst;
 import www.olive.mvc.myPage.dto.ProductOrder;
 import www.olive.mvc.myPage.service.MypageService;
 import www.olive.mvc.order.service.OrderService;
+import www.olive.mvc.product.dto.Product;
 
 @Controller
 @RequestMapping("/order/**")
@@ -95,25 +98,67 @@ public class OrderController {
 	public String productOrder(HttpSession session,HttpServletRequest request , 
 			Model model,OrderAddress oa, ProductOrder po) {
 		// productOrder만들고 인서트 >>>>> order에 po셋 >>> order인서트 
-		OrderDetails order = new OrderDetails();
-		System.out.println("주소정보 받아왔니?" + oa);
-		System.out.println("총금액 받아옴?" + po);
+		//System.out.println("주소정보 받아왔니?" + oa);
+		//System.out.println("총금액 받아옴?" + po);
+		List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
 		List<Cart> orderList = (List<Cart>) session.getAttribute("OrderList");
-		System.out.println("카트리스트 받아왔니?" + orderList);
 		for(Cart cart : orderList) {
-			System.out.println("for문 돌리면서 카트 뽑았니?"+cart);
+			//System.out.println("for문 돌리면서 카트 뽑았니?"+cart);
+			Product product = new Product();
+			OrderDetails order = new OrderDetails();
+			product.setBrandName(cart.getBrandName());
+			product.setProductName(cart.getProductName());
+			product.setProductPrice(cart.getProductPrice());
+			product.setProductId(cart.getProductId());
+			order.setProduct(product);
+			order.setOrderCount(cart.getTotalProductCount());
+			//System.out.println("오더가 주문 상품을 입력받았니?" + order);
+			orderDetails.add(order);
+			cartService.deleteCart(cart);
 		}
-		AuthInfo info = (AuthInfo) session.getAttribute("info");
-		if(info != null) {
-			MemberEntity member = memberService.selectMember(info.getMemberNum());
-			po.setMember(member);
-		}
-		po.setAddress(oa);
-		System.out.println("정보들 추가되었니?" + po);
-//		orderService.insertOrderProduct(po);	
-//		order.setOrder(po);
-//		System.out.println("오더디테일에 프로덕트 오더 들어갓니?" + order);
-//		orderService.insertOrder(order);		
+		//System.out.println("오더가 주문 상품을 입력받았니?" + orderDetails);
+		//System.out.println("카트리스트 받아왔니?" + orderList);
+		Calendar cal = Calendar.getInstance();
+		 int year = cal.get(Calendar.YEAR);
+		 String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		 String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		 String subNum = "";
+		 
+		 Random rnd =new Random();
+		 for(int i=0;i<7;i++){
+		     // rnd.nextBoolean() 는 랜덤으로 true, false 를 리턴. true일 시 랜덤 한 소문자를, false 일 시 랜덤 한 숫자를 StringBuffer 에 append 한다.
+		     if(rnd.nextBoolean()){
+		         subNum += ((char)((int)(rnd.nextInt(26))+97));
+		     }else{
+		         subNum += ((rnd.nextInt(10)));
+
+		     }
+
+		 }
+		 AuthInfo info = (AuthInfo) session.getAttribute("info");
+			if(info != null) {
+				MemberEntity member = memberService.selectMember(info.getMemberNum());
+				po.setMember(member);
+			}
+		 String orderId = ymd + "_" + subNum;
+		 po.setOrderId(orderId);
+		 po.setAddress(oa);
+		 orderService.insertOrderProduct(po);
+		 //System.out.println("정보들 추가되었니?" + po);
+		 for(OrderDetails order : orderDetails) {
+			 order.setOrder(po);
+			 //System.out.println("오더에 주문정보 넣었어?"+order);
+			 orderService.insertOrder(order);
+		 }
+		 info = memberService.updateTpa(po);
+		 session.setAttribute("info", info);
+		 
+		 //System.out.println("상품주문정보 들어갔니?" + orderDetails);
+		 //orderService.insertOrderProduct(po);		
+			
+		//order.setOrder(po);
+		//System.out.println("오더디테일에 프로덕트 오더 들어갓니?" + order);
+		//orderService.insertOrder(order);		
 		
 		return "redirect:/mypage/main";
 	}

@@ -51,6 +51,7 @@ public class MypageController {
 		if(info == null) {
 			return "main";
 		}
+		
 		List<ProductOrder> order = mypageService.viewOrder(info.getMemberNum()); 
 		List<QuestionBoard> qList = questService.viewMemberQuest(info);
 		List<ProductQna> pqList = mypageService.viewProductQna(info.getMemberNum());
