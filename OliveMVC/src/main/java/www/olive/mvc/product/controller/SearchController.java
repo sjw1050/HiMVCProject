@@ -24,16 +24,21 @@ public class SearchController {
 	public String mainSearch(Model model, @RequestParam("query") String query) {
 		
 		System.out.println("SearchController > mainSearch > query :::::: " + query);
-		
 		List<Product> searchList = productService.searchProduct(query);
 		
-		model.addAttribute("query", query);
-		model.addAttribute("searchResult", searchList);
+		//검색 결과가 있을 시 => 검색 결과 보여줌
+//		if(!searchList.isEmpty()) {
+			model.addAttribute("query", query);
+			model.addAttribute("searchResult", searchList);
+			
+			System.out.println("searchResult >>>> " + searchList);
+			
+			return "/product/searchProduct";
 		
-		System.out.println("searchResult >>>> " + searchList);
+//		}else {
+//			//검색 결과 없을 시 => 결과없음 페이지
+//			return "/product/noSearch";
+//		}
 		
-		
-		//검색 결과 보여줄 jsp
-		return "/product/searchProduct";
 	}
 }
