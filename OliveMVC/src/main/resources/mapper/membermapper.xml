@@ -17,16 +17,16 @@ where m.tpa between g.low and g.high and member_num = #{memberNum}
 	
 	
 	
-	<select id="selectGradeMember" resultType="member">
+	<!-- <select id="selectGradeMember" resultType="member">
 	select m.member_name, m.tpa, g.member_level from member m, grade g
-where m.tpa between g.low and g.high 
-and m.member_num = #{memberNum}
-	</select>
+	where m.tpa between g.low and g.high 
+	and m.member_num = #{memberNum}
+	</select> -->
 	
 	
 	<select id="selectId" resultType="member">
-	select m.* from member m
-where member_id = #{memberId}
+	select m.*, g.member_level from member m, grade g
+where m.tpa between g.low and g.high and member_id = #{memberId}
 	</select>
 	
 	<select id="selectAdmin" resultType="www.olive.mvc.member.dto.Admin">
@@ -37,6 +37,10 @@ where member_id = #{memberId}
 	insert into member(member_id,pw,member_name,email,phone,birthday,gender,address_number, address_info, address_detail, address_detail2)
     values(#{memberId}, #{pw}, #{memberName}, #{email}, #{phone}, #{birthday}, #{gender}, #{addressNumber},#{addressInfo}, #{addressDetail}, #{addressDetail2})
 	</insert>
+	
+	<update id="updateTpa">
+	update member set tpa = #{totalPrice} + #{member.tpa} where member_num = #{member.memberNum}
+	</update>
 	
 	<update id="modifyMember">
 	update member set 

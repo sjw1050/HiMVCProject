@@ -21,7 +21,7 @@ public class OrderList {
 	 * po.status_number = os.status_number and po.address_id = oa.address_id and
 	 * od.order_id = po.order_id and p.brand_num = b.brand_num
 	 */
-	private int orderId;
+	private String orderId;
 	private String memberName;
 	private String brandName;
 	private String productName;

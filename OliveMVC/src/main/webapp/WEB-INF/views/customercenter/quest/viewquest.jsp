@@ -125,7 +125,7 @@
 					<li class="nodata">등록하신 1:1 문의가 없습니다.</li>	
 				</ul>
 			</c:if>
-			
+
 			<c:if test="${not empty mqlist }">
 			<!-- 1:1질문 foreach뿌리는 부분 -->
 			<c:forEach items="${mqlist }" var="quest" varStatus="varstatus">
@@ -133,16 +133,16 @@
 					<li id="${quest.questionNum }">
 						<a href="#n" role="button" class="stit" title="답변 내용보기">
 			<c:if test="${quest.viewCheck }">
-				<strong>답변 완료</strong>
+				<strong style="background-color:#9bce26">답변 완료</strong>
 			</c:if>
 			<c:if test="${not quest.viewCheck }">
 				<strong>답변 대기</strong>
 			</c:if>	
-							
+
 							${quest.questionTitle }
 							<span class="data">${quest.questionDate }</span>
 						</a>	
-		
+
 						<ul class="conts">
 							<li class="question">
 								<strong>문의 내용</strong>
@@ -166,21 +166,24 @@
 							<a
 								href="${pageContext.servletConfig.servletContext.contextPath }cs/quest/download/?fileName=${file}">${file }</a>
 						</c:otherwise>
-						</c:choose>
+					</c:choose>
 				</div>
 				</c:if>
-			</c:forEach>
-								</c:if>
-			<c:if test="${not empty answer }">
+								</c:forEach>
+			</c:if>	
+							</li>
+							<li class="answer">
+							<c:if test="${not empty answer }">
 		<c:forEach items="${answer }" var="answer" varStatus="status">
 		<c:if test="${quest.questionNum == answer.questionNum}">
 			<div>
 				<input style="" type="hidden" name="answerNum"
 					id="answerNum${status.index }" value="${answer.answerNum}" />
-				<p><strong>답변 내용:</strong></p>
+				<p><strong style="color:#9bce26">답변완료</strong></p>
 				<textarea name="answer" cols="30" rows="3"
 					id="answerForm${status.index }" readonly>${answer.answer }</textarea>
 				<p>답변 날짜 : ${answer.answerDate }</p>
+				<div class="phr">문의에 대한 답변이 부족하거나 추가문의사항이 있으시면 새로운 문의사항으로 등록해주세요.<a href="${pageContext.request.contextPath }/cs/quest/write" class="btnGreenW">새로운 문의하기</a></div>
 				<c:if test="${not empty admininfo }">
 					<button style="color: black;" type="button" onclick="modifyAnswerForm(${status.index });"
 						id="modifyAnswerformbtn${status.index }">답변 수정하기</button>
@@ -190,6 +193,9 @@
 				</c:if>
 			</div>
 			</c:if>
+			<c:if test="${quest.questionNum != answer.questionNum}">
+			<p>
+			<strong style="color: #888">답변 대기</strong>답변이 등록되지 않았습니다.</p></c:if>
 		</c:forEach>
 		<hr />
 	</c:if>
@@ -201,22 +207,39 @@
 		<button style="display: none" class="btnGreen" type="button" onclick="addAnswer('${quest.questionNum }', '${varstatus.index}');"
 			id="answerbtn${varstatus.index}">답변 전송하기</button>
 	</c:if>
-								
 							</li>
 						</ul>
 					</li>	
 				</ul>
 				</c:forEach>
 			</c:if>
-			
-			
+
+
+			</div>
+			<div class="pageing">			
+		<strong title="현재 페이지">1</strong>	
+			</div>
+			<div class="area1sButton pdT30">
+				<a href="${pageContext.request.contextPath }/cs/quest/write" class="btnGreen" data-attr="고객센터^FAQ^1:1문의">1:1문의하기</a>
 			</div>
 
 
 </div>
 </div>
 <jsp:include page="../../footer.jsp"></jsp:include>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+$('.list-customer .stit').click(function(e){
+    e.preventDefault();
+    if($(this).parents('li').hasClass('open')){
+        $(this).parents('li').removeClass('open');
+        $(this).attr('title', '답변 내용보기');
+    }else{
+        $(this).attr('title', '답변 내용닫기')
+		$(this).parents('li').addClass('open').siblings('li').removeClass('open').children('a').attr('title', '답변 내용보기');
+    }
+});
+
 function createAnswer(index) {
 	var addanswer = document.getElementById("addanswer"+index);
 	var addanswerForm = document.getElementById("addanswerForm"+index);
@@ -298,19 +321,6 @@ function modifyAnswer(index, questnum) {
 	form.submit();
 	
 }
-
-$(function(){
-    $('.list-customer .stit').click(function(e){
-        e.preventDefault();
-        if($(this).parents('li').hasClass('open')){
-            $(this).parents('li').removeClass('open');
-            $(this).attr('title', '답변 내용보기');
-        }else{
-        	$(this).attr('title', '답변 내용닫기')
-			$(this).parents('li').addClass('open').siblings('li').removeClass('open').children('a').attr('title', '답변 내용보기');
-        }
-    });
-});
 </script>
 
 

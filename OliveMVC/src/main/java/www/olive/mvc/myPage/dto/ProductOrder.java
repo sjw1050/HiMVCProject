@@ -14,7 +14,7 @@ import www.olive.mvc.product.dto.Product;
 @NoArgsConstructor
 public class ProductOrder {
 //member m, product_order po, product p, order_status os, order_address oa, order_details od, brand b
-	private int orderId;
+	private String orderId;
 	   //private String orderNumber;
 	   private int totalPrice;
 	   private Date orderDate;

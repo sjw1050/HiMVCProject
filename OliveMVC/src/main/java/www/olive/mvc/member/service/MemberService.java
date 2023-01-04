@@ -1,6 +1,7 @@
 package www.olive.mvc.member.service;
 
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import www.olive.mvc.mapper.MemberMapper;
 import www.olive.mvc.member.dto.Admin;
 import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.member.dto.MemberEntity;
+import www.olive.mvc.myPage.dto.ProductOrder;
 
 @Service
 public class MemberService {
@@ -77,6 +79,14 @@ public class MemberService {
 
 	public MemberEntity selectMember(Long memberNum) {
 		return memberRepository.selectMember(memberNum);
+	}
+
+	public AuthInfo updateTpa(ProductOrder po) {
+		memberRepository.updateTpa(po);
+		MemberEntity member = memberRepository.selectId(po.getMember().getMemberId());
+		AuthInfo info = new AuthInfo(member.getMemberNum(), member.getMemberId(), member.getPw(), member.getEmail(), member.getMemberName(), member.getAddressNumber(), member.getAddressInfo(), member.getAddressDetail(), member.getAddressDetail2(), member.getBirthday(), member.getTpa(), member.getMemberLevel());
+		return info;
+		
 	}
 	
 	

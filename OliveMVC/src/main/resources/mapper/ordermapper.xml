@@ -35,7 +35,7 @@
 	</resultMap>
 
 	<resultMap id="OrderResult" type="order">
-		<id property="orderId" column="order_id" javaType="int" />
+		<id property="orderId" column="order_id" javaType="String" />
 		<result property="orderDate" column="order_date" />
 		<association property="status" column="status_number"
 			javaType="status" resultMap="statusResult"></association>
@@ -119,14 +119,14 @@
 	</insert>
 	
 	<insert id ="insertOrderProduct">
-	insert into product_order (total_price, status_number, address_id, member_num) 
-	values(#{totalPrice}, 1, #{address.addressId}, #{member.memberNum})	
+	insert into product_order (order_id, total_price, status_number, address_id, member_num) 
+	values(#{orderId},#{totalPrice}, 1, #{address.addressId}, #{member.memberNum})	
 	</insert>
 	
 	<!-- 상품주문 -->
 	<insert id ="insertOrder">
 	insert into order_details (order_id, product_id, order_count) 
-	values(LAST_INSERT_ID(), #{product.productId}, #{orderCount});
+	values(#{order.orderId}, #{product.productId}, #{orderCount});
 	</insert>
 
 
