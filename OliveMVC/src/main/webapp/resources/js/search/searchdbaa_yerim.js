@@ -100,6 +100,7 @@ function getCookie(name) {
 	  }
 } 
 
+// event bubbling 해결하기
 const showkeywords = function () {
 	let cookieValue = getCookie("mykeyword");
 	console.log("cookieValue ::: " + cookieValue);

@@ -56,9 +56,9 @@
 	</resultMap>
 	
 	<!-- 상품 검색 위한 resultMap -->
-	<!-- <resultMap id="productbrandname" type="product">
+	<resultMap id="productbrandname" type="product">
 		<id property="productId" column="product_id" javaType="int" />
-		<result property="brandName" column="brand_num" />
+		<result property="brandNum" column="brand_num" />
 		<result property="productName" column="product_name" />
 		<result property="productPrice" column="product_price" />
 		<result property="productInfo" column="product_info" />
@@ -66,16 +66,26 @@
 		<result property="subCateId" column="sub_cate_id" />
 		<association property="brand"
 			column="brand_name" javaType="brand" resultMap="brandname"></association>
+		<association property="oliveFile"
+			column="file_name" javaType="ofile" resultMap="olivefile"></association>
 	</resultMap>
 	<resultMap id="brandname" type="brand">
 		<id property="brandNum" column="brand_num" />
 		<result property="brandName" column="brand_name" />
-	</resultMap>  -->
+	</resultMap> 
+	<resultMap id="olivefile" type="ofile">
+		<result property="fileName" column="file_name" />
+	</resultMap> 
 
 
 	<!-- 상품 전체보기 -->
-	<select id="selectAllProduct" resultType="product">
-		select * from product
+	<select id="selectAllProduct" resultMap="productbrandname">
+		<!-- select p.*, b.brand_name from product p, brand b
+		where p.brand_num = b.brand_num -->
+		<!-- 이 밑은 file_name까지 가져오는 거 -->
+		select p.*, b.brand_name, ol.file_name from product p, brand b, olivefile ol
+		where p.brand_num = b.brand_num
+		and ol.product_id = p.product_id
 	</select>
 
 	<!-- 카테고리별 상품 보기 -->
