@@ -21,7 +21,7 @@
 			<p>${oneProdList.productInfo }</p>
 		</div>
 		<div>
-		<form action="${pageContext.request.contextPath }/cart/insertInCart" method="post">
+		<form action="${pageContext.request.contextPath }/cart/insertInCart" method="post" onsubmit="return infocheck()">
 		<input name="productId" type="hidden" value="${oneProdList.productId }" />
 		<%-- <input name="productPrice" type="hidden" value = "${oneProduct.productPrice }" /> --%>
 		<input name = "count"  min="1" type="number"/>
@@ -35,11 +35,15 @@
 		</div>
 </body>
 <script type="text/javascript">
-function addproductquest() {
-if(("${info.memberNum}") == ""){
-	alert("회원만 문의를 남길 수 있습니다.");
-	return false;
+function infocheck() {
+	if(("${info.memberNum}") == ""){
+		alert("회원만 이용할 수 있는 메뉴입니다. 로그인 후 이용해주세요");
+		return false;
+	}
 }
+
+function addproductquest() {
+	infocheck();
 	let productId = document.getElementById("productId").value;
 	window.open("${pageContext.request.contextPath }/mypage/productquestform?productId="+productId);
 }
