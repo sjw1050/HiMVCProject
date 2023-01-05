@@ -212,59 +212,33 @@
 			<!-- //좋아요 상품 목록 -->
 		
 			<div class="area-over" id="cousel">
+				<!-- <div class="left"> -->
 				<div class="tit"> <!-- class="left" -->
 					<div class="title-area">
 						<h2 class="tit">1 : 1 문의내역</h2>
 						 <a class="btnMore" id="qnaListMore" href="${pageContext.request.contextPath }/cs/quest/view">더보기</a> 
 					</div>
-					<div class="list-customer">
+<!-- 					<div class="list-customer">
 						<ul>
-							<li>
+							<li> -->
 							<jsp:include page="../customercenter/quest/viewcontent.jsp"></jsp:include>
-							<!-- <table>
-								<tr>
-									<th>문의 제목</th>
-									<th>문의 날짜</th>
-									<th>문의자</th>
-									<th>관리자 확인 여부</th>
-								</tr>
-								
-									<c:forEach items="${mqlist }" var="quest">
-										<tr>
-											<td><a href="${pageContext.request.contextPath }/quest/detailQuest?questionNum=${quest.questionNum}">${quest.questionTitle }</a></td>
-											<td>${quest.questionDate }</td>
-											<td>${quest.getWriter().getMemberName() }</td>
-											<c:if test="${quest.viewCheck }">
-												<td>O</td>
-											</c:if>
-											<c:if test="${not quest.viewCheck }">
-												<td>X</td>
-											</c:if>		
-										</tr>
-									</c:forEach>
-							</table> -->
-							</li>
-						</ul>
-					</div>
 				</div>
-				
-				<div class="tit" id="goodsQna"> <!-- class="right" -->
+				<!-- </div> -->
+				<!-- <div class="right"> -->
+				<div class="tit"> <!-- class="right" -->
 					<div class="title-area">
 						<h2 class="tit">상품Q&amp;A내역</h2>
 						<a class="btnMore" id="goodsQnaListMore" href="${pageContext.request.contextPath }/mypage/detailproductqna">더보기</a> 
 					</div>
 		
 					<div class="list-customer">
-						<ul>
-	
-	
+						<ul>	
 							<li><jsp:include page="/WEB-INF/views/mypage/productqnaList.jsp"/></li>
-		
-	
 						</ul>
 					</div>
 			
 				</div>
+			<!-- </div> -->
 			</div>
 
 

@@ -57,7 +57,7 @@
 		
 
 		<div class="select_con">
-		<p>문의기간</p>
+		<p>구매기간</p>
 			<ul class="select-month">
 <!-- 			[3394070] 올영체험단 리뷰 배너 오류 문의 件 요청으로 올영체험단 리뷰는 시작시 12개월로 선택되게 조건 변경 -->
 				<li class="on"><button type="button" data-month="-1">1개월</button></li>
@@ -86,7 +86,7 @@
 				</select>
 				<label for="cal-start-month">월</label>
 				<select id="cal-start-day" title="날일을 선택하세요" style="width:60px;">
-				<option value="01">1</option><option value="02" selected="selected">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+				<option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05" selected="selected">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
 				<label for="cal-start-day">일</label>
 				<span class="des">~</span>
 				<select id="cal-end-year" title="년도를 선택하세요" style="width:76px;"><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023" selected="selected">2023</option></select>
@@ -107,7 +107,7 @@
 				</select>
 				<label for="cal-end-month">월</label>
 				<select id="cal-end-day" title="날일을 선택하세요" style="width:60px;">
-				<option value="01">1</option><option value="02" selected="selected">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+				<option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05" selected="selected">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
 				<label for="cal-end-day">일</label>
 			</div>
 		  </div>
@@ -116,6 +116,29 @@
 		<button type="button" class="btnLookup" id="do-search-period">조회</button>
 	</fieldset>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/common/searchPeriod.js"></script>
+	<script>
+	//[3394070] 올영체험단 리뷰 배너 오류 문의 件 요청으로 올영체험단 리뷰는 시작시 12개월로 선택되게 조건 변경 되어 START_DATE, END_DATE 변경
+		START_DATE   = '';
+		END_DATE     = '';
+		ollyoungYn = '';
+
+		$(document).ready(function(){
+		var cnslChk = "Y";
+		var startYear = 2012
+		var thisYear = new Date().getFullYear();
+
+		if(!common.isEmpty(cnslChk)) startYear = 2014;
+			$("#cal-start-year,#cal-end-year").empty();
+		while (startYear <= thisYear) {
+			$("#cal-start-year,#cal-end-year").append("<option value='"+startYear+"'>"+startYear+"</option>");
+		startYear++
+		}
+
+		setTimeout(function() {
+			SearchPeriod.init();
+		},500);
+	});
+</script>
 	
 	
 	
@@ -227,7 +250,7 @@
 </div>
 </div>
 <jsp:include page="../../footer.jsp"></jsp:include>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <script>
 $('.list-customer .stit').click(function(e){
     e.preventDefault();

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -57,51 +58,29 @@
 				<label for="inqTitNm">FAQ 검색</label>
 				<div class="input" id="sch_field2">
 					<input type="text" id="inqTitNm" name="inqTitNm"
-						title="질문 키워드를 입력해주세요." placeholder="질문 키워드를 입력해주세요.">
+						title="질문 키워드를 입력해주세요." placeholder="질문 키워드를 입력해주세요." value="${inqTitNm }">
 					<a href="javascript:;" class="btn_sch_del"><span class="blind">검색어
 							삭제</span></a> 
 					<input type="submit" id="searchFaq" value="검색">
 				</div>
 			</fieldset>
 		</form>
-
-
-
-
-		<!-- <div class="tag_list_wrap">
-			<span class="tag_list_tit">인기키워드</span>
-			<div class="tag_list" style="margin-left: -256.206px;">
 		
-				<a href="javascript:faq.list.searchFaqTagList('선물하기');">선물하기</a> <a
-					href="javascript:faq.list.searchFaqTagList('빠른결제');">빠른결제</a> <a
-					href="javascript:faq.list.searchFaqTagList('기프트카드');">기프트카드</a> <a
-					href="javascript:faq.list.searchFaqTagList('리뷰');">리뷰</a> <a
-					href="javascript:faq.list.searchFaqTagList('오늘드림');">오늘드림</a> <a
-					href="javascript:faq.list.searchFaqTagList('올영체험단');">올영체험단</a> <a
-					href="javascript:faq.list.searchFaqTagList('픽업');">픽업</a> <a
-					href="javascript:faq.list.searchFaqTagList('매장');">매장</a> <a
-					href="javascript:faq.list.searchFaqTagList('배송');">배송</a> <a
-					href="javascript:faq.list.searchFaqTagList('반품');">반품</a> <a
-					href="javascript:faq.list.searchFaqTagList('결제');">결제</a> <a
-					href="javascript:faq.list.searchFaqTagList(' 리뷰');"> 리뷰</a> <a
-					href="javascript:faq.list.searchFaqTagList('교환');">교환</a> <a
-					href="javascript:faq.list.searchFaqTagList('매장반품');">매장반품</a>
-		
-			</div>
-		</div> -->
-
-
 		<div id="TabsOpenArea">
 				<div class="TabsConts tote on">
+				<div class="result-board pdT30">
+						<span class="num">
+							<span>${inqTitNm }</span> 검색결과 총 <em>${count }</em>개
+						</span>
+					</div>
 
 					<div class="list-customer">
 						<ul><!-- faq 뿌리는 부분 foreach -->
 						<c:forEach items="${faqList }" var="faq">
 							<li class="topThree">
 								<!-- faq.faqLrclCd로 --> <a href="#n" role="button" class="tit"
-								title="답변 내용보기"
-								data-attr="고객센터^FAQ_TOP10_TOP10^[픽업]픽업 서비스가 궁금해요"><strong>TOP10</strong><span
-									class="txt_bold">[${faq.faqTitle }]</span>${faq.faqQuestion }</a>
+								title="답변 내용보기"><strong>[${faq.faqTitle }]</strong>
+									${faq.faqQuestion }</a>
 								<ul class="conts">
 									<li class="question">
 										<div class="pdzero">
@@ -131,27 +110,29 @@
 				<div class="pageing">
 					<strong title="현재 페이지">1</strong>
 				</div>
-
-
-
-				<div class="phone-banner">
-					<div class="deposits">
-						<strong>매장</strong> <em>1577-4887</em> <span>평일 09:00 ~
-							18:00</span>
-					</div>
-					<div class="online">
-						<strong>온라인몰</strong> <em>1522-0882</em> <span>평일 09:00 ~
-							18:00</span>
-					</div>
-				</div>
 				</div>
 				
 				</div>
 				</div>
 				<jsp:include page="../footer.jsp"></jsp:include>
-		
-</body>
+				</body>
 <script>
+$(window).load(function() {
+	var inqTitNm = $("#inqTitNm").val();
+	//console.log("그냥밸류 찍음"+ inqTitNm);
+	if(inqTitNm.length > 0){
+	    $(".list-customer").find('a').each(function(){
+	        var html = $(this).html();
+	        //console.log("밸류가 0보다 크면"+html);
+	        
+	        if(html.indexOf("span") < 0){
+	            var reHtml = html.replace(new RegExp("("+inqTitNm+")","gi"),"<span class='tx_same'>$1</span>");
+	            //console.log("스팬이 0보다 작으면"+reHtml);
+	            $(this).html(reHtml);
+	        }
+	    })
+	}
+	});
 $('.list-customer .tit').click(function(e){
     e.preventDefault();
     if($(this).parents('li').hasClass('open')){
@@ -179,7 +160,7 @@ $('#searchFaq').on("click", function(e){
     sForm.attr('action', "${pageContext.request.contextPath }/cs/faq/search");
     sForm.attr('method', "post");
     //console.log(sForm);
-    console.log($("#inqTitNm").val());
+    //console.log($("#inqTitNm").val());
   	sForm.submit();
 });
 </script>
