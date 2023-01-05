@@ -4,6 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="www.olive.mvc.mapper.OrderMapper">
 
+	<resultMap id="detatilResult" type="details">
+	<id property="orderDetailNum" column="order_detail_num" javaType="int"></id>
+	<result property="orderCount" column="order_count"/>
+	<association property="order" column="order_id" javaType="order" resultMap="OrderResult"></association>
+	<association property="product" column="product_id" javaType="int" resultMap="productResult"></association>	
+	</resultMap>
+
 	<resultMap id="addressResult" type="address">
 		<id property="addressId" column="address_id" javaType="int" />
 		<result property="addressNumber" column="address_number" />
@@ -33,6 +40,15 @@
 		<result property="tpa" column="tpa" />
 		<result property="level" column="level" />
 	</resultMap>
+	
+	<resultMap id="productResult" type="product">
+		<id property="productId" column="product_id" />
+		<result property="productName" column="product_name" />
+		<result property="brandName" column="brand_name" />
+		<result property="productPrice" column="product_price" />
+	</resultMap>
+	
+	
 
 	<resultMap id="OrderResult" type="order">
 		<id property="orderId" column="order_id" javaType="String" />
@@ -45,6 +61,17 @@
 		<id property="statusNumber" column="status_number" />
 		<result property="status" column="status" />
 	</resultMap>
+	
+	<select id="viewOrderDetail" resultMap="detatilResult">
+		select od. order_id, b.brand_name, p.product_name, p.product_price,
+od.order_count, po.total_price, os.status from 
+product_order po, product p, order_details od, brand b, order_status os
+where od.order_id = po.order_id
+and p.brand_num = b.brand_num
+and p.product_id = od.product_id 
+and po.status_number = os.status_number
+and po.member_num = #{memberNum} order by od.order_id;
+	</select>
 
 	<select id="orderListView" resultType="orderlistview">
 		<!-- select * from board_question -->

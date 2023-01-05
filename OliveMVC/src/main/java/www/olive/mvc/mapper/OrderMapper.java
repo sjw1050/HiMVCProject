@@ -26,6 +26,7 @@ public interface OrderMapper {
 	void insertOrderProduct(ProductOrder po);
 	void insertOrder(OrderDetails order);
 	List<OrderList> getOrderList(AuthInfo info);
+	List<OrderDetails> viewOrderDetail(Long memberNum);
 	
 	
 }

@@ -133,53 +133,82 @@
 				<th scope="col">상태</th>
 			</tr>
 		</thead>
-		<c:if test="${not empty orderList }">
-		<c:forEach items="${orderList }" var="orderlist" varStatus="status">
-		<c:set var="oid" value=""></c:set>			
-			<tbody class="history">
-			<c:choose>		
-			<c:when test="${oid eq orderlist.orderId }">		
+		<c:if test="${not empty poList }">	
+		<c:forEach var="poList" items="${poList }">
+		<tbody class="history">
+		<!-- 여기서 foreach를 한번 더 돌림  -->
+		<c:forEach var="odList" items="${odList }" >		
 			<tr>
-				<td rowspan="${status.index +1 }">
-					<ul class="mypage-flag-apply">						
-							<li class="order-date">
-								${orderlist.orderDate }
-							</li>								
-							<li class="color1s">
-								${orderlist.orderId }
-							</li>								
-							<li>
-								<a href="#" class="btnDetail" data-oper-dt="2023.01.04" data-origin-bizpl-cd="" data-pos-no="" data-receipt-no="" data-deal-sp="" data-frst-receipt-no="">상세보기</a>
-							</li>							
-							</ul>
-						</td>
-					<td class="subject ">
-					<div class="area">											
-						<a class="thum" href="#"><!-- 뷰원프로덕트  -->
-							<img src="#" alt="상품 썸네일 이미지경로" onerror="common.errorImg(this);">
-						</a>
-						<div class="textus">
-							<a class="" href="#"><!-- 뷰원프로덕트  -->
-								<span class="tit">${orderlist.brandName }</span>
-								<span class="txt">${orderlist.productName }</span>
-							</a>							
-						</div>											
+			<c:if test="${poList.orderId ne odList.order.orderId }">				
+				<td rowspan="3">
+					<ul class="mypage-flag-apply">
+						<li class="order-date"> ${poList.orderDate } </li>								
+						<li class="color1s"> ${poList.orderId } </li>								
+						<li>
+							<a href="javascript:void(0);" class="btnDetail" data-oper-dt="2023.01.05" data-origin-bizpl-cd="" data-pos-no="" data-receipt-no="" data-deal-sp="" data-frst-receipt-no="" onclick="javascript:mypage.orderList.goOrderDetail('Y2301050875403','', this); return false;">상세보기</a>
+						</li>							
+					</ul>
+				</td>	
+				<td class="subject">
+				</c:if>	
+				<c:if test="${odList.order.orderId eq poList.orderId  }">	
+				<td class="subject lineLeft">
+				</c:if>	
+					<div class="area">
+									<a class="thum" href="#">
+										<img src="#" alt="상품 썸네일 이미지경로" onerror="common.errorImg(this);">
+									</a>
+									<div class="textus">
+										<a class="" href="javascript:common.link.moveGoodsDetail('A000000174719','', 'Order');">
+											<span class="tit">${odList.product.brandName }</span>
+											<span class="txt">${odList.product.productName }</span>
+										</a>
+									</div>
 					</div>
 				</td>
-				<td class="">${orderlist.orderCount }</td>
-				<td class="colorOrange">			
-						<strong><fmt:formatNumber type="number" maxFractionDigits="3" value="${orderlist.productPrice * orderlist.orderCount }" /></strong> 원					
-				</td>					
-				<td><strong>${orderlist.status }</strong>										
-					<button type="button" class="BtnDelete mgT5" id="btnDelete" onclick="mypage.orderList.goOrderCancelForm('Y2301040802481','20','1','10','10','',''); return false;">주문취소</button>
+				<td class="">${odList.orderCount }</td>
+				<td class="colorOrange">
+						<strong><fmt:formatNumber type="number" maxFractionDigits="3" value="${odList.product.productPrice * odList.orderCount }" /></strong> 원
+					
+				</td>
+				<td><strong>${odList.order.status }</strong>
+											<button type="button" class="BtnDelete mgT5" id="btnDelete" onclick="mypage.orderList.goOrderCancelForm('Y2301050875403','20','1','10','10','',''); return false;">주문취소</button>
 				</td>
 			</tr>
-			</c:when>
-			</c:choose>
+			
+			</c:forEach>
 		</tbody>
-		</c:forEach>
+		</c:forEach>	
 		</c:if>
-		<c:if test="${empty orderList}">
+			<!-- 중복이 된다면
+			<tr>
+					<td class="subject lineLeft">
+					<div class="area">
+									<a class="thum" href="javascript:common.link.moveGoodsDetail('A000000159331','', 'Order');">
+										<img src="https://image.oliveyoung.co.kr/uploads/images/goods/550/10/0000/0015/A00000015933109ko.jpg?l=ko" alt="[단독기획] 로벡틴 수분에센스 (본품180ml+100ml 추가 증정)" onerror="common.errorImg(this);">
+									</a>
+									<div class="textus">
+										<a class="" href="javascript:common.link.moveGoodsDetail('A000000159331','', 'Order');">
+											<span class="tit">로벡틴</span>
+											<span class="txt">[단독기획] 로벡틴 수분에센스 (본품180ml+100ml 추가 증정)</span>
+										</a>
+									</div>
+					</div>
+				</td>
+				<td class="">1</td>
+				<td class="colorOrange">
+					오프라인구매용 금액
+						<strong>20,300</strong> 원
+				</td>
+				<td><strong>주문접수</strong>
+					<button type="button" class="BtnDelete mgT5" id="btnDelete" onclick="mypage.orderList.goOrderCancelForm('Y2301050875403','20','1','10','10','',''); return false;">주문취소</button>
+				</td>
+			</tr>
+					</tbody> -->
+		
+		
+		
+		<c:if test="${empty poList}">
 			<tbody class="history">
 			<tr>
 				<td colspan="5">주문 정보가 없습니다.</td>

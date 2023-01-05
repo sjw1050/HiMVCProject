@@ -14,6 +14,7 @@ import www.olive.mvc.mapper.product.ProductMapper;
 import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.member.dto.MemberEntity;
 import www.olive.mvc.myPage.dto.OrderAddress;
+import www.olive.mvc.myPage.dto.OrderDetails;
 import www.olive.mvc.myPage.dto.OrderList;
 import www.olive.mvc.myPage.dto.ProductOrder;
 import www.olive.mvc.product.dto.ProductQna;
@@ -98,6 +99,10 @@ public class MypageService {
 //			map.put(, );
 //		}
 		return orderLists;
+	}
+
+	public List<OrderDetails> viewOrderDetail(AuthInfo info) {
+		return orderMapper.viewOrderDetail(info.getMemberNum());
 	}
 
 }
