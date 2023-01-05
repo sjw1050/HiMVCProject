@@ -1,6 +1,9 @@
 package www.olive.mvc.myPage.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,6 +85,19 @@ public class MypageService {
 
 	public void productQuestInsert(ProductQna qna) {
 		productMapper.productQuestInsert(qna);
+	}
+
+	public List<OrderList> getOrderList(AuthInfo info) {
+		List<OrderList> orderLists = orderMapper.getOrderList(info);
+//		List<OrderList> newList = new ArrayList<>();
+//		Map<String, List<OrderList>> map = new HashMap<>();
+//		for(OrderList obj : orderLists) {
+//			String id = obj.getOrderId();
+//			if
+//			
+//			map.put(, );
+//		}
+		return orderLists;
 	}
 
 }

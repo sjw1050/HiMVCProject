@@ -2,6 +2,8 @@ package www.olive.mvc.member.service;
 
 
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,8 +100,12 @@ public class MemberService {
 	public AuthInfo updateTpa(ProductOrder po) {
 		memberRepository.updateTpa(po);
 		MemberEntity member = memberRepository.selectId(po.getMember().getMemberId());
+		if(member != null) {
 		AuthInfo info = new AuthInfo(member.getMemberNum(), member.getMemberId(), member.getPw(), member.getEmail(), member.getMemberName(), member.getAddressNumber(), member.getAddressInfo(), member.getAddressDetail(), member.getAddressDetail2(), member.getBirthday(), member.getTpa(), member.getMemberLevel());
 		return info;
+		}else {
+			return null;
+		}
 		
 	}
 	
