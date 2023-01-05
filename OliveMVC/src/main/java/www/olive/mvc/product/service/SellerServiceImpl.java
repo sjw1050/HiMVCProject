@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import www.olive.mvc.customerCenter.dto.OliveFile;
 import www.olive.mvc.mapper.product.SellerMapper;
 import www.olive.mvc.member.dto.Admin;
 import www.olive.mvc.product.dto.Brand;
@@ -65,6 +66,25 @@ public class SellerServiceImpl implements SellerService {
 	@Override
 	public void removeProd(String productId) {
 		sellerMapper.deleteProd(productId);
+	}
+
+	//상품 수정
+	@Override
+	public void modiProd(Product product) {
+		sellerMapper.updateProd(product);
+	}
+	@Override
+	public void modiProdFile(OliveFile oFile) {
+		sellerMapper.updateFile(oFile);
+	}
+
+	@Override
+	public Product selectOneProd(String productId) {
+		return sellerMapper.selectOneProd(productId);
+	}
+	@Override
+	public OliveFile selectOneFile(String productId) {
+		return  sellerMapper.selectOneFile(productId);
 	}
 
 	

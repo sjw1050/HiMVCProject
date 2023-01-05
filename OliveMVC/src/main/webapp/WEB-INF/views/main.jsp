@@ -1045,7 +1045,7 @@
 					</div> 
 					
 					
-					<!-- 전체 상품 뿌리기 테스트 -->
+					<!-- 전체 상품 뿌리기 -->
 					<div class="main_recomm_wrap" id="mainReComSlider">
 						<div>
 						<ul class="cate_prd_list no_line">
@@ -1053,12 +1053,11 @@
 					<c:forEach items="${allProductList }" var="pList"  begin="0" end="11">
 						<li class="flag">
 								<div class="prd_info ">
+								<input name="productId" type="hidden" value="${pList.productId }" />
 								<!-- <a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000170878&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="A000000170878" data-attr="홈^이상품어때요^[12월 올영픽][미노이PICK/미노이QR카드] 줄라이미 페르소나 퍼퓸 50ml 단품/기획 6종 택1^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="002" data-trk="null" data-impression="A000000170878^홈_이상품어때요^1"> -->
-								<a href="#" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="#" data-attr="#">
+								<a href="${pageContext.request.contextPath }/product/viewOneProduct?productId=${pList.productId }" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="#" data-attr="#">
 									<span class="thumb_flag best">베스트</span>
-									<%-- <img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017087813koe743.jpg?l=ko" alt="[12월 올영픽][미노이PICK/미노이QR카드] 줄라이미 페르소나 퍼퓸 50ml 단품/기획 6종 택1" onerror="common.errorImg(this);"> --%>
-									<img src="${pageContext.servletConfig.servletContext.contextPath }/upload/images/2023/01/03/다슈헤어스프레이.jpg" alt="" onerror="common.errorImg(this);"/>
-									<!-- <img src="" alt="" onerror="common.errorImg(this);">  -->
+									<img src="${pageContext.servletConfig.servletContext.contextPath }${pList.oliveFile.fileName}" alt="" onerror="common.errorImg(this);"/> 
 								</a>
 								<div class="prd_name">
 									<a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="A000000170878" data-attr="홈^이상품어때요^[12월 올영픽][미노이PICK/미노이QR카드] 줄라이미 페르소나 퍼퓸 50ml 단품/기획 6종 택1^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="002" data-trk="null">

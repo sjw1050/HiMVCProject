@@ -95,25 +95,28 @@
 		= #{mainCateId}; </select> -->
 
 	<!-- 메인 카테고리별 상품 보기 -->
-	<select id="selectByMain" resultType="product">
-		select p.*, b.brand_name
+	<select id="selectByMain" resultMap="productbrandname">
+		<!-- select p.*, b.brand_name
 		from product p, sub_category s, brand b
 		where p.sub_cate_id =
 		s.sub_cate_id and p.brand_num = b.brand_num
 		and s.main_cate_id =
-		#{mainCateId}
+		#{mainCateId} -->
+		select p.*, b.brand_name, ol.file_name
+		from product p, sub_category s, brand b, olivefile ol
+		where p.sub_cate_id = s.sub_cate_id and p.brand_num = b.brand_num
+		and ol.product_id = p.product_id
+		and s.main_cate_id = #{mainCateId}
 	</select>
 
 
 	<!-- 서브 카테고리별 상품 보기 -->
-	<select id="selectbySub" resultType="product">
-		select p.*, b.brand_name
-		from product p, sub_category s, main_category m, brand b
+	<select id="selectbySub" resultMap="productbrandname">
+		select p.*, b.brand_name, ol.file_name
+		from product p, sub_category s, main_category m, brand b, olivefile ol
 		where
-		p.sub_cate_id = s.sub_cate_id
-		and s.main_cate_id = m.main_cate_id
-		and
-		p.brand_num = b.brand_num
+		p.sub_cate_id = s.sub_cate_id and s.main_cate_id = m.main_cate_id
+		and	p.brand_num = b.brand_num and ol.product_id = p.product_id
 		and p.sub_cate_id = #{subCateId}
 	</select>
 

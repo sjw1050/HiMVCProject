@@ -70,7 +70,4 @@ public class ProductController {
 	}
 
 	
-	@GetMapping("/product/test")
-	public void test() {}
-	
 }

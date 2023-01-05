@@ -23,7 +23,7 @@ public class HomeController {
 	@Autowired
 	ProductService productService;
 	
-	@RequestMapping(value = "/**", method = RequestMethod.GET)
+	@RequestMapping(value = "/*", method = RequestMethod.GET)
 	public String home(Model model) {		
 		System.out.println();
 		List<SubCategory> subCateList = productService.getSubCate();
