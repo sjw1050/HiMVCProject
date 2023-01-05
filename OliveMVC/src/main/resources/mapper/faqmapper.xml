@@ -9,9 +9,18 @@
 	</select>
 	
 	<select id="searchFaq" resultType="faq">
-	select * from faq where faq_title like '%#{inqTitNm}%'
-or faq_question like '%#{inqTitNm}%'
-or faq_answer like '%#{inqTitNm}%'
+	select * from faq where faq_title like CONCAT('%',#{inqTitNm},'%')
+or faq_question like CONCAT('%',#{inqTitNm},'%')
+or faq_answer like CONCAT('%',#{inqTitNm},'%')
+	</select>
+	
+	<select id="countAll" resultType="int">
+	select count(*) from faq 
+	<if test="#{inqTitNm} != null">
+	where faq_title like CONCAT('%',#{inqTitNm},'%')
+	or faq_question like CONCAT('%',#{inqTitNm},'%')
+	or faq_answer like CONCAT('%',#{inqTitNm},'%')
+	</if>
 	</select>
 	
 </mapper>

@@ -22,4 +22,8 @@ public class FaqService {
 		return faqRepository.searchFaq(inqTitNm);
 	}
 
+	public int searchCount(String inqTitNm) {
+		return faqRepository.countAll(inqTitNm);
+	}
+
 }

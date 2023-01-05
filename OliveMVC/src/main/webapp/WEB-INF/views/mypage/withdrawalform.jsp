@@ -17,7 +17,6 @@
 
 <script>
 function passwordcheck() {
-	let originpassword = "${member.pw}";
 	let memberNum = "${member.memberNum}"
 	let password = document.getElementById("password");
 	let confirmpassword = document.getElementById("confirmpassword");
@@ -26,28 +25,40 @@ function passwordcheck() {
 		alert("비밀번호를 입력해주세요 빈 칸은 입력할 수 없습니다.");
 		return false;
 	}
-	if(originpassword === password.value){
 		if(password.value === confirmpassword.value){
 			$.ajax({
-		        url: "${pageContext.request.contextPath}/mypage/withdrawal?memberNum="+memberNum,
+		        url: "${pageContext.request.contextPath}/mypage/pwCheck?pw="+password.value,
 		        type: "get",
 		        success: function (result) {
 		        	console.log(result);
 		            if (result === "success") {
-		                alert("회원탈퇴가 정삭적으로 처리되었습니다.");
-		                window.close();
-		                opener.location.href = "${pageContext.request.contextPath}/main";
+		            	$.ajax({
+		    		        url: "${pageContext.request.contextPath}/mypage/withdrawal?memberNum="+memberNum,
+		    		        type: "get",
+		    		        success: function (result) {
+		    		        	console.log(result);
+		    		            if (result === "success") {
+		    		                alert("회원탈퇴가 정삭적으로 처리되었습니다.");
+		    		                window.close();
+		    		                opener.location.href = "${pageContext.request.contextPath}/main";
+		    		            }
+		    		        }
+		    		    });
+		            }else{
+		            	alert("입력한 비밀번호가 일치하지 않습니다 다시 확인 후 입력해주세요");
+		            	password.value = "";
+		            	confirmpassword.value = "";
 		            }
 		        }
-		    });
-			
+		    });			
 		}else{
-			alert("정확한 비밀번호를 입력해주세요.");
+			alert("입력한 비밀번호가 일치하지 않습니다 다시 확인 후 입력해주세요");
+			password.value = "";
+        	confirmpassword.value = "";
+        	password.focus();
+			return false;
 		}
-	}else{
-		alert("정확한 비밀번호를 입력해주세요.");
-		return false;
-	}
+	
 }
 </script>
 </html>

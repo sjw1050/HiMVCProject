@@ -47,10 +47,10 @@ public class QuestController {
 		if(logininfo == null && admin == null) {
 			return "/main";
 		}else {
-			//List<QuestionBoard> mqList = questService.viewMemberQuest(logininfo);
+			List<QuestionBoard> mqList = questService.viewMemberQuest(logininfo);
 			List<OliveFile> questFile = questService.getFiles();
 			System.out.println("받아온 전체 파일 정보 " + questFile);
-			List<QuestionBoard> mqList = questService.viewquest();
+			//List<QuestionBoard> mqList = questService.viewquest();
 			List<AnswerBoard> answerBoard = questService.viewAnswerList();
 			
 			//System.out.println("퀘스트 들어왔니?"+qList.get(0).getWriter().getMemberNum());

@@ -13,4 +13,6 @@ public interface FaqMapper {
 
 	public List<Faq> searchFaq(String inqTitNm);
 
+	public int countAll(String inqTitNm);
+
 }
