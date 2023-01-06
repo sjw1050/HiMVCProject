@@ -1038,12 +1038,156 @@
 		<!-- 큐레이션 S 옴니채널 개선으로 마케팅 수신동의 / 로그인버튼 삭제 -->
 		
 			
-				<div class="curation_wrap">
+				 <div class="curation_wrap">
 					<div class="loading_box main">
-						<span class="icon"><img src="${pageContext.request.contextPath }/resources/image/comm/pc_loading.gif" alt="로딩중"></span>
-						<p class="txt">고객님을 위한 상품 추천중이에요</p>
+						<%-- <span class="icon"><img src="${pageContext.request.contextPath }/resources/image/comm/pc_loading.gif" alt="로딩중"></span>
+						<p class="txt">고객님을 위한 상품 추천중이에요</p> --%>
+					</div> 
+					
+					
+					<!-- 전체 상품 뿌리기 -->
+					<div class="main_recomm_wrap" id="mainReComSlider">
+						<div>
+						<ul class="cate_prd_list no_line">
+					<!-- c:forEach 시작 -->
+					<c:forEach items="${allProductList }" var="pList"  begin="0" end="11">
+						<li class="flag">
+								<div class="prd_info ">
+								<input name="productId" type="hidden" value="${pList.productId }" />
+								<!-- <a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000170878&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="A000000170878" data-attr="홈^이상품어때요^[12월 올영픽][미노이PICK/미노이QR카드] 줄라이미 페르소나 퍼퓸 50ml 단품/기획 6종 택1^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="002" data-trk="null" data-impression="A000000170878^홈_이상품어때요^1"> -->
+								<a href="${pageContext.request.contextPath }/product/viewOneProduct?productId=${pList.productId }" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="#" data-attr="#">
+									<span class="thumb_flag best">베스트</span>
+									<img src="${pageContext.servletConfig.servletContext.contextPath }${pList.oliveFile.fileName}" alt="" onerror="common.errorImg(this);"/> 
+								</a>
+								<div class="prd_name">
+									<a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="A000000170878" data-attr="홈^이상품어때요^[12월 올영픽][미노이PICK/미노이QR카드] 줄라이미 페르소나 퍼퓸 50ml 단품/기획 6종 택1^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="002" data-trk="null">
+										<span class="tx_brand">${pList.brand.brandName }</span>
+										<p class="tx_name">${pList.productName }</p>
+									</a>
+									</div>
+									<button class="btn_zzim jeem" data-ref-goodsNo="A000000170878">찜하기</button>
+									<p class="prd_price">
+										<span class="tx_cur"><span class="tx_num">${pList.productPrice }</span>원 </span>
+									</p>
+									<p class="prd_flag"><span class="icon_flag sale">세일</span>
+									<span class="icon_flag coupon">쿠폰</span>
+									<span class="icon_flag delivery">오늘드림</span>
+									</p>
+									<p class="prd_point_area tx_num">
+										<span class="review_point"><span class="point" style="width:98.0%">10점만점에 5.5점</span></span>(999+)
+									</p>
+									<p class="prd_btn_area">
+										<button class="cartBtn" data-ref-goodsNo="A000000170878" data-ref-dispCatNo="90000010001" data-ref-itemNo="002">장바구니</button>
+										<button class="btn_new_pop goodsList">새창보기</button>
+									</p>
+								</div>
+							</li>
+					</c:forEach>
+					<!-- c:forEach 끝 -->
+					</ul>
 					</div>
+					</div>
+					<!-- 전체 상품 뿌리기 끝 -->
+					
 					<div class="curation_area two" style="display: none;">
+					
+					<script type="text/javascript">
+							$(document).ready(function(){
+								var recoMbrNo = '';
+								var showType = ''; 
+								var clickCnt = 1;
+								var recall = false;
+								var group = "";
+								var chkNo = 1;
+								var rccode = "pc_main_01_c";
+								
+								
+							    var recoGoodsListLength = "38";
+								if(recoGoodsListLength > 0){
+								    // 로딩바 제거 및 레코벨 상품 영역 show
+								    $(".loading_box").hide();
+								    $(".curation_area").show();
+								}
+								
+							    $('#main_curation02_01').slick({
+									dots: false,
+									arrows: false,
+									fade: true,
+									infinite: true,
+									speed: 100,
+									slidesToShow: 1,
+									slidesToScroll: 1,
+									draggable: false
+								});
+							    
+							    $('#main_curation02_01 a.item').each(function(i){
+							        var _item = $(this);			
+							        var _data_goodsno = _item.attr('data-ref-goodsno');
+									var _data_dispCatNo = _item.attr('data-ref-dispCatNo');
+									var egcode = _item.attr("data-egcode");
+								    var egrank = _item.attr("data-egrank");
+									var trackingCd = _item.attr("name");
+								    // [3389141] (영역별 매출분석) 오특, 검색, 베스트, 메인 추가(CHY)
+									_item.attr('onclick','javascript:gtm.goods.callGoodsGtmInfo("'+_data_goodsno+'", "", "ee-productClick", "홈_큐레이션1", "' + $(this).attr('data-attr').split('^')[3] + '");common.wlog("home_curation1_prod'+trackingCd.substr(trackingCd.length-1, 1)+'");common.link.moveGoodsDetailCuration("'+_data_goodsno+'", "'+_data_dispCatNo+'","like","'+rccode+'", "'+egcode+'", "'+egrank+'", "'+trackingCd+'");');
+								});
+							    
+							    $("#main_curation02_01").find(".btnbag").each(function() {
+							    	$(this).attr("data-rccode", rccode);
+							    });
+							
+								$('#refBtn').on('click', function () {
+									var $this = $(this);
+							
+									var totalPage = Number($this.data('total-page'));
+									var currentPage = Number($this.data('current-page'));
+							
+									$('#main_curation02_01').slick('slickNext');
+							
+									if (currentPage < totalPage) {
+										currentPage++;
+									} else {
+										currentPage = 1;
+									}
+							
+									$this.data('current-page', currentPage);
+									$this.find('.current').html(currentPage);
+								});
+							    
+								var recType = "p002";
+								
+							   	var name = "";
+							   	
+							   	if(name == undefined || name == "") {
+							   		name = "고객";
+							   	}
+							
+							   	var param = {
+							   		size : 40, //큐레이션 api 호출용
+							   		viewType : 'VertPop', // 세로형
+							      	popupYn : "Y",
+							      	titlRp : name, // 타이틀 replace 텍스트
+							      	viewArea : 'home_curation1_more_prod',
+							      	recType : recType, // 큐레이션 url 정보
+							      	loginRecType : "p202",
+							      	dispCatNo : '90000010001',
+							      	rccode : rccode,
+									trackingCd: 'Home_Curation1_More'
+							   	};
+							   	
+								// 기존 영역이기 때문에 이벤트 추가만 한다.
+								curation.btnMoreEvent(param);
+							
+								gtm.goods.initProductImpression();
+							
+								//오특 플래그
+								common.gnb.todaySpecial.setTodaySpecialFlag('.a_detail .newOyflag');
+							});
+					</script>
+					
+					
+					
+					
+					
 						<div class="inner">
 							<div class="curation_slide type03" id="recobell_area1"></div>
 						</div>
@@ -2228,199 +2372,7 @@
 
 		
 		<h3 class="main_sub_tit"><strong>이 상품 어때요?</strong></h3>
-		<div class="main_recomm_wrap" id="mainReComSlider">
-
-			
-				
-			
-			
-			
-				
-					
-						<div>
-						<ul class="cate_prd_list no_line">
-					
-					<li class="flag">
-						
-						<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000170878&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="A000000170878" data-attr="홈^이상품어때요^[12월 올영픽][미노이PICK/미노이QR카드] 줄라이미 페르소나 퍼퓸 50ml 단품/기획 6종 택1^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="002" data-trk="null" data-impression="A000000170878^홈_이상품어때요^1"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017087813koe743.jpg?l=ko" alt="[12월 올영픽][미노이PICK/미노이QR카드] 줄라이미 페르소나 퍼퓸 50ml 단품/기획 6종 택1" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="A000000170878" data-attr="홈^이상품어때요^[12월 올영픽][미노이PICK/미노이QR카드] 줄라이미 페르소나 퍼퓸 50ml 단품/기획 6종 택1^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="002" data-trk="null"><span class="tx_brand">줄라이미</span><p class="tx_name">[12월 올영픽][미노이PICK/미노이QR카드] 줄라이미 페르소나 퍼퓸 50ml 단품/기획 6종 택1</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000170878">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">49,000</span>원 ~</span><span class="tx_cur"><span class="tx_num">39,900</span>원 ~</span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag coupon">쿠폰</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:98.0%">10점만점에 5.5점</span></span>(999+)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000170878" data-ref-dispCatNo="90000010001" data-ref-itemNo="002">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
-					</li>
-					
-					
-					
-					
-				
-			
-				
-					
-					<li class="flag">
-						
-						<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000176990&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="A000000176990" data-attr="홈^이상품어때요^[빈지노PICK][NEW] 그라펜 타투 퍼퓸 레몬 50ml^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000176990^홈_이상품어때요^2"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017699001koe743.jpg?l=ko" alt="[빈지노PICK][NEW] 그라펜 타투 퍼퓸 레몬 50ml" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="A000000176990" data-attr="홈^이상품어때요^[빈지노PICK][NEW] 그라펜 타투 퍼퓸 레몬 50ml^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">그라펜</span><p class="tx_name">[빈지노PICK][NEW] 그라펜 타투 퍼퓸 레몬 50ml</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000176990">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">39,000</span>원 </span><span class="tx_cur"><span class="tx_num">35,100</span>원 </span></p><p class="prd_flag"><span class="icon_flag coupon">쿠폰</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:100.0%">10점만점에 5.5점</span></span>(1)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000176990" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
-					</li>
-					
-					
-					
-					
-				
-			
-				
-					
-					<li class="flag">
-						
-						<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000176293&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="A000000176293" data-attr="홈^이상품어때요^[2022 어워즈] 가히 멀티밤 리필형 기획세트 (본품 9g+리필 9g)^3" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000176293^홈_이상품어때요^3"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017629306koe743.jpg?l=ko" alt="[2022 어워즈] 가히 멀티밤 리필형 기획세트 (본품 9g+리필 9g)" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="A000000176293" data-attr="홈^이상품어때요^[2022 어워즈] 가히 멀티밤 리필형 기획세트 (본품 9g+리필 9g)^3" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">가히</span><p class="tx_name">[2022 어워즈] 가히 멀티밤 리필형 기획세트 (본품 9g+리필 9g)</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000176293">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">74,000</span>원 </span><span class="tx_cur"><span class="tx_num">49,000</span>원 </span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:96.0%">10점만점에 5.5점</span></span>(259)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000176293" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
-					</li>
-					
-					
-					
-					
-				
-			
-				
-					
-					<li class="flag">
-						
-						<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000174024&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="A000000174024" data-attr="홈^이상품어때요^[이선빈PICK/OY단독] 메디온 밸런스젤 150ml 기획세트(+5ml*10ea)^4" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000174024^홈_이상품어때요^4"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017402402koe743.jpg?l=ko" alt="[이선빈PICK/OY단독] 메디온 밸런스젤 150ml 기획세트(+5ml*10ea)" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="A000000174024" data-attr="홈^이상품어때요^[이선빈PICK/OY단독] 메디온 밸런스젤 150ml 기획세트(+5ml*10ea)^4" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">메디온</span><p class="tx_name">[이선빈PICK/OY단독] 메디온 밸런스젤 150ml 기획세트(+5ml*10ea)</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000174024">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">28,900</span>원 ~</span><span class="tx_cur"><span class="tx_num">20,900</span>원 ~</span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:96.0%">10점만점에 5.5점</span></span>(48)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000174024" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
-					</li>
-					
-					
-						</ul>
-						</div>
-					
-					
-					
-				
-			
-				
-					
-						<div>
-						<ul class="cate_prd_list no_line">
-					
-					<li class="flag">
-						
-						<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000175617&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="A000000175617" data-attr="홈^이상품어때요^[어워즈한정]오쏘몰 이뮨 멀티비타민&미네랄 14+1입 추가증정(위클리 플래너 증정)^5" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000175617^홈_이상품어때요^5"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017561702koe743.jpg?l=ko" alt="[어워즈한정]오쏘몰 이뮨 멀티비타민&미네랄 14+1입 추가증정(위클리 플래너 증정)" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="A000000175617" data-attr="홈^이상품어때요^[어워즈한정]오쏘몰 이뮨 멀티비타민&미네랄 14+1입 추가증정(위클리 플래너 증정)^5" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">오쏘몰</span><p class="tx_name">[어워즈한정]오쏘몰 이뮨 멀티비타민&미네랄 14+1입 추가증정(위클리 플래너 증정)</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000175617">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">75,000</span>원 </span><span class="tx_cur"><span class="tx_num">61,500</span>원 </span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:96.0%">10점만점에 5.5점</span></span>(999+)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000175617" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
-					</li>
-					
-					
-					
-					
-				
-			
-				
-					
-					<li class="flag">
-						
-						<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000176012&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="A000000176012" data-attr="홈^이상품어때요^[2022 어워즈] 토모토모 PICK 타입넘버 N.91 핸드크림 40ml^6" data-ref-dispCatNo="90000010001" data-ref-itemNo="002" data-trk="null" data-impression="A000000176012^홈_이상품어때요^6"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017601209koe743.jpg?l=ko" alt="[2022 어워즈] 토모토모 PICK 타입넘버 N.91 핸드크림 40ml" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="A000000176012" data-attr="홈^이상품어때요^[2022 어워즈] 토모토모 PICK 타입넘버 N.91 핸드크림 40ml^6" data-ref-dispCatNo="90000010001" data-ref-itemNo="002" data-trk="null"><span class="tx_brand">타입넘버</span><p class="tx_name">[2022 어워즈] 토모토모 PICK 타입넘버 N.91 핸드크림 40ml</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000176012">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">12,000</span>원 </span><span class="tx_cur"><span class="tx_num">9,300</span>원 </span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:94.0%">10점만점에 5.5점</span></span>(999+)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000176012" data-ref-dispCatNo="90000010001" data-ref-itemNo="002">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
-					</li>
-					
-					
-					
-					
-				
-			
-				
-					
-					<li class="flag">
-						
-						<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000171427&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="A000000171427" data-attr="홈^이상품어때요^[재찬 Pick] 메디힐 마데카소사이드 흔적 패드 더블 기획 (100매+100매 리필)^7" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000171427^홈_이상품어때요^7"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017142720koe743.jpg?l=ko" alt="[재찬 Pick] 메디힐 마데카소사이드 흔적 패드 더블 기획 (100매+100매 리필)" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="A000000171427" data-attr="홈^이상품어때요^[재찬 Pick] 메디힐 마데카소사이드 흔적 패드 더블 기획 (100매+100매 리필)^7" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">메디힐</span><p class="tx_name">[재찬 Pick] 메디힐 마데카소사이드 흔적 패드 더블 기획 (100매+100매 리필)</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000171427">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">39,900</span>원 </span><span class="tx_cur"><span class="tx_num">27,900</span>원 </span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:92.0%">10점만점에 5.5점</span></span>(999+)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000171427" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
-					</li>
-					
-					
-					
-					
-				
-			
-				
-					
-					<li class="flag">
-						
-						<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000144547&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="A000000144547" data-attr="홈^이상품어때요^리무브 스킨브라 4종 (스킨브라/ 플레인/ 브라이트/ 플레인 브라이트) ^8" data-ref-dispCatNo="90000010001" data-ref-itemNo="003" data-trk="null" data-impression="A000000144547^홈_이상품어때요^8"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0014/A00000014454709koe743.jpg?l=ko" alt="리무브 스킨브라 4종 (스킨브라/ 플레인/ 브라이트/ 플레인 브라이트) " onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="A000000144547" data-attr="홈^이상품어때요^리무브 스킨브라 4종 (스킨브라/ 플레인/ 브라이트/ 플레인 브라이트) ^8" data-ref-dispCatNo="90000010001" data-ref-itemNo="003" data-trk="null"><span class="tx_brand">리무브</span><p class="tx_name">리무브 스킨브라 4종 (스킨브라/ 플레인/ 브라이트/ 플레인 브라이트)</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000144547">찜하기</button><p class="prd_price"><span class="tx_cur"><span class="tx_num">18,000</span>원 ~</span></p><p class="prd_flag"><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:94.0%">10점만점에 5.5점</span></span>(999+)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000144547" data-ref-dispCatNo="90000010001" data-ref-itemNo="003">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
-					</li>
-					
-					
-						</ul>
-						</div>
-					
-					
-					
-				
-			
-				
-					
-						<div>
-						<ul class="cate_prd_list no_line">
-					
-					<li class="flag">
-						
-						<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=B000000176040&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="B000000176040" data-attr="홈^이상품어때요^(NEW) 빌리엔젤 딸기 크레이프 케이크^9" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="B000000176040^홈_이상품어때요^9"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/B00000017604004koe743.jpg?l=ko" alt="(NEW) 빌리엔젤 딸기 크레이프 케이크" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="B000000176040" data-attr="홈^이상품어때요^(NEW) 빌리엔젤 딸기 크레이프 케이크^9" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">빌리엔젤</span><p class="tx_name">(NEW) 빌리엔젤 딸기 크레이프 케이크</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="B000000176040">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">45,000</span>원 </span><span class="tx_cur"><span class="tx_num">36,000</span>원 </span></p><p class="prd_flag"><span class="icon_flag coupon">쿠폰</span><span class="icon_flag free">무배</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:96.0%">10점만점에 5.5점</span></span>(13)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="B000000176040" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
-					</li>
-					
-					
-					
-					
-				
-			
-				
-					
-					<li class="flag">
-						
-						<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000175960&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="A000000175960" data-attr="홈^이상품어때요^[1+1 기획] MAC 립스틱 1+1 기획 2종^10" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000175960^홈_이상품어때요^10"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017596001koe743.jpg?l=ko" alt="[1+1 기획] MAC 립스틱 1+1 기획 2종" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="A000000175960" data-attr="홈^이상품어때요^[1+1 기획] MAC 립스틱 1+1 기획 2종^10" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">맥</span><p class="tx_name">[1+1 기획] MAC 립스틱 1+1 기획 2종</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000175960">찜하기</button><p class="prd_price"><span class="tx_cur"><span class="tx_num">36,000</span>원 </span></p><p class="prd_flag"><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:94.0%">10점만점에 5.5점</span></span>(999+)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000175960" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
-					</li>
-					
-					
-					
-					
-				
-			
-				
-					
-					<li class="flag">
-						
-						<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=B000000167981&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="B000000167981" data-attr="홈^이상품어때요^셀렉스 프로핏 웨이프로틴 드링크 330ml 12입 (아메리카노/초콜릿/복숭아 택1)^11" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="B000000167981^홈_이상품어때요^11"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0016/B00000016798117koe743.jpg?l=ko" alt="셀렉스 프로핏 웨이프로틴 드링크 330ml 12입 (아메리카노/초콜릿/복숭아 택1)" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="B000000167981" data-attr="홈^이상품어때요^셀렉스 프로핏 웨이프로틴 드링크 330ml 12입 (아메리카노/초콜릿/복숭아 택1)^11" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">셀렉스</span><p class="tx_name">셀렉스 프로핏 웨이프로틴 드링크 330ml 12입 (아메리카노/초콜릿/복숭아 택1)</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="B000000167981">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">29,900</span>원 ~</span><span class="tx_cur"><span class="tx_num">23,900</span>원 ~</span></p><p class="prd_flag"><span class="icon_flag coupon">쿠폰</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:96.0%">10점만점에 5.5점</span></span>(304)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="B000000167981" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
-					</li>
-					
-					
-					
-					
-				
-			
-				
-					
-					<li class="flag">
-						
-						<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000175408&amp;dispCatNo=90000010001&amp;trackingCd=Home_Recommand&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Recommand" class="prd_thumb goodsList" data-ref-goodsNo="A000000175408" data-attr="홈^이상품어때요^[어워즈 한정] 피카소 메이크업 스파츌라 어워즈 한정 기획(+스펀지6P&파우치 증정)^12" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000175408^홈_이상품어때요^12"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017540806koe743.jpg?l=ko" alt="[어워즈 한정] 피카소 메이크업 스파츌라 어워즈 한정 기획(+스펀지6P&파우치 증정)" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Recommand" class="goodsList" data-ref-goodsNo="A000000175408" data-attr="홈^이상품어때요^[어워즈 한정] 피카소 메이크업 스파츌라 어워즈 한정 기획(+스펀지6P&파우치 증정)^12" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">피카소</span><p class="tx_name">[어워즈 한정] 피카소 메이크업 스파츌라 어워즈 한정 기획(+스펀지6P&파우치 증정)</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000175408">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">19,000</span>원 </span><span class="tx_cur"><span class="tx_num">14,900</span>원 </span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:96.0%">10점만점에 5.5점</span></span>(999+)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000175408" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
-					</li>
-					
-					
-						</ul>
-						</div>
-					
-					
-					
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
 		
-	</div>
-		
-	
 
 	
 	

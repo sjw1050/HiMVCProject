@@ -21,6 +21,13 @@ public interface CartService {
 
 	Cart viewOneCart(int cartId);
 
+	void deleteCart(int cartId);
+
+
+	void addProductCount(Cart cart);
+
+	boolean findCartProduct(int productId);
+
 
 
 }

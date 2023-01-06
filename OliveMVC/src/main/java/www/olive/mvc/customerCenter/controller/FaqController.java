@@ -30,9 +30,13 @@ public class FaqController {
 	public String faqSerach(String inqTitNm, Model model) {
 		System.out.println("검색어 받아왔니?" + inqTitNm);
 		List<Faq> faqList = faqService.searchFaq(inqTitNm);
+		int count = faqService.searchCount(inqTitNm);
+		System.out.println("검색어가 들어간 테이블 카운트" + count);
 		System.out.println("받아온 검색어 목록>>>" + faqList);
 		model.addAttribute("faqList", faqList);
-		return "/customercenter/searcgfaq";
+		model.addAttribute("inqTitNm", inqTitNm);
+		model.addAttribute("count", count);
+		return "/customercenter/searchfaq";
 	}
 
 }

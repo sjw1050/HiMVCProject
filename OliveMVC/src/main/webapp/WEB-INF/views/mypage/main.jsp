@@ -81,7 +81,7 @@
 					<ul>
 						<li><h2>마이 쇼핑</h2>
 							<ul>
-								<li class="subMenu"><a href="${pageContext.request.contextPath }/mypage/orderdetail" data-attr="마이페이지^메뉴^주문/배송 조회">주문/배송 조회</a></li>
+								<li class="subMenu"><a href="${pageContext.request.contextPath }/mypage/getOrderList" data-attr="마이페이지^메뉴^주문/배송 조회">주문/배송 조회</a></li>
 								<li class="subMenu"><a href="javascript:;" myMenuId="0102" data-ref-linkUrl="https://www.oliveyoung.co.kr/store/mypage/getOrderCancelList.do" data-attr="마이페이지^메뉴^취소/반품/교환 내역">취소/반품/교환 내역</a></li>
 							</ul>
 							<ul class="line">
@@ -186,29 +186,11 @@
 			<div class="layer_pop_wrap" id="service_survey"></div>
 			<a href="https://www.oliveyoung.co.kr/store/mypage/getOrderList.do" class="order_view" data-attr="마이페이지^주문배송조회_요약건수"></a>
 				<ul class="mypage-step">
-					<p>주문자 정보</p>
-						<div>
-						<c:forEach var="orderList" items="${orderList }" varStatus="status" >
-							<c:if test="${status.first }">
-							<p><span>주문번호 :</span>${orderList.orderId }</p>
-						    <p><span>수령인:</span>${orderList.receiver}</p>
-						    <p><span>주소:</span>&#91;${orderList.addressNumber}&#93;${orderList.addressInfo } ${orderList.addressDetail } ${orderList.addressDetail2 }</p>
-						    <p><span>가격:</span><fmt:formatNumber pattern="###,###,###" value="${orderList.totalPrice}" /> 원</p>
-						    <p><span>주문 상태:</span>${orderList.status }</p>
-						    <p><span>주문 날짜:</span>${orderList.orderDate }</p>
-						    <hr />
-						    </c:if>
-						   </c:forEach>
-						</div>
-					<p>주문 상품 정보</p>
-						<div>
-							<c:forEach var="orderList" items="${orderList }">
-							<p><span>브랜드명:</span>${orderList.brandName }  
-							<span>상품명:</span>${orderList.productName}<br /> 
-							<span>개당 가격:</span><fmt:formatNumber pattern="###,###,###" value="${orderList.productPrice}" /> 원<br />
-						     <span>구입 수량:</span>${orderList.orderCount} 개<br /> <span>최종 가격:</span><fmt:formatNumber pattern="###,###,###" value="${orderList.productPrice * orderList.orderCount}" /> 원</p>
-							</c:forEach>
-						</div>
+						<c:forEach var="order" items="${order }" >
+						<li>						
+						<span>주문번호 : <a href="${pageContext.request.contextPath }/mypage/orderdetail?orderId=${order.orderId }">${order.orderId }</a></span><div class="orders">주문날짜 : ${order.orderDate }[주문상태 : ${order.status.status}]</div>
+						</li>
+						</c:forEach>
 				</ul>
 
 <!-- 			<div class="title-area mgT15">
@@ -231,70 +213,33 @@
 			<!-- //좋아요 상품 목록 -->
 		
 			<div class="area-over" id="cousel">
+				<!-- <div class="left"> -->
 				<div class="tit"> <!-- class="left" -->
 					<div class="title-area">
 						<h2 class="tit">1 : 1 문의내역</h2>
 						 <a class="btnMore" id="qnaListMore" href="${pageContext.request.contextPath }/cs/quest/view">더보기</a> 
 					</div>
-					<div class="list-customer">
+<!-- 					<div class="list-customer">
 						<ul>
-							<li>
-							<table>
-								<tr>
-									<th>문의 제목</th>
-									<th>문의 날짜</th>
-									<th>문의자</th>
-									<th>관리자 확인 여부</th>
-								</tr>
-								
-									<c:forEach items="${qlist }" var="quest">
-										<tr>
-											<td><a href="${pageContext.request.contextPath }/quest/detailQuest?questionNum=${quest.questionNum}">${quest.questionTitle }</a></td>
-											<td>${quest.questionDate }</td>
-											<td>${quest.getWriter().getMemberName() }</td>
-											<c:if test="${quest.viewCheck }">
-												<td>O</td>
-											</c:if>
-											<c:if test="${not quest.viewCheck }">
-												<td>X</td>
-											</c:if>		
-										</tr>
-									</c:forEach>
-							</table>
-							</li>
-						</ul>
-					</div>
+							<li> -->
+							<jsp:include page="../customercenter/quest/viewcontent.jsp"></jsp:include>
 				</div>
-				
-				<div class="tit" id="goodsQna"> <!-- class="right" -->
+				<!-- </div> -->
+				<!-- <div class="right"> -->
+				<div class="tit"> <!-- class="right" -->
 					<div class="title-area">
 						<h2 class="tit">상품Q&amp;A내역</h2>
 						<a class="btnMore" id="goodsQnaListMore" href="${pageContext.request.contextPath }/mypage/productqnaList">더보기</a> 
 					</div>
 		
 					<div class="list-customer">
-						<ul>
-							<table>
-								<tr>
-									<th>문의자</th>
-									<th>문의 상품</th>
-									<th>문의 제목</th>
-									<th>문의 날짜</th>
-								</tr>
-								
-								<c:forEach var="pq" items="${pqList }">
-									<tr>
-									<td>${pq.member.memberName }</td>
-									<td>${pq.product.productName }</td>
-									<td><a href="${pageContext.request.contextPath }/mypage/detailproductqna?productQnaId=${pq.productQnaId }">${pq.productQuestionTitle }</a></td>
-									<td>${pq.productQuestionDate }</td>
-									</tr>
-								</c:forEach>	
-							  </table>
+						<ul>	
+							<li><jsp:include page="/WEB-INF/views/mypage/productqnaList.jsp"/></li>
 						</ul>
 					</div>
 			
 				</div>
+			<!-- </div> -->
 			</div>
 
 

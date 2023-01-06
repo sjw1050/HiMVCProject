@@ -15,7 +15,8 @@
 		b.brand_name, m.member_num
 		from product p, cart c, member m, brand b
 		where
-		p.product_id = c.product_id
+		p.product_id =
+		c.product_id
 		and
 		b.brand_num = p.brand_num
 		and
@@ -24,7 +25,7 @@
 		c.member_num = #{memberNum} order by
 		cart_id desc
 	</select>
-	
+
 	<select id="viewOneCart" resultType="cart">
 		select p.product_name,
 		c.cart_id, c.product_id,
@@ -34,12 +35,13 @@
 		b.brand_name, m.member_num
 		from product p, cart c, member m, brand b
 		where
-		p.product_id = c.product_id
+		p.product_id =
+		c.product_id
 		and
 		b.brand_num = p.brand_num
 		and
 		m.member_num = c.member_num
-        and cart_id = #{cartId} order by cart_id desc;
+		and cart_id = #{cartId} order by cart_id desc;
 	</select>
 
 	<!-- 장바구니 담기 -->
@@ -60,6 +62,25 @@
 		update cart set total_product_count =
 		#{totalProductCount}
 		where cart_id = #{cartId};
+	</update>
+
+	<!-- 장바구니 선택 상품 삭제 -->
+	<delete id="deleteCart">
+		delete from cart where cart_id = #{cartId}
+	</delete>
+
+	<!-- 장바구니에 상품이 있는지 찾기 -->
+	<select id="findProduct" resultType="boolean">
+	select if(count(*) = 1, 1, 0)
+	from cart
+	where product_id = #{productId}
+		<!-- select count(1) from cart where product_id =#{productId}; -->
+	</select>
+	<!-- 장바구니에 이미 상품이 있을시 수량 추가 -->
+	<update id="addCount">
+
+		update cart set total_product_count =
+		total_product_count + #{totalProductCount} where product_id = #{productId};
 	</update>
 
 </mapper>

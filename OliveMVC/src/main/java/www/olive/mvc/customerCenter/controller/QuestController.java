@@ -47,10 +47,10 @@ public class QuestController {
 		if(logininfo == null && admin == null) {
 			return "/main";
 		}else {
-			//List<QuestionBoard> mqList = questService.viewMemberQuest(logininfo);
+			List<QuestionBoard> mqList = questService.viewMemberQuest(logininfo);
 			List<OliveFile> questFile = questService.getFiles();
 			System.out.println("받아온 전체 파일 정보 " + questFile);
-			List<QuestionBoard> mqList = questService.viewquest();
+			//List<QuestionBoard> mqList = questService.viewquest();
 			List<AnswerBoard> answerBoard = questService.viewAnswerList();
 			
 			//System.out.println("퀘스트 들어왔니?"+qList.get(0).getWriter().getMemberNum());
@@ -163,7 +163,7 @@ public class QuestController {
 	public ResponseEntity<byte[]> downloadFile(String fileName, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String originalName = null;
-		if(fileName.contains("jpg") || fileName.contains("gif") || fileName.contains("png") || fileName.contains("jpeg")) {
+		if(fileName.toLowerCase().contains("jpg") || fileName.toLowerCase().contains("gif") || fileName.toLowerCase().contains("png") || fileName.toLowerCase().contains("jpeg")) {
 			originalName = fileName.substring(6, 18) + fileName.substring(20);
 		}else {
 			System.out.println(fileName.substring(5, 18));

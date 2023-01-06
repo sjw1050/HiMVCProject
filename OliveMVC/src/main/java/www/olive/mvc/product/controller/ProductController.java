@@ -19,19 +19,6 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
-	// 상품 전체 보기
-	@GetMapping("/product/viewAllProduct")
-	public String viewAllProduct(Model model) {
-
-		List<Product> allProductList = productService.viewAllProduct();
-		System.out.println("viewAllProduct >>>>" + allProductList);
-
-		model.addAttribute("allProductList", allProductList);
-		return "product/viewAllProduct";
-
-	}
-
-
 	// 메인 카테고리별 상품 뿌리기 
 	@GetMapping("/category")
 	public String getProdByMain(HttpServletRequest request, Model model) throws Exception {
@@ -82,8 +69,5 @@ public class ProductController {
 		return "product/viewOneProduct";
 	}
 
-	
-	@GetMapping("/product/test")
-	public void test() {}
 	
 }
