@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-이것이 찐이다
   <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/common/publish/jquery-1.9.1.min.js"></script>
 <script type="text/javascript"
@@ -36,13 +35,11 @@
 				<div class="left_area">
 
 					<div class="prd_img">
-
-						<span class="thumb_flag best">베스트</span> <img id="mainImg"
-							src="https://image.oliveyoung.co.kr/uploads/images/goods/550/10/0000/0016/A00000016302004ko.jpg?l=ko"
-							alt="상품명 이미지" onerror="common.errorImg(this);"> <input
-							type="hidden" id="mainImgSize" value="550">
-
-
+						<span class="thumb_flag best">베스트</span> 
+						<img id="mainImg"
+							src="${oneProdList.oliveFile.fileName }"
+							alt="상품명 이미지" onerror="common.errorImg(this);"> 
+						<input	type="hidden" id="mainImgSize" value="550">
 						<!-- 20200526 상품개선 : 추가 / 발색비교 옵션 선택 시 옵션명 변경 및 관련 썸네일로 변경 -->
 						<div class="prd-option-name">
 							<!-- 노출 시 is-active class 추가 -->
@@ -197,8 +194,6 @@
 							<input type="hidden" id="totalPrc" value="10000" name="totalPrc"> -->
 							
 							<span class="tx_cont"><span class="tx_num" id="totalPrcTxt">${oneProdList.productPrice }</span>원</span>
-							
-							
 						</div>
 
 						<div class="prd_btn_area new-style type1">
@@ -214,6 +209,7 @@
 									data-attr="상품상세^주문유형^바로구매">바로구매</button>
 									<button style="color: #ff5753; border-color: #ff5753; background-color: white; border: 1px solid #f27370; font-size: 20px;" class="btnInquiry goods_qna_inquiry" onclick="location.href='${pageContext.request.contextPath }/cs/quest/write'">상품문의</button>
 							<!-- </form> -->
+
 
 							<button class="btnZzim  goods_wish"
 								data-ref-goodsno="A000000163020"
@@ -616,7 +612,6 @@ $(document).ready(function(){
 </script>
 
 <script> 
-
 $.fn.tabToggle = function(options){
     var defaults = {
         cont_nm : '.tabConts',          //기본 탭 컨텐츠 클래스
