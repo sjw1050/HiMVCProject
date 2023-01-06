@@ -9,6 +9,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+<jsp:include page="./mypage_header.jsp"></jsp:include>
+				
+				<div class="mypage-conts">
 <div>
 		<p>
 			문의 제목 : <input type="text" name="productQuestionTitle" id="questionTitle"
@@ -23,7 +26,7 @@
 		<p>문의 날짜 : ${qna.productQuestionDate }</p>
 		<p>문의자 : ${qna.member.memberName }</p>
 </div>
-<button type="button" onclick="questModifyform();" id="questmodiform">문의 수정하기</button>
+<button style="color: #999;" type="button" onclick="questModifyform();" id="questmodiform">문의 수정하기</button>
 <button style="display: none" type="button" onclick="questModify();" id="questmodi">수정한 내용 전송하기</button>
 
 <c:if test="${not empty qna.productQuestionAnswer }">
@@ -43,7 +46,9 @@
 	<p>현재 등록된 답변이 없습니다.</p>
 </div>
 </c:if>
-
+</div>
+</div>
+<jsp:include page="../footer.jsp"></jsp:include>
 <script>
 let answeraddformbtn = document.querySelector("#answeraddformbtn");
 let answeraddbtn = document.querySelector("#answeraddbtn");

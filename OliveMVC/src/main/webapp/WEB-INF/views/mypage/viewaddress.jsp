@@ -9,7 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p><a href="${pageContext.request.contextPath }/mypage/main">돌아가기</a></p>
+<jsp:include page="./mypage_header.jsp"></jsp:include>
+<div class="mypage-conts">
 <h1>배송지 정보 조회</h1> 
 <input style="display: none" type="hidden" name="member.memberNum" id="memberid" value="${info.memberNum }" />
 <div>
@@ -39,10 +40,10 @@
 			<input type="text" name="addressdetail2" id="addressdetail2${status.index }" placeholder="상세주소" value="${address.addressDetail2 }"> </td>
 	</tr>	
     </table>
-	<button type="button" id="modiAddressAction${status.index }" onclick="modiAddressAction(${status.index })">수정하기</button>    
-    <button style="display: none" type="button" id="modiAddress${status.index }" onclick="modiAddress(${status.index})">수정한 내용 전송하기</button>    
-    <button style="display: none" type="button" id="cancelmodiAddress${status.index }" onclick="cancelmodiAddress(${status.index })">수정 취소하기</button>    
-    <button type="button" id="deleteAddress${status.index }" onclick="deleteAddress(${status.index })">주소지 삭제하기</button> 
+	<button style="color: #999;" type="button" id="modiAddressAction${status.index }" onclick="modiAddressAction(${status.index })">수정하기</button>    
+    <button style="display: none; color: #999;" type="button" id="modiAddress${status.index }" onclick="modiAddress(${status.index})">수정한 내용 전송하기</button>    
+    <button style="display: none; color: #999;" type="button" id="cancelmodiAddress${status.index }" onclick="cancelmodiAddress(${status.index })">수정 취소하기</button>    
+    <button style="color: #999;" type="button" id="deleteAddress${status.index }" onclick="deleteAddress(${status.index })">주소지 삭제하기</button> 
     <hr />
    </form>
    </c:forEach>
@@ -66,13 +67,16 @@
 	</tr>	
     </table>
    
-   <button type="button" id="addAddressAction" onclick="addAddressAction()">새로운 배송지 추가하기</button>   
-   <button style="display: none" type="button" id="addAddress" onclick="addAddress()">내용 전송하기</button>   
-   <button style="display: none" type="button" id="canceladdAddress" onclick="canceladdAddress()">추가 취소하기</button>   
-   
+   <button style="color: #999;" type="button" id="addAddressAction" onclick="addAddressAction()">새로운 배송지 추가하기</button>   
+   <button style="display: none; color: #999;" type="button" id="addAddress" onclick="addAddress()">내용 전송하기</button>   
+   <button style="display: none; color: #999;" type="button" id="canceladdAddress" onclick="canceladdAddress()">추가 취소하기</button>   
    
    
 </div>
+</div>
+</div>
+</div>
+<jsp:include page="../footer.jsp"></jsp:include>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<!-- 다음 우편번호 api -->

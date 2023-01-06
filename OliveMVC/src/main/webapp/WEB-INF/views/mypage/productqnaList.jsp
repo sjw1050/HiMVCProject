@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="./mypage_header.jsp"></jsp:include>
+				
+				<div class="mypage-conts">
 <table>
 	<tr>
 		<th>문의자</th>
@@ -25,5 +28,9 @@
 		</tr>
 	</c:forEach>	
 </table>
+</div>
+</div>
+</div>
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>
