@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-이것이 찐이다
   <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/common/publish/jquery-1.9.1.min.js"></script>
 <script type="text/javascript"
@@ -25,7 +24,6 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/common/publish/jquery.mCustomScrollbar.concat.min.js"></script>
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/styledbaa.css" />
-
 </head>
   <jsp:include page="../header.jsp" />
 <body>
@@ -37,14 +35,11 @@
 				<div class="left_area">
 
 					<div class="prd_img">
-
 						<span class="thumb_flag best">베스트</span> 
 						<img id="mainImg"
 							src="${oneProdList.oliveFile.fileName }"
 							alt="상품명 이미지" onerror="common.errorImg(this);"> 
 						<input	type="hidden" id="mainImgSize" value="550">
-
-
 						<!-- 20200526 상품개선 : 추가 / 발색비교 옵션 선택 시 옵션명 변경 및 관련 썸네일로 변경 -->
 						<div class="prd-option-name">
 							<!-- 노출 시 is-active class 추가 -->
@@ -168,29 +163,20 @@
 						</div>
 
 						<div class="option_add_area pkg_goods_n">
-							<div class="prd_cnt_box item_A000000163020002 no_prom" promno="">
-								<input type="hidden" id="itemInv_A000000163020002" value="6683">
-								<input type="hidden" id="quickItemInv_A000000163020002" value="6683"> 
-							    <input type="hidden" id="itemQty_A000000163020002" value="1"> 
-							    <input type="hidden" id="itemMinQty_A000000163020002" value="1">
-								<input type="hidden" id="itemMaxQty_A000000163020002" value="10">
-								<input type="hidden" name="itemNo" value="002"> 
-								<input type="hidden" name="sGoodsNo" value="A000000163020"> 
-								<input type="hidden" name="itemPrsntYn" value="N"> 
-								<input type="hidden" id="itemLgcGoodsNo_8809782559384" name="itemLgcGoodsNo" value="8809782559384"> 
-								<input type="hidden" id="quickYn_A000000163020002" value="Y">
-								<input type="hidden" id="itemSalePrc_A000000163020002" value="10000">
-								
+							<div class="prd_cnt_box item_A000000163020002 no_prom" promno="">							
 								<div class="tit_area">
+								<form
+								action="${pageContext.request.contextPath }/cart/insertInCart"method="post">
 									<span>수량을 입력하세요</span>
 									<span class="option_cnt_box">
-										<button class="btnCalc minus"
-											onclick="goods.detail.cart.prevVal('A000000163020002','10000','1');">수량
-											1감소</button> <input type="text" id="cartCnt_A000000163020002" name="" value="1" class="tx_num" title="구매수량">
-										<button class="btnCalc plus"
+										<!-- <button class="btnCalc minus"
+											onclick="goods.detail.cart.prevVal('A000000163020002','10000','1');">수량 	1감소</button> -->
+											 <input type="number" min="1" name="count" id="count" class="tx_num" title="구매수량">
+										<!-- <button class="btnCalc plus"
 											onclick="goods.detail.cart.nextVal('A000000163020002','10000','1');">수량
-											1증가</button>
+											1증가</button> -->
 									</span>
+									</form>
 								</div>
 								<div class="cont_area">
 									<span class="option_price"><span class="tx_num">${list.productPrice * list.totalProductCount }</span>원</span>
@@ -204,32 +190,26 @@
 
 						<div class="prd_total_price">
 							<span class="tx_tit">상품금액 합계</span>
-							<input type="hidden" id="totalCnt" value="1" name="totalCnt">
-							<input type="hidden" id="totalPrc" value="10000" name="totalPrc">
+							<!-- <input type="hidden" id="totalCnt" value="1" name="totalCnt">
+							<input type="hidden" id="totalPrc" value="10000" name="totalPrc"> -->
 							
-							<span class="tx_cont"><span class="tx_num" id="totalPrcTxt">10,000</span>원</span>
-							
-							
+							<span class="tx_cont"><span class="tx_num" id="totalPrcTxt">${oneProdList.productPrice }</span>원</span>
 						</div>
 
 						<div class="prd_btn_area new-style type1">
-							<form
-								action="${pageContext.request.contextPath }/cart/insertInCart"
-								method="post">
-								<input name="productId" type="hidden" value="${oneProduct.productId }" />
+								<!-- <input name="productId" id="productId" type="hidden" value="${oneProduct.productId }" /> -->
 								<%-- <input name="productPrice" type="hidden" value = "${oneProduct.productPrice }" /> --%>
 								<!-- <input name="count" min="1" type="number" /> -->
-								<button class="btnBasket dupItem goods_cart"
+								<button type="button" name="cartSubmit" class="btnBasket dupItem goods_cart"
 									data-attr="상품상세^주문유형^장바구니">장바구니</button>
-							</form>
-
-							<form
-								action="${pageContext.request.contextPath }/order/viewOrderList" method="get">
+							<!-- <form action="${pageContext.request.contextPath }/order/viewOrderList" method="get"> -->
 								<input name="productId" type="hidden" id="productId" value="${oneProdList.productId }" />
 								<button class="btnBuy goods_buy" id="cartBtn"
 									onclick="javascript:common.popLayer.todayDelivery.openTodayDeliveryNotice('goodsdetail.order');"
 									data-attr="상품상세^주문유형^바로구매">바로구매</button>
-							</form>
+									<button style="color: #ff5753; border-color: #ff5753; background-color: white; border: 1px solid #f27370; font-size: 20px;" class="btnInquiry goods_qna_inquiry" onclick="location.href='${pageContext.request.contextPath }/cs/quest/write'">상품문의</button>
+							<!-- </form> -->
+
 
 							<button class="btnZzim  goods_wish"
 								data-ref-goodsno="A000000163020"
@@ -1498,7 +1478,45 @@ if(recoMbrNo === 'null'){
 <div id="criteo-tags-div" style="display: none;"></div>
 <iframe height="0" width="0" title="Criteo DIS iframe"
 	style="display: none;"></iframe>
-
+<script>
+$(document).on("click","button[name='cartSubmit']", function () {
+	let count = document.getElementById("count");
+	let productId = document.getElementById("productId");
+	let form = document.createElement("form");
+	
+	$.ajax({
+        url: "/cart/cartchk?productId="+productId.value,
+        type: "get",
+        success: function (result) {
+        	console.log(result);
+            if (result === "success") {
+            	form.setAttribute("charset", "UTF-8");
+                form.setAttribute("method", "Post");  //Post 방식    
+                form.setAttribute("action", "${pageContext.request.contextPath }/cart/insertInCart");
+                
+                let hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", "count");
+                hiddenField.setAttribute("value", count.value);
+                form.appendChild(hiddenField);
+                
+                hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", "productId");
+                hiddenField.setAttribute("value", productId.value);
+                form.appendChild(hiddenField);
+                
+                console.log(form);
+                document.body.appendChild(form);
+                form.submit();
+            }else{
+            	alert("이미 장바구니에 들어있는 아이템입니다.");
+            	return;
+            }
+        }
+    });
+});
+</script>
 
 </body>
 

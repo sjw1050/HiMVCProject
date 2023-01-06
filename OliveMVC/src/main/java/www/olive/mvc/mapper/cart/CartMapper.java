@@ -33,6 +33,11 @@ public interface CartMapper {
 
 	void addCount(Cart cart);
 
+	List<Cart> findCart(AuthInfo info);
+
+	boolean findUserCart(Cart _cart);
+	boolean findUserCartProd(Cart _cart);
+
 
 
 

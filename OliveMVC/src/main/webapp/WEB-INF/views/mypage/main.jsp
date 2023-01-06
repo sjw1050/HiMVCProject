@@ -78,9 +78,23 @@
 					</div>
 		
 					<div class="list-customer">
-						<ul>	
-							<li><jsp:include page="/WEB-INF/views/mypage/productqnaList.jsp"/></li>
-						</ul>
+						<table>
+						<tr>
+							<th>문의자</th>
+							<th>문의 상품</th>
+							<th>문의 제목</th>
+							<th>문의 날짜</th>
+						</tr>
+						
+						<c:forEach var="pq" items="${pqList }">
+							<tr>
+							<td>${pq.member.memberName }</td>
+							<td>${pq.product.productName }</td>
+							<td><a href="${pageContext.request.contextPath }/mypage/detailproductqna?productQnaId=${pq.productQnaId }">${pq.productQuestionTitle }</a></td>
+							<td>${pq.productQuestionDate }</td>
+							</tr>
+						</c:forEach>	
+					</table>
 					</div>
 			
 				</div>

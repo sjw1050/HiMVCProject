@@ -179,8 +179,9 @@
 				<div>
 					<strong>첨부 파일:</strong>
 					<c:choose>
-						<c:when
-							test="${fn:contains(fn:toLowerCase(file), 'jpg') or fn:contains(fn:toLowerCase(file), 'gif') or fn:contains(fn:toLowerCase(file), 'png')}">
+						<c:when test="${fn:contains(fn:toLowerCase(file), 'jpg') or fn:contains(fn:toLowerCase(file), 'gif') or fn:contains(fn:toLowerCase(file), 'png')}">
+							<!-- test="${fn:contains(fn:toLowerCase(file), 'jpg') or fn:contains(fn:toLowerCase(file), 'gif') or fn:contains(fn:toLowerCase(file), 'png')}"> -->
+							
 							<a href="${pageContext.servletConfig.servletContext.contextPath }cs/quest/download/?fileName=${file}"><img
 								src="${pageContext.servletConfig.servletContext.contextPath }/upload/${file}"
 								alt="" /></a>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.olive.mvc.cart.dto.Cart;
 import www.olive.mvc.cart.service.CartService;
@@ -34,7 +35,7 @@ public class CartController {
 	public String viewCartList(Model model, HttpSession session,HttpServletRequest request) {
 		
 		AuthInfo Info = (AuthInfo) session.getAttribute("info");
-		System.out.println("Info >>>>>>>>>>>" + Info);
+		//System.out.println("Info >>>>>>>>>>>" + Info);
 	
 		
 		//로그인 했을때만 장바구니 보기
@@ -50,13 +51,31 @@ public class CartController {
 		}
 		return "/cart/viewCart";
 	}
+	
+	@GetMapping("cartchk")
+	public @ResponseBody String cartchk(HttpSession session, int productId) {
+		String result = null;
+		AuthInfo info = (AuthInfo) session.getAttribute("info");		
+		List<Cart> cartlis = cartService.findCart(info);
+		for(Cart _cart : cartlis) {
+			_cart.setProductId(productId);
+			boolean prodalreadyExist = cartService.findUserCartProd(_cart);
+			if(prodalreadyExist == true) {
+				result = "fail";
+			}else {
+				result = "success";
+			}
+		}
+		return result;
+	}
+	
 	//장바구니에 담기 
 	@PostMapping("/insertInCart")
 	public String addCart(HttpSession session, HttpServletRequest request, Cart cart, int productId) {
 		
 		AuthInfo Info = (AuthInfo) session.getAttribute("info");
-		System.out.println("Info >>>>>>>>>>>" + Info);
-		System.out.println("Info.getMemberNum() >>>>>>>>>>>" + Info.getMemberNum());
+		//System.out.println("Info >>>>>>>>>>>" + Info);
+		//System.out.println("Info.getMemberNum() >>>>>>>>>>>" + Info.getMemberNum());
 		
 //		int productId = Integer.parseInt (request.getParameter("productId"));
 //		System.out.println("productId >>>>>>>>>>>>>" + productId);
@@ -65,23 +84,19 @@ public class CartController {
 //		System.out.println("productId >>>>>>>>>>>>>" + productPrice);
 		
 		int count = Integer.parseInt (request.getParameter("count"));
-		System.out.println("count >>>>>>>>>" + count);
-		System.out.println("cart >>>>>>>>" + cart.getProductId());
-		System.out.println("상품 번호 뭐???>>>>>>>>>>>>>" + productId);
-		
 		cart.setMemberNum(Info.getMemberNum());
-//		cart.setTotalProductPrice(productPrice);
 		cart.setTotalProductCount(count);
-		
-		boolean alreadyExist = cartService.findCartProduct(productId);
-		System.out.println("alreadyExist >>>>>>>>" + alreadyExist);
-		if(alreadyExist == true) {
-			System.out.println("추가되는 수량 >>>>>>>>" + cart);
-			cartService.addProductCount(cart);
-		}else {
-			cartService.insertInCart(cart);
-		}
-//		cartService.insertInCart(cart);
+		cart.setProductId(productId);
+		//System.out.println("해당 회원의 카트정보" + _cart);		
+//		boolean alreadyExist = cartService.findCartProduct(productId);
+//		System.out.println("alreadyExist >>>>>>>>" + alreadyExist);
+//		if(alreadyExist == true) {
+//			System.out.println("추가되는 수량 >>>>>>>>" + cart);
+//			cartService.addProductCount(cart);
+//		}else {
+//			cartService.insertInCart(cart);
+//		}
+		cartService.insertInCart(cart);
 		System.out.println("cart >>>>>>>>>>" + cart);
 		
 		return "redirect:/cart/viewCart";
