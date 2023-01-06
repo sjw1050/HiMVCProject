@@ -92,7 +92,21 @@ public class OrderController {
 		
 		return "/order/viewMyOrder";
 	}
-
+	
+	//선택상품 삭제하기
+	@PostMapping("deleteOrder")
+	public String deleteOrder(HttpSession session, HttpServletRequest request, Model model,@RequestParam(value="cartId", required=true) List<Integer> cartId) {
+		
+		AuthInfo info = (AuthInfo) session.getAttribute("info");
+		if(info == null) {
+			return "main";
+		}
+		for(Integer cart : cartId) {
+			cartService.deleteCart(cart);
+		}
+		
+		return "redirect:/cart/viewCart";
+	}
 	// 상품 주문
 	@PostMapping("/productOrder")
 	public String productOrder(HttpSession session,HttpServletRequest request , 

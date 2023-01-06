@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import www.olive.mvc.cart.dto.Cart;
 import www.olive.mvc.cart.service.CartService;
 import www.olive.mvc.member.dto.AuthInfo;
-import www.olive.mvc.product.dto.Product;
 import www.olive.mvc.product.service.ProductService;
 
    
@@ -43,6 +42,7 @@ public class CartController {
 		List<Cart> viewCartList = cartService.viewCartList(Info);
 		System.out.println("viewCartList>>>>>>>>>>>>" + viewCartList);
 		model.addAttribute("viewCartList" , viewCartList);
+		session.setAttribute("alreadyExist", viewCartList);
 		}
 		//로그인 안 했을때
 		else {
@@ -52,7 +52,7 @@ public class CartController {
 	}
 	//장바구니에 담기 
 	@PostMapping("/insertInCart")
-	public String addCart(HttpSession session, HttpServletRequest request, Cart cart) {
+	public String addCart(HttpSession session, HttpServletRequest request, Cart cart, int productId) {
 		
 		AuthInfo Info = (AuthInfo) session.getAttribute("info");
 		System.out.println("Info >>>>>>>>>>>" + Info);
@@ -66,12 +66,22 @@ public class CartController {
 		
 		int count = Integer.parseInt (request.getParameter("count"));
 		System.out.println("count >>>>>>>>>" + count);
+		System.out.println("cart >>>>>>>>" + cart.getProductId());
+		System.out.println("상품 번호 뭐???>>>>>>>>>>>>>" + productId);
 		
 		cart.setMemberNum(Info.getMemberNum());
 //		cart.setTotalProductPrice(productPrice);
 		cart.setTotalProductCount(count);
 		
-		cartService.insertInCart(cart);
+		boolean alreadyExist = cartService.findCartProduct(productId);
+		System.out.println("alreadyExist >>>>>>>>" + alreadyExist);
+		if(alreadyExist == true) {
+			System.out.println("추가되는 수량 >>>>>>>>" + cart);
+			cartService.addProductCount(cart);
+		}else {
+			cartService.insertInCart(cart);
+		}
+//		cartService.insertInCart(cart);
 		System.out.println("cart >>>>>>>>>>" + cart);
 		
 		return "redirect:/cart/viewCart";
