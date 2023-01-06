@@ -132,13 +132,12 @@
 	</select>
 
 	<!-- 상품 상세보기 -->
-	<select id="selectOneProduct" resultType="product">
-		select p.*
-		from product
-		p join brand b
-		on p.brand_num = b.brand_num
-		where p.product_id =
-		#{productId}
+	<select id="selectOneProduct" resultMap="productbrandname">
+		select p.*, b.brand_name, ol.file_name
+		from product p, brand b, olivefile ol
+		where p.brand_num = b.brand_num
+		and p.product_id = ol.product_id
+		and p.product_id = #{productId}
 	</select>
 
 	<!-- 상품 qna 가져오기 -->
@@ -193,11 +192,12 @@
 	</insert>
 
 <!-- 	<select id="selectLikeThis" resultMap="productbrandname"> -->
-	<select id="selectLikeThis" resultType="product">
+	<select id="selectLikeThis" resultMap="productbrandname">
 		<!-- 상품 '이름'으로 검색 -->
-		select p.*, b.brand_name 
-		from product p, brand b
+		select p.*, b.brand_name, ol.file_name 
+		from product p, brand b, olivefile ol
 		where p.brand_num = b.brand_num 
+        and ol.product_id = p.product_id
 		and p.product_name like CONCAT('%',#{query},'%')
 		order by product_id desc
 	</select>

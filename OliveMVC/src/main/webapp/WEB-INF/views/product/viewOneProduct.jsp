@@ -38,10 +38,11 @@
 
 					<div class="prd_img">
 
-						<span class="thumb_flag best">베스트</span> <img id="mainImg"
-							src="https://image.oliveyoung.co.kr/uploads/images/goods/550/10/0000/0016/A00000016302004ko.jpg?l=ko"
-							alt="상품명 이미지" onerror="common.errorImg(this);"> <input
-							type="hidden" id="mainImgSize" value="550">
+						<span class="thumb_flag best">베스트</span> 
+						<img id="mainImg"
+							src="${oneProdList.oliveFile.fileName }"
+							alt="상품명 이미지" onerror="common.errorImg(this);"> 
+						<input	type="hidden" id="mainImgSize" value="550">
 
 
 						<!-- 20200526 상품개선 : 추가 / 발색비교 옵션 선택 시 옵션명 변경 및 관련 썸네일로 변경 -->

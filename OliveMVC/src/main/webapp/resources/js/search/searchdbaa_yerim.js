@@ -4,7 +4,7 @@
 //엔터 체크
 function pressCheck() {   
     if (event.keyCode == 13) {
-    	alert("엔터키눌렀닝?");
+//    	alert("엔터키눌렀닝?");
         return clickSearch();
     }else{
         return false;
@@ -19,7 +19,7 @@ function pressCheck_WEB_MainSearch(e,a) {
 // alert("presscheck_web_mainSearch, query >>> :::: " + $("#query").val());
 	    	  location.href = "/search/mainSearch?query=" +  $("#query").val();
 	      }else{
-	    	  alert("엔터키, 검색어 입력 안됨");
+//	    	  alert("엔터키, 검색어 입력 안됨");
 	      }
 
 	  }else{
@@ -40,7 +40,7 @@ $("#searchSubmit").bind("click", function () {
 	
 	// search input 값 잡아서 변수로 설정
 	var _query = $("#query").val();
-	 alert("예리미가 #searchSubmit 클릭함. 검색내용(#query) >>>>>> " + $("#query").val() +" ::: "+ $("#query").data("placeholder"));
+//	 alert("예리미가 #searchSubmit 클릭함. 검색내용(#query) >>>>>> " + $("#query").val() +" ::: "+ $("#query").data("placeholder"));
 	
     if (_query == "" && $("#query").data("placeholder") == "") {
         // 추천검색어 x & 검색어 입력 없을 시
@@ -51,9 +51,9 @@ $("#searchSubmit").bind("click", function () {
     	location.href = $("#query").data("ref-linkUrl");
     } else if(_query){
     	//검색어 입력 없을 시
-        alert("검색어가 잘 들어왔나요? 검색어(#query) >>>>>> " +  $("#query").val());
+//        alert("검색어가 잘 들어왔나요? 검색어(#query) >>>>>> " +  $("#query").val());
     	setCookie(_query);
-    	alert("getCookie :: " + getCookie("mykeyword"));
+//    	alert("getCookie :: " + getCookie("mykeyword"));
         location.href = "/search/mainSearch?query=" +  $("#query").val();
      }
  });
@@ -100,7 +100,7 @@ function getCookie(name) {
 	  }
 } 
 
-// event bubbling 해결하기
+// 
 const showkeywords = function () {
 	let cookieValue = getCookie("mykeyword");
 	console.log("cookieValue ::: " + cookieValue);
@@ -112,4 +112,25 @@ const showkeywords = function () {
 }
 
 $('#query').on("focus", showkeywords);
+
+
+//쿠키 전체 삭제
+//$("#btn_delete_cookie").on("click", function deleteCookies(){
+//    
+//    alert("btn delete 누름");
+//    myKeywords = "";
+//    
+//    if(confirm("최근 검색어를 모두 삭제 하시겠습니까?") == true){                
+//        setCookie('', '-1');        
+//        showkeywords(myKeywords);
+//        
+//    }else{ //취소
+//        
+//        return;
+//    }
+//
+//});
+
+
+
 
