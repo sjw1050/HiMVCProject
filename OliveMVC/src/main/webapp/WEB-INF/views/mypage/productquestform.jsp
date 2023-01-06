@@ -9,6 +9,9 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
+<jsp:include page="./mypage_header.jsp"></jsp:include>
+				
+				<div class="mypage-conts">
 <form action="${pageContext.request.contextPath }/mypage/productquestinsert" method="post">
 <input style="display: none" type="hidden" name="member.memberNum" value="${info.memberNum }" />
 <input style="display: none" type="hidden" name="product.productId" value="${oneProd.productId }" />
@@ -28,5 +31,9 @@
 </table>
 <button type="submit">작성하기</button>
 </form>
+</div>
+</div>
+</div>
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

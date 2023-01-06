@@ -8,54 +8,16 @@
 <title>Insert title here</title>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
- <p>${member.memberName }님의 정보 수정</p>
-
-<form action="${pageContext.request.contextPath }/mypage/modifymember" method="post" onsubmit="return check()">
-<table>
-							<tr>
-								<th>아이디:</th>
-								<td><input type="text" name="memberId" id="memberId" value="${member.memberId }" /></td>
-							</tr>
-							<tr>
-								<th>비밀번호:</th>
-								<td><button type="button" onclick="passwordmodiform()" id="pwmodi">비밀번호 변경하기</button>
-								<input style="display: none" type="hidden" name="pw" value="${member.pw }"/>
-								<input style="display: none" type="hidden" name="memberNum" value="${member.memberNum }"/>
-								<input style="display: none" type="password" name="password" id="password" placeholder="기존 비밀번호를 입력해주세요"/>
-								<input style="display: none" type="password" name="newpassword" id="newpassword" placeholder="변경 할 비밀번호를 입력해주세요"/>
-								<input style="display: none" type="password" name="newpw" id="newconfirmpassword" placeholder="변경 할 비밀번호를 한번 더 입력해주세요"/>
-								<button style="display: none" type="button" onclick="return passwordcheck()" id="pwchk">비밀번호 확인</button>
-								<button style="display: none" type="button" onclick="cancelpasswordmodi()" id="cancelmodi">변경 취소하기</button>
-								</td> 
-							</tr>
-							<tr>
-								<th>이름:</th>
-								<td><input type="text" name="memberName" id="memberName" value="${member.memberName }" readonly/></td>
-							</tr>
-							<tr>
-								<th>이메일:</th>
-								<td><input type="text" name="email" id="email" value="${member.email }"/></td>
-							</tr>
-			 		 		<tr>
-								<th>전화번호:</th>
-								<td><input type="text" name="phone" id="phone" value="${member.phone }"/></td>
-							</tr>
-							<tr>
-								<th>주소:</th>
-								<td><input type="text" name="addressNumber" id="addressNumber" placeholder="우편번호" value="${member.addressNumber }"> 
-								<input type="button" onclick="addressSearch()" value="우편번호 찾기"><br>
-								<input type="text" name="addressInfo" id="addressinfo" placeholder="주소" value="${member.addressInfo }"><br>
-								<input type="text" name="addressDetail" id="addressdetail" placeholder="주소지  정보" value="${member.addressDetail }"><br />
-								<input type="text" name="addressDetail2" id="addressdetail2" placeholder="상세주소" value="${member.addressDetail2 }"> </td>
-							</tr>
-							<tr>
-								<td><button id="submit" type="submit">전송하기</button></td>
-							</tr>
-						</table>
-</form>
 <script>
+function passwordmodiform() {
+	document.getElementById("password").style.display="block";
+	document.getElementById("newpassword").style.display="block";
+	document.getElementById("newconfirmpassword").style.display="block";
+	document.getElementById("pwchk").style.display="block";
+	document.getElementById("cancelmodi").style.display="block";
+	document.getElementById("pwmodi").style.display="none";
+	submit.style.display = "none";
+}
 
 let password = "${member.pw}";
 let passwordchk = document.getElementById("password");
@@ -130,16 +92,6 @@ function passwordcheck() {
 	
 }
 
-function passwordmodiform() {
-	document.getElementById("password").style.display="block";
-	document.getElementById("newpassword").style.display="block";
-	document.getElementById("newconfirmpassword").style.display="block";
-	document.getElementById("pwchk").style.display="block";
-	document.getElementById("cancelmodi").style.display="block";
-	document.getElementById("pwmodi").style.display="none";
-	submit.style.display = "none";
-}
-
 function cancelpasswordmodi() {
 	document.getElementById("password").style.display="none";
 	document.getElementById("newpassword").style.display="none";
@@ -207,5 +159,58 @@ function addressSearch() {
 					}).open();
 		}
 </script>
+</head>
+<body>
+<jsp:include page="./mypage_header.jsp"></jsp:include>
+<div class="mypage-conts">
+ <p>${member.memberName }님의 정보 수정</p>
+
+<form action="${pageContext.request.contextPath }/mypage/modifymember" method="post" onsubmit="return check()">
+<table>
+							<tr>
+								<th>아이디:</th>
+								<td><input type="text" name="memberId" id="memberId" value="${member.memberId }" /></td>
+							</tr>
+							<tr>
+								<th>비밀번호:</th>
+								<td><button style="color: #999;" type="button" onclick="passwordmodiform()" id="pwmodi">비밀번호 변경하기</button>
+								<input style="display: none" type="hidden" name="pw" value="${member.pw }"/>
+								<input style="display: none" type="hidden" name="memberNum" value="${member.memberNum }"/>
+								<input style="display: none" type="password" name="password" id="password" placeholder="기존 비밀번호를 입력해주세요"/>
+								<input style="display: none" type="password" name="newpassword" id="newpassword" placeholder="변경 할 비밀번호를 입력해주세요"/>
+								<input style="display: none" type="password" name="newpw" id="newconfirmpassword" placeholder="변경 할 비밀번호를 한번 더 입력해주세요"/>
+								<button style="display: none; color: #999;" type="button" onclick="return passwordcheck()" id="pwchk">비밀번호 확인</button>
+								<button style="display: none; color: #999;" type="button" onclick="cancelpasswordmodi()" id="cancelmodi">변경 취소하기</button>
+								</td> 
+							</tr>
+							<tr>
+								<th>이름:</th>
+								<td><input type="text" name="memberName" id="memberName" value="${member.memberName }" readonly/></td>
+							</tr>
+							<tr>
+								<th>이메일:</th>
+								<td><input type="text" name="email" id="email" value="${member.email }"/></td>
+							</tr>
+			 		 		<tr>
+								<th>전화번호:</th>
+								<td><input type="text" name="phone" id="phone" value="${member.phone }"/></td>
+							</tr>
+							<tr>
+								<th>주소:</th>
+								<td><input type="text" name="addressNumber" id="addressNumber" placeholder="우편번호" value="${member.addressNumber }"> 
+								<input type="button" onclick="addressSearch()" value="우편번호 찾기"><br>
+								<input type="text" name="addressInfo" id="addressinfo" placeholder="주소" value="${member.addressInfo }"><br>
+								<input type="text" name="addressDetail" id="addressdetail" placeholder="주소지  정보" value="${member.addressDetail }"><br />
+								<input type="text" name="addressDetail2" id="addressdetail2" placeholder="상세주소" value="${member.addressDetail2 }"> </td>
+							</tr>
+							<tr>
+								<td><button style="color: #999;" id="submit" type="submit">전송하기</button></td>
+							</tr>
+						</table>
+</form>
+</div>
+</div>
+</div>
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

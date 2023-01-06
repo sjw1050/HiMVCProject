@@ -1017,19 +1017,19 @@
             
             
             
-                 <div class="main_mid_banner split">
+                 <!-- <div class="main_mid_banner split">
                     
                     	
-						<a href="https://www.oliveyoung.co.kr/store/counsel/getNoticeDetail.do?ntcSeq=38824&amp;trackingCd=Home_LB" class="home_banner_top_split" data-ref-bannerId="home_banner_top_1" data-attr="홈^new상단띠배너^배송 사과문^1" data-trk="/">
-							<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/image.oliveyoung.co.kr/image.oliveyoung.co.kr/uploads/images/display/90000010001/138/5221822295448964604.jpg" alt="배송 사과문" />
-						</a>
+                 						<a href="https://www.oliveyoung.co.kr/store/counsel/getNoticeDetail.do?ntcSeq=38824&amp;trackingCd=Home_LB" class="home_banner_top_split" data-ref-bannerId="home_banner_top_1" data-attr="홈^new상단띠배너^배송 사과문^1" data-trk="/">
+                 							<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/image.oliveyoung.co.kr/image.oliveyoung.co.kr/uploads/images/display/90000010001/138/5221822295448964604.jpg" alt="배송 사과문" />
+                 						</a>
                     
                     	
-						<a href="https://www.oliveyoung.co.kr/store/counsel/getNoticeDetail.do?ntcSeq=37441&amp;trackingCd=Home_LB" class="home_banner_top_split" data-ref-bannerId="home_banner_top_3" data-attr="홈^new상단띠배너^포인트 적립률 변경 안내^2" data-trk="/">
-							<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/138/4985527570554449043.jpg" alt="포인트 적립률 변경 안내" />
-						</a>
+                 						<a href="https://www.oliveyoung.co.kr/store/counsel/getNoticeDetail.do?ntcSeq=37441&amp;trackingCd=Home_LB" class="home_banner_top_split" data-ref-bannerId="home_banner_top_3" data-attr="홈^new상단띠배너^포인트 적립률 변경 안내^2" data-trk="/">
+                 							<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/138/4985527570554449043.jpg" alt="포인트 적립률 변경 안내" />
+                 						</a>
                     
-                </div> 
+                                 </div>  -->
             
             
         
@@ -1318,7 +1318,7 @@
 				
 		
 		<!-- 추천 기획전 -->
-		<div class="main_plan_banner">
+		<!-- <div class="main_plan_banner">
 			<h3 class="main_sub_tit"><strong>Weekly Special</strong></h3>
 			<div class="recomm_plan">
 				<ul class="recomm_plan_list">
@@ -1338,9 +1338,9 @@
 										<div class="text_wrap">
 											<dl style="color:#000000;">
 												<dt>22년 땡큐&굿바이행사
-</dt>
+		</dt>
 												<dt>오설록 찐혜택
-</dt>
+		</dt>
 												<dd>#최대 45% #추가증정</dd>
 											</dl>
 										</div>
@@ -1366,9 +1366,9 @@
 										<div class="text_wrap">
 											<dl style="color:#000000;">
 												<dt>아비브 어성초로 
-</dt>
+		</dt>
 												<dt>진정한 진정케어
-</dt>
+		</dt>
 												<dd>#어워즈 단독기획</dd>
 											</dl>
 										</div>
@@ -1400,13 +1400,13 @@
 				
 				</ul>
 			</div>
-		</div>
+		</div> -->
 		<!-- //추천 기획전 -->
 		
 
 		
 		
-		<div class="main_plan_banner ty02">
+		<!-- <div class="main_plan_banner ty02">
 			
 			
 			
@@ -1442,9 +1442,9 @@
 												<a href="javascript:common.link.movePlanShop('500000102360103', 'Home_Planshop3_PROD');" data-ref-dispCatNo="500000102360103" data-tracking-cd="Home_Planshop3_PROD" data-attr="홈^인기행사기획전상세^피부야천천히^1"  data-trk="/"  data-attr-imp-goodsno="A000000175617">
 													<p>
 														<strong class="tit" style="color:#000000;">모든 피부 고민,
-</strong>
+		</strong>
 														<strong class="tit" style="color:#000000;">근본부터 탄탄하게
-</strong>
+		</strong>
 														<span class="desc" style="color:#000000;">올리브영 슬로에이징</span>
 													</p>
 												</a>
@@ -1465,7 +1465,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000176346&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000176346" data-attr="홈^인기행사만 모았어요^시모먼트 브이 리프팅 롤러 크림 150ml^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000176346^홈_인기행사만 모았어요^1"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017634603koe743.jpg?l=ko" alt="시모먼트 브이 리프팅 롤러 크림 150ml" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000176346" data-attr="홈^인기행사만 모았어요^시모먼트 브이 리프팅 롤러 크림 150ml^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">시모먼트</span><p class="tx_name">시모먼트 브이 리프팅 롤러 크림 150ml</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000176346">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">35,900</span>원 </span><span class="tx_cur"><span class="tx_num">28,500</span>원 </span></p><p class="prd_flag"><span class="icon_flag coupon">쿠폰</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:96.0%">10점만점에 5.5점</span></span>(23)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000176346" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1474,7 +1474,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000175032&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000175032" data-attr="홈^인기행사만 모았어요^[2022어워즈]리쥬란힐러 턴오버 앰플 듀얼 이펙트 30ml(+1ml*7ea증정) 기획^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000175032^홈_인기행사만 모았어요^2"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017503212koe743.jpg?l=ko" alt="[2022어워즈]리쥬란힐러 턴오버 앰플 듀얼 이펙트 30ml(+1ml*7ea증정) 기획" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000175032" data-attr="홈^인기행사만 모았어요^[2022어워즈]리쥬란힐러 턴오버 앰플 듀얼 이펙트 30ml(+1ml*7ea증정) 기획^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">리쥬란</span><p class="tx_name">[2022어워즈]리쥬란힐러 턴오버 앰플 듀얼 이펙트 30ml(+1ml*7ea증정) 기획</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000175032">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">59,000</span>원 </span><span class="tx_cur"><span class="tx_num">38,300</span>원 </span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:94.0%">10점만점에 5.5점</span></span>(772)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000175032" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1510,9 +1510,9 @@
 												<a href="javascript:common.link.movePlanShop('500000102380069', 'Home_Planshop3_PROD');" data-ref-dispCatNo="500000102380069" data-tracking-cd="Home_Planshop3_PROD" data-attr="홈^인기행사기획전상세^신상품MVP^2"  data-trk="/"  data-attr-imp-goodsno="A000000175617">
 													<p>
 														<strong class="tit" style="color:#ffffff;">22년도를 빛낸
-</strong>
+		</strong>
 														<strong class="tit" style="color:#ffffff;">마스크팩 신상
-</strong>
+		</strong>
 														<span class="desc" style="color:#ffffff;">#7일 추가할인</span>
 													</p>
 												</a>
@@ -1533,7 +1533,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000170811&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000170811" data-attr="홈^인기행사만 모았어요^[모공탄력]메디앤서 포어 콜라겐 마스크 5매^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000170811^홈_인기행사만 모았어요^1"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017081105koe743.jpg?l=ko" alt="[모공탄력]메디앤서 포어 콜라겐 마스크 5매" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000170811" data-attr="홈^인기행사만 모았어요^[모공탄력]메디앤서 포어 콜라겐 마스크 5매^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">메디앤서</span><p class="tx_name">[모공탄력]메디앤서 포어 콜라겐 마스크 5매</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000170811">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">30,000</span>원 </span><span class="tx_cur"><span class="tx_num">16,500</span>원 </span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag coupon">쿠폰</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:94.0%">10점만점에 5.5점</span></span>(434)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000170811" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1542,7 +1542,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000171820&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000171820" data-attr="홈^인기행사만 모았어요^일소 네추럴 마일드 클리어 노우즈 팩 5매입^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000171820^홈_인기행사만 모았어요^2"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017182024koe743.jpg?l=ko" alt="일소 네추럴 마일드 클리어 노우즈 팩 5매입" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000171820" data-attr="홈^인기행사만 모았어요^일소 네추럴 마일드 클리어 노우즈 팩 5매입^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">일소</span><p class="tx_name">일소 네추럴 마일드 클리어 노우즈 팩 5매입</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000171820">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">12,900</span>원 </span><span class="tx_cur"><span class="tx_num">11,900</span>원 </span></p><p class="prd_flag"><span class="icon_flag coupon">쿠폰</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:94.0%">10점만점에 5.5점</span></span>(999+)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000171820" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1574,9 +1574,9 @@
 												<a href="javascript:common.link.movePlanShop('500000102390151', 'Home_Planshop3_PROD');" data-ref-dispCatNo="500000102390151" data-tracking-cd="Home_Planshop3_PROD" data-attr="홈^인기행사기획전상세^비건웨어^3"  data-trk="/"  data-attr-imp-goodsno="A000000175617">
 													<p>
 														<strong class="tit" style="color:#000000;">내 피부같은 자연스러움
-</strong>
+		</strong>
 														<strong class="tit" style="color:#000000;">헬시 글로우 쿠션
-</strong>
+		</strong>
 														<span class="desc" style="color:#000000;">#어워즈 한정기획 #거울증정</span>
 													</p>
 												</a>
@@ -1597,7 +1597,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000170328&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000170328" data-attr="홈^인기행사만 모았어요^[어워즈기획]클리오 비건웨어 헬시글로우 쿠션 기획세트(리필+손거울 증정기획)^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="004" data-trk="null" data-impression="A000000170328^홈_인기행사만 모았어요^1"><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017032838koe743.jpg?l=ko" alt="[어워즈기획]클리오 비건웨어 헬시글로우 쿠션 기획세트(리필+손거울 증정기획)" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000170328" data-attr="홈^인기행사만 모았어요^[어워즈기획]클리오 비건웨어 헬시글로우 쿠션 기획세트(리필+손거울 증정기획)^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="004" data-trk="null"><span class="tx_brand">비건웨어</span><p class="tx_name">[어워즈기획]클리오 비건웨어 헬시글로우 쿠션 기획세트(리필+손거울 증정기획)</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000170328">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">45,000</span>원 </span><span class="tx_cur"><span class="tx_num">29,300</span>원 </span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:88.0%">10점만점에 5.5점</span></span>(523)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000170328" data-ref-dispCatNo="90000010001" data-ref-itemNo="004">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1606,7 +1606,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000163908&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000163908" data-attr="홈^인기행사만 모았어요^[NEW] 클리오 비건웨어 UV 세팅 프라이머^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000163908^홈_인기행사만 모았어요^2"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0016/A00000016390805koe743.jpg?l=ko" alt="[NEW] 클리오 비건웨어 UV 세팅 프라이머" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000163908" data-attr="홈^인기행사만 모았어요^[NEW] 클리오 비건웨어 UV 세팅 프라이머^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">비건웨어</span><p class="tx_name">[NEW] 클리오 비건웨어 UV 세팅 프라이머</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000163908">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">32,000</span>원 </span><span class="tx_cur"><span class="tx_num">19,760</span>원 </span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag coupon">쿠폰</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:92.0%">10점만점에 5.5점</span></span>(448)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000163908" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1638,9 +1638,9 @@
 												<a href="javascript:common.link.movePlanShop('500000102150121', 'Home_Planshop3_PROD');" data-ref-dispCatNo="500000102150121" data-tracking-cd="Home_Planshop3_PROD" data-attr="홈^인기행사기획전상세^더툴랩^4"  data-trk="/"  data-attr-imp-goodsno="A000000175617">
 													<p>
 														<strong class="tit" style="color:#000000;">연말 무드를 더해 줄 
-</strong>
+		</strong>
 														<strong class="tit" style="color:#000000;">메이크업 툴 모음 
-</strong>
+		</strong>
 														<span class="desc" style="color:#000000;">#더툴랩</span>
 													</p>
 												</a>
@@ -1661,7 +1661,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000107181&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000107181" data-attr="홈^인기행사만 모았어요^더툴랩 101 멀티태스커 파운데이션 베이스 메이크업 브러쉬 3종 택1^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="003" data-trk="null" data-impression="A000000107181^홈_인기행사만 모았어요^1"><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0010/A00000010718118koe743.jpg?l=ko" alt="더툴랩 101 멀티태스커 파운데이션 베이스 메이크업 브러쉬 3종 택1" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000107181" data-attr="홈^인기행사만 모았어요^더툴랩 101 멀티태스커 파운데이션 베이스 메이크업 브러쉬 3종 택1^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="003" data-trk="null"><span class="tx_brand">더툴랩</span><p class="tx_name">더툴랩 101 멀티태스커 파운데이션 베이스 메이크업 브러쉬 3종 택1</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000107181">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">25,000</span>원 ~</span><span class="tx_cur"><span class="tx_num">22,500</span>원 ~</span></p><p class="prd_flag"><span class="icon_flag coupon">쿠폰</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:94.0%">10점만점에 5.5점</span></span>(122)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000107181" data-ref-dispCatNo="90000010001" data-ref-itemNo="003">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1670,7 +1670,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000159240&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000159240" data-attr="홈^인기행사만 모았어요^[단독기획] 더툴랩 슈퍼 소프트 NBR 메이크업 스펀지 3종 택1^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000159240^홈_인기행사만 모았어요^2"><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0015/A00000015924020koe743.jpg?l=ko" alt="[단독기획] 더툴랩 슈퍼 소프트 NBR 메이크업 스펀지 3종 택1" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000159240" data-attr="홈^인기행사만 모았어요^[단독기획] 더툴랩 슈퍼 소프트 NBR 메이크업 스펀지 3종 택1^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">더툴랩</span><p class="tx_name">[단독기획] 더툴랩 슈퍼 소프트 NBR 메이크업 스펀지 3종 택1</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000159240">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">7,000</span>원 </span><span class="tx_cur"><span class="tx_num">6,300</span>원 </span></p><p class="prd_flag"><span class="icon_flag coupon">쿠폰</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:80.0%">10점만점에 5.5점</span></span>(14)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000159240" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1708,9 +1708,9 @@
 												<a href="javascript:common.link.movePlanShop('500000102140203', 'Home_Planshop3_PROD');" data-ref-dispCatNo="500000102140203" data-tracking-cd="Home_Planshop3_PROD" data-attr="홈^인기행사기획전상세^굿바이 바디각질^5"  data-trk="/"  data-attr-imp-goodsno="A000000175617">
 													<p>
 														<strong class="tit" style="color:#000000;">MD가 제안하는
-</strong>
+		</strong>
 														<strong class="tit" style="color:#000000;">매끈바디 관리루틴
-</strong>
+		</strong>
 														<span class="desc" style="color:#000000;">#굿바이바디각질</span>
 													</p>
 												</a>
@@ -1731,7 +1731,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000107604&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000107604" data-attr="홈^인기행사만 모았어요^[올영단독] 닥터자르트 세라마이딘 바디오일 250ml^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000107604^홈_인기행사만 모았어요^1"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0010/A00000010760402koe743.jpg?l=ko" alt="[올영단독] 닥터자르트 세라마이딘 바디오일 250ml" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000107604" data-attr="홈^인기행사만 모았어요^[올영단독] 닥터자르트 세라마이딘 바디오일 250ml^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">닥터자르트</span><p class="tx_name">[올영단독] 닥터자르트 세라마이딘 바디오일 250ml</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000107604">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">25,000</span>원 </span><span class="tx_cur"><span class="tx_num">16,900</span>원 </span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag coupon">쿠폰</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:94.0%">10점만점에 5.5점</span></span>(999+)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000107604" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1740,7 +1740,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000148549&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000148549" data-attr="홈^인기행사만 모았어요^[5년연속 1위 바디스크럽] 트리헛 시어 슈가 스크럽 510g 9종 택1^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000148549^홈_인기행사만 모았어요^2"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0014/A00000014854940koe743.jpg?l=ko" alt="[5년연속 1위 바디스크럽] 트리헛 시어 슈가 스크럽 510g 9종 택1" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000148549" data-attr="홈^인기행사만 모았어요^[5년연속 1위 바디스크럽] 트리헛 시어 슈가 스크럽 510g 9종 택1^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">트리헛</span><p class="tx_name">[5년연속 1위 바디스크럽] 트리헛 시어 슈가 스크럽 510g 9종 택1</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000148549">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">22,500</span>원 ~</span><span class="tx_cur"><span class="tx_num">17,100</span>원 ~</span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag coupon">쿠폰</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:96.0%">10점만점에 5.5점</span></span>(999+)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000148549" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1774,9 +1774,9 @@
 												<a href="javascript:common.link.movePlanShop('500000101780284', 'Home_Planshop3_PROD');" data-ref-dispCatNo="500000101780284" data-tracking-cd="Home_Planshop3_PROD" data-attr="홈^인기행사기획전상세^연말선물은향수^6"  data-trk="/"  data-attr-imp-goodsno="A000000175617">
 													<p>
 														<strong class="tit" style="color:#000000;">GOOD BUY 2022
-</strong>
+		</strong>
 														<strong class="tit" style="color:#000000;">향기로운 끌로에&CK
-</strong>
+		</strong>
 														<span class="desc" style="color:#000000;">#추가증정 #단독기획</span>
 													</p>
 												</a>
@@ -1797,7 +1797,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000176663&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000176663" data-attr="홈^인기행사만 모았어요^[12월 올영픽] 끌로에 EDP 50ml 기획(본품+파우치 추가증정)^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000176663^홈_인기행사만 모았어요^1"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017666302koe743.jpg?l=ko" alt="[12월 올영픽] 끌로에 EDP 50ml 기획(본품+파우치 추가증정)" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000176663" data-attr="홈^인기행사만 모았어요^[12월 올영픽] 끌로에 EDP 50ml 기획(본품+파우치 추가증정)^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">끌로에</span><p class="tx_name">[12월 올영픽] 끌로에 EDP 50ml 기획(본품+파우치 추가증정)</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000176663">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">150,000</span>원 </span><span class="tx_cur"><span class="tx_num">118,000</span>원 </span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag coupon">쿠폰</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:96.0%">10점만점에 5.5점</span></span>(243)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000176663" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1806,7 +1806,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000176664&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000176664" data-attr="홈^인기행사만 모았어요^[12월 올영픽] CK 캘빈클라인 One EDT 100ml 기획(샤워젤 100ml+미니어처 15ml 기획)^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000176664^홈_인기행사만 모았어요^2"><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/A00000017666401koe743.jpg?l=ko" alt="[12월 올영픽] CK 캘빈클라인 One EDT 100ml 기획(샤워젤 100ml+미니어처 15ml 기획)" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000176664" data-attr="홈^인기행사만 모았어요^[12월 올영픽] CK 캘빈클라인 One EDT 100ml 기획(샤워젤 100ml+미니어처 15ml 기획)^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">캘빈클라인</span><p class="tx_name">[12월 올영픽] CK 캘빈클라인 One EDT 100ml 기획(샤워젤 100ml+미니어처 15ml 기획)</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000176664">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">85,000</span>원 </span><span class="tx_cur"><span class="tx_num">63,700</span>원 </span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:96.0%">10점만점에 5.5점</span></span>(623)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000176664" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1840,9 +1840,9 @@
 												<a href="javascript:common.link.movePlanShop('500000102610030', 'Home_Planshop3_PROD');" data-ref-dispCatNo="500000102610030" data-tracking-cd="Home_Planshop3_PROD" data-attr="홈^인기행사기획전상세^연말GIFT^7"  data-trk="/"  data-attr-imp-goodsno="A000000175617">
 													<p>
 														<strong class="tit" style="color:#ffffff;">새롭게 출발해요
-</strong>
+		</strong>
 														<strong class="tit" style="color:#ffffff;">사랑을 담아, 2023
-</strong>
+		</strong>
 														<span class="desc" style="color:#ffffff;">라이프&홈 BEST</span>
 													</p>
 												</a>
@@ -1863,7 +1863,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000146003&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000146003" data-attr="홈^인기행사만 모았어요^순백수 편백 스프레이 시리즈 5종 택1^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="013" data-trk="null" data-impression="A000000146003^홈_인기행사만 모았어요^1"><span class="thumb_flag best">베스트</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0014/A00000014600303koe743.jpg?l=ko" alt="순백수 편백 스프레이 시리즈 5종 택1" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000146003" data-attr="홈^인기행사만 모았어요^순백수 편백 스프레이 시리즈 5종 택1^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="013" data-trk="null"><span class="tx_brand">순백수</span><p class="tx_name">순백수 편백 스프레이 시리즈 5종 택1</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000146003">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">18,900</span>원 ~</span><span class="tx_cur"><span class="tx_num">10,900</span>원 ~</span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag coupon">쿠폰</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:94.0%">10점만점에 5.5점</span></span>(736)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000146003" data-ref-dispCatNo="90000010001" data-ref-itemNo="013">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1872,7 +1872,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=B000000178474&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="B000000178474" data-attr="홈^인기행사만 모았어요^마켓올슨 런드리세트(세탁세제 485ml+섬유유연제 485ml) + 쇼핑백^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="B000000178474^홈_인기행사만 모았어요^2"><span class="thumb_flag new">신상</span><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0017/B00000017847401koe743.jpg?l=ko" alt="마켓올슨 런드리세트(세탁세제 485ml+섬유유연제 485ml) + 쇼핑백" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="B000000178474" data-attr="홈^인기행사만 모았어요^마켓올슨 런드리세트(세탁세제 485ml+섬유유연제 485ml) + 쇼핑백^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">마켓올슨</span><p class="tx_name">마켓올슨 런드리세트(세탁세제 485ml+섬유유연제 485ml) + 쇼핑백</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="B000000178474">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">36,000</span>원 </span><span class="tx_cur"><span class="tx_num">32,400</span>원 </span></p><p class="prd_flag"><span class="icon_flag coupon">쿠폰</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:%">10점만점에 5.5점</span></span></p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="B000000178474" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1908,9 +1908,9 @@
 												<a href="javascript:common.link.movePlanShop('500000101510217', 'Home_Planshop3_PROD');" data-ref-dispCatNo="500000101510217" data-tracking-cd="Home_Planshop3_PROD" data-attr="홈^인기행사기획전상세^겨울엔온열용품^8"  data-trk="/"  data-attr-imp-goodsno="A000000175617">
 													<p>
 														<strong class="tit" style="color:#000000;">연말엔 온열용품!
-</strong>
+		</strong>
 														<strong class="tit" style="color:#000000;">최대 ~32% 할인
-</strong>
+		</strong>
 														<span class="desc" style="color:#000000;">#핫팩 #아이마스크</span>
 													</p>
 												</a>
@@ -1931,7 +1931,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000161566&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="A000000161566" data-attr="홈^인기행사만 모았어요^스팀베이스 데일리 아이마스크 15매입 3종 (3가지향 택1)^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="A000000161566^홈_인기행사만 모았어요^1"><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0016/A00000016156604koe743.jpg?l=ko" alt="스팀베이스 데일리 아이마스크 15매입 3종 (3가지향 택1)" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="A000000161566" data-attr="홈^인기행사만 모았어요^스팀베이스 데일리 아이마스크 15매입 3종 (3가지향 택1)^1" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">스팀베이스</span><p class="tx_name">스팀베이스 데일리 아이마스크 15매입 3종 (3가지향 택1)</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="A000000161566">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">17,900</span>원 ~</span><span class="tx_cur"><span class="tx_num">15,300</span>원 ~</span></p><p class="prd_flag"><span class="icon_flag sale">세일</span><span class="icon_flag coupon">쿠폰</span><span class="icon_flag delivery">오늘드림</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:92.0%">10점만점에 5.5점</span></span>(145)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="A000000161566" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1940,7 +1940,7 @@
 											<li>
 												
 												<div class="prd_info "><a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=B000000166327&amp;dispCatNo=90000010001&amp;trackingCd=Home_Planshop3&amp;curation&amp;egcode&amp;rccode&amp;egrankcode" name="Home_Planshop3" class="prd_thumb goodsList" data-ref-goodsNo="B000000166327" data-attr="홈^인기행사만 모았어요^[업체배송]휴플러스 코드제로 눈 마사지기 CORDZERO-EL1 (온)^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null" data-impression="B000000166327^홈_인기행사만 모았어요^2"><img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/goods/400/10/0000/0016/B00000016632701koe743.jpg?l=ko" alt="[업체배송]휴플러스 코드제로 눈 마사지기 CORDZERO-EL1 (온)" onerror="common.errorImg(this);"></a><div class="prd_name"><a href="javascript:;" name="Home_Planshop3" class="goodsList" data-ref-goodsNo="B000000166327" data-attr="홈^인기행사만 모았어요^[업체배송]휴플러스 코드제로 눈 마사지기 CORDZERO-EL1 (온)^2" data-ref-dispCatNo="90000010001" data-ref-itemNo="001" data-trk="null"><span class="tx_brand">휴플러스</span><p class="tx_name">[업체배송]휴플러스 코드제로 눈 마사지기 CORDZERO-EL1 (온)</p></a></div><button class="btn_zzim jeem" data-ref-goodsNo="B000000166327">찜하기</button><p class="prd_price"><span class="tx_org"><span class="tx_num">49,900</span>원 </span><span class="tx_cur"><span class="tx_num">39,900</span>원 </span></p><p class="prd_flag"><span class="icon_flag coupon">쿠폰</span></p><p class="prd_point_area tx_num"><span class="review_point"><span class="point" style="width:96.0%">10점만점에 5.5점</span></span>(5)</p><p class="prd_btn_area"><button class="cartBtn" data-ref-goodsNo="B000000166327" data-ref-dispCatNo="90000010001" data-ref-itemNo="001">장바구니</button><button class="btn_new_pop goodsList">새창보기</button></p></div>
-
+		
 												
 											</li>
 										
@@ -1964,7 +1964,7 @@
 			<div class="banner_paging"></div>
 			<span class="slick-prev prev" id="plan_prev">prev</span>
 			<span class="slick-next next" id="plan_next">next</span>
-		</div>
+		</div> -->
 		
 		
 
@@ -1997,7 +1997,7 @@
 							
 							
 
-							<div class="catch_keyword_wrap">
+							<!-- <div class="catch_keyword_wrap">
 								<h3 class="main_sub_tit"><strong>Catch Keyword</strong></h3>
 								<div class="catch_keyword_slide">
 									<ul class="slide_list slick_slider" id="catch_keyword" style="display: none;">
@@ -2013,7 +2013,7 @@
 																<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/340/9178477056191998596.jpg" alt="캐치 탄력" />
 															</div>
 															<div class="keyword_title"><strong>연말 검색량 50% 상승, 탄력
-</strong></div>
+							</strong></div>
 															<div class="keyword_sub_title">힘 없이 축 처진 피부, 속부터 꽉 채워볼까요</div>
 														</a>
 													</li>
@@ -2027,7 +2027,7 @@
 																<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/340/2340362392685530245.jpg" alt="캐치 입욕제" />
 															</div>
 															<div class="keyword_title"><strong>매일 1,000번씩 검색되는 입욕제
-</strong></div>
+							</strong></div>
 															<div class="keyword_sub_title">추운 마음도 사르르 녹이는 입욕제 소개해요</div>
 														</a>
 													</li>
@@ -2047,7 +2047,7 @@
 																<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/340/6434119825186844008.jpg" alt="캐치 핫팩" />
 															</div>
 															<div class="keyword_title"><strong>겨울철 인기 검색어 '핫팩'
-</strong></div>
+							</strong></div>
 															<div class="keyword_sub_title">캠핑용 핫팩부터 온열기기까지 다 모았어요</div>
 														</a>
 													</li>
@@ -2061,7 +2061,7 @@
 																<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/340/6316547511827164108.jpg" alt="캐치 입냄새" />
 															</div>
 															<div class="keyword_title"><strong>매일 1,500번씩 검색되는 입냄새
-</strong></div>
+							</strong></div>
 															<div class="keyword_sub_title">마스크 속 텁텁한 구취, 상쾌하게 물리쳐요</div>
 														</a>
 													</li>
@@ -2081,7 +2081,7 @@
 																<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/340/7871912913729016227.jpg" alt="캐치 가려움" />
 															</div>
 															<div class="keyword_title"><strong>12월 4주 급상승 검색어, 가려움
-</strong></div>
+							</strong></div>
 															<div class="keyword_sub_title">자꾸 긁지마세요. 보습과 장벽을 먼저 케어해요.</div>
 														</a>
 													</li>
@@ -2095,7 +2095,7 @@
 																<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/340/8480117712264329238.jpg" alt="캐치 뒷꿈치" />
 															</div>
 															<div class="keyword_title"><strong>검색량 2배 증가, 뒷꿈치
-</strong></div>
+							</strong></div>
 															<div class="keyword_sub_title">폭신한 이불 속 까끌거리는 뒷꿈치가 느껴질 때</div>
 														</a>
 													</li>
@@ -2115,7 +2115,7 @@
 																<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/340/2285274117427962363.jpg" alt="캐치 머스크" />
 															</div>
 															<div class="keyword_title"><strong>연말 급상승 검색어, 머스크
-</strong></div>
+							</strong></div>
 															<div class="keyword_sub_title">새로 산 코트에 잘 어울리는 향기를 찾고 있다면</div>
 														</a>
 													</li>
@@ -2129,7 +2129,7 @@
 																<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/340/8802080824482896502.jpg" alt="캐치 머릿결" />
 															</div>
 															<div class="keyword_title"><strong>하루 3,000번 검색되는 머릿결
-</strong></div>
+							</strong></div>
 															<div class="keyword_sub_title">부스스한 머릿결도 물미역 만드는 꿀템 소개해요</div>
 														</a>
 													</li>
@@ -2149,7 +2149,7 @@
 																<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/340/7837358497072274537.jpg" alt="캐치 수부지" />
 															</div>
 															<div class="keyword_title"><strong>환절기 인기 검색어, 수부지
-</strong></div>
+							</strong></div>
 															<div class="keyword_sub_title">수부지 살리는 구원템 다 모아봤어요</div>
 														</a>
 													</li>
@@ -2163,7 +2163,7 @@
 																<img src="${pageContext.request.contextPath }/resources/image/image.oliveyoung.co.kr/uploads/images/display/90000010001/340/4413399877340296109.jpg" alt="캐치 오일" />
 															</div>
 															<div class="keyword_title"><strong>겨울철 검색 TOP 100, 오일
-</strong></div>
+							</strong></div>
 															<div class="keyword_sub_title">발라도 발라도 건조할 때는 오일 보습막이 답!</div>
 														</a>
 													</li>
@@ -2174,7 +2174,7 @@
 										
 									</ul>
 								</div>
-
+							
 								
 								<div class="btn_box">
 									<button type="button" class="btn" id="btn_catch_keyword" data-attr="홈^catchkeyword_더보기^더보기" data-trk="/">
@@ -2186,7 +2186,7 @@
 									</button>
 								</div>
 								
-							</div>
+							</div> -->
 						
 					
 				
@@ -2202,7 +2202,7 @@
 
 		
 			
-				<div class="main_onlyone_wrap">
+				<!-- <div class="main_onlyone_wrap">
 					<h3 class="main_sub_tit">오직 올리브영에서만</h3>
 					<div class="banner_wrap slick_slider" id="OnlyoneSlider">
 						
@@ -2243,7 +2243,7 @@
 											
 											
 												<strong class="title">마음까지 촉촉한
-</strong>
+				</strong>
 												
 													<strong class="title">바디 보습 기프트</strong>
 												
@@ -2292,7 +2292,7 @@
 											
 											
 												<strong class="title">필리밀리
-</strong>
+				</strong>
 												
 													<strong class="title">대용량 특가대전!</strong>
 												
@@ -2317,10 +2317,10 @@
 											
 											
 												<strong class="title">굿 BUY 스킨케어
-</strong>
+				</strong>
 												
 													<strong class="title">고민별 BEST템
-</strong>
+				</strong>
 												
 												<span class="desc">최대 40% 할인!</span>
 											
@@ -2343,10 +2343,10 @@
 											
 											
 												<strong class="title">피부 고민별
-</strong>
+				</strong>
 												
 													<strong class="title">맞춤 마스크팩!
-</strong>
+				</strong>
 												
 												<span class="desc">할인 혜택까지!</span>
 											
@@ -2359,7 +2359,7 @@
 							
 						
 					</div>
-				</div>
+				</div> -->
 				
 			
 		
@@ -2371,7 +2371,7 @@
 		
 
 		
-		<h3 class="main_sub_tit"><strong>이 상품 어때요?</strong></h3>
+		<!-- <h3 class="main_sub_tit"><strong>이 상품 어때요?</strong></h3> -->
 		
 
 	
@@ -2386,7 +2386,7 @@
 	
 	
 	
-		<div class="mainHLifeWrap">
+		<!-- <div class="mainHLifeWrap">
 			<h3 class="main_sub_tit"><strong>Healthy Life</strong></h3>
 			<div class="hLifeSlide">
 				
@@ -2448,7 +2448,7 @@
 					
 				
 			</div>
-		</div>
+		</div> -->
 		
 	
 

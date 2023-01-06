@@ -1,6 +1,5 @@
 package www.olive.mvc.myPage.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +31,15 @@ public class MypageService {
 	ProductMapper productMapper;
 
 	public List<OrderList> orderListView(ProductOrder po) {
-		return orderMapper.orderListView(po);
+		List<OrderList> orderLists = orderMapper.orderListView(po);
+		StringBuffer sBuffer = new StringBuffer();
+		for(OrderList order : orderLists) {
+			sBuffer.append(order.getPhone());
+			sBuffer.replace(4, 8, "****");
+			order.setPhone(sBuffer.toString());
+		}
+		//System.out.println("연락처 변경됨?"+orderLists);
+		return orderLists;
 	}
 
 	public List<ProductOrder> viewOrder(Long memberNum) {

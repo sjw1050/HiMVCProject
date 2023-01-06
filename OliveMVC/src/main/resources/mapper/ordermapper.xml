@@ -179,7 +179,7 @@ and po.member_num = #{memberNum} order by od.order_id;
 	</select>
 	
 	<select id="getOrderDetailsList" resultMap="detatilResult">
-	select od. order_id, b.brand_name, p.product_name, p.product_price,
+	select od. order_id, b.brand_name, p.product_name, p.product_price, p.product_id,
 od.order_count, po.total_price, os.status, po.order_date from 
 product_order po, product p, order_details od, brand b, order_status os
 where od.order_id = po.order_id

@@ -328,15 +328,15 @@
 
 
 				<li class="order"><a
-					href="javascript:common.link.moveOrderList();"
+					href="${pageContext.request.contextPath }/mypage/getOrderList"
 					data-attr='공통^헤더^주문배송'>주문배송</a></li>
 				<li class="customer"><a
 					href="${pageContext.request.contextPath }/cs/faq/faqview"
 					data-attr='고객센터'>고객센터</a></li>
 				<li class="store"><a
-					href="javascript:common.link.moveStoreMain();"
+					href="#"
 					data-attr='공통^헤더^매장안내'>매장안내</a></li>
-				<li class="global"><a href="http://global.oliveyoung.com/"
+				<li class="global"><a href="#"
 					target="_blank" title="올리브영 글로벌 새창으로 열기" data-attr='공통^헤더^Global'>Global</a></li>
 			</ul>
 		</div>

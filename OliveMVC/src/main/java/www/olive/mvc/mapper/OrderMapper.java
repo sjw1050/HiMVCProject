@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import www.olive.mvc.cart.dto.Cart;
 import www.olive.mvc.member.dto.AuthInfo;
-import www.olive.mvc.member.dto.MemberEntity;
 import www.olive.mvc.myPage.dto.OrderAddress;
 import www.olive.mvc.myPage.dto.OrderDetails;
 import www.olive.mvc.myPage.dto.OrderList;
