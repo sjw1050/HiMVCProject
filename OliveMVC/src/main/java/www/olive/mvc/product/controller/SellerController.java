@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import lombok.extern.slf4j.Slf4j;
+import www.olive.mvc.customerCenter.dto.Notice;
+import www.olive.mvc.customerCenter.dto.OliveFile;
 import www.olive.mvc.product.dto.Brand;
 import www.olive.mvc.product.dto.Product;
 import www.olive.mvc.product.dto.SubCategory;
@@ -172,15 +174,46 @@ public class SellerController {
 //		return "location.reload()";
 	}
 	 
-	// 상품 수정
+	
+	//상품 수정 폼
 	@GetMapping("/modiProd")
-	public void modiProd(HttpServletRequest request, HttpSession session) {
+	public String modiProduct(@RequestParam("productId") String productId, Model model ) {
 		
-		String productId = request.getParameter("productId");
-		System.out.println("modiProd 링링들어왔나 >> ");
-		System.out.println("modiProd 들어왔나 >> " + productId);
+		Product modiProduct = sellerService.selectOneProd(productId);
+		OliveFile oliveFile = sellerService.selectOneFile(productId);
 		
-//		return null;
+		System.out.println("modiProduct :::::: " + modiProduct);
+		System.out.println("oliveFile :::::: " + oliveFile);
+		model.addAttribute("modiProduct", modiProduct);
+		model.addAttribute("oliveFile", oliveFile);
+		return "/seller/modiProduct";
+	}
+	
+	// 상품 수정
+	@PostMapping("/modiProd")
+	public String modiProd(Product product, MultipartHttpServletRequest mtfRequest, HttpServletRequest request) {
+		//
+		OliveFile oFile = new OliveFile();
+		List<MultipartFile> files = mtfRequest.getFiles("productImage");
+		sellerService.modiProd(product);
+		
+		for(MultipartFile mf : files) {
+			if (mf.getSize() != 0) {
+				try {
+				String savedFilePath = FileUtil.uploadFile(mf, request);
+				String fileName = savedFilePath.substring(10).trim();
+				oFile.setFileName(fileName);
+				oFile.setProductId(product);
+				sellerService.modiProdFile(oFile);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			
+			}
+		}	
+		
+		return "redirect:/seller/viewBySeller";
+		
 	}
 	
 }
