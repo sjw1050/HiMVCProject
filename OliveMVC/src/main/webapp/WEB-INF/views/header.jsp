@@ -36,11 +36,8 @@
 <meta property="og:type" content="website" />
 
 <!-- 올리브영 css 시작 -->
-
-
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/styledbaa.css?dumm=20221223001" />
-
+	href="${pageContext.request.contextPath }/resources/css/styledbaa.css" />
 <script>
 	//var _path = "${pageContext.request.contextPath }";
 	var _tmsPushUrl = "https://pmsg.oliveyoung.co.kr/msg-api/user/mkt-flag";
