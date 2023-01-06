@@ -29,5 +29,8 @@ public interface OrderMapper {
 	List<OrderList> getOrderList(AuthInfo info);
 	List<OrderDetails> viewOrderDetail(Long memberNum);
 	
+	List<String> getOrderNum(Long memberNum);
+	List<OrderDetails> getOrderDetailsList(String orderNum);
+	
 	
 }

@@ -3,6 +3,7 @@ package www.olive.mvc.myPage.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -252,13 +253,15 @@ public class MypageController {
 	public String getOrderList(HttpSession session, Model model) {
 		AuthInfo info = (AuthInfo) session.getAttribute("info");
 		//List<OrderList> orderList = mypageService.getOrderList(info);
-		List<ProductOrder> poList = mypageService.viewOrder(info.getMemberNum());
-		List<OrderDetails> odList = mypageService.viewOrderDetail(info);
-		System.out.println("오더디테일 받음?" + odList);
+//		List<ProductOrder> poList = mypageService.viewOrder(info.getMemberNum());
+//		List<OrderDetails> odList = mypageService.viewOrderDetail(info);
+		Map map = mypageService.getOrderMap(info.getMemberNum());
+		//System.out.println("오더디테일 받음?" + odList);
 		//System.out.println("뿌려줄 주문리스트 정보 : " + orderList);
 		//model.addAttribute("orderList", orderList);
-		model.addAttribute("poList", poList);
-		model.addAttribute("odList", odList);
+//		model.addAttribute("poList", poList);
+//		model.addAttribute("odList", odList);
+		model.addAttribute("map", map);
 		return "mypage/getOrderList";
 	}
 	
