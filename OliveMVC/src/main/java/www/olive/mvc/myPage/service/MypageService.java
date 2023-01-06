@@ -105,4 +105,16 @@ public class MypageService {
 		return orderMapper.viewOrderDetail(info.getMemberNum());
 	}
 
+	public Map getOrderMap(Long memberNum) {
+		Map map = new HashMap<>();
+		List<String> orderNumList = orderMapper.getOrderNum(memberNum);
+		for(String orderNum : orderNumList) {
+			List<OrderDetails> details = orderMapper.getOrderDetailsList(orderNum); 
+			System.out.println("details >>> " + details);
+			map.put(orderNum, details);
+		}
+		System.out.println("map >>>>>>>>>>>>>>> " + map);
+		return map;
+	}
+
 }

@@ -172,4 +172,21 @@ and po.member_num = #{memberNum} order by od.order_id;
 	</insert>
 
 
+	<select id="getOrderNum" resultType="String">
+	select order_id		
+	from product_order
+	where member_num = #{memberNum}
+	</select>
+	
+	<select id="getOrderDetailsList" resultMap="detatilResult">
+	select od. order_id, b.brand_name, p.product_name, p.product_price,
+od.order_count, po.total_price, os.status, po.order_date from 
+product_order po, product p, order_details od, brand b, order_status os
+where od.order_id = po.order_id
+and p.brand_num = b.brand_num
+and p.product_id = od.product_id 
+and po.status_number = os.status_number
+and od.order_id = #{orderNum} order by od.order_id;
+	</select>
+
 </mapper>
