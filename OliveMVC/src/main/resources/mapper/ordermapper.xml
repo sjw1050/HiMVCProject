@@ -121,7 +121,6 @@ and po.member_num = #{memberNum} order by od.order_id;
 		where
 		po.status_number = os.status_number
 		and po.member_num = #{memberNum}
-		order by order_id
 	</select>
 
 	<select id="viewAddress" resultMap="addressResult">

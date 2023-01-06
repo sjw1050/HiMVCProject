@@ -136,24 +136,24 @@
 		<c:if test="${not empty poList }">	
 		<c:forEach var="poList" items="${poList }">
 		<tbody class="history">
-		<!-- 여기서 foreach를 한번 더 돌림  -->
-		<c:forEach var="odList" items="${odList }" >		
+		<!-- 여기서 foreach를 한번 더 돌림  -->		
+		<c:forEach var="odList" items="${odList }" >
 			<tr>
-			<c:if test="${poList.orderId ne odList.order.orderId }">				
-				<td rowspan="3">
-					<ul class="mypage-flag-apply">
+			<c:if test="${poList.orderId eq odList.order.orderId }">		
+				<td rowspan="2">
+				</c:if>
+				<c:if test="${poList.orderId ne odList.order.orderId }">		
+				<td rowspan="1">
+				</c:if>
+				<ul class="mypage-flag-apply">
 						<li class="order-date"> ${poList.orderDate } </li>								
 						<li class="color1s"> ${poList.orderId } </li>								
 						<li>
 							<a href="javascript:void(0);" class="btnDetail" data-oper-dt="2023.01.05" data-origin-bizpl-cd="" data-pos-no="" data-receipt-no="" data-deal-sp="" data-frst-receipt-no="" onclick="javascript:mypage.orderList.goOrderDetail('Y2301050875403','', this); return false;">상세보기</a>
 						</li>							
 					</ul>
-				</td>	
 				<td class="subject">
-				</c:if>	
-				<c:if test="${odList.order.orderId eq poList.orderId  }">	
-				<td class="subject lineLeft">
-				</c:if>	
+				<!-- <td class="subject lineLeft"> -->
 					<div class="area">
 									<a class="thum" href="#">
 										<img src="#" alt="상품 썸네일 이미지경로" onerror="common.errorImg(this);">
@@ -171,14 +171,13 @@
 						<strong><fmt:formatNumber type="number" maxFractionDigits="3" value="${odList.product.productPrice * odList.orderCount }" /></strong> 원
 					
 				</td>
-				<td><strong>${odList.order.status }</strong>
+				<td><strong>${odList.order.status.status }</strong>
 											<button type="button" class="BtnDelete mgT5" id="btnDelete" onclick="mypage.orderList.goOrderCancelForm('Y2301050875403','20','1','10','10','',''); return false;">주문취소</button>
 				</td>
-			</tr>
-			
-			</c:forEach>
+			</tr>	
+			</c:forEach>	
 		</tbody>
-		</c:forEach>	
+		</c:forEach>
 		</c:if>
 			<!-- 중복이 된다면
 			<tr>
