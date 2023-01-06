@@ -7,9 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-${member }
  <p>${member.memberName }님의 정보 수정</p>
 
 <form action="${pageContext.request.contextPath }/mypage/modifymember" method="post" onsubmit="return check()">
@@ -94,7 +94,13 @@ function passwordcheck() {
 		alert("정확한 값을 입력해주세요 빈 칸은 입력할 수 없습니다.");
 		return false;
 	}else{
-		if(password !== passwordchk.value || newpassword.value !== newconfirmpassword.value){
+		if(newpassword.value !== newconfirmpassword.value){
+			alert("변경할 비밀번호가 일치하지 않습니다.");
+			newpassword.value = "";
+			newconfirmpassword.value = "";
+			return false;
+		}
+		/* if(password !== passwordchk.value || newpassword.value !== newconfirmpassword.value){
 			alert("입력한 비밀번호가 일치하지 않습니다.");
 			passwordchk.value = "";
 			newpassword.value = "";
@@ -103,7 +109,22 @@ function passwordcheck() {
 		}else{
 			alert("비밀번호 확인에 성공하였습니다. 변경 할 정보 입력 후 변경하기를 눌러주세요");
 			submit.style.display = "block";
-		}
+		} */
+		console.log(passwordchk.value);
+		$.ajax({
+	        url: "${pageContext.request.contextPath}/mypage/pwCheck?pw="+passwordchk.value,
+	        type: "get",
+	        success: function (result) {
+	        	console.log(result);
+	            if (result === "success") {
+	            	alert("비밀번호 확인에 성공하였습니다. 변경 할 정보 입력 후 변경하기를 눌러주세요 변경하기를 누르지 않을 경우 비밀번호는 변경되지 않습니다.");
+	    			submit.style.display = "block";
+	            }else{
+	            	alert("입력한 비밀번호가 일치하지 않습니다 다시 확인 후 입력해주세요");
+	            	passwordchk.value = "";
+	            }
+	        }
+	    });
 	}
 	
 	

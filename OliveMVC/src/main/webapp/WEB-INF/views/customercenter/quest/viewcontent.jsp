@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<div class="list-customer onenone m2105">
+<div class="list-customer">
 	<c:if test="${empty mqlist }">
 				<ul>	
 					<li class="nodata">등록하신 1:1 문의가 없습니다.</li>	
@@ -18,24 +18,31 @@
 			<c:if test="${not empty mqlist }">
 			<!-- 1:1질문 foreach뿌리는 부분 -->
 			<c:forEach items="${mqlist }" var="quest">
-				<ul>	
-					<li id="${quest.questionNum }">
-						<a href="${pageContext.request.contextPath }/cs/quest/view" role="button" class="stit" title="1:1문의 이동">
 			<c:if test="${quest.viewCheck }">
-				<strong>답변 완료</strong>
+				<!-- <strong style="background-color:#9bce26">답변 완료</strong> -->
+				<ul>
+							<li class="open">
+								<p class="stit">
+								<strong>답변완료</strong>
+									<a href="${pageContext.request.contextPath }/cs/quest/view">${quest.questionTitle }</a>
+									<span class="data">${quest.questionDate }</span>
+								</p>
+							</li>
+						</ul>
 			</c:if>
 			<c:if test="${not quest.viewCheck }">
-				<strong>답변 대기</strong>
+				<ul>
+							<li>
+								<p class="stit">
+								<strong>답변대기</strong>
+									<a href="${pageContext.request.contextPath }/cs/quest/view">${quest.questionTitle }</a>
+									<span class="data">${quest.questionDate }</span>
+								</p>
+							</li>
+						</ul>
 			</c:if>								
-							${quest.questionTitle }							
-						</a>	
-						<span style="margin-left: 500px" class="data">${quest.questionDate }</span>						
-					</li>	
-				</ul>
 				</c:forEach>
 			</c:if>
-			
-			
-			</div>
+</div>
 </body>
 </html>

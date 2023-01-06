@@ -23,6 +23,27 @@
 		<result property="sellerId" column="seller_id" />
 	</resultMap> -->
 	
+	<resultMap id="productbrandfile" type="product">
+		<id property="productId" column="product_id" javaType="int" />
+		<result property="brandNum" column="brand_num" />
+		<result property="productName" column="product_name" />
+		<result property="productPrice" column="product_price" />
+		<result property="productInfo" column="product_info" />
+		<result property="colorId" column="color_id" />
+		<result property="subCateId" column="sub_cate_id" />
+		<association property="brand"
+			column="brand_name" javaType="brand" resultMap="brandname"></association>
+		<association property="oliveFile"
+			column="file_name" javaType="ofile" resultMap="olivefile"></association>
+	</resultMap>
+	<resultMap id="brandname" type="brand">
+		<id property="brandNum" column="brand_num" />
+		<result property="brandName" column="brand_name" />
+	</resultMap> 
+	<resultMap id="olivefile" type="ofile">
+		<result property="fileName" column="file_name" />
+	</resultMap> 
+	
 	
 	<!-- 셀러 안녕하세요-->
 	<select id="selectSubCate" resultType="subCategory">
@@ -71,10 +92,33 @@
 		WHERE p.product_id = #{productId}
 	</delete>
 
-
-
-
-
+	<!-- 상품 수정 -->
+	<update id="updateProd" >
+		update product 
+		set product_name = #{productName}, product_price = #{productPrice}, product_info = #{productInfo}
+		where product_id = #{productId}
+	</update>
+	<insert id="updateFile" >
+		  INSERT INTO olivefile (
+            file_name
+            , product_id
+        ) VALUES (
+            #{fileName}
+            , #{productId.productId}
+        )
+	</insert>
+	
+	<select id="selectOneProd" resultMap="productbrandfile">
+		select p.*, b.brand_name
+		from product p, brand b
+		where b.brand_num = p.brand_num
+		and p.product_id = #{productId}
+	</select>
+	
+	<select id="selectOneFile" resultType="ofile">
+		select file_name from olivefile
+		where product_id = #{productId}
+	</select>
 
 
 </mapper>
