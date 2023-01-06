@@ -52,6 +52,22 @@ public Cart viewOneCart(int cartId) {
 	return cartMapper.viewOneCart(cartId);
 }
 
+@Override
+public void deleteCart(int cartId) {
+	cartMapper.deleteCart(cartId);
+}
+
+@Override
+public boolean findCartProduct(int productId) {
+	return cartMapper.findProduct(productId);
+}
+
+@Override
+public void addProductCount(Cart cart) {
+	cartMapper.addCount(cart);
+}
+
+
 
 
 
