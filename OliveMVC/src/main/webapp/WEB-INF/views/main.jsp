@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta property="og:title" content="올리브영 온라인몰" />
@@ -1067,7 +1068,7 @@
 									</div>
 									<button class="btn_zzim jeem" data-ref-goodsNo="A000000170878">찜하기</button>
 									<p class="prd_price">
-										<span class="tx_cur"><span class="tx_num">${pList.productPrice }</span>원 </span>
+										<span class="tx_cur"><span class="tx_num"><fmt:formatNumber type="number" maxFractionDigits="3" value="${pList.productPrice }" /></span>원 </span>
 									</p>
 									<p class="prd_flag"><span class="icon_flag sale">세일</span>
 									<span class="icon_flag coupon">쿠폰</span>

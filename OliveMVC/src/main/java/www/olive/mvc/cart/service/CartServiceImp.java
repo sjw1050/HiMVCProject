@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import www.olive.mvc.cart.dto.Cart;
 import www.olive.mvc.mapper.cart.CartMapper;
 import www.olive.mvc.member.dto.AuthInfo;
-import www.olive.mvc.member.dto.MemberEntity;
 
   
 @Service
@@ -65,6 +64,21 @@ public boolean findCartProduct(int productId) {
 @Override
 public void addProductCount(Cart cart) {
 	cartMapper.addCount(cart);
+}
+
+@Override
+public List<Cart> findCart(AuthInfo info) {
+	return cartMapper.findCart(info);
+}
+
+@Override
+public boolean findUserCart(Cart _cart) {
+	return cartMapper.findUserCart(_cart);
+}
+
+@Override
+public boolean findUserCartProd(Cart _cart) {
+	return cartMapper.findUserCartProd(_cart);
 }
 
 

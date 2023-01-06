@@ -70,18 +70,36 @@
 	</delete>
 
 	<!-- 장바구니에 상품이 있는지 찾기 -->
-	<select id="findProduct" resultType="boolean">
+	<!-- <select id="findProduct" resultType="boolean">
 	select if(count(*) = 1, 1, 0)
 	from cart
 	where product_id = #{productId}
-		<!-- select count(1) from cart where product_id =#{productId}; -->
-	</select>
+		select count(1) from cart where product_id =#{productId};
+	</select> -->
 	<!-- 장바구니에 이미 상품이 있을시 수량 추가 -->
 	<update id="addCount">
 
 		update cart set total_product_count =
-		total_product_count + #{totalProductCount} where product_id = #{productId};
+		total_product_count + #{totalProductCount} where cart_id = #{cartId};
 	</update>
+	
+	<select id="findCart" resultType="cart">
+	select * from cart where member_num = #{memberNum} order by product_id desc
+	</select>
+	
+	<select id="findUserCart" resultType="boolean">
+	select if(count(*) = 1, 1, 0)
+	from cart
+	where cart_id = #{cartId}
+		<!-- select count(1) from cart where product_id =#{productId}; -->
+	</select>
+	<select id="findUserCartProd" resultType="boolean">
+	select if(count(*) = 1, 1, 0)
+	from cart
+	where cart_id = #{cartId}
+	and product_id = #{productId}
+		<!-- select count(1) from cart where product_id =#{productId}; -->
+	</select>
 
 </mapper>
   

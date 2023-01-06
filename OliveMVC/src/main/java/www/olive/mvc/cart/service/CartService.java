@@ -28,6 +28,11 @@ public interface CartService {
 
 	boolean findCartProduct(int productId);
 
+	List<Cart> findCart(AuthInfo info);
+
+	boolean findUserCart(Cart _cart);
+	public boolean findUserCartProd(Cart _cart);
+
 
 
 }
