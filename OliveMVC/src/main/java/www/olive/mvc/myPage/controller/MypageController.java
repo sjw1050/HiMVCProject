@@ -21,9 +21,11 @@ import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.member.dto.MemberEntity;
 import www.olive.mvc.member.service.MemberService;
 import www.olive.mvc.myPage.dto.OrderAddress;
+import www.olive.mvc.myPage.dto.OrderDetails;
 import www.olive.mvc.myPage.dto.OrderList;
 import www.olive.mvc.myPage.dto.ProductOrder;
 import www.olive.mvc.myPage.service.MypageService;
+import www.olive.mvc.order.service.OrderService;
 import www.olive.mvc.product.dto.Product;
 import www.olive.mvc.product.dto.ProductQna;
 import www.olive.mvc.product.service.ProductService;
@@ -244,6 +246,20 @@ public class MypageController {
 		}else {
 			return "fail";
 		}
+	}
+	
+	@GetMapping("getOrderList")
+	public String getOrderList(HttpSession session, Model model) {
+		AuthInfo info = (AuthInfo) session.getAttribute("info");
+		//List<OrderList> orderList = mypageService.getOrderList(info);
+		List<ProductOrder> poList = mypageService.viewOrder(info.getMemberNum());
+		List<OrderDetails> odList = mypageService.viewOrderDetail(info);
+		System.out.println("오더디테일 받음?" + odList);
+		//System.out.println("뿌려줄 주문리스트 정보 : " + orderList);
+		//model.addAttribute("orderList", orderList);
+		model.addAttribute("poList", poList);
+		model.addAttribute("odList", odList);
+		return "mypage/getOrderList";
 	}
 	
 

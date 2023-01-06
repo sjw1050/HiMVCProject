@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import www.olive.mvc.member.dto.AuthInfo;
 import www.olive.mvc.member.dto.MemberEntity;
 import www.olive.mvc.myPage.dto.OrderAddress;
 import www.olive.mvc.myPage.dto.OrderDetails;
@@ -24,6 +25,8 @@ public interface OrderMapper {
 	void insertOrderAddress(OrderAddress oa);
 	void insertOrderProduct(ProductOrder po);
 	void insertOrder(OrderDetails order);
+	List<OrderList> getOrderList(AuthInfo info);
+	List<OrderDetails> viewOrderDetail(Long memberNum);
 	
 	
 }

@@ -80,7 +80,7 @@
 					<ul>
 						<li><h2>마이 쇼핑</h2>
 							<ul>
-								<li class="subMenu"><a href="${pageContext.request.contextPath }/mypage/orderdetail" data-attr="마이페이지^메뉴^주문/배송 조회">주문/배송 조회</a></li>
+								<li class="subMenu"><a href="${pageContext.request.contextPath }/mypage/getOrderList" data-attr="마이페이지^메뉴^주문/배송 조회">주문/배송 조회</a></li>
 								<li class="subMenu"><a href="javascript:;" myMenuId="0102" data-ref-linkUrl="https://www.oliveyoung.co.kr/store/mypage/getOrderCancelList.do" data-attr="마이페이지^메뉴^취소/반품/교환 내역">취소/반품/교환 내역</a></li>
 							</ul>
 							<ul class="line">

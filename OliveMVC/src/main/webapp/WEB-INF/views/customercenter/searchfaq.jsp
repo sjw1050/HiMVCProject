@@ -110,8 +110,14 @@
 				<div class="pageing">
 					<strong title="현재 페이지">1</strong>
 				</div>
-				</div>
+				<p class="common1s-text">찾으시는 질문이 없다면?</p>
+				<div class="area1sButton">
 				
+					<a href="${pageContext.request.contextPath }/cs/faq/faqview" class="btnGreenW">FAQ 전체보기</a>
+			
+					<a href="${pageContext.request.contextPath }/cs/quest/write" class="btnGreen">1:1문의하기</a>
+				</div>
+				</div>				
 				</div>
 				</div>
 				<jsp:include page="../footer.jsp"></jsp:include>
