@@ -57,14 +57,22 @@ public class CartController {
 		String result = null;
 		AuthInfo info = (AuthInfo) session.getAttribute("info");		
 		List<Cart> cartlis = cartService.findCart(info);
+		System.out.println("해당 멤버가 가지고있는 카트리스트 :" + cartlis);
 		for(Cart _cart : cartlis) {
 			_cart.setProductId(productId);
-			boolean prodalreadyExist = cartService.findUserCartProd(_cart);
-			if(prodalreadyExist == true) {
-				result = "fail";
-			}else {
-				result = "success";
-			}
+			System.out.println("카트 하나당 상품 있는지 확인하기 전 _cart 프로덕트 바뀐지 확인" + _cart);
+			boolean cartalreadyExist = cartService.findUserCart(_cart);
+			if(cartalreadyExist == true) {
+				boolean prodalreadyExist = cartService.findUserCartProd(_cart);
+				if(prodalreadyExist == true) {
+					System.out.println("이미 있을때는 fail반환");
+					result = "fail";
+					break;
+				}else {
+					System.out.println("없을떄는 success반환");
+					result = "success";
+				}
+			}			
 		}
 		return result;
 	}
