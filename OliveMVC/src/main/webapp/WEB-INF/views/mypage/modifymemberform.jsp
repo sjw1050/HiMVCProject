@@ -145,7 +145,7 @@ function passwordcheck() {
 	        	console.log(result);
 	            if (result === "success") {
 	            	alert("비밀번호 확인에 성공하였습니다. 변경 할 정보 입력 후 변경하기를 눌러주세요 변경하기를 누르지 않을 경우 비밀번호는 변경되지 않습니다.");
-	    			submit.style.display = "block";
+	            	submitbtn.style.display = "block";
 	            }else if (result === "fail"){
 	            	alert("입력한 비밀번호가 일치하지 않습니다 다시 확인 후 입력해주세요");
 	            	passwordchk.value = "";

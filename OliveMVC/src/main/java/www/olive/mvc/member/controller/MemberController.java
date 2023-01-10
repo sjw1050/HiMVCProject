@@ -55,7 +55,7 @@ public class MemberController {
 	public String registmember(MemberEntity member, Model model) {
 		member.setPw(bCryptPasswordEncoder.encode(member.getPw()));
 			memberService.registMember(member);
-			return "/main";
+			return "redirect:/main";
 	}
 	
 	@GetMapping("view")

@@ -58,6 +58,11 @@ public class CartController {
 		AuthInfo info = (AuthInfo) session.getAttribute("info");		
 		List<Cart> cartlis = cartService.findCart(info);
 		System.out.println("해당 멤버가 가지고있는 카트리스트 :" + cartlis);
+		if(cartlis.size() == 0) {
+			System.out.println("카트리스트가 없을떄 들어오니?");
+			result =  "success";
+		}
+		if(cartlis != null) {
 		for(Cart _cart : cartlis) {
 			_cart.setProductId(productId);
 			System.out.println("카트 하나당 상품 있는지 확인하기 전 _cart 프로덕트 바뀐지 확인" + _cart);
@@ -73,6 +78,7 @@ public class CartController {
 					result = "success";
 				}
 			}			
+		}
 		}
 		return result;
 	}
