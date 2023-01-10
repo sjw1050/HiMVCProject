@@ -647,7 +647,6 @@
 </script>
 
 <!-- RecoBell Script Start -->
- <script type="text/javascript" src="../../../logger.ai.oliveyoung.co.kr/js/eglpcidgen.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/common/libs/sha256.js"></script>
 <script type="text/javascript">
 try {

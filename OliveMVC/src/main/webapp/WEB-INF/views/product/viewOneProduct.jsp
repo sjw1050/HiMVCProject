@@ -24,6 +24,7 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/common/publish/jquery.mCustomScrollbar.concat.min.js"></script>
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/styledbaa.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
   <jsp:include page="../header.jsp" />
 <body>
@@ -583,9 +584,8 @@
 												<!-- 큐앤에이 끝 -->
 												
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 상세 배송 정보 i 아이콘 누르면 뜨게 만들어 봄 -->
-<script>
+<!-- <script>
 $(document).ready(function(){
 	$(".tit>.ico_info").click(function(){
 		$(".layer_pop_wrap w400").fadeIn(); $(".layer_pop_wrap w400").addClass("black");
@@ -594,9 +594,9 @@ $(document).ready(function(){
 		$(this).parent().fadeOut();
 	});
 });
-</script>
+</script> -->
 <!-- //상세 배송 정보 i 아이콘 누르면 뜨게 만들어 봄 -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var _ajax = common.Ajax;
 var _ajaxUrl = 'https://www.oliveyoung.co.kr/store/';
 var _qnaGoodsNo = "";
@@ -609,9 +609,9 @@ $(document).ready(function(){
     goods.detail.qna.init();
 });
 
-</script>
+</script> -->
 
-<script> 
+<!-- <script> 
 $.fn.tabToggle = function(options){
     var defaults = {
         cont_nm : '.tabConts',          //기본 탭 컨텐츠 클래스
@@ -646,7 +646,7 @@ $.fn.tabToggle = function(options){
  $('#tabList').length && $('#tabList').tabToggle();  
 
  
-		 /** CJ ONE 포인트 예상 적립 레이어 팝업 열기 **/
+		 // CJ ONE 포인트 예상 적립 레이어 팝업 열기 
 	      function openCjonepntPop(){
 	        	$("#layerWrap534").html($("#cjonePntInfo").html());
 	        	fnLayerSet("layerWrap534", "open");
@@ -682,7 +682,7 @@ $.fn.tabToggle = function(options){
 	                common.wlog("goods_share_url");
 	            });
 	        },
-	        /** 수량 증가 함수 **/
+	        // 수량 증가 함수
 	        nextVal : function(optionKey, itemSalePrc, qtyAddUnit){
 	            // [START 오늘드림 옵션상품 개선:jwkim]
 	            var promKnCd = $(".prd_gift_box.item_"+optionKey).attr("promkndcd"); 
@@ -741,7 +741,7 @@ $.fn.tabToggle = function(options){
 	            }
 	        },
 	        
-	        /** 수량 감소 함수 **/
+	        // 수량 감소 함수 
 	        prevVal : function(optionKey, itemSalePrc, qtyAddUnit){
 	            
 	            // [START 오늘드림 옵션상품 개선:jwkim]
@@ -800,7 +800,7 @@ $.fn.tabToggle = function(options){
 	        }
  }
  
-       </script>							
+       </script>			 -->				
 		</div>
 	</div>
 
@@ -1112,7 +1112,7 @@ if (uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MSIE') > -1) {
 	href="https://static.oliveyoung.co.kr/pc-static-root/css/jquery.mCustomScrollbar.css"
 	data-inprogress="">
 
-<script>
+<!-- <script>
 
 var mKey = "";
 $(document).ready(function(){
@@ -1143,7 +1143,7 @@ dataLayer = [{
 $(document).ready(function(){
 	gtm.goods.callGoodsGtmInfo('A000000163020', null, "ee-productView", null, 1);
 });
-</script>
+</script> -->
 
 
 <!-- RecoBell Script Start -->
@@ -1172,144 +1172,7 @@ $(document).ready(function(){
 
 <script
 	src="https://static.oliveyoung.co.kr/pc-static-root/js//common/libs/sha256.js"></script>
-<script type="text/javascript">
-var recoMbrNo = 'M0000010066194';
-// User ID 암호화
-var hashedRecoMbrNo = CryptoJS.SHA256(recoMbrNo).toString();
-
-if(recoMbrNo === 'null'){
-    hashedRecoMbrNo = "";
-}
-
-/* 3200210  큐레이션 개선 관련 건-레코벨 데이터 송부
- * 로그인 유저에 한해서 피부정보 조회(동의여부 기반 조회)
- * 중복 호출을 막기 위해, localStorage 사용.
- * updateSkinYn은 '프로필-나의 피부 컨디션 정보 변경 시, N으로 변경되며, 'N'에 해당 경우에만 DB를 호출하도록 변경
- * 업데이트 이후에는 중복 사항 호출을 막기 위해 updateSkinYn를 'Y'로 변경
- */
-
- setTimeout(function(){
-	 try {
-
-			window._eglqueue = window._eglqueue || [];
-			_eglqueue.push(['setVar','cuid','8b47cf9f-efd1-48e4-8f83-10ee8a07945b']);
-			//_eglqueue.push(['setVar','device','PW']);
-			_eglqueue.push(['setVar','userId',hashedRecoSsoMbrNo]); // optional
-			_eglqueue.push(['track','visit']);
-			(function(s,x){s=document.createElement('script');s.type='text/javascript';
-			s.async=true;s.defer=true;s.src=(('https:'==document.location.protocol)?'https':'http')+
-			'://logger.ai.oliveyoung.co.kr/js/logger.min.js';
-			x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);})();
-
-			var skinType = '';
-		    var skinTone = '';
-		    var skinIssue = '';
-		    var skinState = localStorage.getItem("updateSkinYn");
-		    if(skinState == null) {//localStorage 미적재 확인
-		    	localStorage.setItem("updateSkinYn", "N");
-		    }
-
-			try{
-			    if(recoSsoMbrNo != undefined && recoSsoMbrNo != ''){
-
-				    if(skinState == 'N') {//skin 정보 변경으로 인한 업데이트가 필요한 경우
-
-					       var url = _baseUrl + "main/getMySkinConditionList.do";
-					       var data = {mbrNo : recoSsoMbrNo}
-					         $.ajax({
-					           type   : "POST"
-					          ,url    : url
-					          ,data   : data
-					          ,async  : true
-					          ,success: function(response){
-					              callBackGetMySkinConditionList(response, skinState, skinType, skinTone, skinIssue);
-					           }
-					          ,error  : function (jqXHR,error, errorThrown){
-					        	  sendRecobell(skinState, skinType, skinTone, skinIssue); //해당 정보 무시하고 Recobell 전송
-					           }
-		       			});
-					}else{
-						sendRecobell(skinState, skinType, skinTone, skinIssue); //변경사항 없이 Recobell 전송
-					}
-			    }else{
-			    	sendRecobell(skinState, skinType, skinTone, skinIssue); //변경사항 없이 Recobell 전송
-			    }
-			}catch(e){
-				sendRecobell(skinState, skinType, skinTone, skinIssue); //해당 정보 무시하고 Recobell 전송
-			}
-			
-			var entrMenu = "";
-			var viewCatNo = "";
-
-			try {
-				entrMenu = menuList['search/getSearchMain.do'].contsNm == undefined ? "" : menuList['search/getSearchMain.do'].contsNm;
-				viewCatNo = '';
-			} catch(e) {
-				entrMenu = "";
-				viewCatNo = "";
-			}
-			
-		    window._eglqueue = window._eglqueue || [];
-		    _eglqueue.push(['setVar','cuid','8b47cf9f-efd1-48e4-8f83-10ee8a07945b']);
-		    //_eglqueue.push(['setVar','device','PW']);
-		    _eglqueue.push(['setVar','itemId','8809782557397']);
-		    _eglqueue.push(['setVar','userId',hashedRecoMbrNo]);
-		    _eglqueue.push(['setVar','categoryId','10000010011']); // 전시 카테고리 1 변경요청 20.10.14
-		    _eglqueue.push(['setVar','brandId','A002253']);
-		    _eglqueue.push(['setVar','searchTerm','']);
-		  	_eglqueue.push(['setVar', 'onlineItemId', "A000000163020"]);
-		  	_eglqueue.push(['setVar', 'dispStDt', "2022-02-15 00:00:00.0"]);
-		    _eglqueue.push(['setVar','entrMenu', entrMenu]);
-		    _eglqueue.push(['setVar','viewCatNo', viewCatNo]);
-		    _eglqueue.push(['track','view']);
-		    _eglqueue.push(['track','product']);  /* -- IMPORTANT -- */
-		    (function(s,x){s=document.createElement('script');s.type='text/javascript';
-		    s.async=true;s.defer=true;s.src=(('https:'==document.location.protocol)?'https':'http')+
-		    '://logger.ai.oliveyoung.co.kr/js/logger.min.js';
-		    x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);})();
-
-		 // 상품기술서 내 배너 trackingCd 적용
-		 var contEditor = $(".detail_area a");
-
-		 $('.detail_area a').each(function() {
-			 var baseUrl = $(this).attr("href")
-					 .replace(/[&|\?]trackingCd=([^&]+){1,}&?/g, "")
-					 .split("#");
-			 var conjunction = baseUrl[0].indexOf('?') > -1 ? "&" : "?";
-
-			 if (!baseUrl[1]) {
-				 $(this).attr('href', baseUrl[0].concat(conjunction, "trackingCd=Banner"));
-			 } else {
-				 $(this).attr('href', baseUrl[0].concat(conjunction, "trackingCd=Banner").concat("#", baseUrl[1]));
-			 }
-		 });
-		} catch(e) {}
- }, 500);
-
-
-	<script>
-	//[3346554] 상품상세 수량입력 후 페이지 이동시 오류(CHY)
-	$(window).load(function(){
-		var dupItemYn = "Y";
-		var soldOutYn = "N";
-		
-		if(dupItemYn == 'N' && soldOutYn != 'Y'){
-			var directDscntAmt = "2000";
-			var sPrc = "17000";
-			
-			if(directDscntAmt > 0){
-				sPrc = "15000";
-			}
-			
-			var goodsitem = "A000000163020001";
-			var sCnt = $("#cartCnt_"+goodsitem).val();
-			$("#totalCnt").val(sCnt);
-			$("#totalPrc").val(sPrc*sCnt);
-			$("#totalPrcTxt").text($.number(sPrc*sCnt));
-		}
-	});
-</script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	window.dataLayer = window.dataLayer || [];
 
 	var gtmDataAttrArray = [];
@@ -1376,7 +1239,7 @@ if(recoMbrNo === 'null'){
 
 			});
 		}
-		</script>
+		</script> -->
 	<div class="laytoast" id="brandOff" style="display: none;">
 		<div class="inner">
 			<p class="txt_recom txt_01">
@@ -1446,7 +1309,7 @@ if(recoMbrNo === 'null'){
 <script type="text/javascript" id="" src="//wcs.naver.net/wcslog.js"></script>
 <div style="display: none; visibility: hidden;">
 
-	<script type="text/javascript">var TRS_AIDX=10416,TRS_PROTOCOL=document.location.protocol;document.writeln();var TRS_URL=TRS_PROTOCOL+"//"+("https:"==TRS_PROTOCOL?"analysis.adinsight.co.kr":"adlog.adinsight.co.kr")+"/emnet/trs_esc.js";document.writeln("\x3cscript language\x3d'javascript' src\x3d'"+TRS_URL+"'\x3e\x3c/script\x3e");</script>
+	<!-- <script type="text/javascript">var TRS_AIDX=10416,TRS_PROTOCOL=document.location.protocol;document.writeln();var TRS_URL=TRS_PROTOCOL+"//"+("https:"==TRS_PROTOCOL?"analysis.adinsight.co.kr":"adlog.adinsight.co.kr")+"/emnet/trs_esc.js";document.writeln("\x3cscript language\x3d'javascript' src\x3d'"+TRS_URL+"'\x3e\x3c/script\x3e");</script> -->
 	<script language="javascript"
 		src="https://analysis.adinsight.co.kr/emnet/trs_esc.js"></script>
 
@@ -1467,25 +1330,35 @@ if(recoMbrNo === 'null'){
 	src="//t1.daumcdn.net/adfit/static/kp.js"></script>
 <script type="text/javascript" id="">try{var _ADVID="1970342711",_EUR=function(a){return a=encodeURIComponent(a)},_toastace=new Image(0,0),_ESTR="u\x3d"+_EUR(document.URL)+"\x26advid\x3d"+_ADVID+"\x26r\x3d"+_EUR(document.referrer)+"\x26code\x3dutf-8\x26target\x3d"+_EUR(_EUR('{"oid":"","items":[]}'))+"\x26action\x3dvisit";_toastace.src="//adlc-exchange.toast.com/log?"+_ESTR}catch(a){};</script>
 <script type="text/javascript" id="">if(!wcs_add)var wcs_add={};wcs_add.wa="s_3ee47970f314";if(!_nasa)var _nasa={};wcs.inflow();wcs_do(_nasa);</script>
-<script type="text/javascript" id="">kakaoPixel("8451652009131684431").pageView();</script>
+<!-- <script type="text/javascript" id="">kakaoPixel("8451652009131684431").pageView();</script> -->
 <script type="text/javascript" id="" charset="UTF-8"
 	src="//t1.daumcdn.net/adfit/static/kp.js"></script>
-<script type="text/javascript" id="">window.criteo_q=window.criteo_q||[];window.criteo_q.push({event:"setAccount",account:70319},{event:"setSiteType",type:"d"},{event:"viewItem",item:google_tag_manager["GTM-NF4R92W"].macro(53)});</script>
-<script type="text/javascript" id="">kakaoPixel("8143468118245396271").pageView();</script>
+<!-- <script type="text/javascript" id="">window.criteo_q=window.criteo_q||[];window.criteo_q.push({event:"setAccount",account:70319},{event:"setSiteType",type:"d"},{event:"viewItem",item:google_tag_manager["GTM-NF4R92W"].macro(53)});</script> -->
+<!-- <script type="text/javascript" id="">kakaoPixel("8143468118245396271").pageView();</script> -->
 
-<script type="text/javascript" id="">kakaoPixel("8143468118245396271").pageView();kakaoPixel("8143468118245396271").viewContent({id:google_tag_manager["GTM-NF4R92W"].macro(54)});</script>
-<script type="text/javascript" id="">kakaoPixel("8451652009131684431").pageView();kakaoPixel("8451652009131684431").viewContent({id:google_tag_manager["GTM-NF4R92W"].macro(69).toString()});</script>
+<!-- <script type="text/javascript" id="">kakaoPixel("8143468118245396271").pageView();kakaoPixel("8143468118245396271").viewContent({id:google_tag_manager["GTM-NF4R92W"].macro(54)});</script> -->
+<!-- <script type="text/javascript" id="">kakaoPixel("8451652009131684431").pageView();kakaoPixel("8451652009131684431").viewContent({id:google_tag_manager["GTM-NF4R92W"].macro(69).toString()});</script> -->
 <div id="criteo-tags-div" style="display: none;"></div>
 <iframe height="0" width="0" title="Criteo DIS iframe"
 	style="display: none;"></iframe>
 <script>
+
+function infocheck() {
+	if(("${info.memberNum}") == ""){
+		alert("회원만 이용할 수 있는 메뉴입니다. 로그인 후 이용해주세요");
+		return false;
+	}
+}
+
 $(document).on("click","button[name='cartSubmit']", function () {
+	infocheck();
 	let count = document.getElementById("count");
 	let productId = document.getElementById("productId");
 	let form = document.createElement("form");
 	
+	
 	$.ajax({
-        url: "/cart/cartchk?productId="+productId.value,
+        url: "${pageContext.request.contextPath }/cart/cartchk?productId="+productId.value,
         type: "get",
         success: function (result) {
         	console.log(result);
@@ -1509,13 +1382,18 @@ $(document).on("click","button[name='cartSubmit']", function () {
                 console.log(form);
                 document.body.appendChild(form);
                 form.submit();
-            }else{
+            }else if (result === "fail" ){
             	alert("이미 장바구니에 들어있는 아이템입니다.");
             	return;
             }
+        },
+        error:function(request,status,error){
+            alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
         }
     });
 });
+
+
 </script>
 
 </body>

@@ -40,6 +40,7 @@ function showPopUp() {
 	window.open(url, "hello popup", windowStatus);
 }
 </script>
+
 <%-- <meta property="og:title" content="마이페이지 | 올리브영" />
 <meta property="og:url" content="${pageContext.request.contextPath }/mypage/main" />
 <meta property="og:image" content=""/> 
