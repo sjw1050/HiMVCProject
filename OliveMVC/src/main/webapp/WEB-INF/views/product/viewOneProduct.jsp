@@ -205,8 +205,9 @@
 									data-attr="상품상세^주문유형^장바구니">장바구니</button>
 							<!-- <form action="${pageContext.request.contextPath }/order/viewOrderList" method="get"> -->
 								<input name="productId" type="hidden" id="productId" value="${oneProdList.productId }" />
+								<input style="display: none" type="hidden" name="member.memberNum" id="memberid" value="${info.memberNum }" />
 								<button class="btnBuy goods_buy" id="cartBtn"
-									onclick="javascript:common.popLayer.todayDelivery.openTodayDeliveryNotice('goodsdetail.order');"
+									onclick="pastOrder()"
 									data-attr="상품상세^주문유형^바로구매">바로구매</button>
 									<button style="color: #ff5753; border-color: #ff5753; background-color: white; border: 1px solid #f27370; font-size: 20px;" class="btnInquiry goods_qna_inquiry" onclick="location.href='${pageContext.request.contextPath }/cs/quest/write'">상품문의</button>
 							<!-- </form> -->
@@ -1342,20 +1343,42 @@ $(document).ready(function(){
 <iframe height="0" width="0" title="Criteo DIS iframe"
 	style="display: none;"></iframe>
 <script>
+let count = document.getElementById("count");
+let productId = document.getElementById("productId");
 
 function infocheck() {
 	if(("${info.memberNum}") == ""){
 		alert("회원만 이용할 수 있는 메뉴입니다. 로그인 후 이용해주세요");
 		return false;
 	}
+	if(count.value === ""){
+		alert("수량을 1개이상 입력해주세요");
+		return false;
+	}
+}
+
+function pastOrder() {
+	let member = document.getElementById("memberid");
+	if (infocheck() == false){
+		return;
+	}
+	let data = "count="+count.value + "productId="+productId.value;
+	console.log(data);
+	$.ajax({
+        url: "${pageContext.request.contextPath }/cart/cartchk?productId="+productId.value,
+        type: "get",
+        success: function (result) {
+        	
+        }
+	});
+	
 }
 
 $(document).on("click","button[name='cartSubmit']", function () {
-	infocheck();
-	let count = document.getElementById("count");
-	let productId = document.getElementById("productId");
-	let form = document.createElement("form");
-	
+	if (infocheck() == false){
+		return;
+	}
+	let form = document.createElement("form");	
 	
 	$.ajax({
         url: "${pageContext.request.contextPath }/cart/cartchk?productId="+productId.value,
