@@ -8,45 +8,6 @@
 <title>Insert title here</title>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
-var password = "${member.pw}";
-var passwordchk = document.getElementById("password");
-var newpassword = document.getElementById("newpassword");
-var newconfirmpassword = document.getElementById("newconfirmpassword");
-var submit = document.getElementById("submit")
-var memberId = document.getElementById("memberId");
-var memberName = document.getElementById("memberName");
-var email = document.getElementById("email");
-var phone = document.getElementById("phone");
-var addressNumber = document.getElementById("addressNumber");
-var addressinfo = document.getElementById("addressinfo");	
-var addressdetail = document.getElementById("addressdetail");
-var addressdetail2 = document.getElementById("addressdetail2");
-
-function passwordmodiform() {
-	document.getElementById("password").style.display="block";
-	document.getElementById("newpassword").style.display="block";
-	document.getElementById("newconfirmpassword").style.display="block";
-	document.getElementById("pwchk").style.display="block";
-	document.getElementById("cancelmodi").style.display="block";
-	document.getElementById("pwmodi").style.display="none";
-	submit.style.display = "none";
-}
-function cancelpasswordmodi() {
-	document.getElementById("password").style.display="none";
-	document.getElementById("newpassword").style.display="none";
-	document.getElementById("newconfirmpassword").style.display="none";
-	document.getElementById("pwchk").style.display="none";
-	document.getElementById("cancelmodi").style.display="none";
-	document.getElementById("pwmodi").style.display="block";
-	submit.style.display = "block";
-	password = "${member.pw}";
-	passwordchk.value = "";
-	newpassword.value = "";
-	newconfirmpassword.value = "";
-	
-}
-</script>
 </head>
 <body>
 <jsp:include page="./mypage_header.jsp"></jsp:include>
@@ -96,7 +57,48 @@ function cancelpasswordmodi() {
 							</tr>
 						</table>
 </form>
+</div>
+</div>
+</div>
+<jsp:include page="../footer.jsp"></jsp:include>
 <script type="text/javascript">
+let password = "${member.pw}";
+let passwordchk = document.getElementById("password");
+let newpassword = document.getElementById("newpassword");
+let newconfirmpassword = document.getElementById("newconfirmpassword");
+let submitbtn = document.getElementById("submitbtn")
+let memberId = document.getElementById("memberId");
+let memberName = document.getElementById("memberName");
+let email = document.getElementById("email");
+let phone = document.getElementById("phone");
+let addressNumber = document.getElementById("addressNumber");
+let addressinfo = document.getElementById("addressinfo");	
+let addressdetail = document.getElementById("addressdetail");
+let addressdetail2 = document.getElementById("addressdetail2");
+
+function passwordmodiform() {
+	document.getElementById("password").style.display="block";
+	document.getElementById("newpassword").style.display="block";
+	document.getElementById("newconfirmpassword").style.display="block";
+	document.getElementById("pwchk").style.display="block";
+	document.getElementById("cancelmodi").style.display="block";
+	document.getElementById("pwmodi").style.display="none";
+	submitbtn.style.display = "none";
+}
+function cancelpasswordmodi() {
+	document.getElementById("password").style.display="none";
+	document.getElementById("newpassword").style.display="none";
+	document.getElementById("newconfirmpassword").style.display="none";
+	document.getElementById("pwchk").style.display="none";
+	document.getElementById("cancelmodi").style.display="none";
+	document.getElementById("pwmodi").style.display="block";
+	password = "${member.pw}";
+	passwordchk.value = "";
+	newpassword.value = "";
+	newconfirmpassword.value = "";
+	submitbtn.style.display = "block";
+}
+
 function check() {
 	if(memberId.value.trim() === "" || memberName.value.trim() === "" || email.value.trim() === "" || phone.value.trim() === "" || 
 	   addressNumber.value.trim() === "" || addressinfo.value.trim() === "" || addressdetail.value.trim() === "" || addressdetail2.value.trim() === ""){
@@ -135,17 +137,25 @@ function passwordcheck() {
 			//submit.style.display = "block";
 		//}
 		console.log(passwordchk.value);
+		let string = "pw="+passwordchk.value + "&newpw=" + newpassword.value;
 		$.ajax({
-	        url: "${pageContext.request.contextPath}/mypage/pwCheck?pw="+passwordchk.value,
+	        url: "${pageContext.request.contextPath}/mypage/pwCheck?" +string,
 	        type: "get",
 	        success: function (result) {
 	        	console.log(result);
 	            if (result === "success") {
 	            	alert("비밀번호 확인에 성공하였습니다. 변경 할 정보 입력 후 변경하기를 눌러주세요 변경하기를 누르지 않을 경우 비밀번호는 변경되지 않습니다.");
 	    			submit.style.display = "block";
-	            }else{
+	            }else if (result === "fail"){
 	            	alert("입력한 비밀번호가 일치하지 않습니다 다시 확인 후 입력해주세요");
 	            	passwordchk.value = "";
+	            	return false;
+	            } else if (result === "same"){
+	            	alert("기존 비밀번호와 새로 입력한 비밀번호가 동일합니다. 다른 비밀번호로 입력해주세요");
+	            	passwordchk.value = "";
+	            	newpassword.value = "";
+	            	newconfirmpassword.value = "";
+	            	return false;;
 	            }
 	        }
 	    });
@@ -153,9 +163,5 @@ function passwordcheck() {
 	}
 	
 </script>
-</div>
-</div>
-</div>
-<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

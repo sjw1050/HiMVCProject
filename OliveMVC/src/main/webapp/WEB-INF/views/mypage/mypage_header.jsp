@@ -7,8 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/resources/js/registForm_valid_check.js"></script>	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 let memberNum = "${info.memberNum}";
@@ -140,45 +138,3 @@ function showPopUp() {
 
 <!-- //마이페이지 SUB -->
 <script src="${pageContext.request.contextPath }/resources/js/mypage/mypage.side.js?dumm=20221229001"></script>
-<script>
-	$(window).ready(function(){
-	    mypage.side.init();
-	    
-	    if(_isLogin) {
-	    	var gdasPossibleTotCnt = sessionStorage.getItem("gdasPossibleTotCnt");
-	    	// if( common.isEmpty(gdasPossibleTotCnt) ) {
-	    		common.Ajax.sendJSONRequest(
-						"POST"
-					  , _baseUrl + "mypage/getGdasPossibleTotCnt.do"
-					  , null
-					  , function(res) {
-						  if(res.result != null && res.result > 0) {
-							  sessionStorage.setItem("gdasPossibleTotCnt", res.result.numberFormat());
-						} else {
-							 sessionStorage.setItem("gdasPossibleTotCnt", "0");							
-						}
-						$("#_gdasPossibleTotCnt").text( sessionStorage.getItem("gdasPossibleTotCnt") );
-						  
-				  });
-	    	//} else {
-	    	//	$("#_gdasPossibleTotCnt").text( gdasPossibleTotCnt );
-	    	//}
-	    	
-	    	// [3283136] 마이페이지 PC GUI 개편 및 장바구니 버튼 추가 요청의 件(CHY)
-	    	// 신규 리뷰 작성 여부의 따라 N 아이콘 표출
-    		var lastCheckDtime = localStorage.getItem("lastCheckDtime");
-           	common.Ajax.sendJSONRequest(
-       				"POST"
-       			  , _baseUrl + "mypage/getNewGdasPossibleCnt.do"
-       			  , {"lastCheckDtime" : lastCheckDtime}
-       			  , function(res) {
-     				  if(res.result > 0) {
-     					$("#_newGdasPossible").show();
-     				  } else {
-     					  $("#_newGdasPossible").hide();
-     				  }
-       		  });
-	    }
-	    
-	});
-</script>
