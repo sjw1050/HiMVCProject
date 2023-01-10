@@ -234,13 +234,20 @@ public class MypageController {
 	}
 	
 	@GetMapping("pwCheck")
-	public @ResponseBody String pwCheck(String pw, HttpSession session) {
+	public @ResponseBody String pwCheck(String pw, HttpSession session, String newpw) {
 		AuthInfo info = (AuthInfo) session.getAttribute("info");
 		MemberEntity member = memberService.selectMember(info.getMemberNum());
-		System.out.println("받아온 멤버정보 " + member);
-		System.out.println("입력한 비번 " + pw);
+		//System.out.println("받아온 멤버정보 " + member);
+		//System.out.println("입력한 비번 " + pw);
+		
+		// 입력한 비밀번호가 DB에 있는 비밀번호와 동일한지 체크 
 		if(bCryptPasswordEncoder.matches(pw, member.getPw())) {
-			System.out.println("비번일치");
+			// 기존 비밀번호와 새로 입력한 비밀번호가 동일한지 체크 
+			if(bCryptPasswordEncoder.matches(newpw, member.getPw())) {
+				//System.out.println("기존 비밀번호와 새로 입력한 비밀번호가 동일함");
+				return "same";
+			}
+			//System.out.println("보낸 비밀번호가 일치함");
 			return "success";
 		}else {
 			return "fail";
