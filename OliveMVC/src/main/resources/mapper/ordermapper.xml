@@ -130,6 +130,15 @@ and po.member_num = #{memberNum} order by od.order_id;
 		where m.member_num = oa.member_num
 		and oa.member_num = #{memberNum}
 	</select>
+	
+	<select id="searchAddrNum" resultMap="addressResult">
+	select oa.address_id, oa.address_number, oa.address_detail,
+		oa.address_detail2, oa.address_info, oa.receiver, oa.phone, m.* from
+		order_address oa, member m
+		where m.member_num = oa.member_num
+		and oa.member_num = #{member.memberNum}
+		and oa.address_number = #{addressNumber}
+	</select>
 
 	<update id="updateAddress">
 		update order_address set

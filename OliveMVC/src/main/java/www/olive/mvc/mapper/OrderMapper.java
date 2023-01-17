@@ -29,6 +29,7 @@ public interface OrderMapper {
 	
 	List<String> getOrderNum(Long memberNum);
 	List<OrderDetails> getOrderDetailsList(String orderNum);
+	OrderAddress searchAddrNum(OrderAddress oa);
 	
 	
 }

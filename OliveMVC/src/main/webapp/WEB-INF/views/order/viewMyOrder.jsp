@@ -17,12 +17,12 @@
 	<div><!-- 인풋 나누기  -->
 		<c:forEach items="${orderAddress }" var="orderAddress">
 			<span> <input type="checkbox" id="address"/>
-			수령인:<input type="text" name="receiver" value="${orderAddress.receiver}" disabled/>
-				우편변호: <input type="text" name="addressNumber"value="${orderAddress.addressNumber }" disabled />  
-				주소: <input type="text" name="addressInfo" value="${orderAddress.addressInfo }" disabled /> 
-				<input type="text" name="addressDetail" value="${orderAddress.addressDetail }" disabled /> 
-				<input type="text" name="addressDetail2" value="${orderAddress.addressDetail2 }" disabled /><br>
-				<input type="hidden" name ="addressId" value="${orderAddress.addressId }" disabled />
+			수령인:<input type="text" name="receiver" value="${orderAddress.receiver}" readOnly disabled/>
+				우편변호: <input type="text" name="addressNumber"value="${orderAddress.addressNumber }" readOnly disabled />  
+				주소: <input type="text" name="addressInfo" value="${orderAddress.addressInfo }" readOnly disabled /> 
+				<input type="text" name="addressDetail" value="${orderAddress.addressDetail }" readOnly disabled /> 
+				<input type="text" name="addressDetail2" value="${orderAddress.addressDetail2 }" readOnly disabled /><br>
+				<input type="hidden" name ="addressId" value="${orderAddress.addressId }" readOnly disabled />
 			</span>
 		</c:forEach>
 	</div>
@@ -59,6 +59,22 @@
 			<h2>배송 상품</h2>
 			<table>
 			<c:set var = "total" value = "0" />
+			<c:if test="${! empty oneOrder }">
+				<tr>
+					<th>상품정보</th>
+					<th>판매가</th>
+					<th>수량</th>
+					<th>최종 금액</th>
+				</tr>
+				<tr>
+					<td><span>${oneOrder.product.brand.brandName }</span>
+						<p>${oneOrder.product.productInfo}${oneOrder.product.productName }</p></td>
+					<td>${oneOrder.product.productPrice }</td>
+					<td>${oneOrder.orderCount }</td>
+					 <td>${oneOrder.product.productPrice * oneOrder.orderCount}</td>
+					 <c:set var="total" value="${oneOrder.product.productPrice * oneOrder.orderCount}"/>
+				</tr>
+			</c:if>
 				<c:forEach items="${viewCartList }" var="viewCartList">
 					<tr>
 						<th>상품정보</th>

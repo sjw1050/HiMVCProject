@@ -1345,6 +1345,7 @@ $(document).ready(function(){
 <script>
 let count = document.getElementById("count");
 let productId = document.getElementById("productId");
+let form = document.createElement("form");
 
 function infocheck() {
 	if(("${info.memberNum}") == ""){
@@ -1364,21 +1365,30 @@ function pastOrder() {
 	}
 	let data = "count="+count.value + "productId="+productId.value;
 	console.log(data);
-	$.ajax({
-        url: "${pageContext.request.contextPath }/cart/cartchk?productId="+productId.value,
-        type: "get",
-        success: function (result) {
-        	
-        }
-	});
-	
+	form.setAttribute("charset", "UTF-8");
+    form.setAttribute("method", "Post");  //Post 방식    
+    form.setAttribute("action", "${pageContext.request.contextPath }/order/viewMyOrder");
+    let hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "count");
+    hiddenField.setAttribute("value", count.value);
+    form.appendChild(hiddenField);
+    
+    hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "productId");
+    hiddenField.setAttribute("value", productId.value);
+    form.appendChild(hiddenField);
+    
+    console.log(form);
+    document.body.appendChild(form);
+    form.submit();
 }
 
 $(document).on("click","button[name='cartSubmit']", function () {
 	if (infocheck() == false){
 		return;
-	}
-	let form = document.createElement("form");	
+	}	
 	
 	$.ajax({
         url: "${pageContext.request.contextPath }/cart/cartchk?productId="+productId.value,
