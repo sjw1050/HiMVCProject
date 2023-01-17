@@ -17,12 +17,12 @@
 	<div><!-- 인풋 나누기  -->
 		<c:forEach items="${orderAddress }" var="orderAddress">
 			<span> <input type="checkbox" id="address"/>
-			수령인:<input type="text" name="receiver" value="${orderAddress.receiver}" disabled/>
-				우편변호: <input type="text" name="addressNumber"value="${orderAddress.addressNumber }" disabled />  
-				주소: <input type="text" name="addressInfo" value="${orderAddress.addressInfo }" disabled /> 
-				<input type="text" name="addressDetail" value="${orderAddress.addressDetail }" disabled /> 
-				<input type="text" name="addressDetail2" value="${orderAddress.addressDetail2 }" disabled /><br>
-				<input type="hidden" name ="addressId" value="${orderAddress.addressId }" disabled />
+			수령인:<input type="text" name="receiver" value="${orderAddress.receiver}" readOnly disabled/>
+				우편변호: <input type="text" name="addressNumber"value="${orderAddress.addressNumber }" readOnly disabled />  
+				주소: <input type="text" name="addressInfo" value="${orderAddress.addressInfo }" readOnly disabled /> 
+				<input type="text" name="addressDetail" value="${orderAddress.addressDetail }" readOnly disabled /> 
+				<input type="text" name="addressDetail2" value="${orderAddress.addressDetail2 }" readOnly disabled /><br>
+				<input type="hidden" name ="addressId" value="${orderAddress.addressId }" readOnly disabled />
 			</span>
 		</c:forEach>
 	</div>
@@ -59,6 +59,22 @@
 			<h2>배송 상품</h2>
 			<table>
 			<c:set var = "total" value = "0" />
+			<c:if test="${! empty oneOrder }">
+				<tr>
+					<th>상품정보</th>
+					<th>판매가</th>
+					<th>수량</th>
+					<th>최종 금액</th>
+				</tr>
+				<tr>
+					<td><span>${oneOrder.product.brand.brandName }</span>
+						<p>${oneOrder.product.productInfo}${oneOrder.product.productName }</p></td>
+					<td>${oneOrder.product.productPrice }</td>
+					<td>${oneOrder.orderCount }</td>
+					 <td>${oneOrder.product.productPrice * oneOrder.orderCount}</td>
+					 <c:set var="total" value="${oneOrder.product.productPrice * oneOrder.orderCount}"/>
+				</tr>
+			</c:if>
 				<c:forEach items="${viewCartList }" var="viewCartList">
 					<tr>
 						<th>상품정보</th>
@@ -116,7 +132,7 @@ $(document).ready(function() {
 				"$1-$2-$3");
 	}
 
-	/* function addressSearch() {
+	 function addressSearch() {
 		new daum.Postcode({
 			oncomplete : function(data) {
 				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -150,19 +166,19 @@ $(document).ready(function() {
 						extraAddr = ' (' + extraAddr + ')';
 					}
 					// 조합된 참고항목을 해당 필드에 넣는다.
-					document.getElementById("addressdetail").value = extraAddr;
+					document.getElementById("addressDetail").value = extraAddr;
 
 				} else {
-					document.getElementById("addressdetail").value = '';
+					document.getElementById("addressDetail").value = '';
 				}
 
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
 				document.getElementById('addressNumber').value = data.zonecode;
-				document.getElementById("addressinfo").value = addr;
+				document.getElementById("addressInfo").value = addr;
 				// 커서를 상세주소 필드로 이동한다.
-				document.getElementById("addressdetail2").focus();
+				document.getElementById("addressDetail2").focus();
 			}
 		}).open();
-	} */
+	} 
 </script>
 </html>

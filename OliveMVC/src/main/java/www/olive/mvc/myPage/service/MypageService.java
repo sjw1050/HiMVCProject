@@ -124,4 +124,8 @@ public class MypageService {
 		return map;
 	}
 
+	public OrderAddress searchAddrNum(OrderAddress oa) {
+		return orderMapper.searchAddrNum(oa);
+	}
+
 }

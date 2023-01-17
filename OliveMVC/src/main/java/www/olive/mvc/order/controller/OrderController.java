@@ -29,6 +29,7 @@ import www.olive.mvc.myPage.dto.ProductOrder;
 import www.olive.mvc.myPage.service.MypageService;
 import www.olive.mvc.order.service.OrderService;
 import www.olive.mvc.product.dto.Product;
+import www.olive.mvc.product.service.ProductService;
 
 @Controller
 @RequestMapping("/order/**")
@@ -46,19 +47,23 @@ public class OrderController {
 	@Autowired
 	MypageService mypageService;
 	
+	@Autowired
+	ProductService productService;
+	
 
 	// 장바구니에서 상품 주문 가기
 	@PostMapping("viewMyOrder")
-	public String viewOrder(HttpSession session, HttpServletRequest request, Model model, @RequestParam(value="cartId", required=true) List<Integer> cartId) {
+	public String viewOrder(HttpSession session, HttpServletRequest request, Model model, @RequestParam(value="cartId", required=false) List<Integer> cartId) {
 		//System.out.println("받은 카트넘버 " + cartId);
 		//List<Cart> cart = cartService.viewOneCart(cartId);
 		//System.out.println("카트 넘버를 통한 카트를 받아왔니?" + cart);
 		
 		AuthInfo info = (AuthInfo) session.getAttribute("info");
 		if(info == null) {
-			return "main";
+			return "redirect:/main";
 		}
 		//System.out.println("리스트로 카트 받는지?"+cartId);
+		if(cartId != null) {
 		List<Cart> cartList = new ArrayList<Cart>();
 		for(Integer cart : cartId) {
 			//System.out.println("카트넘버"+cart);
@@ -66,29 +71,23 @@ public class OrderController {
 			//System.out.println("카트넘버를 통해서 카트 정보 받아왔니?"+oneCart);
 			cartList.add(oneCart);
 		}
-		//System.out.println("카트아이디 받아서 카트 리스트 받아왔니?" + cartList);
-		//model.addAttribute("viewCartList", cart);
-//		int OrderProductId = Integer.parseInt(request.getParameter("OrderProductId"));
-//		System.out.println("OrderProductId >>>>>>>>>>>>>" + OrderProductId);
-//		
-		
-		List<OrderAddress> orderAddress = mypageService.viewAddress(info.getMemberNum());
 		//System.out.println("주소 목록 >>>>>>>>>>" + orderAddress);
-		model.addAttribute("orderAddress" , orderAddress);
-//		
-//		int OrderCartId = Integer.parseInt(request.getParameter("OrderCartId"));
-//		System.out.println("OrderCartId >>>>>>>>>>>>>" + OrderCartId);
-//		
-////		List<Cart> orderCart = cartService.selectOrderCart(OrderProductId);
-//		
-//		//장바구니에서 구매 버튼 누른 상품 보기
-//		cart.setMemberNum(info.getMemberNum());
-//		System.out.println("멤버 누구냐>>>>>>>>>>>" + info);
-//		List<Cart> viewCartList = cartService.viewCartList(info);
-//		System.out.println("viewCartList>>>>>>>>>>>>" + viewCartList);
 		session.setAttribute("OrderList", cartList);
 		model.addAttribute("viewCartList" , cartList);
-		
+		}else {
+			int count = Integer.parseInt(request.getParameter("count"));
+			int productId = Integer.parseInt(request.getParameter("productId"));
+			System.out.println("카트아이디가 없는 곳에 접근");
+			Product product = productService.viewOneProduct(productId);
+			System.out.println("한개만 주문 주문상품정보 : " + product);
+			OrderDetails orderDetails = new OrderDetails();
+			orderDetails.setProduct(product);
+			orderDetails.setOrderCount(count);
+			session.setAttribute("oneOrder", orderDetails);
+			model.addAttribute("oneOrder", orderDetails);
+		}
+		List<OrderAddress> orderAddress = mypageService.viewAddress(info.getMemberNum());
+		model.addAttribute("orderAddress" , orderAddress);		
 		
 		return "/order/viewMyOrder";
 	}
@@ -99,7 +98,7 @@ public class OrderController {
 		
 		AuthInfo info = (AuthInfo) session.getAttribute("info");
 		if(info == null) {
-			return "main";
+			return "redirect:/main";
 		}
 		for(Integer cart : cartId) {
 			cartService.deleteCart(cart);
@@ -111,27 +110,19 @@ public class OrderController {
 	@PostMapping("/productOrder")
 	public String productOrder(HttpSession session,HttpServletRequest request , 
 			Model model,OrderAddress oa, ProductOrder po) {
-		// productOrder만들고 인서트 >>>>> order에 po셋 >>> order인서트 
-		//System.out.println("주소정보 받아왔니?" + oa);
-		//System.out.println("총금액 받아옴?" + po);
-		List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
-		List<Cart> orderList = (List<Cart>) session.getAttribute("OrderList");
-		for(Cart cart : orderList) {
-			//System.out.println("for문 돌리면서 카트 뽑았니?"+cart);
-			Product product = new Product();
-			OrderDetails order = new OrderDetails();
-			product.setBrandName(cart.getBrandName());
-			product.setProductName(cart.getProductName());
-			product.setProductPrice(cart.getProductPrice());
-			product.setProductId(cart.getProductId());
-			order.setProduct(product);
-			order.setOrderCount(cart.getTotalProductCount());
-			//System.out.println("오더가 주문 상품을 입력받았니?" + order);
-			orderDetails.add(order);
-			cartService.deleteCart(cart);
+		AuthInfo info = (AuthInfo) session.getAttribute("info");
+		if(info != null) {
+			MemberEntity member = memberService.selectMember(info.getMemberNum());
+			po.setMember(member);
+			oa.setMember(member);
+		}else {
+			return "redirect:/main";
 		}
-		//System.out.println("오더가 주문 상품을 입력받았니?" + orderDetails);
-		//System.out.println("카트리스트 받아왔니?" + orderList);
+		mypageService.insertAddress(oa);
+		if(oa.getAddressId() == 0) {
+			oa = mypageService.searchAddrNum(oa);
+		}
+		System.out.println("주소정보 수정되었니?" + oa);
 		Calendar cal = Calendar.getInstance();
 		 int year = cal.get(Calendar.YEAR);
 		 String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
@@ -149,30 +140,44 @@ public class OrderController {
 		     }
 
 		 }
-		 AuthInfo info = (AuthInfo) session.getAttribute("info");
-			if(info != null) {
-				MemberEntity member = memberService.selectMember(info.getMemberNum());
-				po.setMember(member);
-			}
 		 String orderId = ymd + "_" + subNum;
 		 po.setOrderId(orderId);
 		 po.setAddress(oa);
-		 orderService.insertOrderProduct(po);
-		 //System.out.println("정보들 추가되었니?" + po);
-		 for(OrderDetails order : orderDetails) {
+		 
+		List<Cart> orderList = (List<Cart>) session.getAttribute("OrderList");
+		if(orderList != null) {
+		List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
+		for(Cart cart : orderList) {
+			//System.out.println("for문 돌리면서 카트 뽑았니?"+cart);
+			Product product = new Product();
+			OrderDetails order = new OrderDetails();
+			product.setBrandName(cart.getBrandName());
+			product.setProductName(cart.getProductName());
+			product.setProductPrice(cart.getProductPrice());
+			product.setProductId(cart.getProductId());
+			order.setProduct(product);
+			order.setOrderCount(cart.getTotalProductCount());
+			//System.out.println("오더가 주문 상품을 입력받았니?" + order);
+			orderDetails.add(order);
+			cartService.deleteCart(cart);
+		}
+		session.removeAttribute("OrderList");
+		orderService.insertOrderProduct(po);
+		for(OrderDetails order : orderDetails) {
 			 order.setOrder(po);
 			 //System.out.println("오더에 주문정보 넣었어?"+order);
 			 orderService.insertOrder(order);
 		 }
+		}else {
+			orderService.insertOrderProduct(po);
+			OrderDetails oneOrder = (OrderDetails) session.getAttribute("oneOrder");
+			oneOrder.setOrder(po);
+			orderService.insertOrder(oneOrder);
+			session.removeAttribute("oneOrder");
+		}		
+	 
 		 info = memberService.updateTpa(po);
-		 session.setAttribute("info", info);
-		 
-		 //System.out.println("상품주문정보 들어갔니?" + orderDetails);
-		 //orderService.insertOrderProduct(po);		
-			
-		//order.setOrder(po);
-		//System.out.println("오더디테일에 프로덕트 오더 들어갓니?" + order);
-		//orderService.insertOrder(order);		
+		 session.setAttribute("info", info);	
 		
 		return "redirect:/mypage/main";
 	}
