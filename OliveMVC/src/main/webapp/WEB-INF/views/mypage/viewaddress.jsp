@@ -13,7 +13,7 @@
 <div class="mypage-conts">
 <h1>배송지 정보 조회</h1> 
 <input style="display: none" type="hidden" name="member.memberNum" id="memberid" value="${info.memberNum }" />
-<div>
+<div id="addressList">
 <c:forEach var="address" items="${address }" varStatus="status">
 	<input style="display: none" type="hidden" name="addressId" id="addressID${status.index }" value="${address.addressId }" />
 	<p><span>배송지 번호 :</span>${status.count }</p>
@@ -47,6 +47,7 @@
     <hr />
    </form>
    </c:forEach>
+   </div>
    
    <table style="display: none" id="addresstable${status.index }" >
    <tr>
@@ -63,7 +64,7 @@
 			<input type="button" onclick="addressSearch()" value="우편번호 찾기"><br>
 			<input type="text" name="addressinfo" id="addressinfo" placeholder="주소" "><br>
 			<input type="text" name="addressdetail" id="addressdetail" placeholder="주소지  정보" "><br />
-			<input type="text" name="addressdetail2" id="addressdetail2" placeholder="상세주소" "> </td>
+			<input type="text" name="addressdetail2" id="addressdetails" placeholder="상세주소" "> </td>
 	</tr>	
     </table>
    
@@ -72,7 +73,6 @@
    <button style="display: none; color: #999;" type="button" id="canceladdAddress" onclick="canceladdAddress()">추가 취소하기</button>   
    
    
-</div>
 </div>
 </div>
 </div>
@@ -185,12 +185,13 @@
 	}
 	
 	function addAddress() {	
+			
 		let member = document.getElementById("memberid");
 		console.log(member);
 		form = document.createElement("form");
 	    form.setAttribute("charset", "UTF-8");
 	    form.setAttribute("method", "Post");  //Post 방식
-	    form.setAttribute("action", "${pageContext.request.contextPath }/mypage/insertaddress"); //요청 보낼 주소
+	    //form.setAttribute("action", "${pageContext.request.contextPath }/mypage/insertaddress"); //요청 보낼 주소
 	    
 	    hiddenField = document.createElement("input");
 	    hiddenField.setAttribute("type", "hidden");
@@ -213,7 +214,7 @@
 	    hiddenField = document.createElement("input");
 	    hiddenField.setAttribute("type", "hidden");
 	    hiddenField.setAttribute("name", "addressDetail2");
-	    hiddenField.setAttribute("value", document.getElementById("addressdetail2").value);
+	    hiddenField.setAttribute("value", document.getElementById("addressdetails").value);
 	    form.appendChild(hiddenField);
 	    
 	    hiddenField = document.createElement("input");
@@ -229,21 +230,44 @@
 	    form.appendChild(hiddenField);  
 	    form.appendChild(member);
 	    
-	    if(addressNumber.value.trim() === "" || addressinfo.value.trim() === "" || addressdetail2.value.trim() === "" || receiver.value.trim() === "" || phone.value.trim() === "" ){
+	    console.log(form);
+	    document.body.appendChild(form);
+	    //form.submit();
+	    
+	    if(document.getElementById("addressNumber").value.trim() === "" || document.getElementById("addressinfo").value.trim() === "" || document.getElementById("addressdetails").value.trim() === "" || document.getElementById("receiver").value.trim() === "" || document.getElementById("phone").value.trim() === "" ){
 			alert("정확한 값을 입력해주세요 빈 칸은 입력할 수 없습니다.");
 			return false;
 		}
+		let msg = '유효하지 않는 전화번호입니다.';
+
+		if (!/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/.test(document.getElementById("phone").value.replace(/ /g, ''))) {
+			alert(msg);
+		    return false;
+		}
 	    
-	    msg = '유효하지 않는 전화번호입니다.';
-	    
-	    if (!/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/.test(phone.value.replace(/ /g, ''))) {
-	    	alert(msg);
-	        return false;
-	    }
-	    
-	    console.log(form);
-	    document.body.appendChild(form);
-	    form.submit();
+	    let data = new FormData(form);
+	    	    
+	     $.ajax({
+        url: "${pageContext.request.contextPath }/mypage/insertaddress",
+        type: "post",
+        data: data,
+        processData : false,
+        contentType: false,
+        success: function (result) {
+        	console.log(result);
+        	if(result === "reload"){
+        		document.getElementById("addresstable").style.display = "none";
+        		document.getElementById("addAddress").style.display = "none";
+        		document.getElementById("canceladdAddress").style.display = "none";
+        		document.getElementById("addAddressAction").style.display = "block";
+        		$("#addressList").load("${pageContext.request.contextPath }/mypage/address " +"#addressList");
+        	}
+        	
+        },
+        error: function (e){
+        	console.log("ERROR" , e)
+        }
+    });
 	    
 	    
 	}

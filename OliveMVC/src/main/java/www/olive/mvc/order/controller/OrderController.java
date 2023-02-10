@@ -118,7 +118,7 @@ public class OrderController {
 		}else {
 			return "redirect:/main";
 		}
-		mypageService.insertAddress(oa);
+		//mypageService.insertAddress(oa);
 		if(oa.getAddressId() == 0) {
 			oa = mypageService.searchAddrNum(oa);
 		}

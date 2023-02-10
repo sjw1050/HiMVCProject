@@ -93,13 +93,8 @@
 	src="${pageContext.request.contextPath }/resources/js/common/common.utils.js"
 	charset="UTF-8"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/resources/js/todaydelivery/todaydelivery.js"
-	charset="UTF-8"></script>
-<script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/common/publish/jquery.mCustomScrollbar.concat.min.js"></script>
-
-<script
-	src="../../../t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- 올리브영 css 끝 -->
 
 </head>
@@ -707,35 +702,6 @@ try {
 	<script src="${pageContext.request.contextPath }/resources/js/gtm/gtmdbaa.js?dumm=20221223001" charset="utf-8"></script>
 
 	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/event/eventLiveBroadcastdbaa.js?dumm=20221223001"></script>
-  
-
-	
-		
-		
-		
-			<script>
-				(function(h,o,u,n,d) {
-					h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
-					d=o.createElement(u);d.async=1;d.src=n
-					n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
-				})(window,document,'script','../../../www.datadoghq-browser-agent.com/datadog-rum.js','DD_RUM')
-				DD_RUM.onReady(function() {
-					DD_RUM.init({
-						clientToken: 'pubc89a173fb013152879aea4ea5580abcb',
-						applicationId: '4a379cad-dfb2-4a67-930e-6416ebc206b1',
-						site: 'datadoghq.com',
-						service:'oympprd',
-						env:'prd',
-						// Specify a version number to identify the deployed version of your application in Datadog
-						// version: '1.0.0',
-						sampleRate: 5,
-						replaySampleRate: 0,
-						premiumSampleRate : 5,
-						trackInteractions: true,
-						allowedTracingOrigins:[/http:\/\/.*\.oliveyoung\.co\.kr/, /https:\/\/.*\.oliveyoung\.co\.kr/]
-					})
-				})
-			</script>
 
 <form name="ssologinfrm" action="https://www.oliveyoung.co.kr/store/login/ssoLogin.do" method="post">
 <input  type="hidden"  id="cjssoq" name="cjssoq" />

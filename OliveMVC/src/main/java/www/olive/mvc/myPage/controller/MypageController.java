@@ -5,6 +5,7 @@ package www.olive.mvc.myPage.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,8 +106,16 @@ public class MypageController {
 		return "redirect:/mypage/address";
 	}
 	
+	@GetMapping("insertaddrform")
+	public String insertaddrform(HttpServletRequest request, HttpSession session) {
+		String referer = request.getHeader("referer");
+		System.out.println(referer);
+		session.setAttribute("referer", referer);
+		return "/order/writeAddr";
+	}
+	
 	@PostMapping("insertaddress")
-	public String insertAddress(HttpSession session, Model model, OrderAddress address) {
+	public @ResponseBody String insertAddress(HttpSession session, Model model, OrderAddress address) {
 		//System.out.println("인서트 멤버"+address);
 //		AuthInfo info = (AuthInfo) session.getAttribute("info");
 //		//System.out.println("추가된 주소 정보 받아옴?" + address);
@@ -116,8 +125,15 @@ public class MypageController {
 //		MemberEntity member = memberService.selectMember(info.getMemberNum());
 //		address.setMember(member);
 		//System.out.println("주소지 멤버 입력" + address);
-		mypageService.insertAddress(address);		
-		return "redirect:/mypage/address";
+		mypageService.insertAddress(address);
+		if(session.getAttribute("referer") != null) {
+			//System.out.println("주문창에서 주소지 추가로 넘어왔습니다.");
+			return "close";
+		}else {
+			System.out.println("주소지 추가창에서 주소지 추가로 넘어왔습니다.");
+			return "reload";
+		}
+		
 	}
 	
 	@GetMapping("deleteaddress")
